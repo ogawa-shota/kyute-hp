@@ -1,11 +1,11 @@
-# virtual-sova-lp
+# kyute-hp
 
 [AOI（総合型選抜専門塾）](https://aoaoi.jp/) のような構成を参考にした、**総合型選抜向け学習塾LPのデモ**（Next.js App Router）。
 
 ## 開発
 
 ```bash
-cd /Users/shota/Projects/virtual-sova-lp
+cd /Users/shota/Projects/kyute-hp
 npm install
 npm run dev
 ```
