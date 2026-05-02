@@ -4,19 +4,28 @@ export type NavItem = {
   children?: { label: string; href: string }[];
 };
 
-export type Testimonial = {
+export type Service = {
   id: string;
-  headline: string;
-  school: string;
-  faculty: string;
-  profile: string;
+  badge: string;
+  title: string;
+  tagline: string;
   body: string;
+  features: string[];
+  href: string;
+  image: string;
+  imageAlt: string;
 };
 
-export type WhyPoint = {
+export type NewsItem = {
+  date: string;
+  category: string;
   title: string;
-  subtitle: string;
+  href: string;
+};
+
+export type ValueItem = {
+  no: string;
+  label: string;
+  title: string;
   body: string;
-  href?: string;
-  linkLabel?: string;
 };

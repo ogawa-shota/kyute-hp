@@ -1,37 +1,25 @@
-import { AccessStrip } from "@/components/AccessStrip";
-import { ConsultSection } from "@/components/ConsultSection";
-import { ExamInfoStrip } from "@/components/ExamInfoStrip";
-import { FaqSection } from "@/components/FaqSection";
-import { HeroSchool } from "@/components/HeroSchool";
-import { HighlightCards } from "@/components/HighlightCards";
-import { MentorSection } from "@/components/MentorSection";
-import { PricingSection } from "@/components/PricingSection";
-import { RepresentativeSection } from "@/components/RepresentativeSection";
-import { ResultsSection } from "@/components/ResultsSection";
+import { AboutSection } from "@/components/AboutSection";
+import { CompanySection } from "@/components/CompanySection";
+import { ContactSection } from "@/components/ContactSection";
+import { HeroCompany } from "@/components/HeroCompany";
+import { MissionSection } from "@/components/MissionSection";
+import { NewsSection } from "@/components/NewsSection";
+import { ServicesSection } from "@/components/ServicesSection";
 import { SiteFooter } from "@/components/SiteFooter";
-import { TestimonialGrid } from "@/components/TestimonialGrid";
 import { TopBar } from "@/components/TopBar";
-import { WhySection } from "@/components/WhySection";
-import { WorrySection } from "@/components/WorrySection";
 
 export default function Home() {
   return (
     <>
       <TopBar />
       <main>
-        <HeroSchool />
-        <WorrySection />
-        <HighlightCards />
-        <ResultsSection />
-        <TestimonialGrid />
-        <WhySection />
-        <MentorSection />
-        <AccessStrip />
-        <RepresentativeSection />
-        <PricingSection />
-        <ExamInfoStrip />
-        <ConsultSection />
-        <FaqSection />
+        <HeroCompany />
+        <MissionSection />
+        <ServicesSection />
+        <AboutSection />
+        <NewsSection />
+        <CompanySection />
+        <ContactSection />
       </main>
       <SiteFooter />
     </>

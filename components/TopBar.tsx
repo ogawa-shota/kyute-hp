@@ -1,116 +1,98 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { navItems } from "@/data/site-content";
-import { CtaButton } from "./CtaButton";
+import { useEffect, useState } from "react";
+import { navItems, site } from "@/data/site-content";
 
 export function TopBar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 md:px-6">
-        <Link href="/" className="flex flex-col leading-tight">
-          <span className="font-[family-name:var(--font-display)] text-lg font-bold tracking-tight text-[var(--ink)] md:text-xl">
-            ステラアカデミー
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-[var(--line)] bg-[var(--header)] backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-8">
+        <Link href="/" className="group flex items-baseline gap-2.5">
+          <span className="text-2xl font-bold tracking-[0.04em] text-[var(--ink)] transition group-hover:text-[var(--brand)]">
+            {site.name}
           </span>
-          <span className="text-[10px] font-medium text-[var(--muted)] md:text-xs">
-            総合型選抜専門塾
+          <span className="hidden font-script text-base text-[var(--brand)] sm:block">
+            keep you to evolve
           </span>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="グローバルナビ">
           {navItems.map((item) => (
-            <div key={item.label} className="group relative">
-              <Link
-                href={item.href}
-                className="rounded-lg px-2 py-2 text-sm font-medium text-[var(--ink)] hover:bg-[var(--surface)]"
-              >
-                {item.label}
-              </Link>
-              {item.children ? (
-                <div className="invisible absolute left-0 top-full z-20 mt-1 min-w-[12rem] rounded-xl border border-[var(--line)] bg-white py-2 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100">
-                  {item.children.map((c) => (
-                    <Link
-                      key={c.label}
-                      href={c.href}
-                      className="block px-4 py-2 text-sm text-[var(--ink)] hover:bg-[var(--surface)]"
-                    >
-                      {c.label}
-                    </Link>
-                  ))}
-                </div>
-              ) : null}
-            </div>
+            <Link
+              key={item.label}
+              href={item.href}
+              className="rounded-full px-4 py-2 text-[13px] font-medium text-[var(--ink-soft)] transition hover:bg-[var(--brand-soft)] hover:text-[var(--brand)]"
+            >
+              {item.label}
+            </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
-          <CtaButton href="#" variant="line" external>
-            LINEで資料請求
-          </CtaButton>
-          <CtaButton href="#consult">受験相談</CtaButton>
+        <div className="hidden items-center md:flex">
+          <a
+            href="#contact"
+            className="group inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-[var(--brand)]"
+          >
+            お問い合わせ
+            <span className="transition group-hover:translate-x-0.5">→</span>
+          </a>
         </div>
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--line)] text-[var(--ink)] md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-[var(--ink)] lg:hidden"
           aria-expanded={open}
-          aria-controls="mobile-nav"
+          aria-label="メニュー"
           onClick={() => setOpen((v) => !v)}
         >
-          <span className="sr-only">メニュー</span>
           <span className="flex flex-col gap-1.5">
-            <span className="block h-0.5 w-5 bg-current" />
-            <span className="block h-0.5 w-5 bg-current" />
-            <span className="block h-0.5 w-5 bg-current" />
+            <span className={`block h-0.5 w-5 bg-current transition-all ${open ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block h-0.5 w-5 bg-current transition-all ${open ? "opacity-0" : ""}`} />
+            <span className={`block h-0.5 w-5 bg-current transition-all ${open ? "-translate-y-2 -rotate-45" : ""}`} />
           </span>
         </button>
       </div>
 
-      {open ? (
-        <div
-          id="mobile-nav"
-          className="border-t border-[var(--line)] bg-white px-4 py-4 md:hidden"
-        >
-          <div className="flex flex-col gap-3">
+      {open && (
+        <div className="border-t border-[var(--line)] bg-white px-5 pb-8 pt-4 lg:hidden">
+          <div className="flex flex-col gap-1">
             {navItems.map((item) => (
-              <div key={item.label} className="border-b border-[var(--line)] pb-3 last:border-b-0">
-                <Link
-                  href={item.href}
-                  className="font-semibold text-[var(--ink)]"
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
-                {item.children ? (
-                  <div className="mt-2 flex flex-col gap-2 pl-2">
-                    {item.children.map((c) => (
-                      <Link
-                        key={c.label}
-                        href={c.href}
-                        className="text-sm text-[var(--muted)]"
-                        onClick={() => setOpen(false)}
-                      >
-                        {c.label}
-                      </Link>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
+              <Link
+                key={item.label}
+                href={item.href}
+                className="block rounded-lg px-3 py-3 text-sm font-medium text-[var(--ink-soft)] transition hover:bg-[var(--brand-soft)] hover:text-[var(--brand)]"
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
             ))}
-            <div className="flex flex-col gap-2 pt-2">
-              <CtaButton href="#" variant="line" external>
-                LINEで資料請求
-              </CtaButton>
-              <CtaButton href="#consult" onClick={() => setOpen(false)}>
-                受験相談
-              </CtaButton>
-            </div>
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-semibold text-white"
+            >
+              お問い合わせ →
+            </a>
           </div>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }

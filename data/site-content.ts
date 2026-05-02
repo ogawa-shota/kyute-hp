@@ -1,261 +1,175 @@
-import type { NavItem, Testimonial, WhyPoint } from "@/lib/types";
+import type { NavItem, NewsItem, Service, ValueItem } from "@/lib/types";
 
-/** 塾名・文言は差し替え前提のデモコンテンツです（[aoaoi.jp](https://aoaoi.jp/) の構成を参考にしたオリジナル文案）。 */
 export const site = {
-  name: "ステラアカデミー",
-  tagline: "総合型選抜専門塾",
-  hero: {
-    title: "総合型選抜で、志望校と夢を諦めない。",
-    lead: "書類・小論文・面接まで、一人ひとりの物語に合わせて伴走します。",
-    bullets: [
-      "2026年度 合格速報を更新中",
-      "オンライン／対面で受講可能",
-      "創立記念の体験キャンペーン実施中",
-    ],
-    primaryCta: { label: "LINEで資料請求", href: "#" },
-    secondaryCta: { label: "受験相談を予約", href: "#consult" },
-  },
-  disclaimer:
-    "※掲載の合格実績・数値は一例です。最新情報はお問い合わせください。",
+  name: "KYUTE",
+  nameJa: "株式会社KYUTE",
+  acronym: "Keep You To Evolve",
+  tagline: "成長を、止めない。",
+  mission:
+    "総合型選抜という挑戦の最前線で、一人ひとりの可能性に火を灯し続ける。",
+  description:
+    "KYUTE は、総合型選抜対策に特化した教育サービスを展開する会社です。伴走型の個別指導塾と、対策に特化した AI プロダクトの2軸で、受験生の挑戦を支えます。",
 };
 
 export const navItems: NavItem[] = [
+  { label: "ミッション", href: "#mission" },
+  { label: "サービス", href: "#services" },
+  { label: "私たちについて", href: "#about" },
+  { label: "ニュース", href: "#news" },
+  { label: "会社情報", href: "#company" },
+  { label: "お問い合わせ", href: "#contact" },
+];
+
+export const heroCopy = {
+  eyebrow: "Keep You To Evolve",
+  titleLines: ["成長を、", "止めない。"],
+  lead:
+    "総合型選抜という新しい挑戦の場で、受験生一人ひとりの可能性を最大化する。\n人と AI、両方の力で伴走する教育プラットフォームをつくっています。",
+  scrollLabel: "Scroll",
+};
+
+export const valuePoints: ValueItem[] = [
   {
-    label: "ステラについて",
-    href: "#about",
-    children: [
-      { label: "ステラとは", href: "#about" },
-      { label: "メンター紹介", href: "#mentors" },
-      { label: "校舎・オンライン", href: "#access" },
-    ],
+    no: "01",
+    label: "Mission",
+    title: "成長の伴走者になる",
+    body: "合格はゴールではなく、その先の人生に続く始まり。私たちは結果だけでなく、挑戦そのものに価値を置きます。",
   },
   {
-    label: "合格実績",
-    href: "#results",
-    children: [
-      { label: "合格率・大学一覧", href: "#results" },
-      { label: "合格者の声", href: "#voices" },
-    ],
+    no: "02",
+    label: "Vision",
+    title: "教育に AI の翼を",
+    body: "テクノロジーで指導の質と量を解放し、地域・経済・経験の差を超えて、誰もが自分の物語を語れる入試対策を届けます。",
   },
   {
-    label: "授業内容",
-    href: "#curriculum",
-    children: [
-      { label: "高1・高2 カリキュラム", href: "#curriculum" },
-      { label: "高3 直前対策", href: "#curriculum" },
-    ],
-  },
-  {
-    label: "料金プラン",
-    href: "#pricing",
-  },
-  {
-    label: "入試情報",
-    href: "#exam-info",
-    children: [
-      { label: "総合型選抜とは", href: "#exam-info" },
-      { label: "説明会・イベント", href: "#exam-info" },
-    ],
-  },
-  {
-    label: "お問い合わせ",
-    href: "#consult",
-    children: [
-      { label: "受験相談", href: "#consult" },
-      { label: "よくある質問", href: "#faq" },
-    ],
+    no: "03",
+    label: "Value",
+    title: "人にしかできない対話を、AI にしかできない速度で",
+    body: "メンターによる伴走と、AI による個別最適化。両者を組み合わせることで、一人ひとりの「らしさ」を引き出します。",
   },
 ];
 
-export const worries: { title: string; text: string }[] = [
+export const services: Service[] = [
   {
-    title: "志望理由がまとまらない",
-    text: "自分の経験をどう物語にするか、何から手をつけるべきか迷っていませんか。",
+    id: "school",
+    badge: "Service 01",
+    title: "総合型選抜 伴走型 個別指導塾",
+    tagline: "合格まで、ひとりにしない。",
+    body:
+      "志望理由書・小論文・面接を、専属メンターが完全オーダーメイドで伴走。出願戦略から提出物のブラッシュアップ、面接練習まで、合格から逆算した個別カリキュラムで支えます。",
+    features: [
+      "完全オンラインでの 1on1 指導",
+      "総合型選抜 経験者によるメンタリング",
+      "出願戦略・スケジュール設計までフルサポート",
+      "週次面談 × チャット質問の二段構え",
+    ],
+    href: "#contact",
+    image:
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80",
+    imageAlt: "メンターと生徒がオンラインで対話している様子",
   },
   {
-    title: "小論文と面接の練習量が足りない",
-    text: "出題傾向は分かっても、添削とフィードバックがないと伸びしろが見えにくいものです。",
-  },
-  {
-    title: "併願戦略とスケジュールが不安",
-    text: "一般入試との両立、出願順、書類の締切管理まで、俯瞰して設計したい。",
+    id: "ai",
+    badge: "Service 02",
+    title: "総合型選抜対策 AI",
+    tagline: "あなたの言葉を、AI が磨く。",
+    body:
+      "志望理由書の添削、小論文の構造化、面接想定問答の生成まで、総合型選抜に特化して学習させた AI が 24 時間サポート。一人で書く時間を「壁打ち」の時間に変え、自分の言葉で語る力を育てます。",
+    features: [
+      "志望理由書の即時フィードバック",
+      "大学・学部ごとの出題傾向に最適化",
+      "面接の想定問答生成 × 模擬問答",
+      "塾サービスとシームレスに連携",
+    ],
+    href: "#contact",
+    image:
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=80",
+    imageAlt: "AI とテクノロジーを表現した抽象的なビジュアル",
   },
 ];
 
-export const highlights: { title: string; subtitle: string; body: string }[] = [
-  {
-    title: "メンター（講師）",
-    subtitle: "現役大学生の合格者が伴走",
-    body: "総合型選抜の最新動向に近い立場で、志望理由書の筋道づくりから面接の型まで伴走します。",
-  },
-  {
-    title: "学びの軸が立つカリキュラム",
-    subtitle: "自己理解 → 志望校設計 → 出力",
-    body: "「自分は何者か」「なぜその大学か」を段階的に言語化し、書類と面接の一貫性をつくります。",
-  },
-  {
-    title: "フルオーダーメイド授業",
-    subtitle: "進度と課題に合わせて最適化",
-    body: "週の負荷に合わせて課題量を調整。添削の往復と面接練習をセットで回せるのが強みです。",
-  },
-];
-
-export const results = {
-  copy: "難関私学・国公立まで、総合型選抜の合格実績を積み重ねています。",
+export const aboutCopy = {
+  eyebrow: "About KYUTE",
+  title: "総合型選抜のいま、\n挑戦する人の隣に。",
+  body:
+    "総合型選抜（旧 AO 入試）は、点数だけでは測れない「あなたという物語」を問う入試です。\n\n志望理由を言語化する、自分の経験から問いを立てる、面接で自分の軸を語る ―― それは大人でも難しい営みです。だからこそ、ひとりの受験生に、信頼できる伴走者と、思考を磨くテクノロジーが必要だと私たちは考えました。\n\nKYUTE は「人」と「AI」の両輪で、挑戦する受験生の隣に立ち続けます。",
   stats: [
-    { value: "170+", label: "対応大学の合格実績（累計）" },
-    { value: "80%", label: "メンターが総合型合格者（目安）" },
-    { value: "160+", label: "映像授業・教材コンテンツ" },
+    { value: "2", suffix: "Services", label: "総合型選抜に特化したプロダクト" },
+    { value: "100", suffix: "% Online", label: "全国どこからでも受講可能" },
+    { value: "1on1", suffix: "", label: "完全個別の伴走スタイル" },
   ],
 };
 
-export const testimonials: Testimonial[] = [
+export const newsItems: NewsItem[] = [
   {
-    id: "1",
-    headline: "「肯定」とフィードバックで志望理由が形になった",
-    school: "関西学院大学",
-    faculty: "総合政策学部",
-    profile: "偏差値 51 ／ 評定 2.8 ／ 浪人生",
-    body: "一人で書いていると視野が狭くなりがちでした。対話を重ねるうちに、自分の経験の意味が言葉になっていきました。",
+    date: "2026.04.18",
+    category: "Press",
+    title: "総合型選抜対策 AI のクローズドβ版を公開しました",
+    href: "#",
   },
   {
-    id: "2",
-    headline: "夢を語る時間が、受験生活の支えになった",
-    school: "同志社大学",
-    faculty: "社会学部",
-    profile: "偏差値 54 ／ 評定 3.2 ／ 部活・資格あり",
-    body: "小論文の型だけでなく、面接で話す『自分の軸』がはっきりしました。練習のたびに言葉が洗練されていきました。",
+    date: "2026.03.05",
+    category: "News",
+    title: "2026 年度 個別指導塾の新規受講生募集を開始しました",
+    href: "#",
   },
   {
-    id: "3",
-    headline: "地方在住でも、オンラインで密度の高い指導が受けられた",
-    school: "大阪大学",
-    faculty: "文学部",
-    profile: "偏差値 49 ／ 国公立志望",
-    body: "対面にこだわらず、週次の課題と添削のリズムが整ったのが大きかったです。出願スケジュールも一緒に整理してくれました。",
-  },
-];
-
-export const whyPoints: WhyPoint[] = [
-  {
-    title: "フルオーダーメイド授業",
-    subtitle: "志望理由は人それぞれ",
-    body: "一人ひとりの進捗に合わせて、書類添削・小論文・面接の比重を調整します。併願校の戦略づくりも支援します。",
-    href: "#curriculum",
-    linkLabel: "カリキュラムを見る",
+    date: "2026.02.10",
+    category: "Event",
+    title: "高校教員向けオンライン説明会を開催します",
+    href: "#",
   },
   {
-    title: "映像授業とドリル",
-    subtitle: "理解を深める自学の補助線",
-    body: "テーマ別の短い講義と演習で、授業間の自学を支えます。繰り返し視聴できるので、弱点を自分のペースで補えます。",
-  },
-  {
-    title: "メンターと校舎の雰囲気",
-    subtitle: "詰まったときに相談しやすい距離感",
-    body: "合格の鍵は『将来像の解像度』。対話を重ねながら、志望理由の芯を一緒に掘り下げます。",
-    href: "#access",
-    linkLabel: "校舎・オンラインを見る",
+    date: "2026.01.20",
+    category: "Company",
+    title: "株式会社 KYUTE を設立しました",
+    href: "#",
   },
 ];
 
-export const mentorBlocks: { title: string; body: string }[] = [
+export const companyInfo: { label: string; value: string }[] = [
+  { label: "会社名", value: "株式会社 KYUTE（KYUTE Inc.）" },
+  { label: "由来", value: "Keep You To Evolve ― 成長を後押しし続ける" },
+  { label: "代表取締役", value: "小川 翼" },
+  { label: "設立", value: "2026 年 1 月" },
   {
-    title: "総合型選抜の合格者がサポート",
-    body: "入試のリアルに近いメンターが、最新の傾向と失敗パターンを共有。同世代だからこそ相談しやすい、という声も多いです。",
+    label: "事業内容",
+    value: "総合型選抜 伴走型 個別指導塾の運営 / 総合型選抜対策 AI の開発・提供",
   },
-  {
-    title: "研修と評価で品質を担保",
-    body: "採用・研修・授業レビューを通じて、指導の型とフィードバックの質をそろえています。",
-  },
-  {
-    title: "幅広い学部に対応",
-    body: "文系中心に、芸術・映像・宗教系など、ニッチな志望にも対応できるメンターを配置しています（時期により変動）。",
-  },
+  { label: "所在地", value: "東京都（詳細は近日公開）" },
+  { label: "お問い合わせ", value: "ogawa@kyute.jp" },
 ];
 
-export const representative = {
-  name: "代表 小川 翼",
-  title: "総合型選抜は、今の自分を言語化する入試です",
-  body: "点数だけでは測れない『物語』を、丁寧に組み立てていきましょう。私たちは、あなたの挑戦を最後まで支える伴走者でありたいと考えています。",
-  promise:
-    "あなたが『想像以上』の志望理由書と面接に仕上がるよう、添削と練習の密度を落としません。",
-  policy:
-    "主体的に学び、自分のミッションを持って進学する学生を増やすこと。それがステラアカデミーの教育方針です。",
+export const contactCopy = {
+  eyebrow: "Contact",
+  title: "総合型選抜の挑戦を、\n一緒にはじめませんか。",
+  body:
+    "サービスのご相談、教育機関・自治体の皆さまからの連携・取材のご依頼まで、お気軽にお問い合わせください。",
+  primaryCta: { label: "個別相談を申し込む", href: "mailto:ogawa@kyute.jp" },
+  secondaryCta: { label: "サービス資料を見る", href: "#services" },
 };
 
-export const pricing = {
-  lead: "志望理由書・小論文・面接対策まで、合格に向けた伴走をセットで。",
-  points: [
-    {
-      title: "料金",
-      text: "教材費を含むわかりやすいプラン設計（追加入会の強制なし）※",
-    },
-    {
-      title: "自学環境",
-      text: "自習スペースの利用（校舎）／映像コンテンツの視聴（オンライン）",
-    },
-    {
-      title: "自由度",
-      text: "空きコマに合わせて予約。チャットでの質問にも対応（プランによる）",
-    },
-  ],
-  note: "※追加の個別指導をご希望の場合は、別途ご相談ください。詳細は資料でご確認ください。",
-};
-
-export const consultMerits: string[] = [
-  "総合型選抜の全体像がつかめる",
-  "今の学年・実績からの戦略が見える",
-  "無理のない学習計画の立て方が分かる",
-];
-
-export const consultSteps: { title: string; body: string }[] = [
+export const footerLinks: { heading: string; links: { label: string; href: string }[] }[] = [
   {
-    title: "WEB／LINEから予約",
-    body: "希望日時と形式（対面／オンライン）を選べます。入塾前提ではありません。",
+    heading: "Services",
+    links: [
+      { label: "伴走型個別指導塾", href: "#services" },
+      { label: "総合型選抜対策 AI", href: "#services" },
+    ],
   },
   {
-    title: "事前ヒアリング",
-    body: "志望の方向性、不安、活動実績を共有いただき、相談を最適化します。",
+    heading: "Company",
+    links: [
+      { label: "ミッション", href: "#mission" },
+      { label: "私たちについて", href: "#about" },
+      { label: "会社情報", href: "#company" },
+    ],
   },
   {
-    title: "受験相談（60分目安）",
-    body: "併願戦略、スケジュール、学習の優先順位まで、具体的にお伝えします。",
-  },
-  {
-    title: "次の一歩が明確に",
-    body: "自宅学習のTODOと、ステラでできることが整理できます。",
+    heading: "Contact",
+    links: [
+      { label: "お問い合わせ", href: "#contact" },
+      { label: "ニュース", href: "#news" },
+    ],
   },
 ];
-
-export const footerColumns: { heading: string; links: { label: string; href: string }[] }[] =
-  [
-    {
-      heading: "ステラについて",
-      links: [
-        { label: "ステラとは", href: "#about" },
-        { label: "メンター紹介", href: "#mentors" },
-        { label: "校舎・オンライン", href: "#access" },
-      ],
-    },
-    {
-      heading: "合格実績",
-      links: [
-        { label: "実績一覧", href: "#results" },
-        { label: "合格者の声", href: "#voices" },
-      ],
-    },
-    {
-      heading: "授業・料金",
-      links: [
-        { label: "授業内容", href: "#curriculum" },
-        { label: "料金プラン", href: "#pricing" },
-      ],
-    },
-    {
-      heading: "お問い合わせ",
-      links: [
-        { label: "受験相談", href: "#consult" },
-        { label: "資料請求", href: "#" },
-      ],
-    },
-  ];

@@ -1,23 +1,32 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
+import { Bad_Script, Noto_Sans_JP, Rubik } from "next/font/google";
 import "./globals.css";
 
-const display = Shippori_Mincho({
-  weight: ["600", "700"],
-  subsets: ["latin"],
-  variable: "--font-display",
-});
-
 const sans = Noto_Sans_JP({
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const latin = Rubik({
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-latin",
+  display: "swap",
+});
+
+const script = Bad_Script({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: "--font-script",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "ステラアカデミー | 総合型選抜専門塾（デモ）",
+  title: "株式会社KYUTE | Keep You To Evolve ― 総合型選抜の伴走者",
   description:
-    "総合型選抜（旧AO入試）に特化。志望理由書・小論文・面接まで伴走する学習塾のデモサイトです。",
+    "KYUTE は、総合型選抜対策に特化した教育サービスを展開する会社です。伴走型個別指導塾と総合型選抜対策 AI の2軸で、受験生一人ひとりの挑戦を支えます。",
 };
 
 export default function RootLayout({
@@ -27,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${display.variable} ${sans.variable} font-sans antialiased`}>
+      <body className={`${sans.variable} ${latin.variable} ${script.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>
