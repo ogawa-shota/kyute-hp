@@ -1,30 +1,33 @@
-import type { NavItem, NewsItem, Service, ValueItem } from "@/lib/types";
+import type { NavItem, Service, ValueItem } from "@/lib/types";
 
 export const site = {
   name: "KYUTE",
-  nameJa: "株式会社KYUTE",
+  nameJa: "KYUTE合同会社",
   acronym: "Keep You To Evolve",
   tagline: "成長を、止めない。",
   mission:
-    "総合型選抜という挑戦の最前線で、一人ひとりの可能性に火を灯し続ける。",
+    "総合型選抜を通じて、社会に羽ばたく人を育成する。",
   description:
-    "KYUTE は、総合型選抜対策に特化した教育サービスを展開する会社です。伴走型の個別指導塾と、対策に特化した AI プロダクトの2軸で、受験生の挑戦を支えます。",
+    "KYUTE は、総合型選抜メディア「AOナビ」を企画・開発・運営する会社です。大学選び、塾比較、合格体験記、出願ノウハウをひとつにつなぎ、受験生が自分らしい進路に出会う入口をつくります。",
+};
+
+export const externalLinks = {
+  aonavi: "#",
 };
 
 export const navItems: NavItem[] = [
   { label: "ミッション", href: "#mission" },
-  { label: "サービス", href: "#services" },
+  { label: "AOナビ", href: "#services" },
   { label: "私たちについて", href: "#about" },
-  { label: "ニュース", href: "#news" },
   { label: "会社情報", href: "#company" },
   { label: "お問い合わせ", href: "#contact" },
 ];
 
 export const heroCopy = {
   eyebrow: "Keep You To Evolve",
-  titleLines: ["成長を、", "止めない。"],
+  titleLines: ["AOナビで、", "未来を選ぶ。"],
   lead:
-    "総合型選抜という新しい挑戦の場で、受験生一人ひとりの可能性を最大化する。\n人と AI、両方の力で伴走する教育プラットフォームをつくっています。",
+    "総合型選抜の情報は、まだ探しづらく、比べづらい。\nAOナビは、大学・塾・体験談・対策ノウハウをつなぎ、受験生が自分の挑戦を選び取るためのメディアです。",
   scrollLabel: "Scroll",
 };
 
@@ -32,59 +35,31 @@ export const valuePoints: ValueItem[] = [
   {
     no: "01",
     label: "Mission",
-    title: "成長の伴走者になる",
-    body: "合格はゴールではなく、その先の人生に続く始まり。私たちは結果だけでなく、挑戦そのものに価値を置きます。",
-  },
-  {
-    no: "02",
-    label: "Vision",
-    title: "教育に AI の翼を",
-    body: "テクノロジーで指導の質と量を解放し、地域・経済・経験の差を超えて、誰もが自分の物語を語れる入試対策を届けます。",
-  },
-  {
-    no: "03",
-    label: "Value",
-    title: "人にしかできない対話を、AI にしかできない速度で",
-    body: "メンターによる伴走と、AI による個別最適化。両者を組み合わせることで、一人ひとりの「らしさ」を引き出します。",
+    title: "総合型選抜を、もっと開かれた選択肢にする",
+    body: "情報の差で挑戦をあきらめる人を減らす。AOナビを通じて、受験生が自分に合う大学・対策・進路に出会える環境をつくります。",
   },
 ];
 
 export const services: Service[] = [
   {
-    id: "school",
-    badge: "Service 01",
-    title: "総合型選抜 伴走型 個別指導塾",
-    tagline: "合格まで、ひとりにしない。",
+    id: "aonavi",
+    badge: "Media 01",
+    title: "総合型選抜メディア「AOナビ」",
+    tagline: "探す、知る、選ぶ。総合型選抜のすべてが集まる場所。",
     body:
-      "志望理由書・小論文・面接を、専属メンターが完全オーダーメイドで伴走。出願戦略から提出物のブラッシュアップ、面接練習まで、合格から逆算した個別カリキュラムで支えます。",
+      "全国の大学を年内入試の切り口で検索でき、対策塾の比較、合格体験記、出願ノウハウまで一気通貫で届けるメディアです。総合型選抜に挑戦する受験生の、最初の入口になることを目指します。",
     features: [
-      "完全オンラインでの 1on1 指導",
-      "総合型選抜 経験者によるメンタリング",
-      "出願戦略・スケジュール設計までフルサポート",
-      "週次面談 × チャット質問の二段構え",
+      "全国の大学を総合型・学校推薦型選抜の切り口で検索",
+      "対策塾の比較・資料請求・体験申込をサポート",
+      "合格体験記・出願ノウハウ・お役立ちコラムを発信",
+      "合格力診断で自分に合う大学・進路の発見を支援",
     ],
-    href: "#contact",
+    href: externalLinks.aonavi,
     image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80",
-    imageAlt: "メンターと生徒がオンラインで対話している様子",
-  },
-  {
-    id: "ai",
-    badge: "Service 02",
-    title: "総合型選抜対策 AI",
-    tagline: "あなたの言葉を、AI が磨く。",
-    body:
-      "志望理由書の添削、小論文の構造化、面接想定問答の生成まで、総合型選抜に特化して学習させた AI が 24 時間サポート。一人で書く時間を「壁打ち」の時間に変え、自分の言葉で語る力を育てます。",
-    features: [
-      "志望理由書の即時フィードバック",
-      "大学・学部ごとの出題傾向に最適化",
-      "面接の想定問答生成 × 模擬問答",
-      "塾サービスとシームレスに連携",
-    ],
-    href: "#contact",
-    image:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=80",
-    imageAlt: "AI とテクノロジーを表現した抽象的なビジュアル",
+      "/aonavi-header.png",
+    imageAlt: "AOナビのヘッダー画像",
+    ctaLabel: "AOナビを見る",
+    external: true,
   },
 ];
 
@@ -92,70 +67,40 @@ export const aboutCopy = {
   eyebrow: "About KYUTE",
   title: "総合型選抜のいま、\n挑戦する人の隣に。",
   body:
-    "総合型選抜（旧 AO 入試）は、点数だけでは測れない「あなたという物語」を問う入試です。\n\n志望理由を言語化する、自分の経験から問いを立てる、面接で自分の軸を語る ―― それは大人でも難しい営みです。だからこそ、ひとりの受験生に、信頼できる伴走者と、思考を磨くテクノロジーが必要だと私たちは考えました。\n\nKYUTE は「人」と「AI」の両輪で、挑戦する受験生の隣に立ち続けます。",
+    "総合型選抜（旧 AO 入試）は、点数だけでは測れない「あなたという物語」を問う入試です。\n\n一方で、大学ごとの入試情報、対策方法、塾選び、合格者のリアルな声は分散していて、何から始めればよいか分からない受験生も少なくありません。\n\nKYUTE は AOナビを通じて、総合型選抜に挑戦する人が、自分に合う情報と選択肢に出会える入口をつくります。",
   stats: [
-    { value: "2", suffix: "Services", label: "総合型選抜に特化したプロダクト" },
-    { value: "100", suffix: "% Online", label: "全国どこからでも受講可能" },
-    { value: "1on1", suffix: "", label: "完全個別の伴走スタイル" },
+    { value: "1", suffix: "Media", label: "総合型選抜に特化したメディア" },
+    { value: "47", suffix: "Pref.", label: "全国の大学情報を届ける構想" },
+    { value: "AO", suffix: "NAVI", label: "挑戦の入口となるサービス" },
   ],
 };
 
-export const newsItems: NewsItem[] = [
-  {
-    date: "2026.04.18",
-    category: "Press",
-    title: "総合型選抜対策 AI のクローズドβ版を公開しました",
-    href: "#",
-  },
-  {
-    date: "2026.03.05",
-    category: "News",
-    title: "2026 年度 個別指導塾の新規受講生募集を開始しました",
-    href: "#",
-  },
-  {
-    date: "2026.02.10",
-    category: "Event",
-    title: "高校教員向けオンライン説明会を開催します",
-    href: "#",
-  },
-  {
-    date: "2026.01.20",
-    category: "Company",
-    title: "株式会社 KYUTE を設立しました",
-    href: "#",
-  },
-];
-
 export const companyInfo: { label: string; value: string }[] = [
-  { label: "会社名", value: "株式会社 KYUTE（KYUTE Inc.）" },
-  { label: "由来", value: "Keep You To Evolve ― 成長を後押しし続ける" },
-  { label: "代表取締役", value: "小川 翼" },
+  { label: "会社名", value: "KYUTE合同会社（KYUTE LLC）" },
   { label: "設立", value: "2026 年 1 月" },
   {
     label: "事業内容",
-    value: "総合型選抜 伴走型 個別指導塾の運営 / 総合型選抜対策 AI の開発・提供",
+    value: "総合型選抜メディア「AOナビ」の企画・開発・運営",
   },
   { label: "所在地", value: "東京都（詳細は近日公開）" },
-  { label: "お問い合わせ", value: "ogawa@kyute.jp" },
+  { label: "お問い合わせ", value: "contact@kyute.jp" },
 ];
 
 export const contactCopy = {
   eyebrow: "Contact",
-  title: "総合型選抜の挑戦を、\n一緒にはじめませんか。",
+  title: "総合型選抜の挑戦を、\n一緒に支えませんか。",
   body:
-    "サービスのご相談、教育機関・自治体の皆さまからの連携・取材のご依頼まで、お気軽にお問い合わせください。",
-  primaryCta: { label: "個別相談を申し込む", href: "mailto:ogawa@kyute.jp" },
-  secondaryCta: { label: "サービス資料を見る", href: "#services" },
+    "AOナビへの掲載・提携、教育機関や自治体の皆さまからの連携、取材のご依頼まで、お気軽にお問い合わせください。",
+  primaryCta: { label: "お問い合わせする", href: "mailto:contact@kyute.jp" },
+  secondaryCta: { label: "AOナビを見る", href: externalLinks.aonavi },
 };
 
-export const footerLinks: { heading: string; links: { label: string; href: string }[] }[] = [
+export type FooterLink = { label: string; href: string; external?: boolean };
+
+export const footerLinks: { heading: string; links: FooterLink[] }[] = [
   {
-    heading: "Services",
-    links: [
-      { label: "伴走型個別指導塾", href: "#services" },
-      { label: "総合型選抜対策 AI", href: "#services" },
-    ],
+    heading: "Media",
+    links: [{ label: "Media: AOナビ", href: externalLinks.aonavi, external: true }],
   },
   {
     heading: "Company",
@@ -167,9 +112,6 @@ export const footerLinks: { heading: string; links: { label: string; href: strin
   },
   {
     heading: "Contact",
-    links: [
-      { label: "お問い合わせ", href: "#contact" },
-      { label: "ニュース", href: "#news" },
-    ],
+    links: [{ label: "お問い合わせ", href: "#contact" }],
   },
 ];

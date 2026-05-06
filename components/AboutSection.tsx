@@ -3,12 +3,11 @@ import { aboutCopy } from "@/data/site-content";
 
 export function AboutSection() {
   return (
-    <section id="about" className="relative py-24 md:py-36">
+    <section id="about" className="relative border-b-2 border-[var(--ink)] bg-white py-20 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
-          {/* Image collage */}
           <div className="relative lg:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-[var(--line)] shadow-[0_30px_60px_-30px_rgba(11,37,69,0.3)]">
+            <div className="relative aspect-[4/5] -rotate-2 overflow-hidden border-2 border-[var(--ink)] shadow-[12px_12px_0_var(--ink)] transition hover:rotate-0">
               <Image
                 src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80"
                 alt="挑戦する受験生のイメージ"
@@ -19,7 +18,7 @@ export function AboutSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/40 via-transparent to-transparent" />
             </div>
 
-            <div className="absolute -right-4 -top-4 hidden h-40 w-40 rotate-6 overflow-hidden rounded-2xl border-4 border-white shadow-xl md:block">
+            <div className="absolute -right-4 -top-4 hidden h-40 w-40 rotate-6 overflow-hidden border-4 border-[var(--ink)] shadow-[8px_8px_0_var(--brand)] md:block">
               <Image
                 src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80"
                 alt="伴走するメンターのイメージ"
@@ -29,34 +28,33 @@ export function AboutSection() {
               />
             </div>
 
-            <div className="absolute -bottom-6 -left-4 hidden rounded-2xl border border-[var(--line)] bg-white px-5 py-4 shadow-xl md:block">
-              <p className="font-script text-xl text-[var(--brand)]">since 2026</p>
-              <p className="mt-1 text-xs font-semibold text-[var(--ink)]">
+            <div className="absolute -bottom-6 -left-4 hidden rotate-[-5deg] border-2 border-[var(--ink)] bg-[var(--accent)] px-5 py-4 shadow-[7px_7px_0_var(--ink)] md:block">
+              <p className="font-latin text-sm font-extrabold uppercase tracking-[0.12em] text-[var(--ink)]">since 2026</p>
+              <p className="mt-1 text-xs font-black text-[var(--ink)]">
                 総合型選抜のいま、隣に。
               </p>
             </div>
           </div>
 
-          {/* Copy */}
           <div className="lg:col-span-7">
-            <p className="eyebrow">{aboutCopy.eyebrow}</p>
-            <h2 className="mt-5 whitespace-pre-line text-balance text-3xl font-bold leading-tight text-[var(--ink)] md:text-5xl">
+            <p className="eyebrow inline-flex rotate-[2deg] bg-[var(--brand)] px-3 py-2 text-white">{aboutCopy.eyebrow}</p>
+            <h2 className="mt-7 whitespace-pre-line text-balance text-4xl font-black leading-tight text-[var(--ink)] md:text-6xl">
               {aboutCopy.title}
             </h2>
-            <p className="mt-8 whitespace-pre-line text-[15px] leading-loose text-[var(--ink-soft)]">
+            <p className="mt-8 whitespace-pre-line border-l-8 border-[var(--accent)] pl-6 text-[15px] font-medium leading-loose text-[var(--ink-soft)]">
               {aboutCopy.body}
             </p>
 
-            <div className="mt-12 grid gap-8 border-t border-[var(--line)] pt-10 sm:grid-cols-3">
+            <div className="mt-12 grid gap-0 border-2 border-[var(--ink)] bg-white sm:grid-cols-3">
               {aboutCopy.stats.map((s) => (
-                <div key={s.label}>
-                  <p className="font-latin text-4xl font-light text-[var(--ink)] md:text-5xl">
+                <div key={s.label} className="border-b-2 border-[var(--ink)] p-5 last:border-b-0 sm:border-b-0 sm:border-r-2 sm:last:border-r-0">
+                  <p className="font-latin text-5xl font-extrabold leading-none text-[var(--ink)] md:text-6xl">
                     {s.value}
-                    <span className="ml-1 text-base font-medium text-[var(--brand)]">
+                    <span className="ml-1 text-base font-black text-[var(--brand-deep)]">
                       {s.suffix}
                     </span>
                   </p>
-                  <p className="mt-3 text-xs leading-relaxed text-[var(--ink-soft)]">
+                  <p className="mt-3 text-xs font-bold leading-relaxed text-[var(--ink-soft)]">
                     {s.label}
                   </p>
                 </div>

@@ -14,6 +14,8 @@ export type Service = {
   href: string;
   image: string;
   imageAlt: string;
+  ctaLabel?: string;
+  external?: boolean;
 };
 
 export type NewsItem = {

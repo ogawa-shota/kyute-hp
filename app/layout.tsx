@@ -1,32 +1,32 @@
 import type { Metadata } from "next";
-import { Bad_Script, Noto_Sans_JP, Rubik } from "next/font/google";
+import { Archivo_Black, Barlow_Condensed, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 
 const sans = Noto_Sans_JP({
-  weight: ["300", "400", "500", "700"],
+  weight: ["400", "500", "700", "900"],
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const latin = Rubik({
-  weight: ["300", "400", "500", "600", "700"],
+const latin = Barlow_Condensed({
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
   variable: "--font-latin",
   display: "swap",
 });
 
-const script = Bad_Script({
+const serif = Archivo_Black({
   weight: ["400"],
   subsets: ["latin"],
-  variable: "--font-script",
+  variable: "--font-serif",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "株式会社KYUTE | Keep You To Evolve ― 総合型選抜の伴走者",
+  title: "KYUTE合同会社 | 総合型選抜メディア「AOナビ」運営",
   description:
-    "KYUTE は、総合型選抜対策に特化した教育サービスを展開する会社です。伴走型個別指導塾と総合型選抜対策 AI の2軸で、受験生一人ひとりの挑戦を支えます。",
+    "KYUTE合同会社は、総合型選抜メディア「AOナビ」を企画・開発・運営する会社です。大学情報、塾比較、合格体験記、出願ノウハウを届け、受験生の挑戦を支えます。",
 };
 
 export default function RootLayout({
@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${sans.variable} ${latin.variable} ${script.variable} font-sans antialiased`}>
+      <body className={`${sans.variable} ${latin.variable} ${serif.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>

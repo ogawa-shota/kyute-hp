@@ -3,20 +3,21 @@
 @tailwind utilities;
 
 :root {
-  --bg: #fbfafa;
-  --bg-soft: #f3f7fb;
-  --bg-aomaru-from: #e5f0f6;
-  --bg-aomaru-to: rgba(255, 255, 255, 0.8);
-  --ink: #0b2545;
-  --ink-soft: #4d5e7a;
-  --ink-mute: #8896ad;
-  --line: #e3eaf2;
-  --line-soft: #eef2f7;
-  --brand: #2d6bff;
-  --brand-deep: #0b2545;
-  --brand-soft: rgba(45, 107, 255, 0.08);
-  --accent: #ff8a5c;
-  --header: rgba(255, 255, 255, 0.78);
+  --bg: #fffdf8;
+  --bg-soft: #f2f2f2;
+  --bg-aomaru-from: #fffdf8;
+  --bg-aomaru-to: rgba(255, 253, 248, 0.96);
+  --ink: #111111;
+  --ink-soft: #3a3a3a;
+  --ink-mute: #777777;
+  --line: #111111;
+  --line-soft: rgba(17, 17, 17, 0.18);
+  --brand: #ff4f8b;
+  --brand-deep: #e6005c;
+  --brand-soft: rgba(255, 79, 139, 0.16);
+  --accent: #c8ff2e;
+  --cyan: #71e7ff;
+  --header: rgba(255, 253, 248, 0.9);
 }
 
 @keyframes fadeUp {
@@ -45,33 +46,41 @@ html {
 
 body {
   color: var(--ink);
-  background: var(--bg);
+  background:
+    linear-gradient(90deg, rgba(17, 17, 17, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(17, 17, 17, 0.055) 1px, transparent 1px),
+    var(--bg);
+  background-size: 48px 48px;
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "palt" 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Soft aomaru gradient at the top of the page */
 .bg-aomaru {
   background:
+    radial-gradient(circle at 74% 22%, rgba(200, 255, 46, 0.55) 0 9%, transparent 10%),
+    radial-gradient(circle at 12% 72%, rgba(255, 79, 139, 0.33) 0 12%, transparent 13%),
     linear-gradient(
       180deg,
       var(--bg-aomaru-from) 0%,
-      rgba(251, 250, 250, 0.32) 27%,
+      rgba(255, 253, 248, 0.76) 34%,
       var(--bg-aomaru-to) 60%,
       var(--bg) 100%
     );
 }
 
 .bg-section-soft {
-  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+  background:
+    linear-gradient(90deg, rgba(17, 17, 17, 0.07) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(17, 17, 17, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, #ffffff 0%, var(--bg-soft) 100%);
+  background-size: 48px 48px, 48px 48px, auto;
 }
 
-/* Decorative grid */
 .bg-dot-grid {
-  background-image: radial-gradient(rgba(11, 37, 69, 0.07) 1px, transparent 1px);
-  background-size: 22px 22px;
+  background-image: radial-gradient(rgba(17, 17, 17, 0.32) 1.2px, transparent 1.2px);
+  background-size: 16px 16px;
 }
 
 /* Scrollbar */
@@ -82,11 +91,11 @@ body {
 
 ::selection {
   background: var(--brand);
-  color: white;
+  color: var(--ink);
 }
 
 .font-script {
-  font-family: var(--font-script), cursive;
+  font-family: var(--font-latin), ui-sans-serif, sans-serif;
 }
 
 .font-latin {
@@ -96,11 +105,19 @@ body {
 /* Section label small caps */
 .eyebrow {
   font-family: var(--font-latin), ui-sans-serif, sans-serif;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: 500;
-  font-size: 11px;
-  color: var(--brand);
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.section-title {
+  font-family: var(--font-latin), ui-sans-serif, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 @layer utilities {
