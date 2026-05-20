@@ -24,9 +24,9 @@ const serif = Archivo_Black({
 });
 
 export const metadata: Metadata = {
-  title: "KYUTE合同会社 | 密着動画で、内定承諾を設計する",
+  title: "KYUTE合同会社 | 興味喚起から入社の腹落ちまでを生み出す採用広報支援",
   description:
-    "KYUTE合同会社は、密着動画制作と採用広報設計で候補者の腹落ちを支え、内定承諾につながる採用体験を設計します。",
+    "KYUTE合同会社は、密着動画制作と採用広報設計で、候補者を集めるだけで終わらず、入社の腹落ちまでつながる採用体験を設計します。",
 };
 
 export default function RootLayout({

@@ -10,13 +10,13 @@ export function ServicesSection() {
         <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="eyebrow inline-flex border border-[var(--ink)] bg-[var(--accent)] px-3 py-2">Service</p>
-            <h2 className="section-title mt-7 text-balance text-6xl leading-[0.88] text-[var(--ink)] md:text-8xl">
-              CLOSE<br />THE OFFER
+            <h2 className="mt-7 max-w-4xl text-balance text-4xl font-black leading-tight text-[var(--ink)] md:text-6xl">
+              興味喚起から入社の腹落ちまでを生み出す採用広報支援
             </h2>
-            <p className="mt-6 text-2xl font-black leading-tight md:text-3xl">密着動画で、候補者の意思決定を動かす。</p>
+            <p className="mt-6 text-2xl font-black leading-tight md:text-3xl">集める・伝える・選ばれるを、ひとつの採用体験に。</p>
           </div>
           <p className="max-w-md border border-[var(--ink)] bg-[var(--cream)] p-5 text-sm font-bold leading-loose text-[var(--ink)] shadow-[6px_6px_0_var(--brand)]">
-            密着動画は、会社紹介ではなく「意思決定支援コンテンツ」。仕事のリアルと社員の価値観を可視化し、候補者の最後のひと押しを動かします。
+            密着動画は、会社紹介だけで終わらせない採用広報コンテンツ。仕事のリアルと社員の価値観を可視化し、候補者の興味を志望度と腹落ちへつなげます。
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export function ServicesSection() {
                       {s.badge}
                     </div>
                     <div className="absolute bottom-5 left-5 right-5 grid grid-cols-3 border border-white/20 bg-black/55 text-white backdrop-blur">
-                      {["撮影", "構成", "承諾導線"].map((label) => (
+                      {["興味喚起", "理解促進", "腹落ち"].map((label) => (
                         <span key={label} className="border-r border-white/20 px-3 py-2 text-center text-[11px] font-black last:border-r-0">
                           {label}
                         </span>

@@ -8,10 +8,11 @@ export function MissionSection() {
           <div className="lg:col-span-4">
             <p className="eyebrow inline-flex border border-[var(--ink)] bg-[var(--ink)] px-3 py-2 text-[var(--accent)]">Mission</p>
             <h2 className="section-title mt-7 text-balance text-6xl leading-[0.86] text-[var(--ink)] md:text-8xl">
-              <span className="block text-[var(--brand-deep)]">WHY</span>
-              <span className="block">THEY LEAVE</span>
+              <span className="block text-[var(--brand-deep)]">FROM</span>
+              <span className="block">REACH</span>
+              <span className="block text-[var(--brand-deep)]">TO</span>
+              <span className="block">JOIN</span>
             </h2>
-            <p className="mt-7 text-3xl font-black leading-tight md:text-4xl">辞退は、応募数の問題だけではない。</p>
           </div>
 
           <div className="lg:col-span-8">

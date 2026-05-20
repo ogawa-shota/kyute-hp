@@ -17,9 +17,9 @@ export function HeroCompany() {
               {heroCopy.eyebrow}
             </p>
 
-            <h1 className="mt-8 text-balance font-latin text-[64px] font-extrabold uppercase leading-[0.86] text-[var(--cream)] sm:text-[96px] md:text-[122px] lg:text-[148px]">
+            <h1 className="mt-8 font-latin text-[clamp(42px,12vw,148px)] font-extrabold uppercase leading-[0.9] text-[var(--cream)]">
               {heroCopy.titleLines.map((line, i) => (
-                <span key={i} className={i === 1 ? "block text-[var(--accent)]" : "block"}>
+                <span key={i} className={i === 1 ? "block whitespace-nowrap text-[var(--accent)]" : "block whitespace-nowrap"}>
                   {line}
                 </span>
               ))}
@@ -62,23 +62,23 @@ export function HeroCompany() {
               </div>
               <div className="absolute bottom-6 left-6 right-6 border border-white/20 bg-black/55 p-5 backdrop-blur">
                 <p className="font-latin text-xs font-extrabold uppercase tracking-[0.22em] text-[var(--accent)]">
-                  Candidate Decision Film
+                  Candidate Journey Film
                 </p>
                 <p className="mt-2 text-xl font-black leading-tight text-white">
-                  ロールモデルの1日を記録し、入社後の景色を残す。
+                  興味喚起から腹落ちまで、候補者の理解を積み上げる。
                 </p>
               </div>
             </div>
 
             <div className="absolute -bottom-6 -left-4 hidden border border-[var(--ink)] bg-[var(--cream)] px-5 py-4 shadow-[7px_7px_0_var(--brand)] sm:block">
-              <p className="font-latin text-sm font-extrabold tracking-[0.16em] text-[var(--brand-deep)]">OFFER CLOSING</p>
-              <p className="mt-1 text-sm font-black text-[var(--ink)]">迷いが戻る時間に、腹落ちの材料を。</p>
+              <p className="font-latin text-sm font-extrabold tracking-[0.16em] text-[var(--brand-deep)]">PR TO DECISION</p>
+              <p className="mt-1 text-sm font-black text-[var(--ink)]">集めるだけで終わらず、選ばれる理由を。</p>
             </div>
           </div>
         </div>
 
         <div className="mt-16 grid border border-white/15 bg-black/25 text-white/84 backdrop-blur md:grid-cols-3">
-          {["Issue: 最終局面で辞退される", "Film: 働く未来を具体化", "Close: 承諾率へ接続"].map((item) => (
+          {["Attract: 興味をつくる", "Understand: 働く未来を具体化", "Commit: 入社の腹落ちへ接続"].map((item) => (
             <p key={item} className="border-b border-white/15 px-5 py-4 text-sm font-black last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
               {item}
             </p>

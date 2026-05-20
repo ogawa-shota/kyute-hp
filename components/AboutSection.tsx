@@ -32,17 +32,22 @@ export function AboutSection() {
             </div>
 
             <div className="absolute -bottom-6 -left-4 hidden border border-[var(--accent)] bg-[var(--accent)] px-5 py-4 shadow-[7px_7px_0_var(--brand)] md:block">
-              <p className="font-latin text-sm font-extrabold uppercase tracking-[0.12em] text-[var(--ink)]">since 2026</p>
+              <p className="font-latin text-sm font-extrabold uppercase tracking-[0.12em] text-[var(--ink)]">since 2025</p>
               <p className="mt-1 text-xs font-black text-[var(--ink)]">
-                承諾を、設計する。
+                採用広報を、設計する。
               </p>
             </div>
           </div>
 
           <div className="lg:col-span-7">
             <p className="eyebrow inline-flex border border-white/20 bg-white/10 px-3 py-2 text-[var(--accent)]">{aboutCopy.eyebrow}</p>
-            <h2 className="mt-7 whitespace-pre-line text-balance text-4xl font-black leading-tight text-white md:text-6xl">
-              {aboutCopy.title}
+            <h2 className="mt-7 text-balance text-4xl font-black leading-tight text-white md:text-6xl">
+              {aboutCopy.title.split(" × ").map((term, i, arr) => (
+                <span key={term}>
+                  <span className="inline-block text-[var(--accent)]">{term}</span>
+                  {i < arr.length - 1 && <span className="mx-2 text-white/45">×</span>}
+                </span>
+              ))}
             </h2>
             <p className="mt-8 whitespace-pre-line border-l-4 border-[var(--accent)] pl-6 text-[15px] font-medium leading-loose text-white/74">
               {aboutCopy.body}
@@ -51,13 +56,16 @@ export function AboutSection() {
             <div className="mt-12 grid gap-0 border border-white/20 bg-white/6 sm:grid-cols-3">
               {aboutCopy.stats.map((s) => (
                 <div key={s.label} className="border-b border-white/20 p-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
-                  <p className="font-latin text-5xl font-extrabold leading-none text-white md:text-6xl">
+                  <p className="font-latin text-4xl font-extrabold leading-none text-white/45 md:text-5xl">
                     {s.value}
                     <span className="ml-1 text-base font-black text-[var(--accent)]">
                       {s.suffix}
                     </span>
                   </p>
-                  <p className="mt-3 text-xs font-bold leading-relaxed text-white/68">
+                  <h3 className="mt-5 text-2xl font-black leading-tight text-[var(--accent)]">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-sm font-bold leading-relaxed text-white/78">
                     {s.label}
                   </p>
                 </div>

@@ -10,7 +10,6 @@ export function CompanySection() {
             <h2 className="section-title mt-7 text-6xl leading-[0.88] text-[var(--ink)] md:text-8xl">
               ABOUT<br />US
             </h2>
-            <p className="mt-6 text-3xl font-black">採用の最終局面に向き合う会社。</p>
           </div>
 
           <div className="lg:col-span-8">
