@@ -3,19 +3,19 @@ import { services } from "@/data/site-content";
 
 export function ServicesSection() {
   return (
-    <section id="services" className="bg-section-soft relative overflow-hidden border-b-2 border-[var(--ink)] py-20 md:py-32">
+    <section id="services" className="bg-section-soft relative overflow-hidden border-b border-[var(--line-soft)] py-20 md:py-32">
       <div className="pointer-events-none absolute inset-0 bg-dot-grid opacity-20" aria-hidden />
 
       <div className="relative mx-auto max-w-7xl px-5 md:px-8">
         <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="eyebrow inline-flex rotate-[2deg] bg-[var(--accent)] px-3 py-2">Service</p>
+            <p className="eyebrow inline-flex border border-[var(--ink)] bg-[var(--accent)] px-3 py-2">Service</p>
             <h2 className="section-title mt-7 text-balance text-6xl leading-[0.88] text-[var(--ink)] md:text-8xl">
               CLOSE<br />THE OFFER
             </h2>
             <p className="mt-6 text-2xl font-black leading-tight md:text-3xl">密着動画で、候補者の意思決定を動かす。</p>
           </div>
-          <p className="max-w-md border-2 border-[var(--ink)] bg-white p-5 text-sm font-bold leading-loose text-[var(--ink)] shadow-[6px_6px_0_var(--brand)]">
+          <p className="max-w-md border border-[var(--ink)] bg-[var(--cream)] p-5 text-sm font-bold leading-loose text-[var(--ink)] shadow-[6px_6px_0_var(--brand)]">
             密着動画は、会社紹介ではなく「意思決定支援コンテンツ」。仕事のリアルと社員の価値観を可視化し、候補者の最後のひと押しを動かします。
           </p>
         </div>
@@ -26,24 +26,34 @@ export function ServicesSection() {
             return (
               <article
                 key={s.id}
-                className={`group grid items-center gap-8 border-t-2 border-[var(--ink)] pt-10 lg:grid-cols-12 lg:gap-14 ${
+                className={`group grid items-center gap-8 border-t border-[var(--ink)] pt-10 lg:grid-cols-12 lg:gap-14 ${
                   reverse ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >
                 <div className="relative lg:col-span-7">
-                  <div className="relative aspect-[16/10] overflow-hidden border-2 border-[var(--ink)] bg-white shadow-[10px_10px_0_var(--ink)]">
+                  <div className="relative aspect-[16/10] overflow-hidden border border-[var(--ink)] bg-black shadow-[10px_10px_0_var(--ink)]">
                     <Image
                       src={s.image}
                       alt={s.imageAlt}
                       fill
                       sizes="(max-width: 1024px) 100vw, 60vw"
-                      className="object-contain bg-black p-5 transition duration-700 group-hover:scale-[1.04]"
+                      className="object-contain p-5 opacity-90 transition duration-700 group-hover:scale-[1.04]"
                       priority={i === 0}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-[var(--ink)]/22 via-transparent to-transparent" />
-                    <div className="absolute left-6 top-6 inline-flex rotate-[-2deg] items-center gap-2 border-2 border-[var(--ink)] bg-[var(--accent)] px-4 py-2 text-sm font-black tracking-wider text-[var(--ink)]">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-black/54 via-transparent to-black/8" />
+                    <div className="absolute inset-x-0 top-0 h-8 border-b border-white/15 bg-black/55">
+                      <div className="film-strip h-full opacity-80" />
+                    </div>
+                    <div className="absolute left-6 top-12 inline-flex items-center gap-2 border border-white/20 bg-black/65 px-4 py-2 text-sm font-black tracking-wider text-white backdrop-blur">
                       <span className="h-2 w-2 rounded-full bg-[var(--brand)]" />
                       {s.badge}
+                    </div>
+                    <div className="absolute bottom-5 left-5 right-5 grid grid-cols-3 border border-white/20 bg-black/55 text-white backdrop-blur">
+                      {["撮影", "構成", "承諾導線"].map((label) => (
+                        <span key={label} className="border-r border-white/20 px-3 py-2 text-center text-[11px] font-black last:border-r-0">
+                          {label}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -71,7 +81,7 @@ export function ServicesSection() {
                     {...(s.external && !s.href.startsWith("#")
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
-                    className="mt-8 inline-flex items-center gap-2 rounded-full border-2 border-[var(--ink)] bg-white px-6 py-3 text-sm font-black text-[var(--ink)] shadow-[5px_5px_0_var(--brand)] transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+                    className="mt-8 inline-flex items-center gap-2 border border-[var(--ink)] bg-[var(--ink)] px-6 py-3 text-sm font-black text-white shadow-[5px_5px_0_var(--brand)] transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
                   >
                     <span>{s.ctaLabel ?? "詳しく問い合わせる"}</span>
                     <span className="transition group-hover:translate-x-1">→</span>

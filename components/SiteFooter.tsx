@@ -3,7 +3,7 @@ import { footerLinks, site } from "@/data/site-content";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t-2 border-[var(--ink)] bg-[var(--ink)] text-white">
+    <footer className="border-t border-white/10 bg-[var(--ink)] text-white">
       <div className="mx-auto max-w-7xl px-5 py-20 md:px-8">
         <div className="grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-5">

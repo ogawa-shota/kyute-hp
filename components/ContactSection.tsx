@@ -5,13 +5,13 @@ export function ContactSection() {
     <section id="contact" className="relative overflow-hidden py-20 md:py-32">
       <div className="absolute inset-0" aria-hidden>
         <div className="absolute inset-0 bg-[var(--ink)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(180deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[length:48px_48px]" />
-        <div className="absolute -left-20 top-16 h-48 w-[120vw] -rotate-6 bg-[var(--brand)]" />
-        <div className="absolute right-10 top-10 h-28 w-28 rotate-12 bg-[var(--accent)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(180deg,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[length:40px_40px]" />
+        <div className="film-strip absolute left-0 top-12 h-10 w-full border-y border-white/15 bg-black/35" />
+        <div className="absolute -left-20 top-28 h-36 w-[120vw] -rotate-3 bg-[var(--brand)]" />
       </div>
 
       <div className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
-        <p className="inline-flex rotate-[-3deg] border-2 border-white bg-[var(--accent)] px-3 py-2 font-latin text-lg font-extrabold uppercase tracking-[0.12em] text-[var(--ink)]">
+        <p className="inline-flex border border-white/25 bg-black/35 px-3 py-2 font-latin text-lg font-extrabold uppercase tracking-[0.16em] text-[var(--accent)] backdrop-blur">
           {contactCopy.eyebrow}
         </p>
         <p className="mt-8 font-latin text-3xl font-extrabold uppercase tracking-[0.08em] text-[var(--accent)]">
@@ -27,14 +27,14 @@ export function ContactSection() {
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a
             href={contactCopy.primaryCta.href}
-            className="group inline-flex items-center gap-2 rounded-full border-2 border-white bg-white px-8 py-4 text-sm font-black text-[var(--ink)] shadow-[6px_6px_0_var(--brand)] transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+            className="group inline-flex items-center gap-2 border border-[var(--accent)] bg-[var(--accent)] px-8 py-4 text-sm font-black text-[var(--ink)] shadow-[6px_6px_0_var(--brand)] transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
           >
             {contactCopy.primaryCta.label}
             <span className="transition group-hover:translate-x-1">→</span>
           </a>
           <a
             href={contactCopy.secondaryCta.href}
-            className="inline-flex items-center gap-2 rounded-full border-2 border-white px-8 py-4 text-sm font-black text-white transition hover:bg-white hover:text-[var(--ink)]"
+            className="inline-flex items-center gap-2 border border-white/40 bg-black/20 px-8 py-4 text-sm font-black text-white backdrop-blur transition hover:bg-white hover:text-[var(--ink)]"
           >
             {contactCopy.secondaryCta.label}
           </a>

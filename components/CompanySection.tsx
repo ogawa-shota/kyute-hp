@@ -2,19 +2,19 @@ import { companyInfo } from "@/data/site-content";
 
 export function CompanySection() {
   return (
-    <section id="company" className="border-b-2 border-[var(--ink)] bg-white py-20 md:py-28">
+    <section id="company" className="border-b border-[var(--line-soft)] bg-[var(--cream)] py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="eyebrow inline-flex bg-[var(--brand)] px-3 py-2 text-white">Company</p>
+            <p className="eyebrow inline-flex border border-[var(--ink)] bg-[var(--ink)] px-3 py-2 text-[var(--accent)]">Company</p>
             <h2 className="section-title mt-7 text-6xl leading-[0.88] text-[var(--ink)] md:text-8xl">
               ABOUT<br />US
             </h2>
-            <p className="mt-6 text-3xl font-black">会社情報。</p>
+            <p className="mt-6 text-3xl font-black">採用の最終局面に向き合う会社。</p>
           </div>
 
           <div className="lg:col-span-8">
-            <dl className="divide-y-2 divide-[var(--ink)] border-y-2 border-[var(--ink)]">
+            <dl className="divide-y divide-[var(--line-soft)] border-y border-[var(--ink)]">
               {companyInfo.map((row) => (
                 <div
                   key={row.label}

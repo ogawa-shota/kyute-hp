@@ -70,8 +70,8 @@ export const services: Service[] = [
       "最終面接・内定者面談に組み込み、承諾率に直結させる設計",
     ],
     href: "#contact",
-    image: "/aonavi-header.png",
-    imageAlt: "密着動画のイメージ",
+    image: "/documentary-video-production.png",
+    imageAlt: "採用広報向け密着動画制作のイメージ",
     ctaLabel: "密着動画について相談する",
   },
   {
@@ -88,8 +88,8 @@ export const services: Service[] = [
       "選考体験設計と、内定承諾率向上のためのコミュニケーション設計",
     ],
     href: "#contact",
-    image: "/aonavi-header.png",
-    imageAlt: "採用広報支援のイメージ",
+    image: "/recruitment-pr-strategy.png",
+    imageAlt: "候補者の意思決定を支える採用広報支援のイメージ",
     ctaLabel: "包括支援について相談する",
   },
 ];

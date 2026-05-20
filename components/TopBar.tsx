@@ -19,8 +19,8 @@ export function TopBar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b-2 border-[var(--ink)] bg-[var(--header)] backdrop-blur-xl"
-          : "border-b-2 border-[var(--ink)] bg-[var(--header)]/80 backdrop-blur-md"
+          ? "border-b border-[var(--line-soft)] bg-[var(--header)] backdrop-blur-xl"
+          : "border-b border-[var(--line-soft)] bg-[var(--header)]/80 backdrop-blur-md"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 md:px-8">
@@ -48,7 +48,7 @@ export function TopBar() {
         <div className="hidden items-center md:flex">
           <a
             href="#contact"
-            className="group inline-flex items-center gap-2 rounded-full border-2 border-[var(--ink)] bg-[var(--ink)] px-5 py-2.5 text-[13px] font-bold text-white shadow-[4px_4px_0_var(--brand)] transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+            className="group inline-flex items-center gap-2 border border-[var(--ink)] bg-[var(--ink)] px-5 py-2.5 text-[13px] font-bold text-white shadow-[4px_4px_0_var(--brand)] transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
           >
             お問い合わせ
             <span className="transition group-hover:translate-x-0.5">→</span>
@@ -57,7 +57,7 @@ export function TopBar() {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-[var(--ink)] lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center text-[var(--ink)] lg:hidden"
           aria-expanded={open}
           aria-label="メニュー"
           onClick={() => setOpen((v) => !v)}
@@ -71,7 +71,7 @@ export function TopBar() {
       </div>
 
       {open && (
-        <div className="border-t-2 border-[var(--ink)] bg-[var(--bg)] px-5 pb-8 pt-4 lg:hidden">
+        <div className="border-t border-[var(--line-soft)] bg-[var(--bg)] px-5 pb-8 pt-4 lg:hidden">
           <div className="flex flex-col gap-1">
             {navItems.map((item) => (
               <Link
@@ -86,7 +86,7 @@ export function TopBar() {
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="mt-5 inline-flex items-center justify-center gap-2 rounded-full border-2 border-[var(--ink)] bg-[var(--ink)] px-5 py-3 text-sm font-bold text-white shadow-[4px_4px_0_var(--brand)]"
+              className="mt-5 inline-flex items-center justify-center gap-2 border border-[var(--ink)] bg-[var(--ink)] px-5 py-3 text-sm font-bold text-white shadow-[4px_4px_0_var(--brand)]"
             >
               お問い合わせ →
             </a>

@@ -24,9 +24,9 @@ const serif = Archivo_Black({
 });
 
 export const metadata: Metadata = {
-  title: "KYUTE合同会社 | 総合型選抜メディア「AOナビ」運営",
+  title: "KYUTE合同会社 | 密着動画で、内定承諾を設計する",
   description:
-    "KYUTE合同会社は、総合型選抜メディア「AOナビ」を企画・開発・運営する会社です。大学情報、塾比較、合格体験記、出願ノウハウを届け、受験生の挑戦を支えます。",
+    "KYUTE合同会社は、密着動画制作と採用広報設計で候補者の腹落ちを支え、内定承諾につながる採用体験を設計します。",
 };
 
 export default function RootLayout({
