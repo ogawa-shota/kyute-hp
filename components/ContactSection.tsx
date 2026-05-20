@@ -15,7 +15,7 @@ export function ContactSection() {
           {contactCopy.eyebrow}
         </p>
         <p className="mt-8 font-latin text-3xl font-extrabold uppercase tracking-[0.08em] text-[var(--accent)]">
-          let&apos;s evolve together
+          make them say yes.
         </p>
         <h2 className="mt-6 whitespace-pre-line text-balance text-4xl font-black leading-tight text-white md:text-6xl">
           {contactCopy.title}

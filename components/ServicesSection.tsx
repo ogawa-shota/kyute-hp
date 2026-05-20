@@ -9,14 +9,14 @@ export function ServicesSection() {
       <div className="relative mx-auto max-w-7xl px-5 md:px-8">
         <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="eyebrow inline-flex rotate-[2deg] bg-[var(--accent)] px-3 py-2">Media</p>
+            <p className="eyebrow inline-flex rotate-[2deg] bg-[var(--accent)] px-3 py-2">Service</p>
             <h2 className="section-title mt-7 text-balance text-6xl leading-[0.88] text-[var(--ink)] md:text-8xl">
-              ONE MEDIA<br />TO EVOLVE
+              CLOSE<br />THE OFFER
             </h2>
-            <p className="mt-6 text-2xl font-black leading-tight md:text-3xl">総合型選抜のすべてを、ひとつのメディアに。</p>
+            <p className="mt-6 text-2xl font-black leading-tight md:text-3xl">密着動画で、候補者の意思決定を動かす。</p>
           </div>
           <p className="max-w-md border-2 border-[var(--ink)] bg-white p-5 text-sm font-bold leading-loose text-[var(--ink)] shadow-[6px_6px_0_var(--brand)]">
-            ONE MEDIA構想：AOナビは、大学情報・塾比較・合格体験記・出願ノウハウなど、総合型選抜に関するすべての情報を集約します。
+            密着動画は、会社紹介ではなく「意思決定支援コンテンツ」。仕事のリアルと社員の価値観を可視化し、候補者の最後のひと押しを動かします。
           </p>
         </div>
 

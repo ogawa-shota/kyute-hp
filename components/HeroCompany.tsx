@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { externalLinks, heroCopy } from "@/data/site-content";
+import { heroCopy } from "@/data/site-content";
 
 export function HeroCompany() {
   return (
@@ -31,17 +31,17 @@ export function HeroCompany() {
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
-                href={externalLinks.aonavi}
+                href="#contact"
                 className="group inline-flex items-center gap-2 rounded-full border-2 border-[var(--ink)] bg-[var(--ink)] px-8 py-4 text-sm font-black text-white shadow-[6px_6px_0_var(--brand)] transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
               >
-                AOナビを見る
+                無料で相談する
                 <span className="transition group-hover:translate-x-1">→</span>
               </a>
               <a
-                href="#mission"
+                href="#services"
                 className="group inline-flex items-center gap-2 rounded-full border-2 border-[var(--ink)] bg-white px-8 py-4 text-sm font-black text-[var(--ink)] transition hover:bg-[var(--accent)]"
               >
-                私たちのミッション
+                サービスを見る
               </a>
             </div>
           </div>
@@ -50,7 +50,7 @@ export function HeroCompany() {
             <div className="relative mx-auto aspect-[2048/681] w-full max-w-xl rotate-3 overflow-hidden border-2 border-[var(--ink)] bg-black shadow-[12px_12px_0_var(--ink)] transition hover:rotate-0 lg:aspect-[4/3]">
               <Image
                 src="/aonavi-header.png"
-                alt="AOナビ"
+                alt="KYUTEの密着動画イメージ"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 34vw"
@@ -60,10 +60,10 @@ export function HeroCompany() {
 
             <div className="absolute -bottom-6 -left-4 hidden -rotate-6 border-2 border-[var(--ink)] bg-[var(--accent)] px-5 py-4 shadow-[7px_7px_0_var(--ink)] sm:block">
               <p className="font-latin text-sm font-extrabold tracking-[0.12em] text-[var(--ink)]">
-                EDUCATION × MEDIA
+                RECRUITMENT × VIDEO
               </p>
               <p className="mt-1 text-sm font-black text-[var(--ink)]">
-                AOナビ 運営
+                密着動画で承諾を設計
               </p>
             </div>
           </div>

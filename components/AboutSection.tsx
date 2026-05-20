@@ -10,7 +10,7 @@ export function AboutSection() {
             <div className="relative aspect-[4/5] -rotate-2 overflow-hidden border-2 border-[var(--ink)] shadow-[12px_12px_0_var(--ink)] transition hover:rotate-0">
               <Image
                 src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80"
-                alt="挑戦する受験生のイメージ"
+                alt="密着動画の撮影現場イメージ"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
@@ -21,7 +21,7 @@ export function AboutSection() {
             <div className="absolute -right-4 -top-4 hidden h-40 w-40 rotate-6 overflow-hidden border-4 border-[var(--ink)] shadow-[8px_8px_0_var(--brand)] md:block">
               <Image
                 src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80"
-                alt="伴走するメンターのイメージ"
+                alt="意思決定を支えるパートナーのイメージ"
                 fill
                 sizes="160px"
                 className="object-cover"
@@ -31,7 +31,7 @@ export function AboutSection() {
             <div className="absolute -bottom-6 -left-4 hidden rotate-[-5deg] border-2 border-[var(--ink)] bg-[var(--accent)] px-5 py-4 shadow-[7px_7px_0_var(--ink)] md:block">
               <p className="font-latin text-sm font-extrabold uppercase tracking-[0.12em] text-[var(--ink)]">since 2026</p>
               <p className="mt-1 text-xs font-black text-[var(--ink)]">
-                総合型選抜のいま、隣に。
+                承諾を、設計する。
               </p>
             </div>
           </div>
