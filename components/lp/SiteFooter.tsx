@@ -2,17 +2,13 @@ import Link from "next/link";
 
 const NAV = [
   { label: "HOME", href: "/" },
-  { label: "SERVICE", href: "/service" },
   { label: "ABOUT US", href: "/about" },
   { label: "CONTACT", href: "/contact" },
 ];
 
-// 差し替え: SNS/自社メディアの各リンク（現状 #）
-const SNS = [
-  { label: "YouTube", href: "#" },
-  { label: "X", href: "#" },
-  { label: "Instagram", href: "#" },
-  { label: "自社メディア", href: "#" },
+const SERVICE = [
+  { label: "YouTube運営代行事業", href: "/service/youtube" },
+  { label: "自社メディア事業", href: "/service/media" },
 ];
 
 /** サイト共通のスリムなフッター（全ページ表示）。 */
@@ -26,7 +22,7 @@ export function SiteFooter() {
               KYUTE
             </span>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-[var(--ink-soft)]">
-              採用成果は、「伝わる会社」から生まれる。
+              採用は「どれだけ伝わるか」が全て。
             </p>
           </div>
 
@@ -46,17 +42,20 @@ export function SiteFooter() {
               ))}
             </nav>
             <nav className="flex flex-col gap-2.5">
-              <span className="text-xs font-semibold tracking-wide text-[var(--ink-mute)]">
-                SNS
-              </span>
-              {SNS.map((s) => (
-                <a
-                  key={s.label}
+              <Link
+                href="/service"
+                className="font-latin text-xs font-semibold tracking-wide text-[var(--ink-mute)] transition-colors hover:text-[var(--brand-ink)]"
+              >
+                SERVICE
+              </Link>
+              {SERVICE.map((s) => (
+                <Link
+                  key={s.href}
                   href={s.href}
                   className="text-sm text-[var(--ink-soft)] transition-colors hover:text-[var(--brand-ink)]"
                 >
                   {s.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

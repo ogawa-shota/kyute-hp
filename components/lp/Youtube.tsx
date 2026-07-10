@@ -1,14 +1,53 @@
 import { Reveal } from "./Reveal";
 
-const YT_POINTS = [
-  "まだ転職を考えていない人にも届く",
-  "SNSで拡散される",
-  "企業資産として蓄積される",
-  "検索され、見られ続ける",
+const COLUMNS = [
+  { key: "media", label: "求人媒体", note: "消える広告" },
+  { key: "youtube", label: "YouTube", note: "貯まる資産" },
+] as const;
+
+type RowKey = (typeof COLUMNS)[number]["key"];
+
+const ROWS: { item: string; values: Record<RowKey, string> }[] = [
+  {
+    item: "届く相手",
+    values: {
+      media: "掲載期間中の登録者だけ",
+      youtube: "まだ転職を考えていない層にも",
+    },
+  },
+  {
+    item: "伝わるもの",
+    values: {
+      media: "条件とスペック",
+      youtube: "働くリアル・人・空気",
+    },
+  },
+  {
+    item: "広がり方",
+    values: {
+      media: "掲載期間だけ・拡散しない",
+      youtube: "SNS・関連動画で広がる",
+    },
+  },
+  {
+    item: "掲載が終わると",
+    values: {
+      media: "掲載終了で消える",
+      youtube: "検索され、見られ続ける",
+    },
+  },
+  {
+    item: "費用の性質",
+    values: {
+      media: "出すたびに消える広告費",
+      youtube: "積み上がる採用資産",
+    },
+  },
 ];
 
 /**
- * S7 — なぜYouTubeなのか。左「採用サイト」／右「YouTube」の対比。締めを強調。
+ * S7 — なぜYouTubeなのか。採用サイト／求人媒体／YouTube を項目別に比較。
+ * YouTube列を強調し、"消える広告"→"貯まる資産"の転換を伝える。
  */
 export function Youtube() {
   return (
@@ -19,54 +58,99 @@ export function Youtube() {
           <h2 className="text-2xl font-bold leading-snug text-[var(--text-primary)] sm:text-4xl">
             なぜ、YouTubeなのか。
           </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-[var(--ink-soft)] sm:text-base">
+            同じ採用予算でも、&quot;どこに使うか&quot;で残るものは変わります。
+          </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
-          {/* 採用サイト */}
-          <Reveal className="rounded-2xl border border-[var(--line)] bg-white p-8">
-            <h3 className="text-lg font-bold text-[var(--text-primary)]">採用サイト</h3>
-            <p className="mt-5 text-[15px] leading-[2] text-[var(--ink-soft)]">
-              採用サイトは、「いま探している人」しか見ません。
-            </p>
-          </Reveal>
+        {/* 項目別の比較表 */}
+        <Reveal delay={100} className="mt-12">
+          <div className="no-scrollbar overflow-x-auto">
+            <table className="w-full min-w-[440px] border-separate border-spacing-0 text-left">
+              <thead>
+                <tr>
+                  <th className="w-[26%] px-4 py-4 align-bottom" />
+                  {COLUMNS.map((col) => {
+                    const isYt = col.key === "youtube";
+                    return (
+                      <th
+                        key={col.key}
+                        className={`px-4 py-4 align-bottom ${
+                          isYt
+                            ? "rounded-t-2xl bg-[var(--brand-soft)]"
+                            : ""
+                        }`}
+                      >
+                        <span
+                          className={`font-latin block text-base font-bold sm:text-lg ${
+                            isYt ? "text-[var(--brand-ink)]" : "text-[var(--text-primary)]"
+                          }`}
+                        >
+                          {col.label}
+                        </span>
+                        {col.note && (
+                          <span
+                            className={`mt-2 inline-block rounded-full px-3 py-1 text-xs font-semibold ${
+                              isYt
+                                ? "bg-[var(--brand)] text-[var(--brand-ink)]"
+                                : "bg-[var(--bg)] text-[var(--ink-mute)] line-through"
+                            }`}
+                          >
+                            {col.note}
+                          </span>
+                        )}
+                      </th>
+                    );
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {ROWS.map((row, i) => {
+                  const isCost = row.item === "費用の性質";
+                  const isLast = i === ROWS.length - 1;
+                  return (
+                    <tr key={row.item}>
+                      <th
+                        scope="row"
+                        className="border-t border-[var(--line)] px-4 py-5 align-top text-sm font-semibold text-[var(--ink-mute)]"
+                      >
+                        {row.item}
+                      </th>
+                      {COLUMNS.map((col) => {
+                        const isYt = col.key === "youtube";
+                        return (
+                          <td
+                            key={col.key}
+                            className={`border-t border-[var(--line)] px-4 py-5 align-top text-[15px] leading-relaxed ${
+                              isYt
+                                ? `bg-[var(--brand-soft)] font-semibold text-[var(--brand-ink)] ${
+                                    isLast ? "rounded-b-2xl" : ""
+                                  }`
+                                : isCost
+                                  ? "text-[var(--ink-mute)]"
+                                  : "text-[var(--ink)]"
+                            }`}
+                          >
+                            {row.values[col.key]}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
 
-          {/* YouTube */}
-          <Reveal
-            delay={100}
-            className="rounded-2xl border border-[var(--brand-ink)]/25 bg-[var(--brand-soft)] p-8"
-          >
-            <h3 className="text-lg font-bold text-[var(--brand-ink)]">YouTube</h3>
-            <ul className="mt-5 space-y-3">
-              {YT_POINTS.map((p) => (
-                <li key={p} className="flex items-start gap-2.5">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    aria-hidden="true"
-                    className="mt-1 shrink-0 text-[var(--brand-ink)]"
-                  >
-                    <path
-                      d="M3 8.5l3 3 7-7"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <span className="text-[15px] leading-relaxed text-[var(--ink)]">
-                    {p}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-
-        <Reveal className="mt-12 text-center">
+        <Reveal delay={160} className="mt-12 text-center">
           <p className="text-xl font-bold leading-relaxed text-[var(--text-primary)] sm:text-2xl">
             採用広報を、&quot;消える広告&quot;から&quot;貯まる資産&quot;へ。
+          </p>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--ink-soft)]">
+            一度つくった動画が、検索され、拡散され、見られ続ける。
+            <br className="hidden sm:block" />
+            これができるのは、YouTubeだけです。
           </p>
         </Reveal>
       </div>

@@ -22,7 +22,7 @@ export function Hero() {
             YouTube採用のプロ
           </h1>
           <p className="mx-auto mt-8 max-w-2xl text-lg font-medium leading-[1.6] text-[var(--text-primary)] text-balance sm:text-2xl">
-            採用成果は、「伝わる会社」から生まれる。
+            採用は「どれだけ伝わるか」が全て。
           </p>
           <p className="mx-auto mt-6 max-w-xl text-base leading-[2] text-[var(--ink-soft)] sm:text-lg">
             密着動画で企業のリアルを届け、
@@ -39,17 +39,65 @@ export function Hero() {
             </CtaButton>
           </div>
 
-          <dl className="mx-auto mt-12 grid max-w-xl grid-cols-3 border-y border-[var(--line-soft)] py-5">
+          <dl className="mx-auto mt-12 grid max-w-xl grid-cols-3 border-y border-[var(--line-soft)] py-6">
             {[
-              ["企画", "設計から"],
-              ["撮影", "密着取材"],
-              ["運用", "改善まで"],
-            ].map(([term, desc]) => (
-              <div key={term} className="border-r border-[var(--line-soft)] px-3 last:border-r-0">
+              {
+                term: "企画",
+                icon: (
+                  <path
+                    d="M12 3a6 6 0 0 0-3.6 10.8c.5.4.8 1 .8 1.6v.6h5.6v-.6c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3ZM9.5 20h5M10.5 22h3"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                ),
+              },
+              {
+                term: "撮影",
+                icon: (
+                  <>
+                    <rect x="2.5" y="6.5" width="12" height="11" rx="2.5" stroke="currentColor" strokeWidth="1.5" />
+                    <path
+                      d="M14.5 10.5l6-3v9l-6-3z"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </>
+                ),
+              },
+              {
+                term: "運用",
+                icon: (
+                  <path
+                    d="M20 12a8 8 0 1 1-2.3-5.6M20 4v3h-3"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                ),
+              },
+            ].map(({ term, icon }) => (
+              <div
+                key={term}
+                className="flex flex-col items-center gap-2.5 border-r border-[var(--line-soft)] px-3 last:border-r-0"
+              >
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                  className="text-[var(--brand-ink)]"
+                >
+                  {icon}
+                </svg>
                 <dt className="text-[11px] font-bold tracking-[0.18em] text-[var(--brand-ink)]">
                   {term}
                 </dt>
-                <dd className="mt-2 text-sm font-semibold text-[var(--text-primary)]">{desc}</dd>
               </div>
             ))}
           </dl>

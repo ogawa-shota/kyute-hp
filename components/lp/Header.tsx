@@ -8,9 +8,13 @@ import { Logo } from "./Logo";
 
 const NAV = [
   { label: "HOME", href: "/" },
-  { label: "SERVICE", href: "/service" },
   { label: "ABOUT US", href: "/about" },
   { label: "CONTACT", href: "/contact" },
+];
+
+const SERVICE_ITEMS = [
+  { label: "YouTube運営代行事業", href: "/service/youtube" },
+  { label: "自社メディア事業", href: "/service/media" },
 ];
 
 export function Header() {
@@ -42,7 +46,59 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
-          {NAV.map((item) => (
+          <Link
+            href="/"
+            className={`font-latin text-sm font-medium tracking-[0.08em] transition-colors hover:text-[var(--brand-ink)] ${
+              isActive("/") ? "text-[var(--brand-ink)]" : "text-[var(--ink-soft)]"
+            }`}
+          >
+            HOME
+          </Link>
+
+          {/* SERVICE — クリックでまとめページ、hover で2事業へ */}
+          <div className="group relative">
+            <Link
+              href="/service"
+              className={`font-latin flex items-center gap-1 text-sm font-medium tracking-[0.08em] transition-colors group-hover:text-[var(--brand-ink)] ${
+                isActive("/service") ? "text-[var(--brand-ink)]" : "text-[var(--ink-soft)]"
+              }`}
+            >
+              SERVICE
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 12 12"
+                fill="none"
+                aria-hidden="true"
+                className="mt-0.5 transition-transform group-hover:rotate-180"
+              >
+                <path
+                  d="M2.5 4.5L6 8l3.5-3.5"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
+            <div className="invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-3 opacity-0 transition-opacity duration-200 group-hover:visible group-hover:opacity-100">
+              <div className="overflow-hidden rounded-xl border border-[var(--line-soft)] bg-white/95 py-1.5 shadow-[0_18px_44px_rgba(20,20,25,0.12)] backdrop-blur-md">
+                {SERVICE_ITEMS.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`block px-4 py-2.5 text-sm transition-colors hover:bg-[var(--bg-soft)] hover:text-[var(--brand-ink)] ${
+                      isActive(item.href) ? "text-[var(--brand-ink)]" : "text-[var(--ink)]"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {NAV.filter((item) => item.href !== "/").map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -90,7 +146,39 @@ export function Header() {
       {menuOpen && (
         <div className="border-t border-[var(--line-soft)] bg-white/95 backdrop-blur-md md:hidden">
           <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-4">
-            {NAV.map((item) => (
+            <Link
+              href="/"
+              onClick={() => setMenuOpen(false)}
+              className={`font-latin py-2.5 text-base font-medium tracking-wide ${
+                isActive("/") ? "text-[var(--brand-ink)]" : "text-[var(--ink)]"
+              }`}
+            >
+              HOME
+            </Link>
+
+            <Link
+              href="/service"
+              onClick={() => setMenuOpen(false)}
+              className={`font-latin py-2.5 text-base font-medium tracking-wide ${
+                pathname === "/service" ? "text-[var(--brand-ink)]" : "text-[var(--ink)]"
+              }`}
+            >
+              SERVICE
+            </Link>
+            {SERVICE_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className={`py-2 pl-3 text-[15px] font-medium ${
+                  isActive(item.href) ? "text-[var(--brand-ink)]" : "text-[var(--ink)]"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+
+            {NAV.filter((item) => item.href !== "/").map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
