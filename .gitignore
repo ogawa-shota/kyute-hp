@@ -39,6 +39,9 @@ yarn-error.log*
 # obsidian (personal workspace settings)
 .obsidian/
 
+# claude code (local tooling settings)
+.claude/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
