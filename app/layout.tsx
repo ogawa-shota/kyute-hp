@@ -36,8 +36,14 @@ export const metadata: Metadata = {
     siteName: "KYUTE",
     locale: "ja_JP",
     type: "website",
-    // 差し替え: HEROコピー＋密着動画の1カットを使ったOGP画像に差し替え
     images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "KYUTE" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: 'KYUTE｜密着動画で"伝わる会社"をつくる採用広報',
+    description:
+      "採用成果は「伝わる会社」から生まれる。密着動画で企業のリアルを届け、応募・承諾・定着につながる採用広報を支援します。無料相談受付中。",
+    images: ["/og.jpg"],
   },
 };
 
