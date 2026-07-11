@@ -8,7 +8,7 @@ export function Shift() {
     <section className="bg-dark py-24 md:py-36">
       <div className="mx-auto max-w-3xl px-5 text-center lg:px-8">
         <Reveal>
-          <h2 className="text-2xl font-semibold leading-[1.6] text-white sm:text-[2rem] sm:leading-[1.55]">
+          <h2 className="text-[clamp(1.6rem,3vw,2.25rem)] font-semibold leading-[1.6] text-white">
             採用成果を変えるのは、
             <br />
             「伝える情報」ではなく、
@@ -17,7 +17,7 @@ export function Shift() {
           </h2>
         </Reveal>
         <Reveal delay={120}>
-          <p className="mt-8 text-[15px] leading-[2.1] text-white/80 sm:text-base">
+          <p className="mt-8 text-base leading-[2] text-white/80">
             候補者は、会社を&quot;読んで&quot;いるのではありません。
             <br />
             会社を&quot;感じて&quot;います。

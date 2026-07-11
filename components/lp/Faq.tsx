@@ -48,7 +48,7 @@ export function Faq() {
                 onClick={() => setOpen(isOpen ? null : i)}
                 className="flex w-full items-center justify-between gap-4 py-5 text-left"
               >
-                <span className="text-[15px] font-medium text-[var(--ink)]">
+                <span className="text-base font-medium leading-[1.75] text-[var(--ink)]">
                   {item.q}
                 </span>
                 <svg
@@ -75,7 +75,7 @@ export function Faq() {
                 }`}
               >
                 <div className="overflow-hidden">
-                  <p className="text-sm leading-relaxed text-[var(--ink-soft)]">
+                  <p className="max-w-2xl text-base leading-[1.9] text-[var(--ink-soft)]">
                     {item.a}
                   </p>
                 </div>

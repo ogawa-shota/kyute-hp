@@ -14,10 +14,10 @@ export function OwnedMedia() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <Reveal>
           <p className="eyebrow mb-4">OWNED MEDIA</p>
-          <h2 className="text-2xl font-semibold leading-snug text-[var(--text-primary)] sm:text-3xl">
+          <h2 className="section-title text-[var(--text-primary)]">
             自社メディア『運動部のしごと』
           </h2>
-          <p className="mt-5 text-[15px] leading-[2] text-[var(--ink-soft)] sm:text-base">
+          <p className="mt-6 max-w-[42rem] text-base leading-[1.95] text-[var(--ink-soft)]">
             日本中の&quot;働く&quot;を密着取材する動画メディアを運営。
             <br />
             企業と求職者を、リアルなコンテンツで新しく出会わせます。

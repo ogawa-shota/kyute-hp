@@ -6,7 +6,7 @@ import { Reveal } from "./Reveal";
  */
 export function Closing() {
   return (
-    <section className="relative flex min-h-[88vh] items-center overflow-hidden bg-dark py-24 md:py-32">
+    <section className="relative flex min-h-[72vh] items-center overflow-hidden bg-dark py-24 md:py-32">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,219,103,0.16),transparent_32%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/15" />
       <div className="relative mx-auto max-w-3xl px-5 text-center lg:px-8">
@@ -18,7 +18,7 @@ export function Closing() {
         </Reveal>
 
         <Reveal delay={120}>
-          <p className="mt-10 text-[15px] leading-[2.1] text-white/80 sm:text-lg">
+          <p className="mt-9 text-base leading-[2] text-white/80 sm:text-lg">
             会社の魅力は、つくるものではありません。
             <br />
             伝えるものです。

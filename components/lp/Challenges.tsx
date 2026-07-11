@@ -14,9 +14,9 @@ export function Challenges() {
   return (
     <section className="bg-white py-20 md:py-28">
       <div className="mx-auto max-w-4xl px-5 lg:px-8">
-        <Reveal className="text-center">
+        <Reveal className="mx-auto max-w-3xl text-center">
           <p className="eyebrow mb-4">CHALLENGES</p>
-          <h2 className="text-2xl font-semibold leading-snug text-[var(--text-primary)] sm:text-3xl">
+          <h2 className="section-title mx-auto text-[var(--text-primary)]">
             こんな採用課題は、ありませんか？
           </h2>
         </Reveal>
@@ -45,7 +45,7 @@ export function Challenges() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="text-[15px] font-medium leading-relaxed text-[var(--ink)]">
+              <span className="text-base font-medium leading-[1.8] text-[var(--ink)]">
                 {item}
               </span>
             </Reveal>

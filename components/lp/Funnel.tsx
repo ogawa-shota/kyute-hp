@@ -12,18 +12,18 @@ const STEPS = [
   { label: "会社のリアルが伝わる", width: "w-full", note: null },
   {
     label: "応募率の向上",
-    width: "w-[92%]",
+    width: "w-full sm:w-[92%]",
     note: "働く姿が見えるから、応募につながる。",
   },
-  { label: "面接参加率の向上", width: "w-[80%]", note: null },
+  { label: "面接参加率の向上", width: "w-full sm:w-[80%]", note: null },
   {
     label: "内定承諾率の向上",
-    width: "w-[68%]",
+    width: "w-full sm:w-[68%]",
     note: "働く自分が想像できるから、承諾につながる。",
   },
   {
     label: "定着率の向上",
-    width: "w-[56%]",
+    width: "w-full sm:w-[56%]",
     note: "知って入社するから、ギャップが小さく定着する。",
   },
 ];
@@ -33,25 +33,25 @@ export function Funnel() {
     <section id="funnel" className="relative overflow-hidden bg-white py-20 md:py-28">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[var(--bg-soft)] to-white" />
       <div className="mx-auto max-w-5xl px-5 lg:px-8">
-        <Reveal className="text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <p className="eyebrow mb-4">THE PROOF</p>
-          <h2 className="text-2xl font-semibold leading-snug text-[var(--text-primary)] sm:text-4xl">
+          <h2 className="section-title mx-auto text-[var(--text-primary)]">
             採用ファネル全体に、効く。
           </h2>
         </Reveal>
 
-        <div className="relative mx-auto mt-14 max-w-3xl">
+        <div className="relative mx-auto mt-12 max-w-3xl md:mt-16">
           <div className="absolute inset-y-8 left-1/2 hidden w-px -translate-x-1/2 bg-[var(--line-soft)] sm:block" />
           {STEPS.map((step, i) => (
             <Reveal key={step.label} delay={i * 90}>
               <div className="relative flex flex-col items-center">
                 {/* funnel bar */}
                 <div
-                  className={`relative ${step.width} rounded-[8px] border border-[var(--brand-ink)]/25 bg-white px-5 py-4 shadow-[0_10px_32px_rgba(20,20,25,0.06)] transition-colors sm:px-6 sm:py-5`}
+                  className={`relative ${step.width} rounded-[8px] border border-[var(--brand-ink)]/25 bg-white px-5 py-5 shadow-[0_10px_32px_rgba(20,20,25,0.06)] transition-colors sm:px-6`}
                 >
                   <div className="absolute inset-y-0 left-0 w-1 rounded-l-[8px] bg-[var(--brand)]" />
                   <div className="flex items-center justify-between gap-4">
-                    <span className="flex items-center gap-3 text-base font-bold text-[var(--text-primary)] sm:text-lg">
+                    <span className="flex items-center gap-3 text-base font-semibold leading-relaxed text-[var(--text-primary)] sm:text-lg">
                       <span className="font-latin text-xs font-semibold tracking-[0.16em] text-[var(--brand-ink)]">
                         {String(i + 1).padStart(2, "0")}
                       </span>
@@ -65,7 +65,7 @@ export function Funnel() {
                   </div>
                   {/* mobile note under the bar */}
                   {step.note && (
-                    <p className="mt-2 text-xs leading-relaxed text-[var(--ink-soft)] sm:hidden">
+                    <p className="mt-3 pl-8 text-sm leading-relaxed text-[var(--ink-soft)] sm:hidden">
                       {step.note}
                     </p>
                   )}

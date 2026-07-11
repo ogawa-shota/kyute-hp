@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/lp/Header";
 import { SiteFooter } from "@/components/lp/SiteFooter";
 import { MobileCtaBar } from "@/components/lp/MobileCtaBar";
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "./seo";
 
 // 和文: 端正で知的な人文系ゴシック。太字でも圧迫感が少なく、BtoB採用サイトに合う。
 const sans = Zen_Kaku_Gothic_New({
@@ -21,29 +22,19 @@ const latin = Inter({
   display: "swap",
 });
 
-const SITE_URL = "https://kyute.jp";
+const isPreview = process.env.VERCEL_ENV === "preview";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'KYUTE｜密着動画で"伝わる会社"をつくる採用広報',
-  description:
-    "採用は「どれだけ伝わるか」が全て。密着動画で企業のリアルを届け、応募・承諾・定着につながる採用広報を支援します。無料相談受付中。",
-  openGraph: {
-    title: 'KYUTE｜密着動画で"伝わる会社"をつくる採用広報',
-    description:
-      "採用は「どれだけ伝わるか」が全て。密着動画で企業のリアルを届け、応募・承諾・定着につながる採用広報を支援します。無料相談受付中。",
-    url: SITE_URL,
-    siteName: "KYUTE",
-    locale: "ja_JP",
-    type: "website",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "KYUTE" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: 'KYUTE｜密着動画で"伝わる会社"をつくる採用広報',
-    description:
-      "採用は「どれだけ伝わるか」が全て。密着動画で企業のリアルを届け、応募・承諾・定着につながる採用広報を支援します。無料相談受付中。",
-    images: ["/og.jpg"],
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  robots: {
+    index: !isPreview,
+    follow: !isPreview,
+    googleBot: {
+      index: !isPreview,
+      follow: !isPreview,
+    },
   },
 };
 

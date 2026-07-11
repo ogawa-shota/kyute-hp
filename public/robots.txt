@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.kyute.jp/sitemap.xml
+Sitemap: https://kyute.jp/sitemap.xml

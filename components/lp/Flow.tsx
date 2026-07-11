@@ -18,7 +18,7 @@ export function Flow() {
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <Reveal>
           <p className="eyebrow mb-4">PROCESS</p>
-          <h2 className="text-2xl font-semibold leading-snug text-[var(--text-primary)] sm:text-3xl">
+          <h2 className="section-title text-[var(--text-primary)]">
             導入の流れ
           </h2>
         </Reveal>
@@ -34,7 +34,7 @@ export function Flow() {
               <span className="font-latin flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--brand)] text-sm font-semibold text-[var(--text-primary)]">
                 {i + 1}
               </span>
-              <span className="pt-1.5 text-[15px] font-medium leading-relaxed text-[var(--ink)]">
+              <span className="pt-1 text-base font-medium leading-[1.75] text-[var(--ink)]">
                 {step}
               </span>
             </Reveal>

@@ -46,27 +46,55 @@ const ROWS: { item: string; values: Record<RowKey, string> }[] = [
 ];
 
 /**
- * S7 — なぜYouTubeなのか。採用サイト／求人媒体／YouTube を項目別に比較。
+ * S7 — なぜYouTubeなのか。求人媒体／YouTube を項目別に比較。
  * YouTube列を強調し、"消える広告"→"貯まる資産"の転換を伝える。
  */
 export function Youtube() {
   return (
-    <section className="bg-soft py-20 md:py-28">
+    <section id="why-youtube" className="scroll-mt-16 bg-soft py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
-        <Reveal className="text-center">
-          <p className="eyebrow mb-4">WHY YOUTUBE</p>
-          <h2 className="text-2xl font-bold leading-snug text-[var(--text-primary)] sm:text-4xl">
-            なぜ、YouTubeなのか。
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-[var(--ink-soft)] sm:text-base">
+        <Reveal className="section-header-split">
+          <div>
+            <p className="eyebrow mb-4">WHY YOUTUBE</p>
+            <h2 className="section-title text-[var(--text-primary)]">
+              なぜ、YouTubeなのか。
+            </h2>
+          </div>
+          <p className="section-lead md:justify-self-end">
             同じ採用予算でも、&quot;どこに使うか&quot;で残るものは変わります。
+            求人媒体との違いを、採用活動の時間軸で比較します。
           </p>
         </Reveal>
 
-        {/* 項目別の比較表 */}
-        <Reveal delay={100} className="mt-12">
-          <div className="no-scrollbar overflow-x-auto">
-            <table className="w-full min-w-[440px] border-separate border-spacing-0 text-left">
+        {/* Mobile: 横スクロールを避け、比較軸ごとに縦読みする */}
+        <Reveal delay={100} className="mt-10 md:hidden">
+          <div className="border-t border-[var(--line)]">
+            {ROWS.map((row) => (
+              <section key={row.item} className="border-b border-[var(--line)] py-6">
+                <h3 className="text-sm font-semibold text-[var(--ink-mute)]">{row.item}</h3>
+                <dl className="mt-4 grid grid-cols-2 gap-3">
+                  <div className="min-w-0 py-2 pr-2">
+                    <dt className="text-xs font-semibold text-[var(--ink-mute)]">求人媒体</dt>
+                    <dd className="mt-2 text-sm leading-[1.75] text-[var(--ink)]">
+                      {row.values.media}
+                    </dd>
+                  </div>
+                  <div className="min-w-0 rounded-lg bg-[var(--brand-soft)] p-3">
+                    <dt className="text-xs font-semibold text-[var(--brand-ink)]">YouTube</dt>
+                    <dd className="mt-2 text-sm font-semibold leading-[1.75] text-[var(--brand-ink)]">
+                      {row.values.youtube}
+                    </dd>
+                  </div>
+                </dl>
+              </section>
+            ))}
+          </div>
+        </Reveal>
+
+        {/* Desktop: 項目別の比較表 */}
+        <Reveal delay={100} className="mt-16 hidden md:block">
+          <div>
+            <table className="w-full border-separate border-spacing-0 text-left">
               <thead>
                 <tr>
                   <th className="w-[26%] px-4 py-4 align-bottom" />
@@ -112,7 +140,7 @@ export function Youtube() {
                     <tr key={row.item}>
                       <th
                         scope="row"
-                        className="border-t border-[var(--line)] px-4 py-5 align-top text-sm font-semibold text-[var(--ink-mute)]"
+                        className="border-t border-[var(--line)] px-5 py-6 align-top text-sm font-semibold text-[var(--ink-mute)]"
                       >
                         {row.item}
                       </th>
@@ -121,7 +149,7 @@ export function Youtube() {
                         return (
                           <td
                             key={col.key}
-                            className={`border-t border-[var(--line)] px-4 py-5 align-top text-[15px] leading-relaxed ${
+                            className={`border-t border-[var(--line)] px-5 py-6 align-top text-base leading-[1.8] ${
                               isYt
                                 ? `bg-[var(--brand-soft)] font-semibold text-[var(--brand-ink)] ${
                                     isLast ? "rounded-b-2xl" : ""
@@ -143,11 +171,11 @@ export function Youtube() {
           </div>
         </Reveal>
 
-        <Reveal delay={160} className="mt-12 text-center">
-          <p className="text-xl font-bold leading-relaxed text-[var(--text-primary)] sm:text-2xl">
+        <Reveal delay={160} className="mt-12 border-l-2 border-[var(--brand)] pl-5 md:mt-16 md:pl-7">
+          <p className="max-w-3xl text-xl font-bold leading-[1.65] text-[var(--text-primary)] sm:text-2xl">
             採用広報を、&quot;消える広告&quot;から&quot;貯まる資産&quot;へ。
           </p>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--ink-soft)]">
+          <p className="mt-4 max-w-2xl text-base leading-[1.9] text-[var(--ink-soft)]">
             一度つくった動画が、検索され、拡散され、見られ続ける。
             <br className="hidden sm:block" />
             これができるのは、YouTubeだけです。

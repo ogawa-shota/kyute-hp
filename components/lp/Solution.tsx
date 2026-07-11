@@ -22,7 +22,7 @@ export function Solution() {
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <Reveal>
           <p className="eyebrow mb-4">THE SOLUTION</p>
-          <h2 className="text-2xl font-semibold leading-snug text-[var(--text-primary)] sm:text-4xl">
+          <h2 className="section-title text-[var(--text-primary)]">
             密着動画だから、伝わる。
           </h2>
         </Reveal>
@@ -59,7 +59,7 @@ export function Solution() {
 
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <Reveal className="mt-10">
-          <p className="text-base leading-relaxed text-[var(--ink-soft)] sm:text-lg">
+          <p className="max-w-2xl text-base leading-[1.9] text-[var(--ink-soft)] sm:text-lg">
             リアルだからこそ、「ここで働く自分」が自然と想像できる。
           </p>
         </Reveal>

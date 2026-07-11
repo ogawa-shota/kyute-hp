@@ -37,25 +37,25 @@ export function Services() {
   return (
     <section id="services" className="bg-soft py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
-        <Reveal className="grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-end">
+        <Reveal className="section-header-split">
           <div>
             <p className="eyebrow mb-4">SERVICES</p>
-            <h2 className="text-2xl font-semibold leading-snug text-[var(--text-primary)] sm:text-3xl">
+            <h2 className="section-title text-[var(--text-primary)]">
               KYUTEのサービス
             </h2>
           </div>
-          <p className="max-w-2xl text-[15px] leading-relaxed text-[var(--ink-soft)] sm:text-base md:justify-self-end">
+          <p className="section-lead md:justify-self-end">
             密着動画で&quot;働くリアル&quot;を届け、採用成果につなげる2つの事業。単発制作で終わらせず、企画から運用改善まで接続します。
           </p>
         </Reveal>
 
-        <div className="mt-12 border-t border-[var(--line)]">
+        <div className="mt-12 border-t border-[var(--line)] md:mt-16">
           {SERVICES.map((s, i) => (
             <Reveal key={s.n} delay={i * 90} className="border-b border-[var(--line)]">
               <Link
                 href={s.href}
                 data-cta={`service-${s.tag.toLowerCase()}`}
-                className="group grid gap-5 bg-transparent py-8 transition-colors hover:bg-white/60 sm:grid-cols-[100px_1fr_1.4fr] sm:items-start sm:px-5"
+                className="group grid gap-5 bg-transparent py-8 transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--brand)] sm:grid-cols-[72px_0.9fr_1.1fr] sm:items-center sm:px-5 md:py-10"
               >
                 <span className="font-latin text-sm font-semibold tracking-[0.2em] text-[var(--brand-ink)]">
                   {s.n}
@@ -64,12 +64,12 @@ export function Services() {
                   <span className="font-latin text-xs font-semibold tracking-[0.22em] text-[var(--ink-mute)]">
                     {s.tag}
                   </span>
-                  <h3 className="mt-3 text-xl font-semibold leading-snug text-[var(--text-primary)] transition-colors group-hover:text-[var(--brand-ink)]">
+                  <h3 className="mt-2 text-xl font-semibold leading-[1.5] text-[var(--text-primary)] transition-colors group-hover:text-[var(--brand-ink)] sm:text-2xl">
                     {s.title}
                   </h3>
                 </div>
                 <div>
-                  <p className="text-sm leading-[1.95] text-[var(--ink-soft)] sm:text-[15px]">
+                  <p className="max-w-[34rem] text-base leading-[1.9] text-[var(--ink-soft)]">
                     {s.body}
                   </p>
                   <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[var(--brand-ink)]">

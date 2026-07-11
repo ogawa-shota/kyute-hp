@@ -35,7 +35,7 @@
   --fw-bold: 700;
 
   --fs-caption: clamp(12px, 0.9vw, 13px);
-  --fs-body: clamp(15px, 1.05vw, 17px);
+  --fs-body: clamp(16px, 1.05vw, 17px);
   --fs-lead: clamp(17px, 1.4vw, 20px);
   --fs-h-sm: clamp(19px, 1.9vw, 26px);
   --fs-h-md: clamp(25px, 3vw, 40px);
@@ -77,6 +77,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
 /* 見出し既定（コンポーネント側のTailwind指定が上書き可能な最小ベース） */
 h1,
 h2,
@@ -104,6 +110,33 @@ h4 {
   font-size: 13px;
   line-height: 1.4;
   color: var(--brand-ink);
+}
+
+/* Shared reading rhythm: colors stay component-owned; these only align typography and spacing. */
+.section-title {
+  max-width: 18em;
+  font-size: var(--fs-h-md);
+  font-weight: 600;
+  line-height: 1.38;
+}
+
+.section-lead {
+  max-width: 42rem;
+  font-size: var(--fs-body);
+  line-height: 1.9;
+  color: var(--text-secondary);
+}
+
+.section-header-split {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-header-split {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: end;
+  }
 }
 
 .bg-soft {

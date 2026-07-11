@@ -16,7 +16,7 @@ export function ContactForm() {
   };
 
   const fieldClass =
-    "w-full rounded-lg border border-[var(--line)] bg-white px-4 py-3 text-[15px] text-[var(--ink)] outline-none transition-colors placeholder:text-[var(--ink-mute)] focus:border-[var(--brand)] focus:ring-1 focus:ring-[var(--brand)]";
+    "w-full rounded-lg border border-[var(--line)] bg-white px-4 py-3.5 text-base text-[var(--ink)] outline-none transition-colors placeholder:text-[var(--ink-mute)] focus:border-[var(--brand)] focus:ring-1 focus:ring-[var(--brand)]";
 
   if (sent) {
     return (
@@ -71,7 +71,7 @@ export function ContactForm() {
       <button
         type="submit"
         data-cta="contact-submit"
-        className="w-full rounded-full bg-[var(--brand)] px-8 py-4 text-[15px] font-semibold text-[var(--text-primary)] transition-colors hover:bg-[var(--brand-deep)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
+        className="w-full rounded-full bg-[var(--brand)] px-8 py-4 text-base font-semibold text-[var(--text-primary)] transition-colors hover:bg-[var(--brand-deep)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
       >
         無料で相談する
       </button>

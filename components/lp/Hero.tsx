@@ -8,23 +8,23 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-white pt-28 pb-20 md:pt-36 md:pb-28"
+      className="relative overflow-hidden bg-white pb-20 pt-28 md:pb-24 md:pt-36"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(circle_at_50%_2%,rgba(255,219,103,0.3),transparent_46%),linear-gradient(180deg,rgba(244,244,246,0.9),rgba(255,255,255,0))]" />
 
-      <div className="relative mx-auto max-w-4xl px-5 text-center lg:px-8">
+      <div className="relative mx-auto max-w-5xl px-5 text-center lg:px-8">
         <div className="reveal is-visible">
           <p className="eyebrow mb-6">YOUTUBE RECRUITMENT</p>
-          <p className="font-latin mb-6 text-[clamp(3rem,12vw,8.5rem)] font-semibold uppercase leading-[0.8] tracking-normal text-[var(--text-primary)]">
+          <p className="font-latin mb-7 text-[clamp(3rem,11vw,8rem)] font-semibold uppercase leading-[0.82] tracking-normal text-[var(--text-primary)]">
             KYUTE
           </p>
-          <h1 className="mx-auto max-w-[14em] text-[2.4rem] font-bold leading-[1.2] tracking-tight text-[var(--text-primary)] text-balance sm:text-6xl lg:text-[4.2rem]">
+          <h1 className="mx-auto max-w-[13em] text-[2.35rem] font-bold leading-[1.22] tracking-normal text-[var(--text-primary)] text-balance sm:text-6xl lg:text-[4.1rem]">
             YouTube採用のプロ
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-lg font-medium leading-[1.6] text-[var(--text-primary)] text-balance sm:text-2xl">
+          <p className="mx-auto mt-7 max-w-2xl text-lg font-medium leading-[1.75] text-[var(--text-primary)] text-balance sm:text-2xl">
             採用は「どれだけ伝わるか」が全て。
           </p>
-          <p className="mx-auto mt-6 max-w-xl text-base leading-[2] text-[var(--ink-soft)] sm:text-lg">
+          <p className="mx-auto mt-5 max-w-[38rem] text-base leading-[2] text-[var(--ink-soft)] sm:text-lg">
             密着動画で企業のリアルを届け、
             <br className="hidden sm:block" />
             応募・承諾・定着につながる採用広報を実現します。
@@ -39,7 +39,7 @@ export function Hero() {
             </CtaButton>
           </div>
 
-          <dl className="mx-auto mt-12 grid max-w-xl grid-cols-3 border-y border-[var(--line-soft)] py-6">
+          <dl className="mx-auto mt-12 grid max-w-[38rem] grid-cols-3 border-y border-[var(--line-soft)] py-6">
             {[
               {
                 term: "企画",
@@ -83,7 +83,7 @@ export function Hero() {
             ].map(({ term, icon }) => (
               <div
                 key={term}
-                className="flex flex-col items-center gap-2.5 border-r border-[var(--line-soft)] px-3 last:border-r-0"
+                className="flex min-h-20 flex-col items-center justify-center gap-2.5 border-r border-[var(--line-soft)] px-3 last:border-r-0"
               >
                 <svg
                   width="26"
@@ -95,7 +95,7 @@ export function Hero() {
                 >
                   {icon}
                 </svg>
-                <dt className="text-[11px] font-bold tracking-[0.18em] text-[var(--brand-ink)]">
+                <dt className="text-xs font-semibold tracking-[0.12em] text-[var(--brand-ink)]">
                   {term}
                 </dt>
               </div>
@@ -107,7 +107,7 @@ export function Hero() {
       {/* scroll hint */}
       <div className="relative mt-14 flex justify-center md:mt-16">
         <a
-          href="#services"
+          href="#why-youtube"
           aria-label="次のセクションへ"
           className="flex flex-col items-center gap-1 text-[var(--ink-mute)] transition-colors hover:text-[var(--brand-ink)]"
         >

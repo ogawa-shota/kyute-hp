@@ -81,7 +81,7 @@ export function Header() {
                 />
               </svg>
             </Link>
-            <div className="invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-3 opacity-0 transition-opacity duration-200 group-hover:visible group-hover:opacity-100">
+            <div className="invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-3 opacity-0 transition-opacity duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
               <div className="overflow-hidden rounded-xl border border-[var(--line-soft)] bg-white/95 py-1.5 shadow-[0_18px_44px_rgba(20,20,25,0.12)] backdrop-blur-md">
                 {SERVICE_ITEMS.map((item) => (
                   <Link

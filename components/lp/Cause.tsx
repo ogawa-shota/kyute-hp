@@ -17,7 +17,7 @@ export function Cause() {
         {/* Left: heading */}
         <Reveal>
           <p className="eyebrow mb-5">THE CAUSE</p>
-          <h2 className="text-2xl font-semibold leading-[1.5] text-[var(--text-primary)] sm:text-4xl">
+          <h2 className="section-title text-[var(--text-primary)]">
             企業の魅力はある。
             <br />
             でも、伝わっていない。
@@ -26,27 +26,27 @@ export function Cause() {
 
         {/* Right: body + list */}
         <Reveal delay={100}>
-          <p className="text-[15px] leading-[2] text-[var(--ink-soft)] sm:text-base">
+          <p className="max-w-[42rem] text-base leading-[1.95] text-[var(--ink-soft)]">
             候補者が本当に知りたいのは、給与でも、仕事内容だけでも、福利厚生だけでもありません。
             <br />
             「この会社で働く自分」を、知りたいのです。
           </p>
 
           <div className="mt-8">
-            <p className="text-[15px] leading-relaxed text-[var(--ink-soft)]">
+            <p className="text-base leading-relaxed text-[var(--ink-soft)]">
               求人票や採用サイトでは、
             </p>
             <ul className="mt-3 space-y-2.5 border-l-2 border-[var(--brand-ink)]/30 pl-5">
               {NOT_CONVEYED.map((item) => (
                 <li
                   key={item}
-                  className="text-[15px] leading-relaxed text-[var(--ink)]"
+                  className="text-base leading-[1.8] text-[var(--ink)]"
                 >
                   {item}
                 </li>
               ))}
             </ul>
-            <p className="mt-3 text-[15px] leading-relaxed text-[var(--ink-soft)]">
+            <p className="mt-3 text-base leading-relaxed text-[var(--ink-soft)]">
               までは、伝わりません。
             </p>
           </div>
