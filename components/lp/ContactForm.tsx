@@ -4,21 +4,50 @@ import { useState, type FormEvent } from "react";
 
 /**
  * 問い合わせフォーム。入力は4項目のみ（会社名・担当者名・メール・採用課題）。
- * 送信処理は差し替え前提（送信先APIは未接続）。
+ * 入力内容をサーバー側APIへ送り、contact@kyute.jpへ通知する。
  */
 export function ContactForm() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // 差し替え: 実際の送信処理（API/フォームサービス）に接続してください。
-    setSent(true);
+    setStatus("sending");
+    setErrorMessage("");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(formData.entries())),
+      });
+      const result = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        throw new Error(result.message || "送信できませんでした。");
+      }
+
+      form.reset();
+      setStatus("sent");
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "送信できませんでした。時間をおいて再度お試しください。",
+      );
+      setStatus("error");
+    }
   };
 
   const fieldClass =
     "w-full rounded-lg border border-[var(--line)] bg-white px-4 py-3.5 text-base text-[var(--ink)] outline-none transition-colors placeholder:text-[var(--ink-mute)] focus:border-[var(--brand)] focus:ring-1 focus:ring-[var(--brand)]";
 
-  if (sent) {
+  if (status === "sent") {
     return (
       <div className="rounded-2xl border border-[var(--line)] bg-[var(--bg-soft)] p-8 text-center">
         <p className="text-lg font-bold text-[var(--text-primary)]">
@@ -37,6 +66,16 @@ export function ContactForm() {
       data-cta="contact-form"
       className="space-y-5"
     >
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="website">ウェブサイト</label>
+        <input
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
       <div>
         <label htmlFor="company" className="mb-1.5 block text-sm font-medium text-[var(--ink)]">
           会社名
@@ -63,17 +102,25 @@ export function ContactForm() {
           id="issue"
           name="issue"
           rows={4}
+          required
           className={fieldClass}
           placeholder="例：応募は集まるが、内定承諾率が上がらない"
         />
       </div>
 
+      {status === "error" && (
+        <p role="alert" className="text-sm font-medium text-red-700">
+          {errorMessage}
+        </p>
+      )}
+
       <button
         type="submit"
         data-cta="contact-submit"
-        className="w-full rounded-full bg-[var(--brand)] px-8 py-4 text-base font-semibold text-[var(--text-primary)] transition-colors hover:bg-[var(--brand-deep)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
+        disabled={status === "sending"}
+        className="w-full rounded-full bg-[var(--brand)] px-8 py-4 text-base font-semibold text-[var(--text-primary)] transition-colors hover:bg-[var(--brand-deep)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 disabled:cursor-wait disabled:opacity-70"
       >
-        無料で相談する
+        {status === "sending" ? "送信中..." : "無料で相談する"}
       </button>
     </form>
   );

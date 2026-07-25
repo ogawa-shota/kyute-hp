@@ -17,6 +17,16 @@ npm run build
 npm start
 ```
 
+## 問い合わせフォーム
+
+問い合わせ内容は、サーバー側のResend APIを経由して`contact@kyute.jp`へ送信します。
+Resendで`kyute.jp`ドメインを認証し、`.env.example`を参考に以下の環境変数を設定してください。
+
+- `RESEND_API_KEY`: ResendのAPIキー
+- `CONTACT_FROM_EMAIL`: 認証済みドメインの送信元（例: `KYUTE Website <noreply@kyute.jp>`）
+
+VercelではProject SettingsのEnvironment Variablesに同じ値を設定してください。
+
 ## ページ構成（4ページ）
 
 `app/layout.tsx` に共通のヘッダー・フッター・モバイル追従CTAを配置し、各ルートが本文を差し込みます。
@@ -62,7 +72,7 @@ npm start
 - **FAQ回答** — `components/lp/Faq.tsx`：回答文を実内容に差し替え。
 - **会社概要** — `components/lp/CompanyInfo.tsx`：所在地・連絡先を差し替え。
 - **SNS / 自社メディアリンク** — `components/lp/SiteFooter.tsx`：各リンク（現状 `#`）を差し替え。
-- **問い合わせ送信処理** — `components/lp/ContactForm.tsx`：`handleSubmit` を実際の送信先API（またはフォームサービス）に接続。
+- **問い合わせ送信処理** — `app/api/contact/route.ts`：Resend経由で`contact@kyute.jp`へ送信。公開前に環境変数を設定。
 - **OGP画像** — `app/layout.tsx`：`/og.jpg`（HEROコピー＋密着動画の1カット）を配置。
 
 ## 計測

@@ -1,14 +1,23 @@
 import { Reveal } from "./Reveal";
 
-// 差し替え: 所在地・連絡先などのプレースホルダーを実データに差し替えてください。
 const COMPANY = [
   { label: "社名", value: "KYUTE" },
   {
     label: "事業内容",
     value: "採用YouTubeチャンネル運営代行 ／ 採用密着動画の制作 ／ 自社動画メディア運営",
   },
-  { label: "所在地", value: "〒000-0000 —（差し替え）" },
-  { label: "連絡先", value: "contact@kyute.jp（差し替え）" },
+  {
+    label: "所在地",
+    value: "東京都渋谷区恵比寿西２丁目８番４号ＥＸ恵比寿西ビル５階",
+  },
+  {
+    label: "連絡先",
+    value: (
+      <a className="hover:underline" href="mailto:contact@kyute.jp">
+        contact@kyute.jp
+      </a>
+    ),
+  },
 ];
 
 export function CompanyInfo() {
