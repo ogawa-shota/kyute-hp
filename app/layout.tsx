@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Zen_Kaku_Gothic_New, Inter } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/lp/Header";
-import { SiteFooter } from "@/components/lp/SiteFooter";
-import { MobileCtaBar } from "@/components/lp/MobileCtaBar";
+import { SiteChrome } from "@/components/SiteChrome";
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "./seo";
 
 // 和文: 端正で知的な人文系ゴシック。太字でも圧迫感が少なく、BtoB採用サイトに合う。
@@ -48,10 +46,7 @@ export default function RootLayout({
       <body
         className={`${sans.variable} ${latin.variable} font-sans antialiased`}
       >
-        <Header />
-        <main>{children}</main>
-        <SiteFooter />
-        <MobileCtaBar />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
