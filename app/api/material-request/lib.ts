@@ -91,7 +91,7 @@ export function verifySlackSignature(rawBody: string, timestamp: string, signatu
 export async function postSlackApproval(token: string) {
   const botToken = process.env.MATERIAL_SLACK_BOT_TOKEN;
   const channel = process.env.MATERIAL_SLACK_CHANNEL_ID;
-  if (!botToken || !channel) return false;
+  if (!botToken || !channel) throw new Error("Slack configuration is incomplete");
   const response = await fetch("https://slack.com/api/chat.postMessage", {
     method: "POST",
     headers: { Authorization: `Bearer ${botToken}`, "Content-Type": "application/json; charset=utf-8" },
@@ -108,7 +108,8 @@ export async function postSlackApproval(token: string) {
       ],
     }),
   });
-  if (!response.ok) return false;
-  const result = await response.json() as { ok?: boolean };
-  return result.ok === true;
+  if (!response.ok) throw new Error(`Slack HTTP ${response.status}`);
+  const result = await response.json() as { ok?: boolean; error?: string };
+  if (result.ok !== true) throw new Error(`Slack API ${result.error || "unknown_error"}`);
+  return true;
 }

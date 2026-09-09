@@ -71,9 +71,15 @@ export async function POST(request: Request) {
       tags: [{ name: "type", value: "material_notification" }],
     }, `material-notify-${requestId}`);
 
-    await postSlackApproval(token).catch(() => false);
-    return NextResponse.json({ ok: true });
-  } catch {
+    let slackNotified = false;
+    try {
+      slackNotified = await postSlackApproval(token);
+    } catch (error) {
+      console.error("material-request Slack notification failed", error instanceof Error ? error.message : "unknown_error");
+    }
+    return NextResponse.json({ ok: true, slackNotified });
+  } catch (error) {
+    console.error("material-request email delivery failed", error instanceof Error ? error.message : "unknown_error");
     return NextResponse.json({ ok: false, message: "送信できませんでした。時間をおいて再度お試しください。" }, { status: 502 });
   }
 }
