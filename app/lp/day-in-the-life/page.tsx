@@ -1,164 +1,66 @@
-/* eslint-disable @next/next/no-img-element -- YouTube posters are rendered directly to preserve the existing external thumbnail URLs without image proxying. */
+/* eslint-disable @next/next/no-img-element -- Original video frames and external posters. */
 import type { Metadata } from "next";
-import type { CSSProperties } from "react";
-import "./lp.css";
+import type { CSSProperties, ReactNode } from "react";
+import "./studio.css";
 import LpRuntime from "./LpRuntime";
 import MaterialRequestForm from "./MaterialRequestForm";
 import { media } from "./media";
 
 export const metadata: Metadata = {
-  title: { absolute: "採用密着動画制作サービス" },
-  description: "人とカルチャーで、選ばれる会社へ。社員の一日を通して、会社の魅力を伝える採用密着動画制作サービス。",
-  alternates: { canonical: "https://kyute.jp/lp/day-in-the-life" },
-  openGraph: {
-    title: "採用密着動画制作サービス",
-    description: "人とカルチャーで、選ばれる会社へ。社員の一日を通して、会社の魅力を伝える採用密着動画制作サービス。",
-    url: "https://kyute.jp/lp/day-in-the-life",
-    locale: "ja_JP",
-    type: "website",
-  },
+  title: { absolute: "採用密着動画制作サービス｜人とカルチャーで、選ばれる会社へ。" },
+  description: "採用の設計力と、YouTubeの企画・編集力。働く一日に密着し、人・仕事・カルチャーのリアルを届けるKYUTEの採用密着動画制作サービス。",
+  alternates: { canonical: "https://www.kyute.jp/lp/day-in-the-life" },
+  openGraph: { title: "人とカルチャーで、選ばれる会社へ。｜KYUTE", description: "採用の設計力と、YouTubeの企画・編集力でつくる採用密着動画。", url: "https://www.kyute.jp/lp/day-in-the-life", locale: "ja_JP", type: "website" },
 };
-
-const videos = media.videos;
-
-function FilmCard({ video }: { video: (typeof videos)[number] }) {
-  return (
-    <button type="button" className="film-button" data-video-id={video.id} aria-label={`${video.title} 動画を再生`}>
-      <div className="film-image">
-        <img src={video.poster} alt={video.originalTitle} loading="lazy" decoding="async" width={1280} height={720} />
-        <span className="play" aria-hidden="true">▶</span>
-        <span className="duration">{video.duration}</span>
-      </div>
-      <div className="film-copy"><h3>{video.title.split("、").map((line, index, parts) => <span key={index}>{line}{index < parts.length - 1 ? "、" : ""}</span>)}</h3><p>運営メディア「運動部のシゴト。」</p></div>
-    </button>
-  );
+const A = "/lp-assets/studio/";
+const sourceUrl = "https://career-research.mynavi.jp/wp-content/uploads/2024/06/s-nainaitei-0615.pdf";
+const films = [
+  { ...media.videos[0], poster: `${A}cafe-3.webp`, theme: "キャリアの転機", question: "なぜ、その道を選んだのか。", detail: "コンサルからカフェへ。選択の理由をたどり、仕事への想いに触れる。", audience: "自分らしい働き方を考える人へ" },
+  { ...media.videos[1], poster: `${A}okada-2.webp`, theme: "仕事への姿勢", question: "好きなことを、誰かの力に。", detail: "競技者から指導者へ。準備と実務を通して、教える仕事のこだわりが見える。", audience: "仕事のやりがいを知りたい人へ" },
+  { ...media.videos[2], poster: `${A}gallery-uosaki-1.webp`, theme: "人柄と価値観", question: "その人らしさは、日常にある。", detail: "独立後の一日を追い、ふだんの会話と行動から、本人の考え方を知る。", audience: "一緒に働く人を知りたい人へ" },
+];
+function Action({ children = "資料を受け取る", location }: { children?: ReactNode; location: string }) {
+  return <a className="cta" href="#request-material" data-download={location}>{children}<span aria-hidden="true">↗</span></a>;
 }
-
+function SectionTag({ number, children }: { number: string; children: ReactNode }) {
+  return <p className="section-tag"><span>{number}</span>{children}</p>;
+}
+function Scene({ name, alt, id, start, end, label }: { name: string; alt: string; id: string; start: number; end: number; label: string }) {
+  return <button type="button" className="scene-frame" data-video-id={id} data-start={start} data-end={end} aria-label={`${label}・指定シーンを再生`}><img src={`${A}${name}.webp`} alt={alt} width={1112} height={626} loading="lazy" decoding="async" /><span className="scene-play" aria-hidden="true">↗</span><span className="scene-label">{label}</span></button>;
+}
+function ReasonTitle({ n, stage, children }: { n: string; stage: string; children: ReactNode }) {
+  return <div className="reason-heading"><p className="reason-index"><span>{n}</span>{stage}</p><h3>{children}</h3></div>;
+}
 export default function RecruitmentDocumentaryPage() {
-  return (
-    <div id="documentary-lp" data-variant="proof">
-      <header className="site-header">
-        <a className="service-name" href="#top">採用密着動画<span>制作サービス</span></a>
-        <nav aria-label="メイン">
-          <a href="#films">制作動画</a><a href="#craft">こだわり</a><a href="#download">資料を受け取る</a>
-          <a className="cta" href="#request-material" data-download="header">資料を受け取る<span aria-hidden="true">→</span></a>
-        </nav>
-      </header>
-      <main>
-<section className="cinema-hero" id="top">
-<div className="hero-media" id="hero-media" aria-hidden="true">
-</div>
-<div className="hero-shade">
-</div>
-<div className="hero-copy wrap">
-<h1>“いい人”を<br />採用するなら、<br />
-<em>密着動画。</em>
-</h1>
-<p className="hero-sub">人とカルチャーのリアルを伝えて、<br />欲しい人材に来てもらえる採用を</p>
-<a className="cta" href="#request-material" data-download="hero">資料を受け取る<span aria-hidden="true">→</span>
-</a>
-</div>
-<div className="hero-bottom">
-<a className="scroll-cue" href="#films">制作動画を見る <span aria-hidden="true">→</span>
-</a>
-<div className="hero-credit">
-<span id="hero-status">自社メディア映像／読み込み中</span>
-<button id="hero-toggle" type="button" disabled>読み込み中</button>
-</div>
-</div>
-</section>
+  return <div id="documentary-lp" data-variant="proof">
+    <a className="skip-link" href="#films">本文へ進む</a>
+    <header className="site-header"><a className="service-name" href="#top">採用密着動画<span>制作サービス</span><i aria-hidden="true">●</i></a><nav aria-label="メイン"><a href="#films">制作動画</a><a href="#craft">選ばれる理由</a><Action location="header" /></nav></header>
+    <main>
+      <section className="cinema-hero" id="top" aria-labelledby="hero-title">
+        <div className="hero-media" id="hero-media" aria-hidden="true"><img className="hero-poster" src={`${A}kitchen-2.webp`} alt="" width={1112} height={626} fetchPriority="high" /></div><div className="hero-shade" />
+        <div className="hero-copy wrap"><p className="hero-service"><span aria-hidden="true" />採用 × 人とカルチャー × 密着動画</p><h1 id="hero-title">“いい人”を<br />採用するなら、<br /><em>密着動画。</em></h1><div className="hero-message"><p>人とカルチャーのリアルを伝えて、<br />欲しい人材に来てもらえる採用を。</p><Action location="hero" /></div></div>
+        <div className="hero-bottom wrap"><a className="scroll-cue" href="#films"><span className="circle-play" aria-hidden="true">▶</span>まずは、制作動画を見る<span aria-hidden="true">↓</span></a><div className="hero-credit"><span id="hero-status">自社メディアの制作映像</span><button id="hero-toggle" type="button" disabled>読み込み中</button></div></div><span className="hero-edge" aria-hidden="true">人を知る。働く姿が、見えてくる。</span>
+      </section>
 
-        <section className="section approach films" id="approach" aria-labelledby="story-heading">
-          <div id="films">
-            <div className="wrap film-heading" id="first-look">
-              <div><h2 id="story-heading">人のストーリーが、<br />企業の魅力を伝える。</h2><p className="section-intro">実際の制作動画をご紹介します。<br />働く人の選択と想いを、ドキュメンタリーで届けます。</p></div>
-              <div className="rail-controls"><button type="button" data-scroll="-1" aria-label="前の動画">←</button><button type="button" data-scroll="1" aria-label="次の動画">→</button></div>
-            </div>
-            <div className="film-rail" id="film-rail" tabIndex={0} aria-label="制作動画一覧・左右にスクロール">{videos.map((video) => <FilmCard key={video.id} video={video} />)}</div>
-          </div>
-        </section>
+      <section className="section works" id="films" aria-labelledby="story-heading"><div className="wrap"><SectionTag number="01">制作動画</SectionTag><div className="section-heading"><h2 id="story-heading">人のストーリーが、<br />企業の魅力を伝える<span className="accent">。</span></h2><p>どんな道を歩み、何を大切に働くのか。<br />一人の物語が、仕事に興味を持つ入口になる。</p></div>
+        <div className="rail-controls"><button type="button" data-scroll="-1" aria-label="前の動画">←</button><button type="button" data-scroll="1" aria-label="次の動画">→</button></div>
+        <div className="film-rail" id="film-rail" tabIndex={0} aria-label="制作動画一覧">{films.map((film,index)=><article className="film" key={film.id}><button type="button" className="film-button" data-video-id={film.id} aria-label={`${film.originalTitle}・本編を再生`}><div className="film-image"><img src={film.poster} alt={film.originalTitle} width={1280} height={720} loading="lazy" decoding="async"/><span className="play" aria-hidden="true">▶</span><span className="duration">{film.duration}</span></div><div className="film-line"><span>0{index+1} ／ {film.theme}</span><span aria-hidden="true">↗</span></div><h3>{film.title}</h3></button><p className="film-question">{film.question}</p><p className="film-detail">{film.detail}</p><p className="film-audience">{film.audience}</p></article>)}</div><p className="production-note">KYUTE運営メディア「運動部のシゴト。」の制作例。企画・取材・編集のアプローチをご覧いただけます。</p></div></section>
 
-<section className="section evidence" id="why">
-<div className="wrap">
-<h2>人とカルチャーで<br />会社を選ぶ人は増えている</h2>
-<p className="evidence-period">入社先を決めた理由｜2024年卒 → 2025年卒</p>
-<div className="charts">
-{[
-  { label: "社員の雰囲気・人柄が自分に合う", before: 40.9, after: 42.4 },
-  { label: "社風が自分に合う", before: 35.0, after: 37.5 },
-].map((item) => (
-  <figure className="chart" key={item.label}>
-    <figcaption>{item.label}</figcaption>
-    {[{ year: "2024年卒", value: item.before }, { year: "2025年卒", value: item.after }].map((row, index) => (
-      <div className={`bar-row ${index === 0 ? "muted-bar" : ""}`} key={row.year}>
-        <div className="bar-label"><span>{row.year}</span><strong>{row.value.toFixed(1)}<small>%</small></strong></div>
-        <div className="bar-track" aria-hidden="true"><span style={{ "--value": `${row.value}%` } as CSSProperties} /></div>
-      </div>
-    ))}
-    <div className="chart-scale" aria-hidden="true"><span>0%</span><span>50%</span><span>100%</span></div>
-  </figure>
-))}
-</div>
-<p className="evidence-takeaway">人・カルチャーへの共感が、<strong>入社の決め手に。</strong></p>
-<p className="chart-note">マイナビ調査／入社先決定者：2024年卒 1,812人・2025年卒 1,898人。複数回答。</p>
-<details className="sources">
-<summary>調査の対象と出典</summary>
-<p>マイナビ「2025年卒大学生活動実態調査」2024年6月公表、14ページ。入社先決定者の「入社予定先企業に決めた理由」を前年と比較。2024年卒1,812人、2025年卒1,898人、複数回答・ウエイトバック。割合は合算しません。<a href="https://career-research.mynavi.jp/wp-content/uploads/2024/06/s-nainaitei-0615.pdf" target="_blank" rel="noopener">原典を見る</a></p>
-<p>2024年卒と2025年卒の比較です。現在の求職者全体の傾向や、動画による採用成果を示すものではありません。</p>
-</details>
-</div>
-</section>
+      <section className="section evidence" id="why" aria-labelledby="evidence-title"><div className="wrap"><SectionTag number="02">会社選びの変化</SectionTag><div className="evidence-layout"><div className="evidence-heading"><h2 id="evidence-title">人とカルチャーで<br />会社を選ぶ人は<br /><span className="accent">増えている。</span></h2><p>入社先を決めた理由に、<br />「自分に合う人・社風」を挙げる割合が上昇。</p><p className="period">2024年卒 → 2025年卒</p></div><div className="charts">{[{label:"社員の雰囲気・人柄が自分に合う",before:40.9,after:42.4,diff:"1.5"},{label:"社風が自分に合う",before:35,after:37.5,diff:"2.5"}].map(item=><figure className="chart" key={item.label}><figcaption>{item.label}</figcaption><div className="stat-line"><strong>{item.after.toFixed(1)}<small>%</small></strong><span>＋{item.diff}<br />ポイント</span></div><div className="comparison-bars">{[{year:"2024年卒",value:item.before},{year:"2025年卒",value:item.after}].map((row,i)=><div className={`bar-row ${i===0?"previous":"current"}`} key={row.year}><span>{row.year}</span><div className="bar-track" aria-hidden="true"><i style={{"--value":`${row.value}%`} as CSSProperties}/></div><b>{row.value.toFixed(1)}%</b></div>)}<div className="chart-scale" aria-hidden="true"><span>0%</span><span>50%</span><span>100%</span></div></div></figure>)}</div></div><div className="data-foot"><p>人・カルチャーへの共感が、<strong>入社の決め手に。</strong></p><details className="sources"><summary>調査の対象と出典 ＋</summary><p>マイナビ「2025年卒 大学生 活動実態調査（6月15日）」14ページ。入社先決定者：2024年卒1,812人、2025年卒1,898人。複数回答・ウエイトバック。2024年卒と2025年卒の比較で、現在の求職者全体の傾向や動画による採用成果を示すものではありません。<a href={sourceUrl} target="_blank" rel="noopener noreferrer">原典を見る ↗</a></p></details></div></div></section>
 
-        <section className="section reality-gap" aria-labelledby="reality-gap-title">
-          <div className="wrap">
-            <div className="gap-heading"><p className="gap-lead">しかし、</p><h2 id="reality-gap-title">文字だけでは、<br />会社のリアルは伝わりきらない。</h2><p>媒体やHPに並ぶ「風通しのよい職場」「人がいい会社」。<br />その言葉の奥にある、表情や会話、働く空気まで届けたい。</p></div>
-            <div className="reality-comparison" aria-label="言葉による紹介と、密着動画で見えるリアルの比較">
-              <div className="words-panel">
-                <h3>言葉だけでは</h3>
-                <div className="claim-bubbles"><p>風通しのよい職場です</p><p>人がいい会社です</p><p>若手が活躍しています</p></div>
-                <div className="candidate-scene"><img src="/lp-assets/candidate-thinking-v9.webp" alt="会社で働く姿を想像して、考えている求職者のイラスト" loading="lazy" decoding="async" width={1536} height={1024} /><p>でも、<br />実際はどうなんだろう？</p></div>
-              </div>
-              <span className="comparison-arrow" aria-hidden="true">→</span>
-              <div className="real-panel">
-                <h3>密着動画なら</h3>
-                <figure className="team-scene"><img src="/lp-assets/team-conversation-v9.webp" alt="明るい職場で会話するチームのイメージ" loading="lazy" decoding="async" width={1536} height={1024} /><figcaption>イメージ写真</figcaption></figure>
-                <ul className="real-details"><li><strong>何気ない会話から、</strong>人柄が見える。</li><li><strong>社員同士の関わり方から、</strong>社風が伝わる。</li><li><strong>働く一日を通して、</strong>仕事のリアルを知る。</li></ul>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="section craft" id="craft">
-          <div className="wrap">
-            <h2>KYUTEの採用動画が<br />成果につながる理由</h2>
-            <div className="craft-grid">
-              <article><span className="reason-number" aria-hidden="true">01</span><h3>採用のプロがつくる<br />コンテンツ。</h3><p>誰に来てほしいか。その人は、何に惹かれるのか。採用成果から逆算して、人とカルチャーの魅力を届けます。</p><figure className="reason-scene"><img src="/lp-assets/engagement-scene-v10.webp" alt="仕事のやりがいを自分の言葉で語る、本編映像の一場面" loading="lazy" decoding="async" width={1257} height={707} /><figcaption><strong>やりたいことに本気で向き合う姿を伝える。</strong></figcaption></figure><strong className="reason-takeaway"><span aria-hidden="true">✓</span><span>だから、<br />採用成果につながる設計ができる。</span></strong></article>
-              <article><span className="reason-number" aria-hidden="true">02</span><h3>面白くて、<br />見入ってしまう。</h3><p>仕事の挑戦、迷い、変化をひとつの物語に。先が気になる展開で、会社のリアルへ引き込みます。</p><figure className="reason-scene"><img src="/lp-assets/story-turn-scene-v11.webp" alt="周囲の声よりも、どうしてもやりたい仕事を選んだ理由を語る本編映像の一場面" loading="lazy" decoding="async" width={1112} height={626} /><figcaption><strong>「どうしてもやりたい」。選択の瞬間に引き込む。</strong></figcaption></figure><strong className="reason-takeaway"><span aria-hidden="true">✓</span><span>だから、<br />つくって終わらず、見てもらえる。</span></strong></article>
-            </div>
-          </div>
-        </section>
-        <section className="section download-section" id="download">
-          <div className="wrap download-only">
-            <div id="request-material" className="material-request"><MaterialRequestForm /></div>
-          </div>
-        </section>
-      </main>
-<dialog id="film-dialog" aria-labelledby="dialog-title">
-<div className="dialog-head">
-<span id="dialog-title">制作動画</span>
-<div>
-<button type="button" id="fullscreen-video">全画面表示</button>
-<button type="button" id="close-video" aria-label="動画を閉じる">閉じる ✕</button>
-</div>
-</div>
-<div id="video-player">
-</div>
-<p id="playback-note">再生できない場合は <a id="video-external" href="#" target="_blank" rel="noopener">YouTubeで見る ↗</a>
-</p>
-</dialog>
+      <section className="section reality-gap" id="reality" aria-labelledby="reality-title"><div className="wrap"><SectionTag number="03">言葉の、その先へ</SectionTag><div className="gap-heading"><p>しかし、</p><h2 id="reality-title">文字だけでは、<br />空気までは伝わらない。</h2><p>「人がいい」「仕事にこだわる」。<br className="mobile-break" />その言葉を、目に見える事実に。</p></div><div className="reality-comparison"><div className="words-panel"><div className="comparison-label"><span>言葉で、紹介する</span><b>想像する</b></div><div className="job-mock"><div className="mock-toolbar"><span>● ● ●</span><span>採用ページ ／ 表現例</span></div><div className="mock-content"><div className="mock-logo" aria-hidden="true"/><p className="mock-category">私たちと一緒に働きませんか。</p><h3>人がいい会社です。<br />仕事にこだわっています。</h3><div className="mock-rule"/><p>社員一人ひとりの想いを大切にし、<br />よりよい仕事に取り組んでいます。</p><div className="mock-tags"><span>風通しのよい職場</span><span>若手も活躍</span></div><span className="mock-button">募集職種を見る　→</span></div></div><p className="comparison-conclusion">「実際は、どんな人たちなんだろう？」</p></div><div className="reality-divider" aria-hidden="true">→</div><div className="real-panel"><div className="comparison-label"><span>映像で、見せる</span><b>実感する</b></div><Scene name="okada-4" id="QT5ZYECnOUM" start={790} end={824} alt="岡田さんがパソコンを使いオンライン指導へ移る実際の仕事風景" label="仕事への姿勢が、行動に見える。"/><div className="real-foot"><Scene name="cafe-1" id="QzPRS_T-D4Q" start={761} end={792} alt="カフェを始めたときの周囲の反応を取材で聞く場面" label="会話の距離感"/><div><p>表情。会話。<br />働くテンポ。</p><span>本人の言葉と行動から、<br />仕事のリアルが見えてくる。</span></div></div></div></div><p className="gap-takeaway">「どんな会社？」から、<br className="mobile-break" /><strong>「ここで働く自分」へ。</strong></p><p className="source-note">映像は自社運営メディアの制作例。左の採用ページは比較のための架空の表現です。</p></div></section>
 
-      <footer><div className="wrap footer-inner"><div><strong>採用密着動画制作サービス</strong><p>人とカルチャーの魅力を、生々しく伝える。</p></div><a className="company-button" href="https://www.kyute.jp/" target="_blank" rel="noopener">運営会社 <span aria-hidden="true">↗</span></a></div><nav className="wrap footer-nav" aria-label="フッター"><a href="#films">制作動画</a><a href="#craft">こだわり</a><a href="#download">資料を受け取る</a></nav></footer>
-      <div className="mobile-fixed"><a className="cta" href="#request-material" data-download="mobile">資料を受け取る<span aria-hidden="true">→</span></a></div>
-      <LpRuntime />
-    </div>
-  );
+      <section className="craft" id="craft" aria-labelledby="craft-title"><div className="craft-intro wrap"><SectionTag number="04">企画から、採用での活用まで</SectionTag><h2 id="craft-title">KYUTEの密着動画が、<br />成果につながる理由。</h2><p className="craft-equation">採用の設計力<span>×</span><br className="mobile-break" />YouTubeの企画・編集力。</p><div className="process-index" aria-label="一貫した制作プロセス"><a href="#strategy">01 企画</a><span>—</span><a href="#content">02 構成</a><span>—</span><a href="#interview">03 対話</a><span>—</span><a href="#reality-work">04 現場</a><span>—</span><a href="#activation">05 活用</a></div><p className="craft-intro-note">興味を引く。理解を深める。応募の判断材料を届ける。<br />そのために、撮る前から、届ける先まで考える。</p></div>
+        <article className="reason reason-strategy" id="strategy"><div className="wrap reason-split"><div><ReasonTitle n="01" stage="採用設計">採用のプロが、<br />選ばれる理由を<br />設計する。</ReasonTitle><p className="reason-body">求める人物像と企業の魅力を整理し、<br />誰に、何を伝えるべきかを定める。<br />出演者・質問・構成まで、撮影前に設計します。</p><p className="reason-end">候補者が惹かれる理由を、企画の軸に。</p></div><div className="strategy-map"><div><span>求める人物像</span><h4>誰に、<br />来てほしいか。</h4></div><div><span>惹かれる理由</span><h4>その人は、<br />何を大切にするか。</h4></div><div><span>映す場面</span><h4>誰の、<br /><em>どんな一日を撮るか。</em></h4></div><p>出演者　／　質問　／　ストーリー構成</p></div></div></article>
+        <article className="reason reason-content" id="content"><div className="wrap"><div className="reason-top"><ReasonTitle n="02" stage="YouTube企画・編集">YouTubeの実践知で、<br />見たくなる一本をつくる。</ReasonTitle><p className="reason-body">自らメディアを企画・制作・運営する実践知を、<br />タイトル、冒頭、問い、編集へ。<br />人物の選択や転機から、仕事への関心をつなぎます。</p></div><div className="content-cinema"><Scene name="cafe-5" id="QzPRS_T-D4Q" start={761} end={792} alt="周囲の反対があってもカフェをやりたかった想いを語る場面" label="12:41–13:12 ／ この場面を再生"/><div className="content-caption"><span>カフェ回</span><h4>なぜ、<br />その道を<br />選んだのか。</h4><p>経歴を、<br />続きを知りたくなる問いに。</p></div></div><div className="edit-line"><span>選択を問いにする</span><i>→</i><span>葛藤をひもとく</span><i>→</i><strong>本人の想いに触れる</strong></div></div></article>
+        <article className="reason reason-interview" id="interview"><div className="wrap"><div className="reason-top"><ReasonTitle n="03" stage="対話・深掘り">何気ない会話から、<br />その人らしさを引き出す。</ReasonTitle><p className="reason-body">その場の行動を観察し、気になったことを一段深く。<br />用意した質問だけでは出会えない、<br />人柄や価値観を会話の中から届けます。</p></div><div className="interview-sequence"><div><span className="cut-label">観察</span><Scene name="uosaki-1" id="wtRbJX3bq4o" start={399} end={417} alt="魚崎さんが別の席へ移る様子" label="いつも座る席に、気づく。"/></div><div><span className="cut-label">追加の問い</span><Scene name="uosaki-2" id="wtRbJX3bq4o" start={399} end={417} alt="座る席について追加の質問を受ける魚崎さん" label="その席を選ぶ理由を、聞く。"/></div><div><span className="cut-label">本人固有の答え</span><Scene name="seat-1" id="wtRbJX3bq4o" start={399} end={417} alt="いつも座る席について本人の考えを説明する場面" label="会話から、考え方が見える。"/></div></div><div className="scene-footer"><p>何気ない会話から、人柄が伝わる。</p><button type="button" data-video-id="wtRbJX3bq4o" data-start="399" data-end="417">魚崎さん回 06:39–06:57 を見る ↗</button></div></div></article>
+        <article className="reason reason-reality" id="reality-work"><div className="wrap reason-split"><div><ReasonTitle n="04" stage="現場取材">企業の魅力を、<br />現場の事実で伝える。</ReasonTitle><p className="reason-body">「仕事にこだわる」を、言葉だけで終わらせない。<br />準備から実務、その理由まで取材し、<br />企業らしさが現れる行動を映します。</p><p className="reason-end">仕事への姿勢を、実務と説明で見せる。</p><button className="text-link" type="button" data-video-id="QT5ZYECnOUM" data-start="790" data-end="824">岡田さん回 13:10–13:44 を見る ↗</button></div><div className="work-sequence"><div><span>準備・分析</span><Scene name="okada-1" id="QT5ZYECnOUM" start={790} end={824} alt="パソコンの試合映像をもとに分析について説明する場面" label="指導の前に、試合映像を分析。"/></div><div><span>実務</span><Scene name="okada-5" id="QT5ZYECnOUM" start={790} end={824} alt="分析をもとにオンラインで個別指導を行う場面" label="分析を、一人ひとりの指導へ。"/></div></div></div></article>
+        <article className="reason reason-activation" id="activation"><div className="wrap"><div className="reason-top"><ReasonTitle n="05" stage="採用活用設計">採用での活用まで、<br />一本の設計に。</ReasonTitle><p className="reason-body">どこで見て、何を感じ、次にどう動くか。<br />候補者との接点を見据えて、動画の役割を設計。<br />人と仕事への理解を、段階的に深めます。</p></div><ol className="candidate-journey"><li><span className="journey-point"/><span>採用サイト</span><h4>「気になる」</h4><p>会社を知るきっかけに。</p></li><li><span className="journey-point"/><span>説明会・カジュアル面談</span><h4>「もっと知りたい」</h4><p>人と仕事を、具体的に知る。</p></li><li><span className="journey-point"/><span>面接前後</span><h4>「ここで働きたい」</h4><p>気になる場面を、対話の入口に。</p></li></ol><p className="journey-note">候補者の興味・理解・志望度形成を支える設計です。応募数などの成果を保証するものではありません。</p><div className="craft-close"><p>誰に、何を伝えるか。<br />どう撮り、どう届けるか。</p><strong>そのすべてを、<br className="mobile-break" />一本の動画へ。</strong></div><p className="production-note">本ページの映像は、KYUTE運営メディア「運動部のシゴト。」の制作例です。顧客企業への導入事例・採用成果実績ではありません。</p></div></article>
+      </section>
+      <section className="section download-section" id="download"><div className="wrap download-layout"><div className="download-copy"><SectionTag number="05">サービス資料</SectionTag><h2>その会社らしさを、<br /><span className="accent">選ばれる理由に。</span></h2><p>まずは、できることを資料で。<br />制作内容・活用例・料金をまとめてお届けします。</p><ul className="material-contents"><li><span>01</span><div><strong>どんな映像がつくれるか</strong><p>密着動画の制作内容・構成・進め方</p></div></li><li><span>02</span><div><strong>採用で、どう活かせるか</strong><p>採用サイト・説明会・面接での活用</p></div></li><li><span>03</span><div><strong>予算と制作範囲</strong><p>プラン・料金・納品方法の目安</p></div></li></ul><p className="download-fit">人柄や社風の魅力が、候補者へ届いていない。<br />そんな採用課題をお持ちの企業さまへ。</p><a className="text-link" href="#films">制作の雰囲気は、3本の動画で見る ↑</a></div><div id="request-material" className="material-request"><MaterialRequestForm /></div></div></section>
+    </main>
+    <dialog id="film-dialog" aria-labelledby="dialog-title"><div className="dialog-head"><span id="dialog-title">制作動画</span><div><button type="button" id="fullscreen-video">全画面表示</button><button type="button" id="close-video" aria-label="動画を閉じる">閉じる ✕</button></div></div><div id="video-player"/><p id="playback-note">再生できない場合は <a id="video-external" href="#" target="_blank" rel="noopener noreferrer">YouTubeで見る ↗</a></p></dialog>
+    <footer><div className="wrap footer-inner"><div><a href="#top" className="footer-brand">採用密着動画制作サービス<span className="accent">●</span></a><p>人とカルチャーで、選ばれる会社へ。</p></div><a className="company-button" href="https://www.kyute.jp/" target="_blank" rel="noopener noreferrer">運営会社　KYUTE ↗</a></div><div className="wrap footer-bottom"><span>© KYUTE</span><a href="#top">ページの先頭へ ↑</a></div></footer>
+    <div className="mobile-fixed"><Action location="mobile" /></div><LpRuntime />
+  </div>;
 }

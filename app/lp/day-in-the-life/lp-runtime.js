@@ -203,9 +203,12 @@ export function mountLp(root) {
     modalOpen = true;
     pauseHero();
     $("dialog-title").textContent = video.title;
-    $("video-external").href = video.url;
+    const start = Math.max(0, Number(trigger.dataset.start) || 0);
+    const end = Number(trigger.dataset.end) || 0;
+    const excerpt = end > start;
+    $("video-external").href = start ? `${video.url}&t=${start}s` : video.url;
     const frame = document.createElement("iframe");
-    frame.src = `https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}`;
+    frame.src = `https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0&playsinline=1&enablejsapi=1&start=${start}${excerpt ? `&end=${end}` : ""}&origin=${encodeURIComponent(window.location.origin)}`;
     frame.title = video.originalTitle;
     frame.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
     frame.allowFullscreen = true;
@@ -214,7 +217,7 @@ export function mountLp(root) {
     dialog.showModal();
     previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    emit("video_open", { videoId: video.id });
+    emit("video_open", { videoId: video.id, start, ...(excerpt ? { end } : {}) });
     if (window.YT?.Player) {
       let started = false;
       const milestones = new Set();
@@ -225,8 +228,9 @@ export function mountLp(root) {
       } } });
       modalProgress = window.setInterval(() => {
         if (!modalPlayer?.getDuration) return;
-        const duration = modalPlayer.getDuration();
-        const percentage = duration ? modalPlayer.getCurrentTime() / duration * 100 : 0;
+        const duration = excerpt ? end - start : modalPlayer.getDuration();
+        const elapsed = Math.max(0, modalPlayer.getCurrentTime() - start);
+        const percentage = duration ? elapsed / duration * 100 : 0;
         for (const milestone of [25, 50, 75]) {
           if (percentage >= milestone && !milestones.has(milestone)) {
             milestones.add(milestone); emit("video_progress", { videoId: video.id, percent: milestone });

@@ -1,8 +1,8 @@
 // 実在するKYUTE運営メディアの制作映像。顧客の採用成果ではない。
 export const media = {
   heroId: 'QzPRS_T-D4Q',
-  heroStart: 0,
-  heroEnd: 35,
+  heroStart: 145,
+  heroEnd: 165,
   source: 'https://www.kyute.jp/service/media',
   videos: [
     {id:'QzPRS_T-D4Q',title:'外資コンサルから、カフェ開業へ。',originalTitle:'【密着】慶應卒 外資コンサルから脱サラしてカフェ開業した20代女性のリアル1日',duration:'18:40',url:'https://www.youtube.com/watch?v=QzPRS_T-D4Q',poster:'https://i.ytimg.com/vi/QzPRS_T-D4Q/maxresdefault.jpg'},
