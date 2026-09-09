@@ -1,55 +1,61 @@
-/* eslint-disable @next/next/no-img-element -- YouTube poster is used without rehosting. */
 "use client";
 import { useEffect, useRef, useState } from "react";
-
-type Player = { mute(): void; playVideo(): void; pauseVideo(): void; seekTo(time:number,allow:boolean):void; getIframe():HTMLIFrameElement; destroy():void };
-type Youtube = { Player: new (el: HTMLElement, options: Record<string,unknown>) => Player };
-function loadYoutube(): Promise<Youtube> {
-  return new Promise((resolve,reject) => {
-    let count = 0;
-    const check = () => (window as Window & { YT?: Youtube }).YT;
-    if (check()?.Player) { resolve(check()!); return; }
-    if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
-      const script = document.createElement("script"); script.src="https://www.youtube.com/iframe_api"; script.async=true; document.head.appendChild(script);
-    }
-    const timer = window.setInterval(() => { const api=check(); if (api?.Player) {clearInterval(timer);resolve(api);} else if (++count>60) {clearInterval(timer);reject(new Error("Video unavailable"));} },200);
-  });
+import Image from "next/image";
+import { cultureFrames } from "./culture-media";
+type Clip={videoId:string;startSeconds:number;endSeconds:number;poster:string};
+const clips:Clip[]=[
+ {videoId:"QzPRS_T-D4Q",startSeconds:789,endSeconds:797,poster:cultureFrames.smile},
+ {videoId:"QzPRS_T-D4Q",startSeconds:1033,endSeconds:1037,poster:"/culture-assets/kitchen-real-v3.png"},
+ {videoId:"QzPRS_T-D4Q",startSeconds:1043,endSeconds:1046,poster:"/culture-assets/storefront-real-v3.png"},
+ {videoId:"QT5ZYECnOUM",startSeconds:1209,endSeconds:1217,poster:cultureFrames.story},
+];
+type Player={mute():void;playVideo():void;pauseVideo():void;getCurrentTime():number;loadVideoById(clip:Omit<Clip,'poster'>):void;getIframe():HTMLIFrameElement;destroy():void};
+type Youtube={Player:new(el:HTMLElement,options:Record<string,unknown>)=>Player};
+let apiPromise:Promise<Youtube>|null=null;
+function loadYoutube(){
+ if(apiPromise)return apiPromise;
+ apiPromise=new Promise<Youtube>((resolve,reject)=>{
+  const check=()=> (window as Window & {YT?:Youtube}).YT;
+  if(check()?.Player){resolve(check()!);return;}
+  if(!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')){const script=document.createElement('script');script.src='https://www.youtube.com/iframe_api';script.async=true;document.head.appendChild(script);}
+  let tries=0;const timer=setInterval(()=>{const api=check();if(api?.Player){clearInterval(timer);resolve(api);}else if(++tries>75){clearInterval(timer);apiPromise=null;reject(new Error('Video unavailable'));}},200);
+ });return apiPromise;
 }
-export default function HeroVideo({ suspended }: { suspended: boolean }) {
-  const host=useRef<HTMLDivElement>(null);
-  const player=useRef<Player|null>(null);
-  const suspendedRef=useRef(suspended);
-  const paused=useRef(false);
-  const visible=useRef(true);
-  const [status,setStatus]=useState<"loading"|"playing"|"paused"|"blocked"|"error">("loading");
-  const [seen,setSeen]=useState(false);
-  useEffect(()=>{suspendedRef.current=suspended; if(suspended) player.current?.pauseVideo(); else if(!paused.current&&visible.current&&!document.hidden)player.current?.playVideo();},[suspended]);
-  useEffect(()=>{
-    let disposed=false, ready=false;
-    const root=host.current!;
-    const motion=window.matchMedia("(prefers-reduced-motion: reduce)"); paused.current=motion.matches;
-    function play(){if(!disposed&&ready&&!paused.current&&visible.current&&!document.hidden&&!suspendedRef.current){player.current?.mute();player.current?.playVideo();}}
-    function pause(){if(ready)player.current?.pauseVideo();}
-    const observer=new IntersectionObserver(entries=>{visible.current=entries[0].isIntersecting; if(visible.current)play();else pause();},{threshold:.15}); observer.observe(root);
-    const onVisibility=()=>document.hidden?pause():play();
-    const onMotion=()=>{if(motion.matches){paused.current=true;pause();setStatus("paused");}};
-    document.addEventListener("visibilitychange",onVisibility);motion.addEventListener("change",onMotion);
-    loadYoutube().then(api=>{
-      if(disposed)return;
-      const element=document.createElement("div");root.appendChild(element);
-      player.current=new api.Player(element,{videoId:"QzPRS_T-D4Q",host:"https://www.youtube-nocookie.com",playerVars:{autoplay:motion.matches?0:1,mute:1,playsinline:1,controls:0,rel:0,loop:1,playlist:"QzPRS_T-D4Q",start:0,end:35,disablekb:1,origin:location.origin},events:{
-        onReady:()=>{if(disposed)return;ready=true;const frame=player.current!.getIframe();frame.title="KYUTE自社メディアの密着動画・無音再生";frame.tabIndex=-1;frame.setAttribute("aria-hidden","true");frame.setAttribute("allow","autoplay; encrypted-media; picture-in-picture");player.current!.mute();if(paused.current)setStatus("paused");else play();},
-        onStateChange:(event:{data:number})=>{if(disposed)return;if(event.data===1){if(paused.current||!visible.current||document.hidden||suspendedRef.current){pause();return;}setSeen(true);setStatus("playing");}else if(event.data===2)setStatus("paused");else if(event.data===0){player.current?.seekTo(0,true);play();}},
-        onAutoplayBlocked:()=>{if(!disposed){paused.current=true;setStatus("blocked");}},
-        onError:()=>{if(!disposed)setStatus("error");}
-      }});
-    }).catch(()=>{if(!disposed)setStatus("error");});
-    const timeout=window.setTimeout(()=>{if(!disposed)setStatus(current=>current==="loading"?"blocked":current);},14000);
-    return()=>{disposed=true;clearTimeout(timeout);observer.disconnect();document.removeEventListener("visibilitychange",onVisibility);motion.removeEventListener("change",onMotion);player.current?.destroy();player.current=null;};
-  },[]);
-  function toggle(){if(status==="playing"){paused.current=true;player.current?.pauseVideo();setStatus("paused");}else{paused.current=false;player.current?.mute();player.current?.playVideo();}}
-  return <div className="c-hero-video" data-video-state={status}>
-    <div className="c-hero-video-screen"><img src="https://i.ytimg.com/vi/QzPRS_T-D4Q/maxresdefault.jpg" width="1280" height="720" alt="KYUTE自社メディア『運動部のシゴト。』カフェ起業家の一日密着" fetchPriority="high" /><div className={`c-hero-player ${seen?"is-visible":""}`} ref={host}/></div>
-    <div className="c-hero-video-controls"><span>{status==="playing"?"自社メディア映像・無音再生中":status==="paused"?"自社メディア映像・停止中":status==="loading"?"映像を読み込み中":"自社メディアの制作映像"}</span>{status==="error"?<a href="#video-story">制作映像を見る ↗</a>:<button type="button" onClick={toggle} disabled={status==="loading"}>{status==="playing"?"映像を停止":"映像を再生"}</button>}</div>
-  </div>;
+export default function HeroVideo({suspended}:{suspended:boolean}){
+ const host=useRef<HTMLDivElement>(null),player=useRef<Player|null>(null);
+ const paused=useRef(false),visible=useRef(true),ready=useRef(false),suspend=useRef(suspended),clipIndex=useRef(0);
+ const [enabled,setEnabled]=useState(false),[status,setStatus]=useState<'loading'|'playing'|'paused'|'blocked'|'error'>('paused'),[seen,setSeen]=useState(false),[clip,setClip]=useState(0);
+ useEffect(()=>{
+  const media=matchMedia('(prefers-reduced-motion: reduce)');
+  const connection=(navigator as Navigator & {connection?:{saveData?:boolean;effectiveType?:string}}).connection;
+  if(!media.matches&&!connection?.saveData&&!['slow-2g','2g'].includes(connection?.effectiveType||'')){setEnabled(true);setStatus('loading');}
+  else paused.current=true;
+ },[]);
+ useEffect(()=>{suspend.current=suspended;if(!ready.current)return;if(suspended)player.current?.pauseVideo();else if(!paused.current&&visible.current&&!document.hidden)player.current?.playVideo();},[suspended]);
+ useEffect(()=>{
+  if(!enabled)return;
+  let disposed=false,lastTransition=-2000;const root=host.current!;const motion=matchMedia('(prefers-reduced-motion: reduce)');
+  function play(){if(ready.current&&!disposed&&!paused.current&&visible.current&&!document.hidden&&!suspend.current){player.current?.mute();player.current?.playVideo();}}
+  function pause(){if(ready.current)player.current?.pauseVideo();}
+  function next(){if(disposed||paused.current||!visible.current||document.hidden||suspend.current||performance.now()-lastTransition<1500)return;lastTransition=performance.now();clipIndex.current=(clipIndex.current+1)%clips.length;const nextClip=clips[clipIndex.current];setClip(clipIndex.current);setSeen(false);player.current?.loadVideoById({videoId:nextClip.videoId,startSeconds:nextClip.startSeconds,endSeconds:nextClip.endSeconds});}
+  const observer=new IntersectionObserver(entries=>{visible.current=entries[0].isIntersecting;if(visible.current)play();else pause();},{threshold:.1});observer.observe(root);
+  const onVisibility=()=>document.hidden?pause():play();const onMotion=()=>{if(motion.matches){paused.current=true;pause();setStatus('paused');}};
+  document.addEventListener('visibilitychange',onVisibility);motion.addEventListener('change',onMotion);
+  loadYoutube().then(api=>{
+   if(disposed)return;const mount=document.createElement('div');root.appendChild(mount);const first=clips[0];
+   player.current=new api.Player(mount,{videoId:first.videoId,host:'https://www.youtube-nocookie.com',playerVars:{autoplay:1,mute:1,playsinline:1,controls:0,rel:0,start:first.startSeconds,end:first.endSeconds,disablekb:1,cc_load_policy:0,origin:location.origin},events:{
+    onReady:()=>{if(disposed)return;ready.current=true;const frame=player.current!.getIframe();frame.title='KYUTE自社制作映像・無音再生';frame.tabIndex=-1;frame.setAttribute('aria-hidden','true');frame.setAttribute('allow','autoplay; encrypted-media; picture-in-picture');player.current!.mute();play();},
+    onStateChange:(event:{data:number})=>{if(disposed)return;if(event.data===1){if(paused.current||!visible.current||document.hidden||suspend.current){pause();return;}setSeen(true);setStatus('playing');}else if(event.data===2)setStatus('paused');else if(event.data===0)next();},
+    onAutoplayBlocked:()=>{if(!disposed){paused.current=true;setStatus('blocked');}},onError:()=>{if(!disposed)setStatus('error');}
+   }});
+  }).catch(()=>{if(!disposed)setStatus('error');});
+  const loop=setInterval(()=>{if(ready.current&&!paused.current&&visible.current&&!document.hidden&&!suspend.current&&player.current!.getCurrentTime()>=clips[clipIndex.current].endSeconds-.35)next();},350);
+  const fallback=setTimeout(()=>{if(!disposed)setStatus(state=>state==='loading'?'blocked':state);},16000);
+  return()=>{disposed=true;ready.current=false;clearInterval(loop);clearTimeout(fallback);observer.disconnect();document.removeEventListener('visibilitychange',onVisibility);motion.removeEventListener('change',onMotion);player.current?.destroy();player.current=null;};
+ },[enabled]);
+ function toggle(){if(!enabled){paused.current=false;setEnabled(true);setStatus('loading');return;}if(status==='playing'){paused.current=true;player.current?.pauseVideo();setStatus('paused');}else{paused.current=false;player.current?.mute();player.current?.playVideo();}}
+ return <div className="cs-hero-film" data-video-state={status} data-clip={clip}>
+  <div className="cs-hero-screen"><Image src={clips[clip].poster} sizes="100vw" alt="KYUTEが制作した密着映像。働く人の表情と仕事の日常" width="1280" height="720" fetchPriority="high"/><div className={`cs-hero-player ${seen?'is-visible':''}`} ref={host}/></div>
+  <div className="cs-film-controls"><span><i aria-hidden="true"/> 自社メディア制作映像 <b>0{clip+1} / 04</b></span>{status==='error'?<a href="#works">作品を見る ↗</a>:<button type="button" onClick={toggle} disabled={status==='loading'} aria-label={status==='playing'?'背景映像を停止':'背景映像を再生'}>{status==='playing'?<><span aria-hidden="true">Ⅱ</span> 無音再生中</>:status==='loading'?'読み込み中':<><span aria-hidden="true">▶</span> 映像を再生</>}</button>}</div>
+ </div>;
 }

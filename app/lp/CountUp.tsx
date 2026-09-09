@@ -29,7 +29,7 @@ export default function CountUp({ value }: { value: number }) {
     observer.observe(element); reduced.addEventListener("change", onMotion);
     return () => { observer.disconnect(); cancelAnimationFrame(frame); reduced.removeEventListener("change", onMotion); };
   }, [value]);
-  return <div ref={ref} className="c-count" data-counting={running} aria-label={`${value.toFixed(1)}%`}>
+  return <div ref={ref} className="c-count" role="img" data-counting={running} aria-label={`${value.toFixed(1)}%`}>
     <div className="c-big-number" aria-hidden="true">{display.toFixed(1)}<span>%</span></div>
     <svg className="c-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="12" /><circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="12" strokeDasharray={Math.PI*80} strokeDashoffset={Math.PI*80*(1-display/100)} transform="rotate(-90 50 50)" /></svg>
   </div>;

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: { absolute: title }, description,
   robots: { index: true, follow: true },
   alternates: { canonical: "https://kyute.jp/lp" },
-  openGraph: { title, description, type: "website", locale: "ja_JP", siteName: "KYUTE", url: "https://kyute.jp/lp", images: [{ url: "/culture-assets/og.jpg", width: 1200, height: 675, alt: "KYUTE — カルチャー訴求特化の、採用YouTube運用代行" }] },
-  twitter: { card: "summary_large_image", title, description, images: ["/culture-assets/og.jpg"] },
+  openGraph: { title, description, type: "website", locale: "ja_JP", siteName: "KYUTE", url: "https://kyute.jp/lp", images: [{ url: "/lp-assets/story-turn-scene-v11.webp", width: 1200, height: 675, alt: "KYUTE — カルチャー訴求特化の、採用YouTube運用代行" }] },
+  twitter: { card: "summary_large_image", title, description, images: ["/lp-assets/story-turn-scene-v11.webp"] },
 };
 export default function Page() { return <CultureLP />; }

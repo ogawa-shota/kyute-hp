@@ -47,7 +47,7 @@ export default function CultureMaterialForm() {
   }
 
   return <div className="c-form-panel">
-    <h3>サービス資料を、<br />メールでお届けします。</h3>
+    <h3>資料で、もっと詳しく。</h3>
     <p className="c-form-intro">会社名・お名前・メールアドレスをご入力ください。資料を閲覧できるリンクをお送りします。</p>
     {status === "success" ? <div className="c-form-success" role="status" aria-live="polite">
       <p><strong>資料メールの送信を受け付けました。</strong></p>
@@ -59,7 +59,7 @@ export default function CultureMaterialForm() {
       <div className="c-material-honeypot" aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}><label htmlFor="culture-website">ウェブサイト<input id="culture-website" name="website" tabIndex={-1} autoComplete="off" /></label></div>
       <label className="c-material-consent" htmlFor="culture-consent"><input id="culture-consent" name="consent" type="checkbox" required disabled={status === "sending"} /><span>入力情報を資料送付に利用することに同意します。</span></label>
       {error && <p className="c-form-error" role="alert">{error}</p>}
-      <button className="c-button" type="submit" disabled={status === "sending"}>{status === "sending" ? "送信しています…" : "サービス資料をメールで受け取る"}<span aria-hidden="true">→</span></button>
+      <button className="c-button" type="submit" disabled={status === "sending"}>{status === "sending" ? "送信しています…" : "資料をメールで受け取る"}<span aria-hidden="true">→</span></button>
     </form>}
     <a className="c-text-link" href="/contact">導入について相談する <span aria-hidden="true">↗</span></a>
   </div>;
