@@ -40,7 +40,7 @@ export default function RecruitmentDocumentaryPage() {
       <header className="site-header">
         <a className="service-name" href="#top">採用密着動画<span>制作サービス</span></a>
         <nav aria-label="メイン">
-          <a href="#films">制作動画</a><a href="#craft">こだわり</a><a href="#download">資料の内容</a>
+          <a href="#films">制作動画</a><a href="#craft">こだわり</a><a href="#download">資料を受け取る</a>
           <a className="cta" href="#request-material" data-download="header">資料を受け取る<span aria-hidden="true">→</span></a>
         </nav>
       </header>
@@ -68,9 +68,19 @@ export default function RecruitmentDocumentaryPage() {
 </div>
 </section>
 
+        <section className="section approach films" id="approach" aria-labelledby="story-heading">
+          <div id="films">
+            <div className="wrap film-heading" id="first-look">
+              <div><h2 id="story-heading">人のストーリーが、<br />企業の魅力を伝える。</h2><p className="section-intro">実際の制作動画をご紹介します。<br />働く人の選択と想いを、ドキュメンタリーで届けます。</p></div>
+              <div className="rail-controls"><button type="button" data-scroll="-1" aria-label="前の動画">←</button><button type="button" data-scroll="1" aria-label="次の動画">→</button></div>
+            </div>
+            <div className="film-rail" id="film-rail" tabIndex={0} aria-label="制作動画一覧・左右にスクロール">{videos.map((video) => <FilmCard key={video.id} video={video} />)}</div>
+          </div>
+        </section>
+
 <section className="section evidence" id="why">
 <div className="wrap">
-<h2>人とカルチャーで選ぶ。<br />その割合は、前年から上昇。</h2>
+<h2>人とカルチャーで<br />会社を選ぶ人は増えている</h2>
 <p className="evidence-period">入社先を決めた理由｜2024年卒 → 2025年卒</p>
 <div className="charts">
 {[
@@ -117,32 +127,18 @@ export default function RecruitmentDocumentaryPage() {
             </div>
           </div>
         </section>
-        <section className="section approach films" id="approach" aria-labelledby="story-heading">
-          <div id="films">
-            <div className="wrap film-heading" id="first-look">
-              <div><h2 id="story-heading">人のストーリーが、<br />企業の魅力を伝える。</h2><p className="section-intro">実際の制作動画をご紹介します。<br />働く人の選択と想いを、ドキュメンタリーで届けます。</p></div>
-              <div className="rail-controls"><button type="button" data-scroll="-1" aria-label="前の動画">←</button><button type="button" data-scroll="1" aria-label="次の動画">→</button></div>
-            </div>
-            <div className="film-rail" id="film-rail" tabIndex={0} aria-label="制作動画一覧・左右にスクロール">{videos.map((video) => <FilmCard key={video.id} video={video} />)}</div>
-            <p className="wrap film-note">運営会社の自社メディア制作例です。顧客の採用成果を示すものではありません。</p>
-          </div>
-        </section>
         <section className="section craft" id="craft">
           <div className="wrap">
             <h2>KYUTEの採用動画が<br />成果につながる理由</h2>
             <div className="craft-grid">
-              <article><span className="reason-number" aria-hidden="true">01</span><h3>採用のプロがつくる<br />コンテンツ。</h3><p>誰に来てほしいか。その人は、何に惹かれるのか。採用成果から逆算して、人とカルチャーの魅力を届けます。</p><figure className="reason-scene"><img src="/lp-assets/cafe-scene-v9.webp" alt="カフェの厨房で会話を交わす、本編映像の一場面" loading="lazy" decoding="async" width={996} height={560} /><figcaption><strong>厨房の会話に、人柄が表れる。</strong><span>自社メディアの制作映像より</span></figcaption></figure><strong className="reason-takeaway"><span aria-hidden="true">✓</span><span>だから、<br />採用成果につながる設計ができる。</span></strong></article>
-              <article><span className="reason-number" aria-hidden="true">02</span><h3>面白くて、<br />見入ってしまう。</h3><p>仕事の挑戦、迷い、変化をひとつの物語に。先が気になる展開で、会社のリアルへ引き込みます。</p><figure className="reason-scene"><img src="/lp-assets/founder-scene-v9.webp" alt="自身の選択を語る起業家の、本編映像の一場面" loading="lazy" decoding="async" width={996} height={560} /><figcaption><strong>本人の言葉で、選択の背景を伝える。</strong><span>自社メディアの制作映像より</span></figcaption></figure><strong className="reason-takeaway"><span aria-hidden="true">✓</span><span>だから、<br />つくって終わらず、見てもらえる。</span></strong></article>
+              <article><span className="reason-number" aria-hidden="true">01</span><h3>採用のプロがつくる<br />コンテンツ。</h3><p>誰に来てほしいか。その人は、何に惹かれるのか。採用成果から逆算して、人とカルチャーの魅力を届けます。</p><figure className="reason-scene"><img src="/lp-assets/engagement-scene-v10.webp" alt="仕事のやりがいを自分の言葉で語る、本編映像の一場面" loading="lazy" decoding="async" width={1257} height={707} /><figcaption><strong>やりたいことに本気で向き合う姿を伝える。</strong></figcaption></figure><strong className="reason-takeaway"><span aria-hidden="true">✓</span><span>だから、<br />採用成果につながる設計ができる。</span></strong></article>
+              <article><span className="reason-number" aria-hidden="true">02</span><h3>面白くて、<br />見入ってしまう。</h3><p>仕事の挑戦、迷い、変化をひとつの物語に。先が気になる展開で、会社のリアルへ引き込みます。</p><figure className="reason-scene"><img src="/lp-assets/founder-scene-v9.webp" alt="自身の選択を語る起業家の、本編映像の一場面" loading="lazy" decoding="async" width={996} height={560} /><figcaption><strong>本人の言葉で、選択の背景を伝える。</strong></figcaption></figure><strong className="reason-takeaway"><span aria-hidden="true">✓</span><span>だから、<br />つくって終わらず、見てもらえる。</span></strong></article>
             </div>
           </div>
         </section>
         <section className="section download-section" id="download">
-          <div className="wrap">
-            <div className="material-overview"><h2>まずは資料で、<br className="sp-only" />できることを。</h2><p>採用密着動画の活用方法から、制作内容・料金まで。</p><div className="contents-grid"><div><span aria-hidden="true">01</span><h3>活用例</h3><p>採用サイト、説明会、<br />選考中のコミュニケーションに。</p></div><div><span aria-hidden="true">02</span><h3>制作内容</h3><p>密着動画の特長と、<br />採用成果を見据えた企画の考え方。</p></div><div><span aria-hidden="true">03</span><h3>料金・制作範囲</h3><p>プランごとの内容と、<br />対応範囲をご確認いただけます。</p></div></div></div>
-            <div className="download-grid">
-              <div className="download-intro"><h2>人とカルチャーを、<br />次の出会いへ。</h2><p>制作内容・活用例・料金をまとめた資料を、<br />メールでご請求いただけます。</p><a className="guide-cover" href="#request-material" data-download="cover" aria-label="資料請求フォームへ"><span>サービスのご案内</span><strong>採用密着動画<br />制作サービス</strong><p>人とカルチャーの魅力を<br />生々しく伝える。</p><div><span>活用例</span><span>制作内容</span><span>料金・制作範囲</span></div></a><a className="request-jump" href="#request-material" data-download="bottom">資料を受け取る <span aria-hidden="true">→</span></a></div>
-              <div id="request-material" className="material-request"><MaterialRequestForm /></div>
-            </div>
+          <div className="wrap download-only">
+            <div id="request-material" className="material-request"><MaterialRequestForm /></div>
           </div>
         </section>
       </main>
@@ -160,7 +156,7 @@ export default function RecruitmentDocumentaryPage() {
 </p>
 </dialog>
 
-      <footer><div className="wrap footer-inner"><div><strong>採用密着動画制作サービス</strong><p>人とカルチャーの魅力を、生々しく伝える。</p></div><a className="company-button" href="https://www.kyute.jp/" target="_blank" rel="noopener">運営会社 <span aria-hidden="true">↗</span></a></div><nav className="wrap footer-nav" aria-label="フッター"><a href="#films">制作動画</a><a href="#craft">こだわり</a><a href="#download">資料の内容</a></nav></footer>
+      <footer><div className="wrap footer-inner"><div><strong>採用密着動画制作サービス</strong><p>人とカルチャーの魅力を、生々しく伝える。</p></div><a className="company-button" href="https://www.kyute.jp/" target="_blank" rel="noopener">運営会社 <span aria-hidden="true">↗</span></a></div><nav className="wrap footer-nav" aria-label="フッター"><a href="#films">制作動画</a><a href="#craft">こだわり</a><a href="#download">資料を受け取る</a></nav></footer>
       <div className="mobile-fixed"><a className="cta" href="#request-material" data-download="mobile">資料を受け取る<span aria-hidden="true">→</span></a></div>
       <LpRuntime />
     </div>

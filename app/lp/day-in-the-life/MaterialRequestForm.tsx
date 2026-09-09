@@ -1,36 +1,80 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 
 export default function MaterialRequestForm() {
-  const [draftUrl, setDraftUrl] = useState("");
-  const pending = false;
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState("");
+  const [sentTo, setSentTo] = useState("");
+  const locked = useRef(false);
+  const request = useRef<AbortController | null>(null);
+  const requestId = useRef("");
+  const result = useRef<HTMLDivElement>(null);
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  useEffect(() => () => request.current?.abort(), []);
+  useEffect(() => {
+    if (sentTo || error) result.current?.focus();
+  }, [sentTo, error]);
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (locked.current) return;
     const form = event.currentTarget;
     if (!form.reportValidity()) return;
     const values = new FormData(form);
-    if (values.get("website")) return;
-    const body = [
-      "採用密着動画制作サービスの資料を希望します。",
-      "",
-      `会社名：${String(values.get("company") || "").trim()}`,
-      `お名前：${String(values.get("name") || "").trim()}`,
-      `返信先：${String(values.get("email") || "").trim()}`,
-      "",
-      "制作内容・料金の資料をご案内ください。",
-    ].join("\n");
-    const url = `mailto:contact@kyute.jp?subject=${encodeURIComponent("採用密着動画制作サービスの資料請求")}&body=${encodeURIComponent(body)}`;
-    setDraftUrl(url);
-    window.location.href = url;
+    const payload = {
+      company: String(values.get("company") || "").trim(),
+      name: String(values.get("name") || "").trim(),
+      email: String(values.get("email") || "").trim(),
+      consent: values.get("consent") === "on",
+      website: String(values.get("website") || ""),
+      requestId: requestId.current || crypto.randomUUID(),
+    };
+    requestId.current = payload.requestId;
+    locked.current = true;
+    setPending(true);
+    setError("");
+    const controller = new AbortController();
+    request.current = controller;
+    try {
+      const response = await fetch("/api/material-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+      const data: { ok?: boolean; message?: string } = await response.json();
+      if (!response.ok || data.ok !== true) {
+        setError(data.message || "送信できませんでした。時間をおいて再度お試しください。");
+        return;
+      }
+      setSentTo(payload.email);
+      document.dispatchEvent(new CustomEvent("kyute-lp-event", {
+        detail: { name: "material_request_success", variant: "proof" },
+      }));
+    } catch {
+      if (!controller.signal.aborted) setError("通信を確認して、もう一度お試しください。");
+    } finally {
+      locked.current = false;
+      if (!controller.signal.aborted) setPending(false);
+    }
+  }
+
+  if (sentTo) {
+    return (
+      <div className="form-success" role="status" ref={result} tabIndex={-1}>
+        <h3>メールを送信しました。</h3>
+        <p>{sentTo} に、資料PDFをお送りしました。</p>
+        <p className="form-note">届かない場合は迷惑メールフォルダをご確認ください。見当たらない場合は <a href="mailto:contact@kyute.jp">contact@kyute.jp</a> までご連絡ください。</p>
+      </div>
+    );
   }
 
   return (
     <form className="material-form" onSubmit={submit} aria-labelledby="material-form-title" aria-busy={pending}>
       <div>
         <h3 id="material-form-title">資料をメールで受け取る</h3>
-        <p className="form-note">ご入力内容を記載したメールを作成します。送信後、担当者から制作内容・料金の資料をご案内します。</p>
+        <p className="form-note">会社名・お名前・メールアドレスをご入力ください。資料PDFを自動送信します。</p>
       </div>
       <div className="form-grid">
         <div className="form-field">
@@ -54,10 +98,9 @@ export default function MaterialRequestForm() {
         <input type="checkbox" name="consent" required disabled={pending} />
         <span>資料の送付・ご相談対応のための個人情報の利用に同意する</span>
       </label>
-      <p className="form-note">ボタンを押すとメールアプリが開きます。内容をご確認のうえ、送信してください。</p>
-      {draftUrl && <div className="form-note" role="status">まだ資料請求は完了していません。メールアプリから送信してください。開かない場合は <a href={draftUrl}>もう一度メールを開く</a>、または contact@kyute.jp へご連絡ください。</div>}
+      {error && <div className="form-error" role="alert" ref={result} tabIndex={-1}>{error}</div>}
       <button className="cta" type="submit" disabled={pending}>
-        資料請求メールを作成する<span aria-hidden="true">→</span>
+        {pending ? "送信しています…" : "資料をメールで受け取る"}<span aria-hidden="true">→</span>
       </button>
       <noscript><p className="form-note">資料請求にはJavaScriptを有効にするか、<a href="mailto:contact@kyute.jp?subject=%E6%8E%A1%E7%94%A8%E5%AF%86%E7%9D%80%E5%8B%95%E7%94%BB%E3%81%AE%E8%B3%87%E6%96%99%E8%AB%8B%E6%B1%82">メールで会社名・お名前をお知らせください。</a></p></noscript>
     </form>

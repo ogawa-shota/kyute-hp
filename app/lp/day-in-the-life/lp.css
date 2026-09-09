@@ -121,6 +121,7 @@
 #documentary-lp .request-jump { display:inline-flex;align-items:center;gap:25px;font-size:14px;font-weight:700;margin-top:28px }
 #documentary-lp #request-material { scroll-margin-top:110px }
 #documentary-lp .material-request { min-width:0;background:#fff;padding:34px;border:1px solid #cfdcc8;border-radius:12px;box-shadow:0 12px 30px #253d1805 }
+#documentary-lp .download-only { max-width:720px }
 #documentary-lp .material-form { display:flex;flex-direction:column;gap:22px;position:relative }
 #documentary-lp .material-form h3 { font-size:23px;line-height:1.5;margin-bottom:8px }
 #documentary-lp .material-form p { margin:0;font-size:14px;line-height:1.85 }
