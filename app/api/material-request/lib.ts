@@ -19,6 +19,10 @@ export function escapeHtml(value: string) {
   })[character] || character);
 }
 
+function escapeSlack(value: string) {
+  return value.replace(/[&<>]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[character] || character);
+}
+
 function approvalKey() {
   const secret = process.env.MATERIAL_APPROVAL_SECRET || process.env.RESEND_API_KEY;
   if (!secret || secret.length < 32) throw new Error("MATERIAL_APPROVAL_SECRET is not configured");
@@ -72,9 +76,9 @@ export async function sendScheduleEmail(data: ApprovalData) {
     from,
     to: [data.email],
     reply_to: CONTACT_EMAIL,
-    subject: "採用密着動画について、ご相談の日程調整",
-    text: `${data.company}\n${data.name} 様\n\n資料をご覧いただき、ありがとうございます。\n採用密着動画についてご相談をご希望でしたら、以下からご都合のよい日時をお選びください。\n\n${schedule.toString()}\n\nKYUTE合同会社\n${CONTACT_EMAIL}`,
-    html: `<p>${escapeHtml(data.company)}<br>${escapeHtml(data.name)} 様</p><p>資料をご覧いただき、ありがとうございます。</p><p>採用密着動画についてご相談をご希望でしたら、以下からご都合のよい日時をお選びください。</p><p><a href="${escapeHtml(schedule.toString())}">相談日時を選ぶ</a></p><p>KYUTE合同会社<br><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></p>`,
+    subject: "【KYUTE】採用密着動画のご相談｜日程調整のお願い",
+    text: `${data.company}\n${data.name} 様\n\nこのたびは「採用密着動画制作サービス」の資料をご覧いただき、誠にありがとうございます。\n\n貴社の採用課題や、候補者へ伝えたい「人・カルチャー」の魅力について、ぜひ一度お話を伺えればと存じます。\n\nお打ち合わせでは、現在の採用活動や採用したい人物像を伺ったうえで、密着動画の活用方法、制作の進め方、費用の目安を具体的にご案内いたします。まだ実施を決めていない段階でも、どうぞお気軽にご相談ください。\n\n以下のページから、ご都合のよい日時をお選びいただけます。\n${schedule.toString()}\n\nご都合の合う日時がない場合や、ご不明点がございましたら、本メールにそのままご返信ください。\n\nお話しできることを、心より楽しみにしております。\n\nKYUTE合同会社\n採用密着動画制作サービス\n${CONTACT_EMAIL}`,
+    html: `<div style="margin:0 auto;max-width:640px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','Yu Gothic',YuGothic,Arial,sans-serif;color:#17201d;line-height:1.8"><p>${escapeHtml(data.company)}<br>${escapeHtml(data.name)} 様</p><p>このたびは「採用密着動画制作サービス」の資料をご覧いただき、誠にありがとうございます。</p><p>貴社の採用課題や、候補者へ伝えたい<strong>「人・カルチャー」の魅力</strong>について、ぜひ一度お話を伺えればと存じます。</p><p>お打ち合わせでは、現在の採用活動や採用したい人物像を伺ったうえで、密着動画の活用方法、制作の進め方、費用の目安を具体的にご案内いたします。<br>まだ実施を決めていない段階でも、どうぞお気軽にご相談ください。</p><p>以下のボタンから、ご都合のよい日時をお選びいただけます。</p><p style="margin:28px 0"><a href="${escapeHtml(schedule.toString())}" style="display:inline-block;padding:14px 28px;border-radius:8px;background:#0a4a37;color:#ffffff;text-decoration:none;font-weight:700">相談日時を選ぶ</a></p><p>ご都合の合う日時がない場合や、ご不明点がございましたら、本メールにそのままご返信ください。</p><p>お話しできることを、心より楽しみにしております。</p><p style="margin-top:32px">KYUTE合同会社<br>採用密着動画制作サービス<br><a href="mailto:${CONTACT_EMAIL}" style="color:#0a4a37">${CONTACT_EMAIL}</a></p></div>`,
     tags: [{ name: "type", value: "schedule_followup" }],
   }, `schedule-${data.requestId}`);
 }
@@ -88,7 +92,7 @@ export function verifySlackSignature(rawBody: string, timestamp: string, signatu
   return left.length === right.length && timingSafeEqual(left, right);
 }
 
-export async function postSlackApproval(token: string) {
+export async function postSlackApproval(token: string, data: Omit<ApprovalData, "expiresAt">) {
   const botToken = process.env.MATERIAL_SLACK_BOT_TOKEN;
   const channel = process.env.MATERIAL_SLACK_CHANNEL_ID;
   if (!botToken || !channel) throw new Error("Slack configuration is incomplete");
@@ -97,12 +101,18 @@ export async function postSlackApproval(token: string) {
     headers: { Authorization: `Bearer ${botToken}`, "Content-Type": "application/json; charset=utf-8" },
     body: JSON.stringify({
       channel,
-      text: "採用密着動画LPから新しい資料請求がありました。資料PDFは自動送信済みです。",
+      text: `採用密着動画LPから新しい資料請求がありました。${data.company} ${data.name}様（${data.email}）へ資料PDFは自動送信済みです。`,
       blocks: [
         { type: "header", text: { type: "plain_text", text: "採用密着動画LP｜新しい資料請求", emoji: true } },
-        { type: "section", text: { type: "mrkdwn", text: "資料PDFは自動送信済みです。詳細は `contact@kyute.jp` の通知メールをご確認ください。" } },
+        { type: "section", fields: [
+          { type: "mrkdwn", text: `*会社名*\n${escapeSlack(data.company)}` },
+          { type: "mrkdwn", text: `*担当者名*\n${escapeSlack(data.name)}` },
+          { type: "mrkdwn", text: `*メールアドレス*\n${escapeSlack(data.email)}` },
+          { type: "mrkdwn", text: "*資料送付*\n送信済み" },
+        ] },
+        { type: "section", text: { type: "mrkdwn", text: "日程調整メールは未送信です。内容を確認し、送信する場合は下のボタンから承認してください。" } },
         { type: "actions", elements: [
-          { type: "button", action_id: "send_schedule_followup", text: { type: "plain_text", text: "日程調整メールを送る", emoji: true }, style: "primary", value: token, confirm: { title: { type: "plain_text", text: "送信しますか？" }, text: { type: "mrkdwn", text: "この資料請求者へ日程調整メールを送信します。" }, confirm: { type: "plain_text", text: "送信する" }, deny: { type: "plain_text", text: "キャンセル" } } },
+          { type: "button", action_id: "send_schedule_followup", text: { type: "plain_text", text: "日程調整メールを送る", emoji: true }, style: "primary", value: token, confirm: { title: { type: "plain_text", text: "送信しますか？" }, text: { type: "mrkdwn", text: `${escapeSlack(data.company)} ${escapeSlack(data.name)}様へ、日程調整メールを送信します。` }, confirm: { type: "plain_text", text: "送信する" }, deny: { type: "plain_text", text: "キャンセル" } } },
           { type: "button", text: { type: "plain_text", text: "ブラウザで確認", emoji: true }, url: `${SITE_URL}/api/material-request/approve?token=${encodeURIComponent(token)}` },
         ] },
       ],

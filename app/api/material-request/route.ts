@@ -73,7 +73,7 @@ export async function POST(request: Request) {
 
     let slackNotified = false;
     try {
-      slackNotified = await postSlackApproval(token);
+      slackNotified = await postSlackApproval(token, { company, name, email, requestId });
     } catch (error) {
       console.error("material-request Slack notification failed", error instanceof Error ? error.message : "unknown_error");
     }
