@@ -1,0 +1,1396 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="人事が忙しくても、円滑な候補者対応を。採用オペレーションを任せられるPACEのサービス紹介。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://kyute.jp/lp/pace">
+  <title>PACE｜人事が忙しくても、円滑な候補者対応を。</title>
+  <meta property="og:title" content="PACE｜人事が忙しくても、円滑な候補者対応を。">
+  <meta property="og:description" content="採用オペレーションをPACEに。迅速かつ丁寧な候補者対応で、人事が採用のコア業務に集中できる体制をつくります。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kyute.jp/lp/pace">
+  <meta property="og:image" content="https://kyute.jp/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #12241d;
+      --ink-2: #254137;
+      --paper: #f7f5ed;
+      --white: #fffef9;
+      --lime: #d8ff73;
+      --lime-2: #bce852;
+      --coral: #ff6a4c;
+      --coral-dark: #e9573c;
+      --sky: #b9dbff;
+      --amber: #ffd36d;
+      --mint: #b7eed6;
+      --muted: #65776f;
+      --line: rgba(18, 36, 29, .15);
+      --line-dark: rgba(255, 255, 255, .16);
+      --shadow: 0 28px 80px rgba(18, 36, 29, .12);
+      --radius: 28px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; overflow-x: hidden; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Avenir Next", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    button, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    img, svg { display: block; max-width: 100%; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, .serif {
+      font-family: "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      font-weight: 600;
+      letter-spacing: -.035em;
+    }
+    .sp-only { display: none; }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      pointer-events: none;
+      opacity: .045;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    }
+
+    .site-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 max(28px, calc((100vw - var(--max)) / 2));
+      color: #f7fff6;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand-mark {
+      width: 23px;
+      height: 23px;
+      border-radius: 5px 17px 5px 17px;
+      background: var(--lime);
+      transform: rotate(-9deg);
+      box-shadow: 0 0 0 7px rgba(216,255,115,.12);
+    }
+    .brand-name { font-size: 24px; font-weight: 900; letter-spacing: .16em; }
+    .brand-def { color: rgba(255,255,255,.56); font-size: 9px; letter-spacing: .07em; line-height: 1.35; }
+    .header-nav { display: flex; align-items: center; gap: 24px; font-size: 12px; }
+    .header-nav a { text-decoration: none; opacity: .72; }
+    .header-nav a:hover { opacity: 1; }
+    .header-cta { padding: 11px 17px; border-radius: 999px; color: var(--ink) !important; background: var(--lime); opacity: 1 !important; font-weight: 800; }
+
+    .hero {
+      position: relative;
+      min-height: 820px;
+      padding: 190px 28px 86px;
+      display: grid;
+      align-items: center;
+      color: #f9fff8;
+      background:
+        radial-gradient(circle at 77% 29%, rgba(216,255,115,.17), transparent 22%),
+        radial-gradient(circle at 14% 82%, rgba(185,219,255,.10), transparent 28%),
+        linear-gradient(135deg, #10261d 0%, #173b2c 58%, #10271f 100%);
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -18% 38%;
+      height: 430px;
+      border: 1px solid rgba(216,255,115,.18);
+      border-radius: 50%;
+      box-shadow: 0 0 0 60px rgba(216,255,115,.025), 0 0 0 130px rgba(216,255,115,.018);
+      transform: rotate(-8deg);
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; color: var(--lime); font-size: 11px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 38px; height: 1px; background: currentColor; }
+    .hero h1 { max-width: 760px; margin-bottom: 28px; font-size: clamp(42px, 3.7vw, 58px); line-height: 1.3; }
+    .hero-lead { max-width: 670px; margin-bottom: 28px; color: rgba(255,255,255,.76); font-size: clamp(15px, 1.5vw, 18px); line-height: 1.95; }
+    .hero-lead strong { color: #fff; }
+    .price-row { display: flex; align-items: flex-end; gap: 12px; margin: 24px 0 30px; }
+    .price-row small { padding-bottom: 9px; color: rgba(255,255,255,.55); font-size: 11px; }
+    .price-row b { color: var(--lime); font-size: clamp(36px, 4vw, 54px); line-height: 1; letter-spacing: -.04em; }
+    .price-row b span { font-size: .42em; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: -16px 0 28px; }
+    .hero-meta span { padding: 8px 10px; border: 1px solid rgba(255,255,255,.17); border-radius: 999px; color: rgba(255,255,255,.68); background: rgba(255,255,255,.05); font-size: 10px; font-weight: 800; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      min-height: 54px;
+      padding: 15px 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button.hot { color: #fff; background: var(--coral); box-shadow: 0 14px 34px rgba(255,106,76,.24); }
+    .button.hot:hover { background: var(--coral-dark); }
+    .button.ghost { color: #fff; border-color: rgba(255,255,255,.26); background: rgba(255,255,255,.05); }
+    .button.light { color: var(--ink); background: var(--lime); }
+    .button.outline { border-color: var(--line); background: transparent; }
+    .arrow { font-size: 17px; }
+    .responsibility { margin-top: 20px; padding: 11px 13px; display: inline-flex; border-left: 3px solid var(--lime); color: rgba(255,255,255,.78); background: rgba(255,255,255,.06); font-size: 12px; font-weight: 700; }
+
+    .flow-board {
+      position: relative;
+      padding: 26px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 32px;
+      background: rgba(255,255,255,.07);
+      box-shadow: 0 30px 90px rgba(0,0,0,.22);
+      backdrop-filter: blur(12px);
+      transform: rotate(1.2deg);
+    }
+    .flow-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+    .flow-head strong { font-size: 12px; letter-spacing: .08em; }
+    .live { display: inline-flex; align-items: center; gap: 6px; color: var(--lime); font-size: 10px; }
+    .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 5px rgba(216,255,115,.11); }
+    .flow-track { position: relative; display: grid; gap: 13px; }
+    .flow-track::before { content: ""; position: absolute; top: 23px; bottom: 23px; left: 18px; width: 1px; background: rgba(216,255,115,.36); }
+    .flow-item { position: relative; display: grid; grid-template-columns: 37px 1fr; gap: 12px; align-items: center; padding: 13px; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(6,22,16,.52); }
+    .flow-icon { position: relative; z-index: 1; width: 37px; height: 37px; display: grid; place-items: center; border-radius: 12px; color: var(--ink); background: var(--lime); font-size: 14px; font-weight: 900; }
+    .flow-item b { display: block; margin-bottom: 3px; font-size: 12px; }
+    .flow-item span { color: rgba(255,255,255,.52); font-size: 9px; }
+    .flow-item .flow-phase { display: block; color: #637c94; font-size: 10px; font-weight: 800; line-height: 1.35; }
+    .flow-item .flow-benefit { display: block; margin: 5px 0 0; color: #087f9c; font-size: 16px; font-weight: 900; line-height: 1.4; letter-spacing: -.02em; }
+    .flow-status { padding: 6px 8px; border-radius: 999px; color: var(--mint) !important; background: rgba(183,238,214,.12); font-weight: 800; }
+    .scope-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+    .scope-chips span { padding: 7px 9px; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; color: rgba(255,255,255,.58); font-size: 9px; }
+
+    main section { position: relative; }
+    .section { padding: 118px 28px; }
+    .section-inner { width: min(100%, var(--max)); margin: 0 auto; }
+    .section-kicker { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; color: var(--coral); font-size: 10px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+    .section-kicker::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+    .section h2 { max-width: 870px; margin-bottom: 28px; font-size: clamp(36px, 4vw, 58px); line-height: 1.3; }
+    .section-lead { max-width: 760px; margin-bottom: 48px; color: var(--muted); font-size: 16px; line-height: 1.9; }
+    .benefit-grid, .pain-grid, .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .value-card { min-height: 265px; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); transition: transform .25s ease, box-shadow .25s ease; }
+    .value-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .value-card:nth-child(2) { transform: translateY(22px); }
+    .value-card:nth-child(2):hover { transform: translateY(16px); }
+    .value-no { width: 45px; height: 45px; display: grid; place-items: center; margin-bottom: 40px; border-radius: 14px; color: var(--ink); font-size: 12px; font-weight: 900; }
+    .value-card:nth-child(1) .value-no { background: var(--lime); }
+    .value-card:nth-child(2) .value-no { background: var(--amber); }
+    .value-card:nth-child(3) .value-no { background: var(--sky); }
+    .value-card h3 { margin-bottom: 15px; font-size: 22px; }
+    .value-card p { margin-bottom: 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+
+    .dark-section { color: #f8fff8; background: var(--ink); }
+    .dark-section .section-kicker { color: var(--lime); }
+    .dark-section .section-lead { color: rgba(255,255,255,.6); }
+    .pain-card { position: relative; min-height: 390px; padding: 30px; border: 1px solid var(--line-dark); border-radius: var(--radius); background: rgba(255,255,255,.055); overflow: hidden; }
+    .pain-card::after { content: attr(data-word); position: absolute; right: -8px; bottom: -25px; color: rgba(255,255,255,.035); font-size: 96px; font-weight: 900; letter-spacing: -.06em; }
+    .pain-card small { color: var(--lime); font-size: 10px; font-weight: 900; letter-spacing: .12em; }
+    .pain-card h3 { min-height: 74px; margin: 22px 0; font-size: 22px; line-height: 1.55; }
+    .pain-card ul { position: relative; z-index: 1; margin: 0; padding: 0; list-style: none; }
+    .pain-card li { padding: 10px 0 10px 18px; border-top: 1px solid rgba(255,255,255,.09); color: rgba(255,255,255,.62); font-size: 12px; line-height: 1.6; }
+    .pain-card li::before { content: ""; position: absolute; width: 6px; height: 6px; margin: 7px 0 0 -17px; border-radius: 50%; background: var(--coral); }
+
+    .cause { background: #e8f0e9; }
+    .cause-map { display: grid; grid-template-columns: 1fr 110px 1fr; gap: 20px; align-items: center; }
+    .cause-core { padding: 38px; border-radius: var(--radius); color: #fff; background: var(--ink); box-shadow: var(--shadow); }
+    .cause-core small { color: var(--lime); font-weight: 900; letter-spacing: .12em; }
+    .cause-core b { display: block; margin-top: 18px; font-size: 26px; line-height: 1.55; }
+    .cause-arrow { display: grid; place-items: center; color: var(--coral); font-size: 48px; }
+    .cause-results { display: grid; gap: 12px; }
+    .cause-results div { padding: 20px; display: flex; align-items: center; gap: 14px; border: 1px solid var(--line); border-radius: 18px; background: var(--white); font-weight: 800; }
+    .cause-results i { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 9px; background: var(--lime); font-size: 11px; font-style: normal; }
+    .turn-line { margin-top: 42px; padding-top: 34px; border-top: 1px solid var(--line); font-size: clamp(25px, 3vw, 40px); font-weight: 900; line-height: 1.5; }
+    .turn-line span { color: var(--coral); }
+
+    .split-responsibility { display: grid; grid-template-columns: 1fr 92px 1fr; gap: 14px; align-items: stretch; }
+    .role-card { padding: 32px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); }
+    .role-card.pace { color: #fff; background: var(--ink); }
+    .role-card small { color: var(--coral); font-weight: 900; letter-spacing: .12em; }
+    .role-card.pace small { color: var(--lime); }
+    .role-card h3 { margin: 15px 0 22px; font-size: 27px; }
+    .role-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .role-chips span { padding: 9px 11px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 11px; }
+    .pace .role-chips span { color: rgba(255,255,255,.72); border-color: var(--line-dark); }
+    .role-bridge { display: grid; place-items: center; color: var(--coral); font-size: 34px; font-weight: 900; }
+    .resolution-strip { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .resolution-strip div { padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--white); }
+    .resolution-strip b { display: block; margin-bottom: 5px; font-size: 12px; }
+    .resolution-strip span { color: var(--muted); font-size: 10px; line-height: 1.55; }
+
+    .scope { background: #fffdf7; }
+    .scope-flow { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .scope-flow::before { content: ""; position: absolute; top: 37px; left: 9%; right: 9%; height: 2px; background: var(--ink); opacity: .16; }
+    .scope-step { position: relative; z-index: 1; padding: 0 10px 22px; text-align: center; }
+    .scope-dot { width: 74px; height: 74px; display: grid; place-items: center; margin: 0 auto 20px; border: 8px solid #fffdf7; border-radius: 50%; color: var(--ink); background: var(--lime); font-weight: 900; box-shadow: 0 0 0 1px var(--line); }
+    .scope-step:nth-child(3) .scope-dot { background: var(--sky); }
+    .scope-step:nth-child(n+4) .scope-dot { background: var(--sky); }
+    .scope-step h3 { font-size: 17px; }
+    .scope-step p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.75; }
+    .scope-legend { margin-top: 30px; padding: 18px; display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; border-radius: 18px; background: #f1f3eb; font-size: 11px; }
+    .scope-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 7px; border-radius: 3px; background: var(--lime); }
+    .scope-legend span:nth-child(2)::before { background: var(--amber); }
+    .scope-legend span:nth-child(3)::before { background: var(--sky); }
+    .agent-lane { margin-top: 18px; padding: 20px 24px; display: grid; grid-template-columns: 180px 1fr; gap: 22px; align-items: center; border: 1px dashed rgba(18,36,29,.28); border-radius: 18px; background: rgba(255,211,109,.22); }
+    .agent-lane b { font-size: 13px; }
+    .agent-lane span { color: var(--muted); font-size: 11px; line-height: 1.65; }
+    .scroll-hint { display: none; margin: 10px 0 0; color: var(--muted); font-size: 10px; }
+
+    .before-after { display: grid; grid-template-columns: 1fr 90px 1fr; gap: 18px; align-items: center; }
+    .ba-card { min-height: 420px; padding: 32px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); }
+    .ba-card.after { color: #fff; background: var(--ink); }
+    .ba-label { display: inline-flex; padding: 7px 10px; border-radius: 999px; color: var(--muted); background: #eeece3; font-size: 10px; font-weight: 900; letter-spacing: .1em; }
+    .after .ba-label { color: var(--ink); background: var(--lime); }
+    .ba-card h3 { margin: 22px 0; font-size: 24px; }
+    .task-stack { display: grid; gap: 8px; }
+    .task-stack div { padding: 12px 14px; border: 1px solid var(--line); border-radius: 13px; color: var(--muted); font-size: 12px; }
+    .after .task-stack div { color: rgba(255,255,255,.72); border-color: var(--line-dark); }
+    .ba-arrow { display: grid; place-items: center; color: var(--coral); font-size: 44px; }
+
+    .cost-table, .plan-table, .outcome-table { width: 100%; border-collapse: separate; border-spacing: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: var(--white); }
+    .cost-table th, .cost-table td, .plan-table th, .plan-table td, .outcome-table th, .outcome-table td { padding: 17px 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: left; font-size: 12px; line-height: 1.55; }
+    table tr:last-child td { border-bottom: 0; }
+    table th:last-child, table td:last-child { border-right: 0; }
+    table th { background: #eef0e8; font-size: 11px; }
+    .cost-table th:last-child, .cost-table td:last-child { background: rgba(216,255,115,.2); font-weight: 700; }
+
+    .journey-wrap { position: relative; padding: 42px; border-radius: 34px; color: #fff; background: var(--ink); overflow: hidden; }
+    .journey-line { display: grid; grid-template-columns: repeat(8, 1fr); gap: 7px; }
+    .journey-stop { position: relative; text-align: center; }
+    .journey-stop::after { content: ""; position: absolute; top: 22px; left: 58%; width: 91%; height: 1px; background: rgba(216,255,115,.32); }
+    .journey-stop:last-child::after { display: none; }
+    .journey-dot { position: relative; z-index: 2; width: 45px; height: 45px; display: grid; place-items: center; margin: 0 auto 15px; border-radius: 15px; color: var(--ink); background: var(--lime); font-size: 11px; font-weight: 900; }
+    .journey-stop:nth-child(n+6) .journey-dot { background: var(--sky); }
+    .journey-stop b { display: block; margin-bottom: 7px; font-size: 11px; }
+    .journey-stop span { color: rgba(255,255,255,.5); font-size: 9px; line-height: 1.45; }
+    .journey-message { max-width: 690px; margin: 42px auto 0; padding-top: 30px; border-top: 1px solid var(--line-dark); text-align: center; font-size: 20px; line-height: 1.65; }
+    .journey-message strong { color: var(--lime); }
+
+    .feature-card { padding: 29px; border-radius: var(--radius); }
+    .feature-card:nth-child(1) { background: var(--lime); }
+    .feature-card:nth-child(2) { background: var(--amber); }
+    .feature-card:nth-child(3) { background: var(--sky); }
+    .feature-card b { display: block; margin-bottom: 46px; font-size: 10px; letter-spacing: .14em; }
+    .feature-card h3 { font-size: 22px; }
+    .feature-card p { margin-bottom: 0; font-size: 12px; line-height: 1.8; }
+    .brand-equation { margin-top: 24px; padding: 30px; display: flex; align-items: center; justify-content: center; gap: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); }
+    .brand-equation b { font-family: "Avenir Next", sans-serif; font-size: clamp(18px, 2.4vw, 30px); letter-spacing: -.03em; }
+    .brand-equation i { color: var(--coral); font-size: 28px; font-style: normal; }
+
+    .pricing { color: #fff; background: #17372b; }
+    .pricing .section-kicker { color: var(--lime); }
+    .pricing .section-lead { color: rgba(255,255,255,.58); }
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: stretch; }
+    .plan-card { position: relative; padding: 31px; border: 1px solid var(--line-dark); border-radius: var(--radius); background: rgba(255,255,255,.055); }
+    .plan-name { font-size: 11px; font-weight: 900; letter-spacing: .11em; }
+    .plan-scope { margin: 14px 0 18px; font-size: 25px; font-weight: 900; }
+    .plan-price { display: flex; align-items: flex-end; gap: 5px; margin-bottom: 8px; }
+    .plan-price b { font-size: 38px; letter-spacing: -.04em; }
+    .plan-price span { padding-bottom: 8px; font-size: 11px; }
+    .plan-card ul { min-height: 265px; margin: 26px 0; padding: 20px 0 0; border-top: 1px solid var(--line-dark); list-style: none; }
+    .plan-card li { padding: 6px 0 6px 18px; color: rgba(255,255,255,.66); font-size: 11px; line-height: 1.55; }
+    .plan-card li::before { content: "✓"; position: absolute; margin-left: -18px; color: var(--lime); font-weight: 900; }
+    .plan-card .button { width: 100%; }
+
+    .compare-wrap { overflow-x: auto; border-radius: 22px; }
+    .plan-table { min-width: 760px; }
+    .cost-table, .outcome-table { min-width: 760px; }
+    .plan-table th:not(:first-child), .plan-table td:not(:first-child) { text-align: center; }
+    .check { color: #14875e; font-size: 18px; font-weight: 900; }
+    .dash { color: #aeb9b4; }
+
+    .outcome-table td:first-child { width: 16%; font-weight: 900; }
+    .outcome-table td:nth-child(2) { color: var(--muted); }
+    .outcome-table td:nth-child(3) { background: rgba(216,255,115,.18); font-weight: 700; }
+
+    .philosophy { color: #fff; background: var(--ink); overflow: hidden; }
+    .philosophy .section-kicker { color: var(--lime); }
+    .philosophy .section-lead { color: rgba(255,255,255,.58); }
+    .philosophy-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 32px; align-items: center; }
+    .philosophy-block { min-height: 245px; padding: 34px; border: 1px solid var(--line-dark); border-radius: var(--radius); background: rgba(255,255,255,.05); }
+    .philosophy-block small { color: var(--lime); font-weight: 900; letter-spacing: .13em; }
+    .philosophy-block h3 { margin: 18px 0; font-size: 28px; }
+    .philosophy-block p { color: rgba(255,255,255,.56); font-size: 12px; line-height: 1.8; }
+    .times { color: var(--coral); font-size: 48px; }
+
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; counter-reset: step; }
+    .step { min-height: 270px; padding: 26px; border: 1px solid var(--line); border-radius: 22px; background: var(--white); counter-increment: step; }
+    .step::before { content: "0" counter(step); display: block; margin-bottom: 58px; color: var(--coral); font-size: 11px; font-weight: 900; letter-spacing: .12em; }
+    .step h3 { font-size: 20px; }
+    .step p { color: var(--muted); font-size: 11px; line-height: 1.75; }
+
+    .faq-list { max-width: 920px; }
+    .faq-item { border-top: 1px solid var(--line); }
+    .faq-item:last-child { border-bottom: 1px solid var(--line); }
+    .faq-q { width: 100%; padding: 24px 0; display: grid; grid-template-columns: 42px 1fr 28px; gap: 10px; align-items: center; border: 0; color: var(--ink); background: transparent; text-align: left; cursor: pointer; }
+    .faq-q b { color: var(--coral); }
+    .faq-q span { font-weight: 800; line-height: 1.55; }
+    .faq-q i { font-size: 22px; font-style: normal; transition: transform .2s ease; }
+    .faq-a { max-height: 0; padding: 0 70px 0 52px; overflow: hidden; color: var(--muted); font-size: 13px; line-height: 1.85; transition: max-height .3s ease, padding .3s ease; }
+    .faq-item.open .faq-a { max-height: 260px; padding-bottom: 24px; }
+    .faq-item.open .faq-q i { transform: rotate(45deg); }
+    .faq-note { display: block; margin-top: 8px; color: #9a6d18; font-size: 10px; }
+
+    .final-cta { padding: 140px 28px; color: #fff; background: var(--ink); text-align: center; overflow: hidden; }
+    .final-cta::before { content: "PACE"; position: absolute; inset: 18px 0 auto; color: rgba(255,255,255,.025); font-size: min(28vw, 420px); font-weight: 900; letter-spacing: -.08em; line-height: .9; }
+    .final-cta .section-inner { position: relative; z-index: 1; }
+    .final-cta h2 { margin: 0 auto 28px; font-size: clamp(42px, 5vw, 72px); line-height: 1.28; }
+    .final-values { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin: 28px 0 34px; }
+    .final-values span { padding: 9px 13px; border: 1px solid var(--line-dark); border-radius: 999px; color: rgba(255,255,255,.68); font-size: 11px; }
+    .final-cta .cta-row { justify-content: center; }
+
+    footer { padding: 30px 28px 42px; color: rgba(255,255,255,.48); background: var(--ink); border-top: 1px solid var(--line-dark); }
+    .footer-inner { width: min(100%, var(--max)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 10px; }
+    .footer-brand { color: #fff; font-size: 18px; font-weight: 900; letter-spacing: .15em; }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* v2 — Cast Me!の明快さをPACE向けに翻案した、クリーンな業務プロダクト表現 */
+    :root {
+      --ink: #071d3a;
+      --ink-2: #183b63;
+      --paper: #f5f8fb;
+      --white: #ffffff;
+      --lime: #d8ff63;
+      --lime-2: #bfe64c;
+      --coral: #f15382;
+      --coral-dark: #d93f6c;
+      --sky: #b8dcff;
+      --amber: #f6cf48;
+      --mint: #aeeed9;
+      --muted: #5d7085;
+      --line: rgba(7, 29, 58, .14);
+      --line-dark: rgba(255, 255, 255, .18);
+      --shadow: 0 24px 70px rgba(27, 70, 110, .14);
+    }
+
+    body {
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 14% 9%, rgba(184,220,255,.28), transparent 17%),
+        var(--paper);
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+      font-weight: 500;
+    }
+    h1, h2, .serif {
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+      font-weight: 900;
+      letter-spacing: -.045em;
+    }
+    .brand-name, .brand-equation b, .plan-name, .section-kicker, .eyebrow, .value-no, .price-row b, .plan-price b {
+      font-family: "Montserrat", "Noto Sans JP", sans-serif;
+    }
+    .site-header { color: var(--ink); }
+    .brand-mark { background: var(--lime); box-shadow: 0 0 0 7px rgba(216,255,99,.34); }
+    .brand-def { color: rgba(7,29,58,.48); }
+    .header-nav a { font-weight: 700; }
+    .header-cta { color: #fff !important; background: var(--ink); box-shadow: 0 10px 28px rgba(7,29,58,.18); }
+
+    .hero {
+      min-height: 790px;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 76% 29%, rgba(255,255,255,.88), transparent 25%),
+        radial-gradient(circle at 10% 88%, rgba(216,255,99,.52), transparent 18%),
+        linear-gradient(135deg, #eaf5ff 0%, #dceeff 55%, #eef8ff 100%);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 32px;
+      height: 126px;
+      top: 56px;
+      left: 20%;
+      border-radius: 999px;
+      background: var(--amber);
+      transform: rotate(27deg);
+      box-shadow: 980px 430px 0 12px var(--coral), 230px 690px 0 4px #459cd7;
+      opacity: .92;
+    }
+    .hero::after {
+      inset: auto -8% -36% 31%;
+      height: 440px;
+      border-color: rgba(7,29,58,.09);
+      box-shadow: 0 0 0 60px rgba(255,255,255,.12), 0 0 0 130px rgba(7,29,58,.018);
+    }
+    .eyebrow { color: #2385c3; }
+    .hero h1 { font-size: clamp(42px, 3.65vw, 58px); line-height: 1.28; }
+    .hero-value { color: #087f9c; }
+    .hero-lead { color: #4d647d; font-weight: 500; }
+    .hero-lead strong { color: var(--ink); font-weight: 800; }
+    .price-row small { color: #61758a; font-weight: 700; }
+    .price-row b { color: var(--coral); font-family: "Oswald", "Montserrat", sans-serif; font-weight: 600; }
+    .hero-meta span { color: #38536f; border-color: rgba(7,29,58,.13); background: rgba(255,255,255,.56); }
+    .button.hot { color: #fff; background: var(--ink); box-shadow: 0 14px 34px rgba(7,29,58,.22); }
+    .button.hot:hover { background: #14355a; }
+    .button.ghost { color: var(--ink); border-color: rgba(7,29,58,.22); background: rgba(255,255,255,.62); }
+    .responsibility { color: #304a65; border-left-color: var(--coral); background: rgba(255,255,255,.58); }
+
+    .flow-board {
+      border-color: rgba(7,29,58,.10);
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 32px 90px rgba(52,100,143,.18);
+      backdrop-filter: blur(18px);
+    }
+    .flow-head strong { color: var(--ink); }
+    .live { color: #2385c3; }
+    .live::before { background: #2385c3; box-shadow: 0 0 0 5px rgba(35,133,195,.12); }
+    .flow-track::before { background: rgba(7,29,58,.16); }
+    .flow-item { border-color: rgba(7,29,58,.08); background: #f7fbff; box-shadow: 0 5px 18px rgba(42,89,130,.06); }
+    .flow-icon { color: var(--ink); background: var(--lime); }
+    .flow-item b { color: var(--ink); }
+    .flow-item span { color: #718397; }
+    .flow-status { color: #1778ae !important; background: #e1f3ff; }
+    .scope-chips span { color: #526c86; border-color: rgba(7,29,58,.12); background: #fff; }
+
+    .section { padding-top: 104px; padding-bottom: 104px; }
+    .section-kicker { color: #2385c3; }
+    .section h2 { max-width: 920px; font-size: clamp(34px, 3.4vw, 50px); line-height: 1.38; }
+    .section-lead { color: var(--muted); font-size: 15px; }
+    .review-pin { border-color: rgba(7,29,58,.12); background: rgba(255,255,255,.9); box-shadow: 0 5px 18px rgba(7,29,58,.06); }
+
+    .value-card { border-color: rgba(7,29,58,.09); box-shadow: 0 12px 34px rgba(38,82,121,.08); }
+    .value-card h3, .pain-card h3, .feature-card h3, .role-card h3, .step h3 { font-weight: 900; }
+    .value-card p { color: var(--muted); }
+
+    .dark-section { color: var(--ink); background: #eaf4ff; }
+    .dark-section .section-kicker { color: var(--coral); }
+    .dark-section .section-lead { color: var(--muted); }
+    .pain-card { color: var(--ink); border-color: rgba(7,29,58,.08); background: #fff; box-shadow: 0 15px 42px rgba(45,89,128,.09); }
+    .pain-card::after { color: rgba(7,29,58,.035); }
+    .pain-card small { color: var(--coral); }
+    .pain-card li { color: #5b7085; border-top-color: rgba(7,29,58,.08); }
+
+    .cause { background: #fff9e8; }
+    .cause-core, .role-card.pace, .ba-card.after { background: var(--ink); }
+    .cause-results div, .role-card, .resolution-strip div, .ba-card, .cost-table, .plan-table, .outcome-table, .step { border-color: rgba(7,29,58,.09); box-shadow: 0 12px 32px rgba(49,86,119,.07); }
+    .turn-line span { color: var(--coral); }
+
+    .scope { background: #f7fbff; }
+    .scope-dot { border-color: #f7fbff; }
+    .scope-legend { background: #e8f3fc; }
+    .agent-lane { background: #fff7d6; border-color: rgba(7,29,58,.18); }
+
+    .journey-wrap { background: #08213f; box-shadow: 0 24px 70px rgba(7,29,58,.18); }
+    .journey-stop span { color: rgba(255,255,255,.62); }
+
+    .feature-card:nth-child(1) { background: var(--lime); }
+    .feature-card:nth-child(2) { background: #ffe278; }
+    .feature-card:nth-child(3) { background: #b8dcff; }
+    .brand-equation { box-shadow: 0 14px 36px rgba(46,87,123,.07); }
+
+    .pricing { background: #071d3a; }
+    .pricing .section-kicker { color: var(--lime); }
+    .plan-card { background: rgba(255,255,255,.075); }
+
+    .philosophy { background: #071d3a; }
+    .philosophy-block { background: rgba(255,255,255,.07); }
+    .final-cta { background: #071d3a; }
+    footer { background: #071d3a; }
+
+    .faq-q span { font-weight: 800; }
+    .faq-q b { color: var(--coral); font-family: "Montserrat", sans-serif; }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 30px; line-height: 1.45; }
+      .hero::before { left: 68%; top: 110px; width: 18px; height: 70px; opacity: .55; }
+      .section h2 { font-size: 32px; line-height: 1.45; }
+      .section { padding-top: 78px; padding-bottom: 78px; }
+    }
+
+    @media (max-width: 980px) {
+      .header-nav a:not(.header-cta) { display: none; }
+      .hero { min-height: auto; padding-top: 170px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .flow-board { max-width: 620px; transform: none; }
+      .benefit-grid, .pain-grid, .feature-grid, .plan-grid { grid-template-columns: 1fr; }
+      .value-card:nth-child(2), .value-card:nth-child(2):hover { transform: none; }
+      .pain-card { min-height: auto; }
+      .cause-map { grid-template-columns: 1fr; }
+      .cause-arrow { transform: rotate(90deg); }
+      .scope-flow { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
+      .scope-flow::before { display: none; }
+      .before-after, .split-responsibility { grid-template-columns: 1fr; }
+      .resolution-strip { grid-template-columns: 1fr; }
+      .ba-arrow, .role-bridge { transform: rotate(90deg); }
+      .journey-line { grid-template-columns: repeat(4, 1fr); row-gap: 26px; }
+      .journey-stop:nth-child(4)::after { display: none; }
+      .philosophy-grid { grid-template-columns: 1fr; }
+      .times { text-align: center; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      html { scroll-padding-top: 62px; }
+      .site-header { top: 0; height: 66px; padding: 0 18px; }
+      .brand-def { display: none; }
+      .brand-name { font-size: 20px; }
+      .header-cta { padding: 9px 12px; font-size: 10px; }
+      .hero { padding: 145px 18px 72px; }
+      .hero h1 { font-size: 30px; line-height: 1.45; }
+      .sp-only { display: initial; }
+      .hero-lead { font-size: 14px; }
+      .button { width: 100%; }
+      .flow-board { padding: 18px; border-radius: 24px; }
+      .flow-item { grid-template-columns: 34px 1fr; }
+      .flow-status { display: none; }
+      .section { padding: 82px 18px; }
+      .section h2 { font-size: 32px; }
+      .section-lead { font-size: 14px; }
+      .value-card { min-height: auto; }
+      .scope-flow { grid-template-columns: 1fr 1fr; }
+      .agent-lane { grid-template-columns: 1fr; gap: 7px; }
+      .scroll-hint { display: block; }
+      .journey-wrap { padding: 26px 18px; }
+      .journey-line { grid-template-columns: repeat(2, 1fr); }
+      .journey-stop:nth-child(even)::after { display: none; }
+      .journey-message { font-size: 16px; }
+      .brand-equation { flex-direction: column; }
+      .plan-card { padding: 25px; }
+      .steps { grid-template-columns: 1fr; }
+      .step { min-height: auto; }
+      .step::before { margin-bottom: 30px; }
+      .faq-q { grid-template-columns: 34px 1fr 20px; }
+      .faq-a { padding-left: 44px; padding-right: 10px; }
+      .final-cta { padding: 105px 18px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+    /* Final visual refinement. */
+    .is-cut { display: none !important; }
+    .task-storm { position: relative; min-height: 620px; border: 1px solid rgba(16,61,106,.12); border-radius: 34px; background: linear-gradient(145deg,#fff 0%,#e9f6ff 100%); box-shadow: 0 28px 70px rgba(17,63,103,.16); overflow: hidden; }
+    .task-storm::before { content:"TASKS / TASKS / TASKS"; position:absolute; inset:24px auto auto 24px; color:#b9dbef; font:700 11px/1 "Montserrat",sans-serif; letter-spacing:.18em; }
+    .storm-person { position:absolute; z-index:2; left:50%; top:50%; width:220px; aspect-ratio:1; transform:translate(-50%,-50%); display:grid; place-content:center; border-radius:50%; color:#fff; text-align:center; background:linear-gradient(145deg,#173f69,#082744); box-shadow:0 18px 48px rgba(8,39,68,.28),0 0 0 18px rgba(111,210,239,.16); }
+    .storm-person::before { content:""; width:58px; height:58px; margin:0 auto 10px; border-radius:50% 50% 44% 44%; background:linear-gradient(#ffd9c7 0 56%,#173f69 57%); }
+    .storm-person span { color:var(--lime); font:700 10px/1 "Montserrat",sans-serif; letter-spacing:.16em; }
+    .storm-person b { margin-top:8px; font-size:17px; line-height:1.55; }
+    .storm-card { position:absolute; z-index:3; width:188px; padding:15px 16px; border:1px solid #d5e8f5; border-radius:16px; color:#173b5f; background:rgba(255,255,255,.94); box-shadow:0 10px 28px rgba(26,75,113,.12); font-size:12px; font-weight:800; line-height:1.55; }
+    .storm-card i { display:inline-grid; place-content:center; width:24px; height:24px; margin-right:7px; border-radius:50%; color:#fff; background:#18b2cd; font:700 9px/1 "Montserrat",sans-serif; }
+    .storm-card.c1{left:4%;top:12%;transform:rotate(-3deg)} .storm-card.c2{right:3%;top:9%;transform:rotate(3deg)} .storm-card.c3{left:1%;top:35%;transform:rotate(2deg)} .storm-card.c4{right:1%;top:32%;transform:rotate(-2deg)} .storm-card.c5{left:5%;bottom:21%;transform:rotate(-2deg)} .storm-card.c6{right:4%;bottom:22%;transform:rotate(3deg)} .storm-card.c7{left:13%;bottom:4%;transform:rotate(2deg)} .storm-card.c8{right:12%;bottom:3%;transform:rotate(-3deg)} .storm-card.c9{left:50%;top:3%;transform:translateX(-50%)}
+    .benefits-focus { text-align:center; background:#f4faff; }
+    .benefits-focus .section-kicker { justify-content:center; }
+    .benefits-focus .value-card { padding:34px 28px; text-align:left; border:1px solid #dcecf6; box-shadow:0 18px 46px rgba(23,65,103,.08); }
+    .benefits-focus .value-card a { display:inline-block; margin-top:18px; color:#087f9c; font-size:12px; font-weight:900; text-decoration:none; }
+    .problem-scenes { display:grid; gap:18px; margin-top:54px; }
+    .problem-scene { display:grid; grid-template-columns:145px 1fr; align-items:center; gap:22px; max-width:920px; margin:0 auto; }
+    .problem-scene:nth-child(even) { transform:translateX(60px); }
+    .person-illust { display:grid; place-content:center; width:134px; height:134px; border-radius:50%; text-align:center; color:#193b60; background:linear-gradient(145deg,#d9f5ff,#fff); box-shadow:0 0 0 10px rgba(158,232,244,.08); }
+    .person-illust span { font-size:42px; } .person-illust i{font-size:11px;font-weight:900;font-style:normal;letter-spacing:.12em}
+    .speech-bubble { position:relative; padding:26px 30px; border:1px solid rgba(255,255,255,.12); border-radius:24px; background:rgba(255,255,255,.08); }
+    .speech-bubble::before { content:""; position:absolute; left:-13px; top:44px; width:24px; height:24px; transform:rotate(45deg); border-left:1px solid rgba(255,255,255,.12); border-bottom:1px solid rgba(255,255,255,.12); background:#12385e; }
+    .speech-bubble small { color:var(--lime); font-weight:900; } .speech-bubble h3{margin:8px 0;font-size:24px;line-height:1.45}.speech-bubble p{margin:0;color:#bdd0df;line-height:1.8}
+    .impact-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:32px; }
+    .impact-grid article { position:relative; padding:34px 28px; border:1px solid #d9e9f3; border-radius:24px; background:#fff; box-shadow:0 18px 50px rgba(22,67,104,.08); overflow:hidden; }
+    .impact-grid article::after { content:""; position:absolute; inset:0 0 auto; height:5px; background:linear-gradient(90deg,#1fc5d9,var(--lime)); }
+    .impact-grid i { color:#0991aa; font:700 11px/1 "Montserrat",sans-serif; letter-spacing:.12em; }
+    .impact-grid h3 { margin:12px 0 20px; font-size:26px; line-height:1.35; }
+    .impact-grid p { margin:20px 0 0; color:#5c7184; font-size:13px; line-height:1.7; }
+    .mini-bars { display:grid; gap:8px; } .mini-bars span { padding:8px 12px; border-radius:8px; color:#fff; background:#8ca0b2; font-size:10px;font-weight:900}.mini-bars .pace-bar{background:#18b7cc}
+    .cost-pulse,.message-pill{min-height:56px;display:flex;align-items:center;justify-content:center;gap:12px;padding:12px;border-radius:12px;background:#eafbff;color:#17446d;font-size:11px;font-weight:900}.cost-pulse b{color:#08a3bf;font-size:24px}
+    .cost-model,.ops-compare { display:grid; grid-template-columns:1fr 70px 1fr; gap:20px; align-items:center; margin-top:48px; }
+    .cost-model article,.ops-compare article { padding:36px; border:1px solid #dbe9f2; border-radius:26px; background:#fff; box-shadow:0 16px 45px rgba(21,63,100,.07); }
+    .cost-model article.pace,.ops-compare article.pace { border-color:#9ee9f1; background:linear-gradient(145deg,#fff,#eefdff); }
+    .cost-model small,.ops-compare small { color:#0b9bb3;font-weight:900;letter-spacing:.1em}.cost-model h3,.ops-compare h3{margin:8px 0 24px;font-size:25px}.cost-model p{color:#5c7184;line-height:1.8}.cost-model-arrow,.ops-vs{text-align:center;color:#13a8bf;font:900 20px/1 "Montserrat",sans-serif}
+    .cost-block{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:10px;font-size:11px;font-weight:800}.cost-block b{display:block;height:18px;border-radius:20px;background:#8fa3b5}.cost-block.fixed b{width:95%}.cost-block.variable b:first-of-type{width:78%;background:#17b8cc}.cost-block.variable b:last-of-type{width:48%;background:#77d9e5}
+    .ops-compare ul{display:grid;gap:0;margin:0;padding:0;list-style:none}.ops-compare li{padding:12px 0;border-bottom:1px solid #e5eef4;color:#435e76;font-weight:700}.ops-compare li::before{content:"✓";margin-right:10px;color:#0faabd}.workload-transfer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;padding:12px 14px;border-radius:12px;color:#fff;background:#8da0b2;font-size:10px;font-weight:900}.ops-compare .pace .workload-transfer{background:#12b5ca}.workload-transfer b{font-size:11px}
+    .cx-stage { display:grid; grid-template-columns:.8fr 1.4fr .8fr; gap:18px; align-items:center; padding:34px; border:1px solid rgba(255,255,255,.12); border-radius:32px; background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.04)); }
+    .candidate-card,.company-impression { padding:28px 22px; border-radius:22px; color:#153c63; background:#f1fbff; }
+    .candidate-avatar { display:grid;place-content:center;width:54px;height:54px;margin-bottom:14px;border-radius:50%;color:#fff;background:#1f5c88;font-weight:900}.candidate-card small,.company-impression small{color:#1599af;font:800 9px/1 "Montserrat",sans-serif;letter-spacing:.12em}.candidate-card h3{font-size:18px;line-height:1.6}.candidate-status{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:20px}.candidate-status span{padding:7px 2px;border-radius:8px;background:#d5f4f8;text-align:center;font-size:9px;font-weight:900}.message-thread{display:grid;gap:12px}.msg{display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:start;padding:16px;border-radius:16px;color:#244661;background:#fff;box-shadow:0 8px 30px rgba(0,0,0,.12)}.msg i{display:grid;place-content:center;width:34px;height:34px;border-radius:50%;color:#fff;background:#11a9c0;font-size:11px;font-weight:900;font-style:normal}.msg p{margin:0;font-size:12px;line-height:1.6}.candidate-msg{margin-left:36px;background:#eaf7fb}.candidate-msg i{background:#557895}.cx-tags{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}.cx-tags span{padding:7px 10px;border:1px solid rgba(173,245,87,.35);border-radius:20px;color:#e7ffc8;font-size:9px;font-weight:900}.company-impression{text-align:center}.company-impression b{display:block;margin:14px 0;font-size:17px;line-height:1.6}.company-impression div{font-size:54px;color:#12aac1}
+    .price-simulator { display:grid; grid-template-columns:1.25fr .75fr; gap:18px; margin:48px 0 70px; padding:18px; border:1px solid #d1e9f5; border-radius:32px; background:#fff; box-shadow:0 24px 70px rgba(18,65,104,.12); }
+    .sim-controls { padding:22px; }.sim-step>span,.sim-field>span{color:#0894ad;font:800 10px/1 "Montserrat",sans-serif;letter-spacing:.12em}.sim-step h3{margin:8px 0 16px;font-size:18px}.sim-options{display:grid;gap:9px}.sim-option{display:grid;grid-template-columns:34px 1fr;column-gap:10px;padding:14px;border:1px solid #dce9f1;border-radius:14px;cursor:pointer;transition:.2s}.sim-option:hover,.sim-option.active{border-color:#18b8cd;background:#edfcff;box-shadow:0 8px 22px rgba(21,174,198,.1)}.sim-option input{position:absolute;opacity:0}.sim-option i{grid-row:1/3;display:grid;place-content:center;width:32px;height:32px;border-radius:50%;color:#fff;background:#9aabb8;font:800 9px/1 "Montserrat",sans-serif}.sim-option.active i{background:#11adc4}.sim-option b{font-size:13px}.sim-option small{margin-top:3px;color:#6a7d8c;font-size:10px}.sim-bottom{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.sim-field{display:grid;gap:9px}.sim-field select,.currency-input{height:50px;border:1px solid #d8e5ed;border-radius:12px;background:#fff}.sim-field select{width:100%;padding:0 14px;color:#173e61;font:800 13px/1 inherit}.currency-input{display:flex;align-items:center;padding:0 14px}.currency-input input{min-width:0;flex:1;border:0;outline:0;color:#173e61;font:800 15px/1 inherit;background:transparent}.currency-input i{font-size:11px;font-style:normal}.sim-field>small{color:#7b8d9a;font-size:9px;line-height:1.5}.sim-result{display:flex;flex-direction:column;justify-content:center;padding:32px;border-radius:24px;color:#fff;background:linear-gradient(145deg,#0d365d,#061f3c)}.sim-result>small{color:#b9d2e2;font-weight:800}.sim-price{display:flex;align-items:end;gap:8px;margin:10px 0}.sim-price b{color:var(--lime);font:600 clamp(42px,4.5vw,66px)/1 "Oswald",sans-serif}.sim-price span{padding-bottom:7px;font-size:11px;font-weight:800}.sim-result>p{margin:0 0 20px;color:#d6e6ef;font-size:12px}.sim-caution{font-size:9px!important;line-height:1.55}.cost-bars{display:grid;gap:11px;margin:4px 0 18px}.bar-row{display:grid;grid-template-columns:76px 1fr 78px;gap:8px;align-items:center;font-size:9px;font-weight:800}.bar-row>div{height:11px;border-radius:10px;background:rgba(255,255,255,.12);overflow:hidden}.bar-row i{display:block;width:0;height:100%;border-radius:10px;background:#9db0bf;transition:.3s}.bar-row.pace i{background:var(--lime)}.bar-row b{text-align:right}.saving-note{padding:8px 10px;border-radius:10px;color:#102c49;background:var(--lime);font-size:10px;font-weight:900;text-align:center}.plan-heading{margin:0 0 22px;font-size:24px;text-align:center}
+    /* Cost comparison simulator */
+    .price-simulator { grid-template-columns:.78fr 1.22fr; padding:16px; background:linear-gradient(145deg,#fff,#f2f9fd); }
+    .sim-controls { align-self:stretch; padding:26px; border-radius:24px; background:#fff; }
+    .sim-step h3 { color:#173e61; }
+    .sim-option b { color:#173e61; }
+    .sim-bottom { grid-template-columns:1fr; }
+    .sim-summary { display:grid; gap:6px; padding:15px 16px; border:1px solid #d8e8f1; border-radius:14px; background:#f7fbfd; }
+    .sim-summary span { color:#0894ad; font:800 9px/1 "Montserrat",sans-serif; letter-spacing:.1em; }
+    .sim-summary b { color:#173e61; font-size:13px; }
+    .sim-summary small { color:#728797; font-size:10px; }
+    .assumption-details { margin-top:16px; border-top:1px solid #e0ebf1; color:#536b7f; font-size:10px; line-height:1.7; }
+    .assumption-details summary { padding:15px 0 0; color:#157c95; font-weight:900; cursor:pointer; }
+    .assumption-details p { margin:10px 0; }
+    .assumption-details ul { margin:8px 0; padding-left:18px; }
+    .assumption-source { color:#7f919e; font-size:9px; }
+    .cost-comparison { position:relative; padding:24px 24px 22px; border-radius:24px; color:#123655; background:#f5faef; overflow:hidden; }
+    .cost-comparison::after { content:"PACE COST LAB"; position:absolute; right:-6px; bottom:72px; color:rgba(17,88,55,.045); font:900 52px/1 "Montserrat",sans-serif; letter-spacing:-.06em; }
+    .comparison-titles { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:38px; margin-bottom:18px; }
+    .comparison-titles b { padding:13px 12px; border-radius:999px; color:#36414b; background:#dfe4e2; font-size:14px; text-align:center; }
+    .comparison-titles b:last-child { color:#103655; background:var(--lime); }
+    .cost-chart { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:82px; align-items:end; min-height:390px; padding:0 18px; border-bottom:2px solid rgba(18,54,85,.18); }
+    .cost-chart::before { content:""; position:absolute; z-index:-1; inset:86px 14% 0; background:rgba(111,198,74,.11); clip-path:polygon(0 0,100% 62%,100% 100%,0 100%); }
+    .cost-column { display:flex; flex-direction:column; align-items:stretch; justify-content:flex-end; min-width:0; }
+    .column-total { display:flex; align-items:baseline; justify-content:center; gap:6px; margin-bottom:10px; white-space:nowrap; }
+    .column-total b { font:600 clamp(30px,3vw,46px)/1 "Oswald",sans-serif; letter-spacing:-.03em; }
+    .column-total span { font-size:10px; font-weight:900; }
+    .stack-bar { display:flex; flex-direction:column-reverse; justify-content:stretch; width:100%; transition:height .45s cubic-bezier(.2,.8,.2,1); box-shadow:0 18px 30px rgba(24,60,82,.08); }
+    .internal-stack { height:calc(270px * var(--internal-ratio,1)); }
+    .pace-stack { height:calc(270px * var(--pace-ratio,.438)); }
+    .stack-segment { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:42px; padding:8px; border-top:1px solid rgba(255,255,255,.45); color:#213d52; background:#c8d0d2; text-align:center; transition:flex-grow .45s ease,opacity .25s ease; overflow:hidden; }
+    .stack-segment[hidden] { display:none; }
+    .stack-segment span { font-size:9px; font-weight:900; line-height:1.4; }
+    .stack-segment b { margin-top:3px; font-size:9px; }
+    .stack-segment.candidate { background:#b8c3c7; }
+    .stack-segment.admin { background:#d5dcdd; }
+    .stack-segment.scout { background:#aab9bd; }
+    .stack-segment.agent { background:#96a9ae; }
+    .stack-segment.pace-fee { flex:1; color:#123655; background:linear-gradient(145deg,#d9ff76,var(--lime)); }
+    .stack-segment.pace-fee span { font-size:12px; }
+    .stack-segment.pace-fee b { font-size:10px; }
+    .saving-bubble { position:absolute; z-index:4; left:50%; top:92px; display:grid; place-content:center; width:154px; height:154px; transform:translateX(-50%); border:4px solid #1e8966; border-radius:50%; color:#176e53; background:#fff; text-align:center; box-shadow:0 14px 36px rgba(18,80,59,.12); }
+    .saving-bubble::after { content:""; position:absolute; left:50%; bottom:-14px; width:22px; height:22px; transform:translateX(-50%) rotate(45deg); border-right:4px solid #1e8966; border-bottom:4px solid #1e8966; background:#fff; }
+    .saving-bubble small { font-size:10px; font-weight:900; }
+    .saving-bubble b { font:600 36px/1.05 "Oswald",sans-serif; letter-spacing:-.03em; }
+    .saving-bubble span { font-size:11px; font-weight:900; }
+    .saving-bubble i { margin-top:5px; color:#0a6049; font:900 9px/1 "Montserrat",sans-serif; font-style:normal; }
+    .saving-bubble.is-negative { border-color:#c86b40; color:#9d4528; }
+    .saving-bubble.is-negative::after { border-color:#c86b40; }
+    .saving-bubble.is-negative i { color:#863a24; }
+    .cost-comparison>p { position:relative; z-index:2; margin:14px 0 0; color:#547063; font-size:10px; text-align:center; }
+    .cost-comparison .sim-caution { margin:7px auto 16px; max-width:580px; color:#73877d; }
+    .cost-comparison .button { position:relative; z-index:2; width:100%; }
+    .cost-comparison.is-over .cost-column { opacity:.08; }
+    .cost-comparison.is-over .cost-chart::before { opacity:.12; }
+    .cost-comparison.is-over .saving-bubble { border-style:dashed; }
+    .cost-comparison.is-over .saving-bubble b { font-size:20px; }
+    .cost-comparison.is-over .saving-bubble::after { display:none; }
+    @media (max-width: 980px) { .task-storm{min-height:560px}.storm-card{width:165px;font-size:10px}.impact-grid,.cx-stage{grid-template-columns:1fr}.price-simulator{grid-template-columns:1fr}.problem-scene:nth-child(even){transform:none}.cx-stage{max-width:680px;margin:auto}.company-impression{text-align:left}.cost-model,.ops-compare{grid-template-columns:1fr}.cost-model-arrow,.ops-vs{transform:rotate(90deg)} }
+    @media (max-width: 640px) { .task-storm{min-height:700px;margin-top:20px}.storm-person{width:170px;top:49%}.storm-card{width:145px;padding:11px;font-size:9px}.storm-card i{width:19px;height:19px}.storm-card.c1{left:2%;top:9%}.storm-card.c2{right:1%;top:8%}.storm-card.c9{top:22%;width:160px}.storm-card.c3{left:1%;top:34%}.storm-card.c4{right:1%;top:33%}.storm-card.c5{left:1%;bottom:26%}.storm-card.c6{right:1%;bottom:25%}.storm-card.c7{left:3%;bottom:6%}.storm-card.c8{right:2%;bottom:5%}.problem-scene{grid-template-columns:72px 1fr;gap:12px}.person-illust{width:70px;height:70px}.person-illust span{font-size:24px}.person-illust i{font-size:8px}.speech-bubble{padding:20px}.speech-bubble::before{left:-9px;top:30px;width:16px;height:16px}.speech-bubble h3{font-size:17px}.speech-bubble p{font-size:11px}.impact-grid{grid-template-columns:1fr}.cost-model article,.ops-compare article{padding:25px}.cx-stage{padding:18px}.sim-controls,.sim-result{padding:20px}.sim-bottom{grid-template-columns:1fr}.price-simulator{padding:10px;margin-top:34px}.bar-row{grid-template-columns:64px 1fr 70px}.header-nav>a:not(.header-cta){display:none} }
+    @media (max-width: 640px) { .price-simulator{padding:8px}.cost-comparison{padding:18px 10px 16px}.comparison-titles{gap:12px}.comparison-titles b{padding:10px 5px;font-size:11px}.cost-chart{gap:42px;min-height:330px;padding:0 4px}.cost-chart::before{inset:80px 11% 0}.internal-stack{height:calc(220px * var(--internal-ratio,1))}.pace-stack{height:calc(220px * var(--pace-ratio,.438))}.column-total{gap:3px}.column-total b{font-size:25px}.column-total span{font-size:8px}.saving-bubble{left:43%;top:88px;width:108px;height:108px;border-width:3px}.saving-bubble::after{bottom:-10px;width:15px;height:15px;border-width:3px}.saving-bubble b{font-size:24px}.saving-bubble span{font-size:8px}.saving-bubble i{font-size:8px}.stack-segment{min-height:34px;padding:5px 2px}.stack-segment span,.stack-segment b{font-size:7px}.stack-segment.pace-fee span{font-size:9px} }
+
+    /* v4 · hierarchy and contrast refinement */
+    .flow-item { padding: 10px 12px; }
+    .flow-copy { display: grid; grid-template-columns: minmax(105px,.9fr) 18px minmax(150px,1.35fr); gap: 7px; align-items: center; }
+    .flow-copy small { display: block; margin-bottom: 4px; color: #7a8fa2; font: 900 7px/1 "Montserrat",sans-serif; letter-spacing: .11em; }
+    .flow-item .flow-phase { color: #294d6d; font-size: 11px; line-height: 1.45; }
+    .flow-item .flow-benefit { margin: 0; color: #087f9c; font-size: 15px; line-height: 1.35; }
+    .flow-item .flow-benefit small { color: #0792ac; }
+    .flow-shift { color: #9ab1c2; font-size: 14px; font-style: normal; text-align: center; }
+    .journey-impact { position: relative; margin-top: 17px; padding: 18px 20px; border-radius: 18px; color: #fff; background: linear-gradient(130deg,#082846 0%,#0f5270 70%,#087f9c 100%); box-shadow: 0 16px 34px rgba(8,40,70,.18); overflow: hidden; }
+    .journey-impact::after { content: "TRUST"; position: absolute; right: -4px; bottom: -13px; color: rgba(255,255,255,.075); font: 900 54px/1 "Montserrat",sans-serif; letter-spacing: -.07em; }
+    .journey-impact small { display: block; margin-bottom: 7px; color: var(--lime); font: 900 8px/1 "Montserrat",sans-serif; letter-spacing: .15em; }
+    .journey-impact b { position: relative; z-index: 1; display: block; font-size: 22px; line-height: 1.42; letter-spacing: -.02em; }
+    .journey-note { margin: 8px 2px 0; color: #7b8e9e; font-size: 8px; }
+
+    .person-illust { gap: 7px; color: #0d5d79; background: linear-gradient(145deg,#effcff,#d8f5fb); }
+    .person-illust svg { width: 52px; height: 52px; margin: auto; fill: none; stroke: currentColor; stroke-width: 2.7; stroke-linecap: round; stroke-linejoin: round; }
+    .problem-scene.management .person-illust { color: #9a6521; background: linear-gradient(145deg,#fff9e8,#ffedba); }
+    .problem-scene.candidate .person-illust { color: #4f5b94; background: linear-gradient(145deg,#f4f2ff,#e3e6ff); }
+    .speech-bubble { border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.11); box-shadow: 0 18px 38px rgba(0,0,0,.16); }
+    .speech-bubble small { display: inline-flex; padding: 7px 10px; border-radius: 999px; color: #092c4b; background: var(--lime); font-size: 10px; line-height: 1; }
+    .speech-bubble h3 { color: #0b2d4a; }
+    .speech-bubble p { color: #526d82; }
+
+    .split-responsibility { grid-template-columns: minmax(0,.84fr) 112px minmax(0,1.16fr); }
+    .role-card { position: relative; padding: 36px; overflow: hidden; }
+    .role-card::after { position: absolute; right: -7px; bottom: -17px; color: rgba(11,51,83,.045); font: 900 70px/1 "Montserrat",sans-serif; }
+    .role-card.core { border: 2px solid #e5b757; background: linear-gradient(145deg,#fffef8,#fff8e8); }
+    .role-card.core::after { content: "CORE"; }
+    .role-card.pace { border: 2px solid #4bd3e2; background: linear-gradient(145deg,#0b2c4d,#07536e); box-shadow: 0 24px 58px rgba(7,60,90,.22); }
+    .role-card.pace::after { content: "OPS"; color: rgba(255,255,255,.06); }
+    .role-card h3 { position: relative; z-index: 1; margin-bottom: 12px; font-size: 29px; line-height: 1.35; }
+    .role-card p { position: relative; z-index: 1; margin: 0 0 22px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .role-card.pace p { color: rgba(255,255,255,.7); }
+    .role-chips { position: relative; z-index: 1; }
+    .role-chips span { color: #294760; border-color: #e0cf9d; background: rgba(255,255,255,.72); font-size: 10px; font-weight: 800; }
+    .pace .role-chips span { color: #ecfbff; border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.09); }
+    .role-bridge { display: flex; flex-direction: column; gap: 10px; color: #0a8ca8; text-align: center; }
+    .role-bridge span { font-size: 10px; line-height: 1.5; }
+    .role-bridge b { font-size: 36px; }
+    .impact-grid { grid-template-columns: repeat(3,minmax(0,1fr)); max-width: none; margin-right: auto; margin-left: auto; }
+    .cx-point-card { color: #fff; border-color: #18bbd0 !important; background: linear-gradient(145deg,#0a3154,#075c74) !important; }
+    .cx-point-card::after { background: linear-gradient(90deg,var(--lime),#1fc5d9) !important; }
+    .impact-grid .cx-point-card i { color: var(--lime); }
+    .impact-grid .cx-point-card p { color: rgba(255,255,255,.72); }
+    .cx-mini-flow { display: flex; align-items: center; justify-content: center; gap: 5px; min-height: 56px; padding: 9px; border-radius: 12px; color: #0b3450; background: var(--lime); }
+    .cx-mini-flow span { font-size: 8px; font-weight: 900; text-align: center; }
+    .cx-mini-flow b { color: #087f9c; font-size: 14px; }
+    .impact-link { display: inline-flex; margin-top: 16px; color: var(--lime); font-size: 11px; font-weight: 900; text-decoration: none; }
+
+    .cx-point-section { position: relative; background: radial-gradient(circle at 82% 16%,rgba(23,186,207,.22),transparent 31%),linear-gradient(145deg,#061d37,#092e50 66%,#074a62); overflow: hidden; }
+    .cx-point-section::before { content: "CX"; position: absolute; right: -2vw; top: 30px; color: rgba(255,255,255,.025); font: 900 clamp(180px,28vw,390px)/.8 "Montserrat",sans-serif; letter-spacing: -.12em; }
+    .cx-point-section h2 { max-width: 780px; color: #fff; }
+    .cx-point-section .section-kicker { color: var(--lime); }
+    .cx-point-section .section-lead { color: #c4d9e6; }
+    .cx-showcase { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: 28px; align-items: stretch; margin-top: 48px; }
+    .cx-message-panel { position: relative; min-height: 500px; padding: 32px; border: 1px solid rgba(255,255,255,.18); border-radius: 30px; color: #0b3150; background: linear-gradient(145deg,#faffff,#dff8fc); box-shadow: 0 28px 70px rgba(0,0,0,.25); overflow: hidden; }
+    .cx-message-panel::after { content: "FAST"; position: absolute; right: -8px; bottom: -22px; color: rgba(6,72,94,.055); font: 900 100px/1 "Montserrat",sans-serif; letter-spacing: -.08em; }
+    .cx-panel-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 38px; }
+    .cx-panel-head span { color: #0a8fa9; font: 900 9px/1 "Montserrat",sans-serif; letter-spacing: .13em; }
+    .cx-panel-head b { padding: 7px 10px; border-radius: 999px; color: #07314b; background: var(--lime); font-size: 9px; }
+    .cx-candidate-row,.cx-reply-line { display: grid; grid-template-columns: 46px 1fr auto; gap: 12px; align-items: center; padding: 18px; border: 1px solid #d7e8ee; border-radius: 18px; background: #fff; box-shadow: 0 12px 28px rgba(12,74,101,.08); }
+    .cx-candidate-row>i,.cx-reply-line>i { display: grid; place-content: center; width: 44px; height: 44px; border-radius: 50%; color: #fff; background: #728da3; font-weight: 900; font-style: normal; }
+    .cx-candidate-row small,.cx-reply-line small { display: block; margin-bottom: 6px; color: #8294a2; font: 900 8px/1 "Montserrat",sans-serif; letter-spacing: .1em; }
+    .cx-candidate-row b,.cx-reply-line b { font-size: 13px; line-height: 1.55; }
+    .cx-candidate-row>span { padding: 6px 8px; border-radius: 999px; color: #8b5e55; background: #fff0ec; font-size: 8px; font-weight: 900; }
+    .cx-reply-line { position: relative; z-index: 2; grid-template-columns: 46px 1fr; margin: 16px 0 0 38px; border-color: #8bddE7; background: #edfdff; }
+    .cx-reply-line>i { color: #082d46; background: var(--lime); }
+    .cx-speed-badge { position: relative; z-index: 3; width: 176px; height: 176px; display: grid; place-content: center; margin: -5px 18px 0 auto; border: 5px solid #0ca9c0; border-radius: 50%; color: #fff; background: linear-gradient(145deg,#0b3355,#087f9c); text-align: center; box-shadow: 0 18px 38px rgba(4,95,121,.24); }
+    .cx-speed-badge strong { color: var(--lime); font: 800 28px/1 "Montserrat",sans-serif; letter-spacing: -.04em; }
+    .cx-speed-badge span { margin-top: 8px; font-size: 10px; font-weight: 900; line-height: 1.5; }
+    .cx-logic { display: grid; align-content: center; }
+    .cx-logic article { display: grid; grid-template-columns: 62px 1fr; gap: 18px; align-items: center; padding: 25px 28px; border: 1px solid rgba(255,255,255,.15); border-radius: 22px; background: rgba(255,255,255,.07); backdrop-filter: blur(12px); }
+    .cx-logic article>i { display: grid; place-content: center; width: 58px; height: 58px; border: 1px solid rgba(216,255,115,.46); border-radius: 18px; color: var(--lime); font: 900 18px/1 "Montserrat",sans-serif; font-style: normal; }
+    .cx-logic small { color: #58d4e3; font: 900 8px/1 "Montserrat",sans-serif; letter-spacing: .14em; }
+    .cx-logic h3 { margin: 7px 0 6px; color: #fff; font-size: 24px; line-height: 1.35; }
+    .cx-logic h3 em { color: var(--lime); font-style: normal; }
+    .cx-logic p { margin: 0; color: rgba(255,255,255,.6); font-size: 11px; line-height: 1.7; }
+    .cx-logic-arrow { height: 29px; display: grid; place-content: center; color: #53d3e2; font-size: 20px; font-weight: 900; }
+    .cx-logic .cx-outcome { border-color: rgba(216,255,115,.55); background: linear-gradient(120deg,rgba(216,255,115,.16),rgba(39,197,216,.12)); box-shadow: 0 14px 38px rgba(0,0,0,.14); }
+    .cx-conclusion { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 13px; margin-top: 28px; padding: 19px 22px; border-radius: 18px; color: #dcecf3; background: rgba(0,0,0,.2); font-size: 12px; }
+    .cx-conclusion span { color: #5cd7e5; font-weight: 900; }
+    .cx-conclusion b { padding: 8px 11px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; }
+    .cx-conclusion i { color: #52cad9; font-style: normal; }
+    .cx-conclusion strong { padding: 9px 13px; border-radius: 999px; color: #082d46; background: var(--lime); }
+
+    .ops-compare { grid-template-columns: minmax(0,.82fr) 92px minmax(0,1.18fr); gap: 16px; }
+    .ops-compare article { position: relative; overflow: hidden; }
+    .ops-compare article.inhouse { color: #415365; border-color: #d7dee3; background: linear-gradient(145deg,#f4f6f7,#e8edf0); box-shadow: none; filter: saturate(.72); }
+    .ops-compare article.pace { padding: 42px; border: 3px solid #24bfd2; background: linear-gradient(145deg,#fff 0%,#e9fbff 75%); box-shadow: 0 28px 68px rgba(10,132,157,.2); transform: scale(1.035); }
+    .compare-state { display: flex; width: max-content; margin-bottom: 13px; padding: 7px 10px; border-radius: 999px; color: #6d7d88; background: #dfe5e8; font: 900 9px/1 "Montserrat",sans-serif; letter-spacing: .1em; }
+    .ops-compare small { display: block; margin-bottom: 4px; }
+    .pace .compare-state { color: #06354d; background: var(--lime); }
+    .ops-compare .inhouse li::before { content: "×"; color: #a45e55; }
+    .ops-compare .pace li { color: #173d5d; }
+    .ops-compare .pace li::before { content: "✓"; color: #0797ae; }
+    .ops-vs { display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center; color: #087f9c; }
+    .ops-vs span { font: 900 10px/1.45 inherit; }
+    .ops-vs b { font-size: 38px; }
+    .pace-benefits { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-top: 20px; }
+    .pace-benefits span { padding: 10px 6px; border-radius: 10px; color: #0c4f68; background: #d7f7fb; font-size: 9px; font-weight: 900; text-align: center; }
+    .ops-compare .pace .workload-transfer { color: #082d46; background: var(--lime); }
+
+    .plan-grid { gap: 18px; }
+    .plan-card { color: #0b2d4a; border: 2px solid #d8edf2; background: #fff; box-shadow: 0 18px 46px rgba(5,43,70,.16); }
+    .plan-card:nth-child(2) { background: #f6fcff; }
+    .plan-card:nth-child(3) { background: #f7fff2; }
+    .plan-name { color: #087f9c; }
+    .plan-price b { color: #07536e; }
+    .plan-price span { color: #47657a; }
+    .plan-card ul { border-top-color: #dbe9ee; }
+    .plan-card li { color: #405c70; font-size: 12px; }
+    .plan-card li::before { color: #0b9fb6; }
+    .plan-card .button.ghost { color: #082d46; border-color: var(--lime); background: var(--lime); }
+
+    @media (max-width: 980px) {
+      .split-responsibility { grid-template-columns: 1fr; }
+      .role-bridge { transform: none; }
+      .role-bridge b { transform: rotate(90deg); }
+      .ops-compare { grid-template-columns: 1fr; }
+      .ops-compare article.pace { transform: none; }
+      .ops-vs { transform: none; }
+      .ops-vs b { transform: rotate(90deg); }
+      .cx-showcase { grid-template-columns: 1fr; }
+      .cx-message-panel { min-height: 460px; }
+    }
+    @media (max-width: 640px) {
+      .flow-copy { grid-template-columns: 1fr; gap: 5px; }
+      .flow-shift { display: none; }
+      .flow-item .flow-phase { padding-bottom: 7px; border-bottom: 1px solid #dbe9f0; }
+      .flow-item .flow-benefit { padding-top: 2px; font-size: 14px; }
+      .journey-impact b { font-size: 19px; }
+      .person-illust svg { width: 31px; height: 31px; }
+      .speech-bubble small { font-size: 8px; }
+      .role-card { padding: 26px; }
+      .role-card h3 { font-size: 24px; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .pace-benefits { grid-template-columns: 1fr; }
+      .cx-message-panel { min-height: 430px; padding: 20px; }
+      .cx-panel-head { margin-bottom: 25px; }
+      .cx-candidate-row,.cx-reply-line { grid-template-columns: 38px 1fr; padding: 14px; }
+      .cx-candidate-row>span { grid-column: 2; width: max-content; }
+      .cx-candidate-row>i,.cx-reply-line>i { width: 36px; height: 36px; }
+      .cx-reply-line { margin-left: 18px; }
+      .cx-speed-badge { width: 142px; height: 142px; margin-top: 8px; }
+      .cx-speed-badge strong { font-size: 23px; }
+      .cx-logic article { grid-template-columns: 48px 1fr; gap: 13px; padding: 20px; }
+      .cx-logic article>i { width: 46px; height: 46px; border-radius: 14px; font-size: 14px; }
+      .cx-logic h3 { font-size: 20px; }
+      .cx-conclusion { flex-direction: column; gap: 8px; text-align: center; }
+      .cx-conclusion i { transform: rotate(90deg); }
+    }
+
+    /* v5 · final LP polish */
+    :root {
+      --surface: #ffffff;
+      --surface-soft: #f2f7fb;
+      --navy: #071d3a;
+      --cyan: #10aac1;
+      --teal: #087f9c;
+      --radius-sm: 18px;
+      --shadow-soft: 0 16px 44px rgba(17,61,96,.09);
+      --shadow-strong: 0 28px 74px rgba(7,43,72,.18);
+    }
+    ::selection { color: var(--navy); background: var(--lime); }
+    a:focus-visible, button:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid #17b8ce; outline-offset: 4px; }
+    .section { border-top: 1px solid rgba(7,29,58,.055); }
+    .section-inner { position: relative; z-index: 1; }
+    .section-kicker { margin-bottom: 18px; font-size: 11px; }
+    .section h2, .final-cta h2 { text-wrap: balance; }
+    .section-lead { margin-bottom: 42px; text-wrap: pretty; }
+    #effects { background: linear-gradient(180deg,#fff 0%,#f8fbfd 100%); }
+    #point01 { background: #f3f7fa; }
+    #point02 { background: #fff; }
+    #faq { background: #fff; }
+
+    .button { letter-spacing: .01em; }
+    .button, .header-cta { transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .header-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(7,29,58,.24); }
+    .hero-grid { gap: 72px; }
+    .hero h1 { text-wrap: balance; }
+    .hero-lead { max-width: 640px; }
+    .flow-board { box-shadow: 0 34px 90px rgba(37,87,130,.2), inset 0 1px 0 rgba(255,255,255,.82); }
+    .flow-item { transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+    .flow-item:hover { transform: translateX(4px); border-color: rgba(16,170,193,.36); box-shadow: 0 10px 24px rgba(18,91,128,.1); }
+
+    .pricing { overflow: visible; background: radial-gradient(circle at 88% 8%,rgba(16,170,193,.18),transparent 25%),linear-gradient(145deg,#061a35,#08294b 72%,#07445e); }
+    .pricing::before { content: ""; position: absolute; z-index: 0; top: -46px; left: 0; right: 0; height: 48px; background: linear-gradient(180deg,rgba(220,238,255,0),#061a35); pointer-events: none; }
+    .pricing .section-lead { color: #b9cfdd; }
+    .price-simulator { border-color: rgba(109,214,229,.32); box-shadow: 0 30px 84px rgba(0,0,0,.26); }
+    .sim-option { position: relative; overflow: hidden; }
+    .sim-option::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: transparent; }
+    .sim-option.active::after { background: var(--cyan); }
+    .sim-option:focus-within { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(16,170,193,.14); }
+    .plan-heading { margin: 0 0 26px; color: #fff; font-size: 26px; letter-spacing: -.025em; }
+    .plan-grid { align-items: stretch; }
+    .plan-card, .plan-card:nth-child(2), .plan-card:nth-child(3) { display: flex; flex-direction: column; color: #0b2d4a; border-color: #d8edf2; background: #fff; box-shadow: 0 18px 46px rgba(5,43,70,.16); transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+    .plan-card:hover { transform: translateY(-6px); border-color: #8fdce6; box-shadow: 0 28px 64px rgba(4,49,78,.22); }
+    .plan-card ul { flex: 1; min-height: 245px; }
+    .plan-card .button { margin-top: auto; }
+
+    .compare-wrap { border: 1px solid rgba(7,29,58,.08); background: #fff; box-shadow: var(--shadow-soft); }
+    .plan-table { border: 0; border-radius: 0; }
+    .plan-table thead th { color: #fff; background: var(--navy); }
+    .plan-table thead th:first-child { color: #496074; background: #e7eef2; }
+    .plan-table tbody tr:first-child td { color: #0b3a51; background: rgba(216,255,99,.34); font-weight: 900; }
+    .plan-table tbody tr:hover td { background-color: #f4fbfd; }
+    .plan-table tbody tr:first-child:hover td { background-color: rgba(216,255,99,.43); }
+    .check { color: #0996ad; }
+
+    .problem-scenes { gap: 20px; }
+    .speech-bubble { box-shadow: var(--shadow-soft); }
+    .role-card, .impact-grid article, .cost-model article, .ops-compare article { transition: transform .22s ease, box-shadow .22s ease; }
+    .impact-grid article:hover, .cost-model article:hover { transform: translateY(-4px); box-shadow: 0 24px 58px rgba(18,70,105,.13); }
+    .cx-point-card:hover { box-shadow: 0 28px 64px rgba(5,82,106,.24) !important; }
+
+    .faq-list { max-width: 980px; padding: 4px 30px; border: 1px solid rgba(7,29,58,.08); border-radius: 28px; background: #fff; box-shadow: var(--shadow-soft); }
+    .faq-item:first-child { border-top: 0; }
+    .faq-item:last-child { border-bottom: 0; }
+    .faq-q { padding-right: 10px; padding-left: 10px; border-radius: 12px; }
+    .faq-q:hover { background: #f2f9fc; }
+    .faq-q i { display: grid; place-content: center; width: 28px; height: 28px; border-radius: 50%; color: #0a728a; background: #e7f8fb; }
+
+    .final-cta { padding-top: 120px; padding-bottom: 120px; background: radial-gradient(circle at 50% 18%,rgba(16,170,193,.2),transparent 30%),linear-gradient(145deg,#061a35,#082b4e); }
+    .final-cta h2 { max-width: 1050px; }
+    .final-values span { color: #d8e7ef; border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.055); }
+    .final-cta .button.hot { color: var(--navy); background: var(--lime); box-shadow: 0 16px 38px rgba(184,230,76,.2); }
+    .final-cta .button.hot:hover { background: #e4ff96; }
+    .final-cta .button.ghost { color: #fff; border-color: rgba(255,255,255,.42); background: transparent; }
+    .mobile-sticky-cta { display: none; }
+
+    @media (max-width: 980px) {
+      .hero-grid { gap: 48px; }
+      .plan-card ul { min-height: auto; }
+    }
+    @media (max-width: 640px) {
+      body { padding-bottom: 68px; }
+      .hero { padding-top: 132px; padding-bottom: 60px; }
+      .hero-grid { gap: 40px; }
+      .hero h1 { font-size: 29px; line-height: 1.42; }
+      .hero-lead { margin-bottom: 22px; font-size: 13px; line-height: 1.85; }
+      .flow-board { margin-top: 4px; padding: 16px; }
+      .flow-track { gap: 9px; }
+      .flow-item { padding: 9px 10px; }
+      .flow-item:hover { transform: none; }
+      .journey-impact { margin-top: 13px; padding: 15px 17px; }
+      .section { padding-top: 68px; padding-bottom: 68px; }
+      .pricing, .cx-point-section { padding-top: 82px; padding-bottom: 82px; }
+      .section-kicker { margin-bottom: 14px; font-size: 9px; }
+      .section h2 { margin-bottom: 20px; font-size: 28px; line-height: 1.43; }
+      .section-lead { margin-bottom: 32px; font-size: 13px; line-height: 1.8; }
+      .price-simulator { margin-top: 30px; margin-bottom: 50px; border-radius: 24px; }
+      .sim-controls { padding: 18px; }
+      .sim-option { padding: 12px; }
+      .cost-comparison { padding: 16px 10px; }
+      .cost-chart { grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; gap: 18px 28px; min-height: 390px; padding: 0 5px; }
+      .internal-column { grid-column: 1; grid-row: 2; }
+      .pace-column { grid-column: 2; grid-row: 2; }
+      .saving-bubble { position: static; grid-column: 1 / -1; grid-row: 1; display: grid; grid-template-columns: auto auto; column-gap: 6px; width: 100%; height: auto; min-height: 92px; padding: 13px 18px; transform: none; border-width: 2px; border-radius: 18px; }
+      .saving-bubble::after { display: none; }
+      .saving-bubble small, .saving-bubble i { grid-column: 1 / -1; }
+      .saving-bubble b { justify-self: end; font-size: 30px; }
+      .saving-bubble span { justify-self: start; align-self: end; padding-bottom: 3px; font-size: 10px; }
+      .saving-bubble i { font-size: 9px; }
+      .cost-comparison.is-over .saving-bubble b { font-size: 20px; }
+      .cost-chart::before { inset: 155px 10% 0; }
+      .column-total b { font-size: 24px; }
+      .cost-comparison .sim-caution { font-size: 10px !important; line-height: 1.65; }
+      .plan-heading { margin-bottom: 20px; font-size: 21px; line-height: 1.5; }
+      .plan-grid { gap: 16px; }
+      .plan-card { padding: 24px; }
+      .plan-card:hover { transform: none; }
+      .plan-card ul { min-height: auto; margin: 20px 0; }
+      .plan-scope { font-size: 22px; }
+      .plan-price b { font-size: 36px; }
+      .problem-scenes { margin-top: 38px; gap: 14px; }
+      .problem-scene { grid-template-columns: 62px 1fr; gap: 10px; }
+      .person-illust { width: 60px; height: 60px; }
+      .person-illust svg { width: 27px; height: 27px; }
+      .speech-bubble { padding: 17px; border-radius: 20px; }
+      .speech-bubble h3 { margin-top: 10px; font-size: 16px; }
+      .speech-bubble p { font-size: 10px; line-height: 1.65; }
+      .impact-grid { gap: 12px; }
+      .impact-grid article { padding: 25px 22px; }
+      .cx-message-panel { min-height: 350px; padding: 18px; }
+      .cx-panel-head { margin-bottom: 18px; }
+      .cx-candidate-row,.cx-reply-line { padding: 12px; }
+      .cx-reply-line { margin-top: 12px; }
+      .cx-speed-badge { width: 116px; height: 116px; margin-top: 3px; border-width: 4px; }
+      .cx-speed-badge strong { font-size: 19px; }
+      .cx-speed-badge span { font-size: 8px; }
+      .cx-logic article { padding: 16px; }
+      .cx-logic h3 { font-size: 18px; }
+      .cx-logic p { font-size: 10px; }
+      .cx-conclusion { margin-top: 20px; padding: 16px; }
+      .compare-wrap { border-radius: 18px; }
+      .plan-table { min-width: 690px; }
+      .plan-table th:first-child, .plan-table td:first-child { position: sticky; left: 0; z-index: 2; box-shadow: 5px 0 12px rgba(7,29,58,.06); }
+      .plan-table td:first-child { background: #fff; }
+      .plan-table tbody tr:first-child td:first-child { background: #e7f6c6; }
+      .faq-list { padding: 2px 14px; border-radius: 22px; }
+      .faq-q { grid-template-columns: 34px 1fr 28px; padding: 19px 4px; }
+      .faq-a { padding-right: 10px; padding-left: 38px; font-size: 12px; }
+      .faq-item.open .faq-a { padding-bottom: 20px; }
+      .final-cta { padding: 82px 18px; }
+      .final-cta h2 { font-size: 31px; line-height: 1.42; }
+      .final-values { margin: 22px 0 28px; }
+      .final-values span { width: 100%; padding: 9px 12px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .mobile-sticky-cta { position: fixed; z-index: 70; right: 12px; bottom: 10px; left: 12px; display: flex; align-items: center; justify-content: center; gap: 14px; min-height: 50px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; color: var(--navy); background: var(--lime); box-shadow: 0 14px 36px rgba(7,29,58,.3); text-decoration: none; font-size: 12px; font-weight: 900; opacity: 0; pointer-events: none; transform: translateY(18px); transition: opacity .24s ease, transform .24s ease; }
+      .mobile-sticky-cta.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="PACE トップへ">
+      <i class="brand-mark" aria-hidden="true"></i>
+      <span class="brand-name">PACE</span>
+      <span class="brand-def">Process Automation<br>× Candidate Experience</span>
+    </a>
+    <nav class="header-nav" aria-label="ページ内ナビゲーション">
+      <a href="#effects">3つの効果</a>
+      <a href="#pricing">料金</a>
+      <a href="#faq">よくある質問</a>
+      <a class="header-cta" href="https://kyute.jp/contact">PACEについて相談する</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">Recruiting Operations as a Service</div>
+          <h1><span class="hero-value">人事が忙しくても、<br>円滑な候補者対応を。</span><br>採用オペレーションは、<br>PACEに丸投げ。</h1>
+          <p class="hero-lead"><strong>迅速かつ丁寧なオペレーションで、入社意欲を向上させる選考体験をPACEが生み出します。</strong></p>
+          <div class="cta-row">
+            <a class="button hot" href="https://kyute.jp/contact">PACEについて相談する <span class="arrow">→</span></a>
+            <a class="button ghost" href="#pricing">料金をシミュレーション</a>
+          </div>
+        </div>
+        <div class="flow-board reveal" id="candidate-journey" aria-label="PACEが支える候補者の選考体験">
+          <div class="flow-head"><strong>CANDIDATE JOURNEY</strong><span class="live">PACE運用中</span></div>
+          <div class="flow-track">
+            <div class="flow-item"><div class="flow-icon">01</div><div class="flow-copy"><span class="flow-phase"><small>選考フェーズ</small>応募を受け付ける</span><i class="flow-shift">→</i><b class="flow-benefit"><small>PACEで実現</small>神速で案内する</b></div></div>
+            <div class="flow-item"><div class="flow-icon">02</div><div class="flow-copy"><span class="flow-phase"><small>選考フェーズ</small>面接日程を決める</span><i class="flow-shift">→</i><b class="flow-benefit"><small>PACEで実現</small>やり取り最小で、すぐ決める</b></div></div>
+            <div class="flow-item"><div class="flow-icon">03</div><div class="flow-copy"><span class="flow-phase"><small>選考フェーズ</small>面接前に案内する</span><i class="flow-shift">→</i><b class="flow-benefit"><small>PACEで実現</small>忘れる前に、必ず知らせる</b></div></div>
+            <div class="flow-item"><div class="flow-icon">04</div><div class="flow-copy"><span class="flow-phase"><small>選考フェーズ</small>選考結果を届ける</span><i class="flow-shift">→</i><b class="flow-benefit"><small>PACEで実現</small>熱が冷める前に、即届ける</b></div></div>
+            <div class="flow-item"><div class="flow-icon">05</div><div class="flow-copy"><span class="flow-phase"><small>選考フェーズ</small>入社までフォローする</span><i class="flow-shift">→</i><b class="flow-benefit"><small>PACEで実現</small>最後まで離さない</b></div></div>
+          </div>
+          <div class="journey-impact"><small>COMPANY IMPRESSION</small><b>対応の品質が、<br>会社の信頼になる。</b></div>
+          <p class="journey-note">※対応範囲はプランにより異なります。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark-section">
+      <div class="section-inner">
+        <div class="section-kicker reveal">The hidden load</div>
+        <h2 class="reveal">採用を進めたいのに、<br>事務仕事で1日が埋まっていませんか？</h2>
+        <p class="section-lead reveal">一つひとつは小さくても、候補者・求人・関係者が増えるほど負担は大きくなります。</p>
+        <div class="problem-scenes">
+          <article class="problem-scene hr reveal"><div class="person-illust"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M11 38c1.5-8 6-12 13-12s11.5 4 13 12"/><path d="M34 9h8M38 5v8"/></svg><i>人事</i></div><div class="speech-bubble"><small>人事の本音｜作業が終わらない</small><h3>候補者対応だけで、<br>今日も一日が終わる…</h3><p>応募確認、メール、日程調整、評価回収、ATS更新。採用したいのに、作業から抜け出せない。</p></div></article>
+          <article class="problem-scene management reveal"><div class="person-illust"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 39h32M11 39V18h11v21M27 39V9h10v30"/><path d="m14 13 8-7 6 5 10-8"/></svg><i>経営</i></div><div class="speech-bubble"><small>経営の本音｜固定費が重い</small><h3>採用数には波がある。<br>でも、人件費は毎月続く…</h3><p>繁忙期に合わせて増員すると、採用が落ち着いた月もコストと管理負担が残る。</p></div></article>
+          <article class="problem-scene candidate reveal"><div class="person-illust"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="18" cy="15" r="7"/><path d="M7 38c1.5-8 5-12 11-12 4.5 0 7.5 2 9.5 6"/><rect x="28" y="22" width="13" height="13" rx="3"/><path d="m31 28 3 3 5-6"/></svg><i>候補者</i></div><div class="speech-bubble"><small>候補者の本音｜返信が来ない</small><h3>次の連絡はいつ？<br>ちゃんと届いている？</h3><p>社内の忙しさが、返信の遅れや案内のばらつきとして候補者に伝わってしまう。</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cause is-cut">
+      <div class="section-inner">
+        <div class="section-kicker reveal">One root cause</div>
+        <h2 class="reveal">3つの負担は、<br>同じ構造から生まれている。</h2>
+        <div class="cause-map reveal">
+          <div class="cause-core"><small>COMMON CAUSE</small><b>採用オペレーションを<br>自社人員だけで運用</b></div>
+          <div class="cause-arrow">→</div>
+          <div class="cause-results"><div><i>01</i>作業が人事へ集中する</div><div><i>02</i>繁忙期基準の固定費が続く</div><div><i>03</i>対応品質が繁閑で変わる</div></div>
+        </div>
+        <div class="turn-line reveal">だから、個別作業だけでなく、<br><span>採用オペレーションそのものを社外に切り出す。</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="effects">
+      <div class="section-inner">
+        <div class="section-kicker reveal">The PACE model</div>
+        <h2 class="reveal">その採用オペレーション、<br>PACEに丸ごと任せられます。</h2>
+        <p class="section-lead reveal">採用の成果を左右する判断と対話は人事に。判断の前後に発生する連絡・調整・更新・確認は、PACEがすべて担います。</p>
+        <div class="split-responsibility reveal">
+          <article class="role-card core"><small>HR CORE｜判断と対話</small><h3>人事が担う、<br>採用のコア</h3><p>人に向き合い、採用の質を決める仕事。</p><div class="role-chips"><span>採用要件を決める</span><span>候補者を見極める</span><span>自社の魅力を伝える</span><span>採否を決める</span></div></article>
+          <div class="role-bridge"><span>雑務を<br>すべて移管</span><b>→</b></div>
+          <article class="role-card pace"><small>PACE OPS｜連絡・調整・更新・確認</small><h3>PACEが担う、<br>採用の雑務すべて</h3><p>判断の前後に発生する実務を、一つの窓口へ。</p><div class="role-chips"><span>応募受付</span><span>候補者連絡</span><span>日程調整</span><span>リマインド</span><span>評価回収</span><span>ATS更新</span><span>進捗・数値管理</span><span>スカウト対応</span><span>エージェント対応</span></div></article>
+        </div>
+        <div class="impact-grid reveal"><article><i>Point 01</i><h3>作業量を<br>圧倒的削減</h3><div class="mini-bars"><span>人事｜採用事務を抱える</span><span class="pace-bar">PACE｜採用事務を移管</span></div><p>繰り返す採用事務を、一つの窓口へ。</p></article><article><i>Point 02</i><h3>固定費を<br>変動費化</h3><div class="cost-pulse"><span>任せる範囲</span><b>↕</b><span>月額プラン</span></div><p>必要な業務範囲に合わせて選択。</p></article><article class="cx-point-card"><i>Point 03</i><h3>神速返信で、<br>候補者の心を離さない</h3><div class="cx-mini-flow"><span>抜け漏れ防止</span><b>→</b><span>迅速・丁寧</span><b>→</b><span>CX向上</span></div><p>候補者との接点を、採用の強みに変える。</p><a class="impact-link" href="#point03">詳しく見る →</a></article></div>
+      </div>
+    </section>
+
+    <section class="section scope point-section" id="point02">
+      <div class="section-inner">
+        <div class="section-kicker reveal">Point 02 · Variable cost</div>
+        <h2 class="reveal">人を増やす前に、<br>採用オペレーションを月額利用。</h2>
+        <p class="section-lead reveal">繁忙期に合わせて固定人員を抱えるのではなく、必要な業務範囲をサービスとして切り出します。</p>
+        <div class="cost-model reveal"><article><small>自社で増員</small><h3>人を固定で抱える</h3><div class="cost-block fixed"><span>採用が多い月</span><b></b><span>採用が少ない月</span><b></b></div><p>採用・教育・引き継ぎ・管理が必要。採用量が落ち着いても固定費は続きます。</p></article><div class="cost-model-arrow">→</div><article class="pace"><small>PACE</small><h3>業務を月額で利用</h3><div class="cost-block variable"><span>任せる範囲</span><b></b><span>採用状況</span><b></b></div><p>候補者管理からスカウト・エージェント対応まで、必要な範囲に合わせてプランを選択できます。</p></article></div>
+      </div>
+    </section>
+
+    <section class="section point-section" id="point01">
+      <div class="section-inner">
+        <div class="section-kicker reveal">Point 01 · Less workload</div>
+        <h2 class="reveal">採用事務を内製する。<br>それとも、PACEに丸投げする。</h2>
+        <p class="section-lead reveal">採用担当者がやらなくてもいい仕事をまとめ、人事を面接・見極め・魅力づけへ戻します。</p>
+        <div class="ops-compare reveal"><article class="inhouse"><div class="compare-state">BEFORE｜分散・属人化</div><small>自社で内製する場合</small><h3>人事が、判断も雑務も抱える</h3><ul><li>応募を媒体ごとに確認</li><li>候補者・面接官と個別調整</li><li>評価を催促しATSへ更新</li><li>数値を手作業で集計・共有</li></ul><div class="workload-transfer"><span>人事の時間</span><b>雑務に分散</b></div></article><div class="ops-vs"><span>雑務を<br>PACEへ</span><b>→</b></div><article class="pace"><div class="compare-state">AFTER｜集中・標準化</div><small>PACEを利用する場合</small><h3>人事は、採用のコアに集中</h3><ul><li>候補者と対話する</li><li>候補者を見極める</li><li>自社の魅力を伝える</li><li>選考プロセスを改善する</li></ul><div class="pace-benefits"><span>連絡が止まらない</span><span>雑務をまとめて移管</span><span>必要な範囲だけ利用</span></div><div class="workload-transfer"><span>人事の時間</span><b>判断と対話へ</b></div></article></div>
+      </div>
+    </section>
+
+    <section class="section dark-section point-section cx-point-section" id="point03">
+      <div class="section-inner">
+        <div class="section-kicker reveal">Point 03 · Candidate Experience</div>
+        <h2 class="reveal">神速返信で、<br>候補者の心を離さない。</h2>
+        <p class="section-lead reveal">PACEが候補者管理と連絡を一つの運用にまとめ、対応の抜け漏れを防止。迅速かつ丁寧なやり取りを積み重ね、候補者体験（CX）の向上につなげます。</p>
+        <div class="cx-showcase reveal">
+          <article class="cx-message-panel">
+            <div class="cx-panel-head"><span>LIVE CANDIDATE CARE</span><b>PACE運用中</b></div>
+            <div class="cx-candidate-row"><i>候</i><div><small>NEW ENTRY</small><b>応募を受け付けました</b></div><span>未対応</span></div>
+            <div class="cx-reply-line"><i>P</i><div><small>PACE · IMMEDIATE CARE</small><b>ご応募ありがとうございます。<br>次の選考をご案内します。</b></div></div>
+            <div class="cx-speed-badge"><strong>FAST REPLY</strong><span>候補者を待たせない<br>神速返信</span></div>
+          </article>
+          <div class="cx-logic" aria-label="PACE導入から候補者体験向上までの流れ">
+            <article><i>01</i><div><small>MANAGEMENT</small><h3>候補者管理の<br>抜け漏れをなくす</h3><p>応募・連絡・日程・結果を一元管理。次の対応が見える運用へ。</p></div></article>
+            <div class="cx-logic-arrow">↓</div>
+            <article><i>02</i><div><small>COMMUNICATION</small><h3>迅速かつ丁寧な<br>やり取りを実現</h3><p>返信、案内、リマインドを、忙しさに左右されにくい品質へ。</p></div></article>
+            <div class="cx-logic-arrow">↓</div>
+            <article class="cx-outcome"><i>03</i><div><small>OUTCOME</small><h3>候補者体験<br><em>（CX）向上</em></h3><p>安心して選考を進められる体験が、会社への信頼につながる。</p></div></article>
+          </div>
+        </div>
+        <div class="cx-conclusion reveal"><span>PACE導入</span><b>候補者管理が整う</b><i>→</i><b>対応品質が上がる</b><i>→</i><strong>候補者の心が離れない</strong></div>
+      </div>
+    </section>
+
+    <section class="section is-cut">
+      <div class="section-inner">
+        <div class="section-kicker reveal">A different way to staff</div>
+        <h2 class="reveal">人を採用するのではなく、<br>採用オペレーションを利用する。</h2>
+        <p class="section-lead reveal">採用数が変わるなら、繁忙期に合わせて固定人員を抱える前に、外部オペレーションという選択肢を。</p>
+        <div class="compare-wrap reveal"><table class="cost-table"><thead><tr><th>比較軸</th><th>自社で増員</th><th>派遣・業務委託</th><th>PACE</th></tr></thead><tbody><tr><td>提供単位</td><td>人</td><td>人・稼働時間</td><td>採用オペレーション</td></tr><tr><td>コスト</td><td>人件費として固定的</td><td>契約条件に応じて発生</td><td>月額49,800円〜</td></tr><tr><td>自社の準備</td><td>採用・教育・業務設計</td><td>人選・引き継ぎ・管理</td><td>現行フロー共有・運用設計</td></tr><tr><td>向いている状況</td><td>常勤人材が必要</td><td>特定業務を補いたい</td><td>定型実務をまとめて外出し</td></tr></tbody></table></div><p class="scroll-hint">← 表は横にスクロールできます →</p>
+      </div>
+    </section>
+
+    <section class="section is-cut">
+      <div class="section-inner">
+        <div class="section-kicker reveal">One operation, three values</div>
+        <h2 class="reveal">PACEは3つの価値を、<br>一つの運用でつくる。</h2>
+        <div class="feature-grid"><article class="feature-card reveal"><b>01｜WORKLOAD</b><h3>人事の作業を減らす</h3><p>連絡・調整・更新・確認を、採用担当者からPACEへ。</p></article><article class="feature-card reveal"><b>02｜FIXED COST</b><h3>固定費を減らす</h3><p>人員を固定的に抱える前に、必要な対応範囲をサービスとして利用。</p></article><article class="feature-card reveal"><b>03｜EXPERIENCE</b><h3>候補者体験を良くする</h3><p>候補者との接点を、日々の忙しさに左右されにくい運用へ。</p></article></div>
+        <div class="brand-equation reveal"><b>Process Automation</b><i>×</i><b>Candidate Experience</b></div>
+      </div>
+    </section>
+
+    <section class="section pricing" id="pricing">
+      <div class="section-inner">
+        <div class="section-kicker reveal">Pricing simulator</div>
+        <h2 class="reveal">内製コストを見える化。<br>選択したPACEプラン料金と比べてみよう。</h2>
+        <p class="section-lead reveal">任せたい範囲と月間面接人数を選ぶと、参考内製コストと該当するPACE料金との差がわかります。</p>
+        <div class="price-simulator reveal">
+          <div class="sim-controls">
+            <div class="sim-step"><span>STEP 1</span><h3>任せたい範囲</h3><div class="sim-options" role="radiogroup" aria-label="任せたい範囲"><label class="sim-option active"><input type="radio" name="scopePlan" value="standard" checked><i>01</i><b>選考まるごとプラン</b><small>応募受付・連絡・日程調整・ATS更新</small></label><label class="sim-option"><input type="radio" name="scopePlan" value="plus"><i>02</i><b>スカウト対応付きプラン</b><small>選考まるごと＋スカウト返信・日程調整</small></label><label class="sim-option"><input type="radio" name="scopePlan" value="complete"><i>03</i><b>エージェント対応付きプラン</b><small>選考・スカウト対応＋推薦受付・問い合わせ・結果連絡</small></label></div></div>
+            <div class="sim-bottom"><label class="sim-field"><span>STEP 2　月間面接人数</span><select id="interviewCount"><option value="10" selected>0〜10名</option><option value="20">11〜20名</option><option value="30">21〜30名</option><option value="40">31〜50名</option><option value="over">51名以上</option></select><small>各人数帯の代表値（10名・20名・30名・40名）で内製工数を参考試算します。</small></label><div class="sim-summary"><span>試算する業務</span><b id="scopeSummary">候補者管理・対応</b><small id="hoursSummary">内製工数の目安 32.5時間 / 月</small></div></div>
+            <details class="assumption-details"><summary>内製コストの試算前提を見る</summary><div><p><b>参考時間単価 3,500円</b>で、選択した業務を社内で行う工数を積み上げます。</p><ul><li>候補者連絡・日程調整：面接1名あたり2時間</li><li>ATS・進捗・数値管理：月5時間＋面接1名あたり0.75時間</li><li>スカウト対応：月8時間＋面接1名あたり0.5時間</li><li>エージェント対応：月6時間＋面接1名あたり0.5時間</li></ul><p class="assumption-source">時間単価は、厚生労働省「毎月勤労統計調査 2025年分」の一般労働者の現金給与総額465,923円÷総実労働時間160.5時間≒2,900円に、企業負担・間接コスト20%を仮置きして丸めた参考値です。業務工数はPACEの参考試算モデルであり、実績値ではありません。</p></div></details>
+          </div>
+          <div class="cost-comparison" id="costComparison" aria-live="polite">
+            <div class="comparison-titles"><b>試算モデル上の内製</b><b>PACEプラン料金</b></div>
+            <div class="cost-chart">
+              <div class="cost-column internal-column"><div class="column-total"><b id="internalCostTotal">113,750</b><span>円 / 月</span></div><div class="stack-bar internal-stack" id="internalStack"><div class="stack-segment candidate" id="candidateSegment"><span>候補者連絡・<br>日程調整</span><b id="candidateCost">70,000円</b></div><div class="stack-segment admin" id="adminSegment"><span>ATS・進捗・<br>数値管理</span><b id="adminCost">43,750円</b></div><div class="stack-segment scout" id="scoutSegment" hidden><span>スカウト対応</span><b id="scoutCost">0円</b></div><div class="stack-segment agent" id="agentSegment" hidden><span>エージェント対応</span><b id="agentCost">0円</b></div></div></div>
+              <div class="saving-bubble" id="savingBubble"><small>月額</small><b id="savingAmount">63,950</b><span>円の差額目安</span><i id="savingRate">内製試算比 約56%</i></div>
+              <div class="cost-column pace-column"><div class="column-total"><b id="simPrice">49,800</b><span id="simUnit">円 / 月</span></div><div class="stack-bar pace-stack" id="paceStack"><div class="stack-segment pace-fee"><span>PACE<br>月額利用料</span><b id="paceCostLabel">49,800円</b></div></div></div>
+            </div>
+            <p id="simPlan">選考まるごとプラン｜0〜10名｜代表10名で試算</p><p class="sim-caution" id="simCaution">※差額は内製工数の参考試算と選択したPACEプラン料金との比較です。実際の費用削減を保証するものではありません。</p><a class="button hot" href="https://kyute.jp/contact">PACEについて相談する <span class="arrow">→</span></a>
+          </div>
+        </div>
+        <h3 class="plan-heading reveal">任せたい範囲で、3つのプランから選べます。</h3>
+        <div class="plan-grid">
+          <article class="plan-card reveal"><div class="plan-name">PACE STANDARD</div><div class="plan-scope">選考まるごとプラン</div><div class="plan-price"><b>49,800</b><span>円〜 / 月</span></div><ul><li>応募受付・候補者管理</li><li>候補者連絡</li><li>日程調整</li><li>面接官への連絡・リマインド</li><li>選考結果回収・次回案内</li><li>選考進捗管理・ATS更新</li></ul><a class="button ghost" href="https://kyute.jp/contact">PACEについて相談する</a></article>
+          <article class="plan-card reveal"><div class="plan-name">PACE PLUS</div><div class="plan-scope">スカウト対応付きプラン</div><div class="plan-price"><b>79,800</b><span>円〜 / 月</span></div><ul><li>選考まるごとプランのすべて</li><li>スカウト返信対応</li><li>カジュアル面談・選考案内</li><li>日程調整</li><li>スカウト候補者の進捗管理</li></ul><a class="button ghost" href="https://kyute.jp/contact">PACEについて相談する</a></article>
+          <article class="plan-card reveal"><div class="plan-name">PACE COMPLETE</div><div class="plan-scope">エージェント対応付きプラン</div><div class="plan-price"><b>99,800</b><span>円〜 / 月</span></div><ul><li>スカウト対応付きプランのすべて</li><li>エージェント対応</li><li>推薦受付</li><li>問い合わせ対応</li><li>エージェントへの結果連絡</li></ul><a class="button ghost" href="https://kyute.jp/contact">PACEについて相談する</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-kicker reveal">Plan comparison</div>
+        <h2 class="reveal">3プランの比較</h2>
+        <p class="section-lead reveal">月間面接人数ごとの月額料金と、各プランの対応範囲を比較できます。</p>
+        <div class="compare-wrap reveal"><table class="plan-table"><thead><tr><th>料金・対応業務</th><th>選考<br>まるごと</th><th>スカウト<br>対応付き</th><th>エージェント<br>対応付き</th></tr></thead><tbody><tr><td>0〜10名</td><td>49,800円</td><td>79,800円</td><td>99,800円</td></tr><tr><td>11〜20名</td><td>79,800円</td><td>109,800円</td><td>129,800円</td></tr><tr><td>21〜30名</td><td>99,800円</td><td>139,800円</td><td>169,800円</td></tr><tr><td>31〜50名</td><td>149,800円</td><td>199,800円</td><td>249,800円</td></tr><tr><td>51名以上</td><td>個別見積</td><td>個別見積</td><td>個別見積</td></tr><tr><td>応募受付・候補者管理</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>候補者連絡・日程調整</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>結果回収・進捗管理・ATS更新</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>スカウト返信・日程調整</td><td class="dash">—</td><td class="check">●</td><td class="check">●</td></tr><tr><td>エージェント対応</td><td class="dash">—</td><td class="dash">—</td><td class="check">●</td></tr></tbody></table></div><p class="scroll-hint">← 表は横にスクロールできます →</p>
+      </div>
+    </section>
+
+    <section class="section cause is-cut">
+      <div class="section-inner">
+        <div class="section-kicker reveal">After PACE</div>
+        <h2 class="reveal">人事は、採用に集中する。<br>オペレーションは、PACEが担う。</h2>
+        <div class="compare-wrap reveal"><table class="outcome-table"><thead><tr><th>変わること</th><th>Before</th><th>After with PACE</th></tr></thead><tbody><tr><td>作業量</td><td>連絡・調整・更新・確認が人事へ集中</td><td>定型実務をPACEへ集約。人事は面接・見極め・改善へ</td></tr><tr><td>固定費</td><td>繁忙期に合わせた増員を検討</td><td>月額49,800円から必要な対応範囲を利用</td></tr><tr><td>候補者体験</td><td>返信・案内が担当者の繁忙に影響</td><td>候補者との接点をPACEが運用</td></tr></tbody></table></div><p class="scroll-hint">← 表は横にスクロールできます →</p>
+      </div>
+    </section>
+
+    <section class="section philosophy is-cut">
+      <div class="section-inner">
+        <div class="section-kicker reveal">Why PACE</div>
+        <h2 class="reveal">Processを整えることが、<br>Candidate Experienceにつながる。</h2>
+        <p class="section-lead reveal">候補者体験は、特別な演出だけでなく、日々の連絡・案内・フォローから生まれます。</p>
+        <div class="philosophy-grid reveal"><article class="philosophy-block"><small>PROCESS AUTOMATION</small><h3>採用実務を整える</h3><p>受付、連絡、調整、更新、確認を、一つのオペレーションとして運用する。</p></article><div class="times">×</div><article class="philosophy-block"><small>CANDIDATE EXPERIENCE</small><h3>候補者接点を整える</h3><p>応募から入社まで、次に何をすればよいかが分かる選考体験を支える。</p></article></div>
+      </div>
+    </section>
+
+    <section class="section is-cut">
+      <div class="section-inner">
+        <div class="section-kicker reveal">Getting started</div>
+        <h2 class="reveal">今の採用フローを共有すれば、<br>導入準備を始められます。</h2>
+        <p class="section-lead reveal">現在の選考フロー、使用ツール、役割分担を確認し、PACEへ任せる範囲を一緒に設計します。</p>
+        <div class="steps"><article class="step reveal"><h3>ヒアリング</h3><p>採用フロー、採用人数、求人、利用中のツール、困っている業務を確認。</p></article><article class="step reveal"><h3>オペレーション設計</h3><p>PACEへ任せる範囲と、自社に残す判断・業務を整理。</p></article><article class="step reveal"><h3>引き継ぎ・準備</h3><p>必要な情報、権限、テンプレート、選考フローを共有。</p></article><article class="step reveal"><h3>運用開始</h3><p>合意した範囲から、PACEが採用オペレーションを担当。</p></article></div>
+      </div>
+    </section>
+
+    <section class="section scope" id="faq">
+      <div class="section-inner">
+        <div class="section-kicker reveal">FAQ</div>
+        <h2 class="reveal">PACEについて、<br>よくあるご質問。</h2>
+        <div class="faq-list reveal">
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q1</b><span>どのATSに対応していますか？</span><i>＋</i></button><div class="faq-a">ご利用中のATSと運用方法を確認したうえで、対応可否と連携・更新方法をご案内します。</div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q2</b><span>一部の業務だけ依頼できますか？</span><i>＋</i></button><div class="faq-a">任せたい業務と現在の採用フローを伺い、対応範囲をご案内します。標準プラン外の個別対応は要相談です。</div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q3</b><span>月間面接人数に応じて料金はどう変わりますか？</span><i>＋</i></button><div class="faq-a">料金は「0〜10名」「11〜20名」「21〜30名」「31〜50名」の4段階です。51名以上は業務量と運用条件を確認して個別にお見積もりします。</div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q4</b><span>独自の選考フローにも対応できますか？</span><i>＋</i></button><div class="faq-a">現在の選考ステップ、関係者、承認方法をヒアリングし、対応可否を確認します。複雑な例外対応は個別にご相談ください。</div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q5</b><span>スカウトへの返信も任せられますか？</span><i>＋</i></button><div class="faq-a">「スカウト対応付きプラン」では、スカウト返信、カジュアル面談・選考案内、日程調整、進捗管理などを含みます。「エージェント対応付きプラン」にも同じ範囲が含まれます。</div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q6</b><span>エージェントとのやり取りも任せられますか？</span><i>＋</i></button><div class="faq-a">「エージェント対応付きプラン」では、推薦受付、問い合わせ対応、選考結果の連絡などを含みます。</div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q7</b><span>導入時に何を準備すればよいですか？</span><i>＋</i></button><div class="faq-a">選考フロー、利用中のATS・ツール、連絡テンプレート、関係者と役割分担などを確認します。</div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q8</b><span>候補者情報のセキュリティは？</span><i>＋</i></button><div class="faq-a">候補者情報を扱う範囲、利用システム、権限、保管・削除方法を確認し、導入前に運用設計をご案内します。</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" id="document">
+      <div class="section-inner reveal">
+        <div class="eyebrow" style="justify-content:center">PACE</div>
+        <h2>人事が忙しくても、円滑な候補者対応を。<br>採用オペレーションは、PACEに丸投げ。</h2>
+        <div class="final-values"><span>対応できる業務範囲</span><span>3つの料金プラン</span><span>導入までの流れ</span></div>
+        <p style="color:rgba(255,255,255,.62);line-height:1.85">導入条件や対応範囲、料金プランについてご相談いただけます。</p>
+        <div class="cta-row"><a class="button hot" href="https://kyute.jp/contact">PACEについて相談する <span class="arrow">→</span></a></div>
+      </div>
+    </section>
+  </main>
+
+  <a class="mobile-sticky-cta" href="https://kyute.jp/contact" aria-label="PACEについて相談する">PACEについて相談する <span>→</span></a>
+
+  <footer><div class="footer-inner"><span class="footer-brand">PACE</span><span>Process Automation × Candidate Experience</span><span>© PACE · KYUTE LLC.</span></div></footer>
+
+
+  <script>
+    const pricingSection = document.getElementById('pricing');
+    document.getElementById('top').after(pricingSection);
+    document.querySelectorAll('.is-cut').forEach(section => section.remove());
+    document.getElementById('point02').before(document.getElementById('point01'));
+
+    document.querySelectorAll('.faq-q').forEach(button => button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      const open = item.classList.toggle('open');
+      button.setAttribute('aria-expanded', String(open));
+    }));
+
+    const plans = {
+      standard: { prices: { small: 49800, medium: 79800, upper: 99800, large: 149800 }, name: '選考まるごとプラン', scope: '候補者管理・対応' },
+      plus: { prices: { small: 79800, medium: 109800, upper: 139800, large: 199800 }, name: 'スカウト対応付きプラン', scope: '候補者管理・対応 ＋ スカウト対応' },
+      complete: { prices: { small: 99800, medium: 129800, upper: 169800, large: 249800 }, name: 'エージェント対応付きプラン', scope: '候補者管理・対応 ＋ スカウト対応 ＋ エージェント対応' }
+    };
+    const internalHourlyCost = 3500;
+    const interviewCount = document.getElementById('interviewCount');
+    const simPrice = document.getElementById('simPrice');
+    const simUnit = document.getElementById('simUnit');
+    const simPlan = document.getElementById('simPlan');
+    const simCaution = document.getElementById('simCaution');
+    const costComparison = document.getElementById('costComparison');
+    const savingBubble = document.getElementById('savingBubble');
+    const interviewBands = {
+      10: { label: '0〜10名', trial: '代表10名で試算' },
+      20: { label: '11〜20名', trial: '代表20名で試算' },
+      30: { label: '21〜30名', trial: '代表30名で試算' },
+      40: { label: '31名〜50名', trial: '代表40名で試算' }
+    };
+    interviewCount.innerHTML = [
+      '<option value="10" selected>0〜10名</option>',
+      '<option value="20">11〜20名</option>',
+      '<option value="30">21〜30名</option>',
+      '<option value="40">31名〜50名</option>',
+      '<option value="over">51名以上</option>'
+    ].join('');
+
+    function getPriceTier(count) {
+      if (count <= 10) return { key: 'small', label: '0〜10名' };
+      if (count <= 20) return { key: 'medium', label: '11〜20名' };
+      if (count <= 30) return { key: 'upper', label: '21〜30名' };
+      return { key: 'large', label: '31名〜50名' };
+    }
+
+    function setCostSegment(id, cost) {
+      const segment = document.getElementById(`${id}Segment`);
+      segment.hidden = cost === 0;
+      segment.style.flexGrow = String(Math.max(cost, 1));
+      document.getElementById(`${id}Cost`).textContent = `${cost.toLocaleString('ja-JP')}円`;
+    }
+
+    function updateSimulator() {
+      const selected = document.querySelector('input[name="scopePlan"]:checked');
+      const plan = plans[selected.value];
+      document.querySelectorAll('.sim-option').forEach(option => option.classList.toggle('active', option.contains(selected)));
+      document.getElementById('scopeSummary').textContent = plan.scope;
+      if (interviewCount.value === 'over') {
+        costComparison.classList.add('is-over');
+        savingBubble.classList.remove('is-negative');
+        simPlan.textContent = `${plan.name}｜51名以上`;
+        simPrice.textContent = '個別見積';
+        simUnit.textContent = '';
+        document.getElementById('internalCostTotal').textContent = '—';
+        document.getElementById('hoursSummary').textContent = '51名以上は業務量を確認して個別試算';
+        document.getElementById('paceCostLabel').textContent = '要個別見積';
+        ['candidate','admin','scout','agent'].forEach(key => setCostSegment(key, 0));
+        document.getElementById('savingBubble').querySelector('small').textContent = '51名以上';
+        document.getElementById('savingAmount').textContent = '個別試算';
+        document.getElementById('savingBubble').querySelector('span').textContent = '個別見積';
+        document.getElementById('savingRate').textContent = '';
+        simCaution.textContent = '※月間面接人数51名以上は、業務量と運用条件を確認して内製コスト・PACE料金を個別に試算します。';
+        return;
+      }
+      costComparison.classList.remove('is-over');
+      const count = Number(interviewCount.value);
+      const tier = getPriceTier(count);
+      const pacePrice = plan.prices[tier.key];
+      simPlan.textContent = `${plan.name}｜${tier.label}｜${interviewBands[count].trial}`;
+      const componentHours = {
+        candidate: count * 2,
+        admin: 5 + count * .75,
+        scout: selected.value === 'standard' ? 0 : 8 + count * .5,
+        agent: selected.value === 'complete' ? 6 + count * .5 : 0
+      };
+      const componentCosts = Object.fromEntries(Object.entries(componentHours).map(([key, hours]) => [key, hours * internalHourlyCost]));
+      const totalHours = Object.values(componentHours).reduce((sum, hours) => sum + hours, 0);
+      const internalCost = Object.values(componentCosts).reduce((sum, cost) => sum + cost, 0);
+      const difference = internalCost - pacePrice;
+      const isNegative = difference < 0;
+      const absoluteDifference = Math.abs(difference);
+      const differenceRate = Math.round(absoluteDifference / internalCost * 100);
+      const chartMax = Math.max(internalCost, pacePrice);
+      savingBubble.classList.toggle('is-negative', isNegative);
+      savingBubble.querySelector('small').textContent = '月額';
+      savingBubble.querySelector('span').textContent = isNegative ? '円 PACEが上回る' : '円の差額目安';
+      document.getElementById('hoursSummary').textContent = `内製工数の目安 ${totalHours.toLocaleString('ja-JP')}時間 / 月`;
+      document.getElementById('internalCostTotal').textContent = internalCost.toLocaleString('ja-JP');
+      ['candidate','admin','scout','agent'].forEach(key => setCostSegment(key, componentCosts[key]));
+      simPrice.textContent = pacePrice.toLocaleString('ja-JP');
+      simUnit.textContent = '円 / 月';
+      document.getElementById('paceCostLabel').textContent = `${pacePrice.toLocaleString('ja-JP')}円`;
+      document.getElementById('internalStack').style.setProperty('--internal-ratio', String(internalCost / chartMax));
+      document.getElementById('paceStack').style.setProperty('--pace-ratio', String(pacePrice / chartMax));
+      document.getElementById('savingAmount').textContent = absoluteDifference.toLocaleString('ja-JP');
+      document.getElementById('savingRate').textContent = isNegative ? `内製試算比 +約${differenceRate}%` : `内製試算比 約${differenceRate}%`;
+      simCaution.textContent = `※内製工数は${interviewBands[count].trial}。差額は参考試算と選択したPACEプラン料金との比較で、実際の費用削減を保証するものではありません。採用判断・面接・評価など双方で共通する業務は含みません。`;
+    }
+
+    document.querySelectorAll('input[name="scopePlan"]').forEach(input => input.addEventListener('change', updateSimulator));
+    interviewCount.addEventListener('change', updateSimulator);
+    window.addEventListener('resize', () => requestAnimationFrame(updateSimulator));
+    updateSimulator();
+
+    const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    }), { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    const mobileStickyCta = document.querySelector('.mobile-sticky-cta');
+    const heroSection = document.getElementById('top');
+    const finalCtaSection = document.getElementById('document');
+    let mobileCtaFrame;
+    const syncMobileStickyCta = () => {
+      const heroRect = heroSection.getBoundingClientRect();
+      const finalRect = finalCtaSection.getBoundingClientRect();
+      const passedHero = heroRect.bottom <= window.innerHeight * .25;
+      const finalCtaVisible = finalRect.top < window.innerHeight && finalRect.bottom > 0;
+      mobileStickyCta.classList.toggle('is-visible', passedHero && !finalCtaVisible);
+    };
+    const queueMobileStickyCta = () => {
+      cancelAnimationFrame(mobileCtaFrame);
+      mobileCtaFrame = requestAnimationFrame(syncMobileStickyCta);
+    };
+    window.addEventListener('scroll', queueMobileStickyCta, { passive: true });
+    window.addEventListener('resize', queueMobileStickyCta);
+    syncMobileStickyCta();
+
+    renderNotes();
+  </script>
+</body>
+</html>
