@@ -59,7 +59,7 @@ export function mountLp(root) {
   on(window, "scroll", updateChrome, { passive: true });
   updateChrome();
   root.querySelectorAll("[data-download]").forEach((link) => {
-    on(link, "click", () => emit("material_download_click", { location: link.dataset.download }));
+    on(link, "click", () => emit("material_request_click", { location: link.dataset.download }));
   });
   function cover() {
     const frame = heroMedia.querySelector("iframe");
@@ -77,7 +77,7 @@ export function mountLp(root) {
   function fallback() {
     if (disposed) return;
     heroMedia.classList.remove("is-playing");
-    heroStatus.textContent = "背景はサムネイル表示／作品から本編へ";
+    heroStatus.textContent = "背景映像は未再生／制作動画から本編へ";
     heroToggle.textContent = "作品を見る";
     heroToggle.disabled = false;
     ready = false;
@@ -114,7 +114,7 @@ export function mountLp(root) {
           cover();
           heroToggle.disabled = false;
           heroToggle.textContent = manuallyPaused ? "映像を再生" : "映像を停止";
-          heroStatus.textContent = manuallyPaused ? "背景は静止表示／自社メディア制作映像" : "自社メディア映像／無音";
+          heroStatus.textContent = manuallyPaused ? "背景映像は停止中／再生を選べます" : "自社メディア映像／無音";
           playHero();
         },
         onStateChange: (event) => {
@@ -149,7 +149,7 @@ export function mountLp(root) {
   }).catch(fallback);
   const fallbackTimer = window.setTimeout(() => {
     if (disposed || heroMedia.classList.contains("is-playing")) return;
-    heroStatus.textContent = reduced.matches ? "背景は静止表示／自社メディア制作映像" : "背景は静止表示／再生を選べます";
+    heroStatus.textContent = reduced.matches ? "背景映像は停止中／再生を選べます" : "背景映像は未再生／再生を選べます";
     heroToggle.disabled = false;
     heroToggle.textContent = ready ? "映像を再生" : "作品を見る";
   }, 13000);
@@ -163,6 +163,17 @@ export function mountLp(root) {
   root.querySelectorAll("[data-scroll]").forEach((button) => {
     on(button, "click", () => rail.scrollBy({ left: rail.clientWidth * .72 * Number(button.dataset.scroll), behavior: reduced.matches ? "instant" : "smooth" }));
   });
+  const railControls = root.querySelector(".rail-controls");
+  function updateRailControls() {
+    const maximum = rail.scrollWidth - rail.clientWidth;
+    railControls.hidden = maximum <= 2;
+    root.querySelector('[data-scroll="-1"]').disabled = rail.scrollLeft <= 2;
+    root.querySelector('[data-scroll="1"]').disabled = rail.scrollLeft >= maximum - 2;
+  }
+  const railResize = new ResizeObserver(updateRailControls);
+  railResize.observe(rail);
+  on(rail, "scroll", updateRailControls, { passive: true });
+  updateRailControls();
   on(rail, "keydown", (event) => {
     if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
     event.preventDefault();
@@ -252,6 +263,7 @@ export function mountLp(root) {
     controller.abort();
     window.clearTimeout(fallbackTimer);
     resize.disconnect();
+    railResize.disconnect();
     visibility.disconnect();
     cleanDialog(false);
     if (dialog.open) dialog.close();
