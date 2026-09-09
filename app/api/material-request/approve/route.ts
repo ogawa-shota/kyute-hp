@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { escapeHtml, readApprovalToken, sendScheduleEmail } from "../lib";
+import { buildScheduleEmail, escapeHtml, readApprovalToken, sendScheduleEmail } from "../lib";
 
 export const runtime = "nodejs";
 
@@ -14,7 +14,9 @@ export async function GET(request: Request) {
   const token = new URL(request.url).searchParams.get("token") || "";
   try {
     const data = readApprovalToken(token);
-    return page("日程調整メールの送信確認", `<h1>日程調整メールを送信しますか？</h1><p>まだ送信されていません。宛先とテンプレートを確認してください。</p><dl><dt>会社名</dt><dd>${escapeHtml(data.company)}</dd><dt>お名前</dt><dd>${escapeHtml(data.name)}</dd><dt>宛先</dt><dd>${escapeHtml(data.email)}</dd></dl><div class="mail"><strong>件名</strong><br>採用密着動画について、ご相談の日程調整<hr><strong>本文</strong><br>${escapeHtml(data.name)} 様<br><br>資料をご覧いただき、ありがとうございます。<br>採用密着動画についてご相談をご希望でしたら、メール内のリンクからご都合のよい日時をお選びください。</div><form method="post"><input type="hidden" name="token" value="${escapeHtml(token)}"><button type="submit">承認してメールを送信する</button></form><small>承認リンクの有効期限は資料請求から7日間です。</small>`);
+    const template = buildScheduleEmail(data);
+    const preview = escapeHtml(template.text).replace(/\n/g, "<br>");
+    return page("日程調整メールの送信確認", `<h1>日程調整メールを送信しますか？</h1><p>まだ送信されていません。宛先とテンプレートを確認してください。</p><dl><dt>会社名</dt><dd>${escapeHtml(data.company)}</dd><dt>担当者名</dt><dd>${escapeHtml(data.name)}</dd><dt>宛先</dt><dd>${escapeHtml(data.email)}</dd></dl><div class="mail"><strong>件名</strong><br>${escapeHtml(template.subject)}<hr><strong>本文</strong><br>${preview}</div><form method="post"><input type="hidden" name="token" value="${escapeHtml(token)}"><button type="submit">承認してメールを送信する</button></form><small>承認リンクの有効期限は資料請求から7日間です。</small>`);
   } catch {
     return page("承認リンクが無効です", "<h1>承認リンクが無効です</h1><p>有効期限が切れているか、URLが正しくありません。</p>", 400);
   }

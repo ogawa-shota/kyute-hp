@@ -66,19 +66,27 @@ export async function sendResendEmail(payload: Record<string, unknown>, idempote
   }
 }
 
-export async function sendScheduleEmail(data: ApprovalData) {
-  const from = process.env.CONTACT_FROM_EMAIL;
+export function buildScheduleEmail(data: ApprovalData) {
   const schedulingUrl = process.env.MATERIAL_SCHEDULING_URL || DEFAULT_SCHEDULING_URL;
-  if (!from || !schedulingUrl) throw new Error("Mail settings are not configured");
+  if (!schedulingUrl) throw new Error("Scheduling URL is not configured");
   const schedule = new URL(schedulingUrl);
   if (schedule.protocol !== "https:") throw new Error("Invalid scheduling URL");
+  return {
+    subject: "【KYUTE】採用密着動画のご相談｜日程調整のお願い",
+    text: `${data.company}\n${data.name} 様\n\nこのたびは「採用密着動画制作サービス」の資料をご覧いただき、誠にありがとうございます。\n\n貴社の採用課題や、候補者へ伝えたい「人・カルチャー」の魅力について、ぜひ一度お話を伺えればと存じます。\n\nお打ち合わせでは、現在の採用活動や採用したい人物像を伺ったうえで、密着動画の活用方法、制作の進め方、費用の目安を具体的にご案内いたします。まだ実施を決めていない段階でも、どうぞお気軽にご相談ください。\n\n以下のページから、ご都合のよい日時をお選びいただけます。\n${schedule.toString()}\n\nご都合の合う日時がない場合や、ご不明点がございましたら、本メールにそのままご返信ください。\n\nお話しできることを、心より楽しみにしております。\n\nKYUTE合同会社\n採用密着動画制作サービス\n${CONTACT_EMAIL}`,
+    html: `<div style="margin:0 auto;max-width:640px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','Yu Gothic',YuGothic,Arial,sans-serif;color:#17201d;line-height:1.8"><p>${escapeHtml(data.company)}<br>${escapeHtml(data.name)} 様</p><p>このたびは「採用密着動画制作サービス」の資料をご覧いただき、誠にありがとうございます。</p><p>貴社の採用課題や、候補者へ伝えたい<strong>「人・カルチャー」の魅力</strong>について、ぜひ一度お話を伺えればと存じます。</p><p>お打ち合わせでは、現在の採用活動や採用したい人物像を伺ったうえで、密着動画の活用方法、制作の進め方、費用の目安を具体的にご案内いたします。<br>まだ実施を決めていない段階でも、どうぞお気軽にご相談ください。</p><p>以下のボタンから、ご都合のよい日時をお選びいただけます。</p><p style="margin:28px 0"><a href="${escapeHtml(schedule.toString())}" style="display:inline-block;padding:14px 28px;border-radius:8px;background:#0a4a37;color:#ffffff;text-decoration:none;font-weight:700">相談日時を選ぶ</a></p><p>ご都合の合う日時がない場合や、ご不明点がございましたら、本メールにそのままご返信ください。</p><p>お話しできることを、心より楽しみにしております。</p><p style="margin-top:32px">KYUTE合同会社<br>採用密着動画制作サービス<br><a href="mailto:${CONTACT_EMAIL}" style="color:#0a4a37">${CONTACT_EMAIL}</a></p></div>`,
+  };
+}
+
+export async function sendScheduleEmail(data: ApprovalData) {
+  const from = process.env.CONTACT_FROM_EMAIL;
+  if (!from) throw new Error("Mail settings are not configured");
+  const template = buildScheduleEmail(data);
   await sendResendEmail({
     from,
     to: [data.email],
     reply_to: CONTACT_EMAIL,
-    subject: "【KYUTE】採用密着動画のご相談｜日程調整のお願い",
-    text: `${data.company}\n${data.name} 様\n\nこのたびは「採用密着動画制作サービス」の資料をご覧いただき、誠にありがとうございます。\n\n貴社の採用課題や、候補者へ伝えたい「人・カルチャー」の魅力について、ぜひ一度お話を伺えればと存じます。\n\nお打ち合わせでは、現在の採用活動や採用したい人物像を伺ったうえで、密着動画の活用方法、制作の進め方、費用の目安を具体的にご案内いたします。まだ実施を決めていない段階でも、どうぞお気軽にご相談ください。\n\n以下のページから、ご都合のよい日時をお選びいただけます。\n${schedule.toString()}\n\nご都合の合う日時がない場合や、ご不明点がございましたら、本メールにそのままご返信ください。\n\nお話しできることを、心より楽しみにしております。\n\nKYUTE合同会社\n採用密着動画制作サービス\n${CONTACT_EMAIL}`,
-    html: `<div style="margin:0 auto;max-width:640px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','Yu Gothic',YuGothic,Arial,sans-serif;color:#17201d;line-height:1.8"><p>${escapeHtml(data.company)}<br>${escapeHtml(data.name)} 様</p><p>このたびは「採用密着動画制作サービス」の資料をご覧いただき、誠にありがとうございます。</p><p>貴社の採用課題や、候補者へ伝えたい<strong>「人・カルチャー」の魅力</strong>について、ぜひ一度お話を伺えればと存じます。</p><p>お打ち合わせでは、現在の採用活動や採用したい人物像を伺ったうえで、密着動画の活用方法、制作の進め方、費用の目安を具体的にご案内いたします。<br>まだ実施を決めていない段階でも、どうぞお気軽にご相談ください。</p><p>以下のボタンから、ご都合のよい日時をお選びいただけます。</p><p style="margin:28px 0"><a href="${escapeHtml(schedule.toString())}" style="display:inline-block;padding:14px 28px;border-radius:8px;background:#0a4a37;color:#ffffff;text-decoration:none;font-weight:700">相談日時を選ぶ</a></p><p>ご都合の合う日時がない場合や、ご不明点がございましたら、本メールにそのままご返信ください。</p><p>お話しできることを、心より楽しみにしております。</p><p style="margin-top:32px">KYUTE合同会社<br>採用密着動画制作サービス<br><a href="mailto:${CONTACT_EMAIL}" style="color:#0a4a37">${CONTACT_EMAIL}</a></p></div>`,
+    ...template,
     tags: [{ name: "type", value: "schedule_followup" }],
   }, `schedule-${data.requestId}`);
 }
