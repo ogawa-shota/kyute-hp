@@ -20,7 +20,11 @@ export default function Runtime() {
     }), { threshold: .18 });
     root.querySelectorAll('[data-uj-reveal], [data-uj-count]').forEach(el => observer.observe(el));
     function click(event: Event) {
-      const target = (event.target as Element).closest<HTMLElement>('[data-uj-video], [data-uj-mode], [data-uj-topic]'); if(!target) return;
+      const target = (event.target as Element).closest<HTMLElement>('[data-uj-video], [data-uj-topic], a[href="#uj-research"]'); if(!target) return;
+      if(target.getAttribute('href')==='#uj-research') {
+        const sources=root!.querySelector<HTMLDetailsElement>('#uj-research details');
+        if(sources)sources.open=true;
+      }
       if(target.dataset.ujVideo && validIds.has(target.dataset.ujVideo)) {
         opener.current=target;setFilm({id:target.dataset.ujVideo,start:Number(target.dataset.start)||0,title:target.dataset.title||'制作映像'});
       }
@@ -29,12 +33,7 @@ export default function Runtime() {
         root!.querySelectorAll<HTMLElement>('[data-uj-topic]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.ujTopic===topic)));
         root!.querySelectorAll<HTMLElement>('[data-uj-design]').forEach(panel=>{panel.hidden=panel.dataset.ujDesign!==topic;});
       }
-      if(target.dataset.ujMode) {
-        const mode=target.dataset.ujMode;
-        root!.querySelectorAll<HTMLElement>('[data-uj-mode]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.ujMode===mode)));
-        const comparison=root!.querySelector<HTMLElement>('[data-uj-comparison]');
-        if(comparison){comparison.dataset.ujComparison=mode;comparison.querySelector<HTMLElement>('.uj-before')!.hidden=mode!=='words';comparison.querySelector<HTMLElement>('.uj-after')!.hidden=mode!=='film';}
-      }
+
     }
     root.addEventListener('click',click);
     return()=>{observer.disconnect();frames.forEach(cancelAnimationFrame);root.removeEventListener('click',click);};

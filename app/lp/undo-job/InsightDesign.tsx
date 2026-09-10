@@ -6,11 +6,11 @@ const cases = [
     source: 'アーシャルデザイン（2024年11月〜2025年1月・n=102）／スポーツフィールド（2026年2月・調査全体n=1,225）。上記63%・68%の調査。',
     href: '#uj-evidence',
     thought: <>ただ仲が良い、の奥に。<br />本気で同じ目標を<br />追える仲間がいるか。</>,
-    interpretation: '勝った喜びだけでなく、うまくいかない時間も共有してきた。その経験があるからこそ、苦しいときの関わり方に、チームの本当の姿を感じる人もいるのではないか。',
+    interpretation: '苦しい時間も共有した経験がある。だから、チームの真価を知りたいのでは。',
     before: '「御社の雰囲気は？」から、一歩深く。',
     question: <>チームで一番きつかった瞬間、<br />誰が、何をしてくれましたか？</>,
-    shoot: '振り返りのミーティングに密着。本人と同僚の両方に聞き、実際の声かけや、役割を補い合う場面を探す。',
-    edit: '目標 → つまずき → 仲間の関わり → 次の行動。成功談だけでなく、チームがどう立て直したかをつなぐ。',
+    shoot: '振り返りの会話と、仲間が支える瞬間。',
+    edit: 'つまずきから、チームで立て直すまで。',
   },
   {
     key: 'growth', label: '切磋琢磨と成長', number: '02',
@@ -19,11 +19,11 @@ const cases = [
     source: 'スポーツフィールド／2019年3月・就職イベント参加者約4,000名。過去の調査であり、現在の学生全体の傾向を示す数値ではありません。',
     href: '#uj-research',
     thought: <>「昨日より、できる」。<br />あの成長実感を、<br />仕事でも持てるだろうか。</>,
-    interpretation: '練習を重ねて少しずつ上達する。自分より上手い仲間に刺激を受ける。「成長できます」の一言より、誰と、どう力を伸ばせるかを知りたい人もいるのではないか。',
+    interpretation: '昨日より上手くなる喜びを知っている。だから、成長の過程まで見たいのでは。',
     before: '「成長できる環境ですか？」から、一歩深く。',
     question: <>最近、同僚に「かなわない」と<br />思ったのは、どんな場面ですか？</>,
-    shoot: '若手と先輩の振り返り、その後のやり直しを追う。「助言を受けて、仕事はどう変わったか」まで確かめる。',
-    edit: '最初のつまずき → 具体的なフィードバック → 変わった行動。研修制度の紹介に、成長の過程を重ねる。',
+    shoot: '先輩の助言と、それを受けたやり直し。',
+    edit: 'できなかったことが、できるようになる過程。',
   },
   {
     key: 'passion', label: '仕事への没頭', number: '03',
@@ -32,11 +32,11 @@ const cases = [
     source: 'ONE CAREER／体育会出身社員3名の定性記事（初出2024年10月、掲載2025年10月）。一社の個別事例であり、全体傾向ではありません。',
     href: 'https://note.onecareer.co.jp/n/n26c6edadd416',
     thought: <>競技を終えた、その先で。<br />また何かに本気になれる<br />自分を、想像できるか。</>,
-    interpretation: '目標に向けて工夫し、時間を忘れるほど打ち込んだ経験。次の仕事にも、自分が情熱を注げる理由や、役割を果たす手応えを求める人もいるのではないか。',
+    interpretation: '時間を忘れて打ち込んだ経験がある。だから、次に夢中になれる理由を探すのでは。',
     before: '「やりがいは何ですか？」から、一歩深く。',
     question: <>うまくいかなくても、<br />この仕事を続けたいのは、なぜですか？</>,
-    shoot: '本人がこだわる準備や、自ら手を挙げた仕事に密着。作業の合間に、誰のために、何を実現したいのかを聞く。',
-    edit: '本人の選択 → 難しさ → 続ける理由 → いまの仕事。競技時代の話は、本人が意味を感じる接点だけを残す。',
+    shoot: '自ら挑んだ仕事と、妥協しない準備。',
+    edit: '壁にぶつかっても、続けたい理由。',
   },
 ];
 
@@ -44,17 +44,17 @@ export default function InsightDesign() {
   return <section className="uj-section uj-method" id="uj-method">
     <div className="uj-wrap">
       <p className="uj-tag"><span>03</span>候補者理解を、撮り方に変える</p>
-      <div className="uj-section-head"><h2 data-uj-reveal>「何を撮るか」は、<br /><em>「何に心が動くか」から。</em></h2><p>データを読む。背景を考える。<br />仕事との接点を、取材で確かめる。<br />その順番が、映像の中身を変えます。</p></div>
+      <div className="uj-section-head"><h2 data-uj-reveal>体育会出身者だから、<br /><em>聞けること。撮れること。</em></h2><p>候補者と、出演者。<br />両方を理解して、企画・制作。</p></div>
       <div className="uj-method-path" aria-label="動画企画の考え方"><span>DATA <small>調査・語り</small></span><b aria-hidden="true">→</b><span>INSIGHT <small>候補者理解の仮説</small></span><b aria-hidden="true">→</b><strong>だから、こう撮る。</strong></div>
       <div className="uj-topic-switch" role="group" aria-label="採用動画の企画テーマ"><p>届けたい魅力から、<br />企画の違いを見る</p>{cases.map((item,i)=><button key={item.key} id={`uj-topic-${item.key}`} type="button" data-uj-topic={item.key} aria-pressed={i===0} aria-controls={`uj-design-${item.key}`}><span>{item.number}</span>{item.label}<b aria-hidden="true">↗</b></button>)}</div>
       {cases.map((item,i)=><article className="uj-design-case" key={item.key} id={`uj-design-${item.key}`} data-uj-design={item.key} hidden={i!==0} aria-labelledby={`uj-topic-${item.key}`}>
         <div className="uj-research-to-insight">
-          <div className="uj-case-fact"><p className="uj-step-label"><b>DATA</b><span>確認できた事実</span></p><h3>{item.fact}</h3><p>{item.evidence}</p><a className="uj-case-source" href={item.href} {...(item.href.startsWith('https')?{target:'_blank',rel:'noreferrer'}:{})}>{item.source} ↗</a></div>
+          <div className="uj-case-fact"><p className="uj-step-label"><b>DATA</b><span>確認できた事実</span></p><h3>{item.fact}</h3><p>{item.evidence}</p><details className="uj-case-source"><summary>出典・調査条件</summary><a href={item.href} {...(item.href.startsWith('https')?{target:'_blank',rel:'noreferrer'}:{})}>{item.source} ↗</a></details></div>
           <div className="uj-case-insight"><p className="uj-step-label"><b>INSIGHT</b><span>候補者理解の仮説</span></p><h3>{item.thought}</h3><p>{item.interpretation}</p></div>
         </div>
         <div className="uj-shoot-plan"><div className="uj-shoot-header"><p className="uj-step-label"><b>VIDEO</b><span>だから、こう撮る。</span></p><span>企画・質問の例</span></div><p className="uj-question-before">{item.before}</p><h3>{item.question}</h3><div className="uj-shot-edit"><div><span>撮る場面</span><p>{item.shoot}</p></div><div><span>編集の視点</span><p>{item.edit}</p></div></div></div>
       </article>)}
-      <div className="uj-method-ethic"><strong>答えを決めて撮らない。<br className="uj-mobile" />その人の言葉で、確かめる。</strong><p>体育会経験者にも、一人ひとり違う価値観があります。<br />仮説をもとに、御社の仕事との接点を取材。異なる答えも受け止め、実際の場面や周囲の声と照らし合わせます。</p></div>
+      <p className="uj-method-ethic"><strong>答えを決めつけず、その人の言葉から。</strong></p>
     </div>
   </section>;
 }
