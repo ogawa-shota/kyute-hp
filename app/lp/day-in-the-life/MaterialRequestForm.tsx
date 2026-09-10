@@ -73,8 +73,8 @@ export default function MaterialRequestForm() {
   return (
     <form className="material-form" onSubmit={submit} aria-labelledby="material-form-title" aria-busy={pending}>
       <div>
-        <h3 id="material-form-title">資料をメールで受け取る</h3>
-        <p className="form-note">会社名・お名前・メールアドレスをご入力ください。資料PDFを自動送信します。</p>
+        <h3 id="material-form-title">資料をダウンロード</h3>
+        <p className="form-note">会社名・お名前・メールアドレスをご入力ください。資料PDFはメールでお送りします。</p>
       </div>
       <div className="form-grid">
         <div className="form-field">
@@ -100,9 +100,9 @@ export default function MaterialRequestForm() {
       </label>
       {error && <div className="form-error" role="alert" ref={result} tabIndex={-1}>{error}</div>}
       <button className="cta" type="submit" disabled={pending}>
-        {pending ? "送信しています…" : "資料をメールで受け取る"}<span aria-hidden="true">→</span>
+        {pending ? "送信しています…" : "資料をダウンロード"}<span aria-hidden="true">→</span>
       </button>
-      <noscript><p className="form-note">資料請求にはJavaScriptを有効にするか、<a href="mailto:contact@kyute.jp?subject=%E6%8E%A1%E7%94%A8%E5%AF%86%E7%9D%80%E5%8B%95%E7%94%BB%E3%81%AE%E8%B3%87%E6%96%99%E8%AB%8B%E6%B1%82">メールで会社名・お名前をお知らせください。</a></p></noscript>
+      <noscript><p className="form-note">資料請求にはJavaScriptを有効にするか、<a href="mailto:contact@kyute.jp?subject=%E6%8E%A1%E7%94%A8%E5%90%91%E3%81%91%E5%AF%86%E7%9D%80%E5%8B%95%E7%94%BB%E3%81%AE%E8%B3%87%E6%96%99%E8%AB%8B%E6%B1%82">メールで会社名・お名前をお知らせください。</a></p></noscript>
     </form>
   );
 }
