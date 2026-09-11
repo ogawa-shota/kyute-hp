@@ -33,18 +33,18 @@ const cases = [
     href: 'https://note.onecareer.co.jp/n/n26c6edadd416',
     thought: <>競技を終えた、その先で。<br />また何かに本気になれる<br />自分を、想像できるか。</>,
     interpretation: '時間を忘れて打ち込んだ経験がある。だから、次に夢中になれる理由を探すのでは。',
-    before: '「やりがいは何ですか？」から、一歩深く。',
-    question: <>うまくいかなくても、<br />この仕事を続けたいのは、なぜですか？</>,
-    shoot: '自ら挑んだ仕事と、妥協しない準備。',
-    edit: '壁にぶつかっても、続けたい理由。',
+    before: '競技の経験も、成功談だけで終えない。',
+    question: <>競技の経験は、仕事でどう生きた？<br />通用しなかったこともありますか？</>,
+    shoot: '判断に迷う場面と、仕事の進め方を変えた工夫。',
+    edit: '経験の限界から、いまの価値観と続ける理由へ。',
   },
 ];
 
 export default function InsightDesign() {
   return <section className="uj-section uj-method" id="uj-method">
     <div className="uj-wrap">
-      <p className="uj-tag"><span>03</span>候補者理解を、撮り方に変える</p>
-      <div className="uj-section-head"><h2 data-uj-reveal>体育会出身者だから、<br /><em>聞けること。撮れること。</em></h2><p>候補者と、出演者。<br />両方を理解して、企画・制作。</p></div>
+      <p className="uj-tag"><span>04</span>企画設計を、具体例で</p>
+      <div className="uj-section-head"><h2 data-uj-reveal>候補者の疑問から、<br /><em>問いと場面を決める。</em></h2><p>採用したい人物の期待と不安を整理。<br />伝える社員・質問・仕事の場面へ。</p></div>
       <div className="uj-method-path" aria-label="動画企画の考え方"><span>DATA <small>調査・語り</small></span><b aria-hidden="true">→</b><span>INSIGHT <small>候補者理解の仮説</small></span><b aria-hidden="true">→</b><strong>だから、こう撮る。</strong></div>
       <div className="uj-topic-switch" role="group" aria-label="採用動画の企画テーマ"><p>届けたい魅力から、<br />企画の違いを見る</p>{cases.map((item,i)=><button key={item.key} id={`uj-topic-${item.key}`} type="button" data-uj-topic={item.key} aria-pressed={i===0} aria-controls={`uj-design-${item.key}`}><span>{item.number}</span>{item.label}<b aria-hidden="true">↗</b></button>)}</div>
       {cases.map((item,i)=><article className="uj-design-case" key={item.key} id={`uj-design-${item.key}`} data-uj-design={item.key} hidden={i!==0} aria-labelledby={`uj-topic-${item.key}`}>
