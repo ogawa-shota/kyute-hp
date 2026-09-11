@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Zen_Kaku_Gothic_New, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SiteChrome } from "@/components/SiteChrome";
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "./seo";
@@ -47,6 +48,7 @@ export default function RootLayout({
         className={`${sans.variable} ${latin.variable} font-sans antialiased`}
       >
         <SiteChrome>{children}</SiteChrome>
+        <Analytics />
       </body>
     </html>
   );
