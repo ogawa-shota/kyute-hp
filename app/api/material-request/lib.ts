@@ -11,7 +11,7 @@ export type ApprovalData = {
   email: string;
   requestId: string;
   expiresAt: number;
-  service?: "culture" | "documentary";
+  service?: "culture" | "documentary" | "undo-job";
 };
 
 export function escapeHtml(value: string) {
@@ -69,9 +69,10 @@ export async function sendResendEmail(payload: Record<string, unknown>, idempote
 
 export function buildScheduleEmail(data: ApprovalData) {
   const culture = data.service === "culture";
-  const serviceName = culture ? "採用YouTube運用代行サービス" : "採用密着動画制作サービス";
-  const serviceShort = culture ? "採用YouTube" : "採用密着動画";
-  const meetingContent = culture ? "採用YouTubeの活用方法、企画・制作・運用の進め方、費用の目安" : "密着動画の活用方法、制作の進め方、費用の目安";
+  const undoJob = data.service === "undo-job";
+  const serviceName = undoJob ? "運動部のシゴト。" : culture ? "採用YouTube運用代行サービス" : "採用密着動画制作サービス";
+  const serviceShort = undoJob ? "運動部のシゴト。" : culture ? "採用YouTube" : "採用密着動画";
+  const meetingContent = undoJob ? "体育会人材に向けた採用動画の活用方法、企画・制作・掲載の進め方、費用の目安" : culture ? "採用YouTubeの活用方法、企画・制作・運用の進め方、費用の目安" : "密着動画の活用方法、制作の進め方、費用の目安";
   const schedulingUrl = process.env.MATERIAL_SCHEDULING_URL || DEFAULT_SCHEDULING_URL;
   if (!schedulingUrl) throw new Error("Scheduling URL is not configured");
   const schedule = new URL(schedulingUrl);
@@ -93,7 +94,7 @@ export async function sendScheduleEmail(data: ApprovalData) {
     reply_to: CONTACT_EMAIL,
     ...template,
     tags: [{ name: "type", value: "schedule_followup" }],
-  }, `${data.service === "culture" ? "culture-schedule" : "schedule"}-${data.requestId}`);
+  }, `${data.service === "undo-job" ? "undo-job-schedule" : data.service === "culture" ? "culture-schedule" : "schedule"}-${data.requestId}`);
 }
 
 export function verifySlackSignature(rawBody: string, timestamp: string, signature: string) {
@@ -106,7 +107,7 @@ export function verifySlackSignature(rawBody: string, timestamp: string, signatu
 }
 
 export async function postSlackApproval(token: string, data: Omit<ApprovalData, "expiresAt">) {
-  const sourceName = data.service === "culture" ? "採用YouTube LP" : "採用密着動画LP";
+  const sourceName = data.service === "undo-job" ? "運動部のシゴト。LP" : data.service === "culture" ? "採用YouTube LP" : "採用密着動画LP";
   const botToken = process.env.MATERIAL_SLACK_BOT_TOKEN;
   const channel = process.env.MATERIAL_SLACK_CHANNEL_ID;
   if (!botToken || !channel) throw new Error("Slack configuration is incomplete");
