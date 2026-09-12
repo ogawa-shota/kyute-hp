@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CultureLP from "./CultureLP";
 import "./culture.css";
+import "./culture-refinements.css";
 
 const title = "カルチャー訴求特化の、採用YouTube運用代行 | KYUTE";
 const description = "求人票では伝わらない、人・仕事・会社の空気まで。KYUTEが採用YouTubeの企画・撮影・編集・投稿・改善を一気通貫で支援。制作映像とサービス資料をご覧いただけます。";

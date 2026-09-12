@@ -82,7 +82,7 @@ export default function CultureEngine() {
     <section id="operation" className="ce-section" aria-labelledby={`${markerId}-heading`}>
       <div className="ce-inner">
         <header className="ce-heading">
-          <h2 id={`${markerId}-heading`}>一本の先を、<br />つくり続ける。</h2>
+          <h2 id={`${markerId}-heading`}>ただ動画をつくるのではなく、<br />採用成果につなげます。</h2>
           <p>採用反応と視聴データを、次の企画に戻す。<br />つくって終わらない、採用YouTubeの継続運用。</p>
         </header>
 

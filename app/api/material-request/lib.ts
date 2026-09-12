@@ -11,6 +11,7 @@ export type ApprovalData = {
   email: string;
   requestId: string;
   expiresAt: number;
+  service?: "culture" | "documentary";
 };
 
 export function escapeHtml(value: string) {
@@ -67,14 +68,18 @@ export async function sendResendEmail(payload: Record<string, unknown>, idempote
 }
 
 export function buildScheduleEmail(data: ApprovalData) {
+  const culture = data.service === "culture";
+  const serviceName = culture ? "採用YouTube運用代行サービス" : "採用密着動画制作サービス";
+  const serviceShort = culture ? "採用YouTube" : "採用密着動画";
+  const meetingContent = culture ? "採用YouTubeの活用方法、企画・制作・運用の進め方、費用の目安" : "密着動画の活用方法、制作の進め方、費用の目安";
   const schedulingUrl = process.env.MATERIAL_SCHEDULING_URL || DEFAULT_SCHEDULING_URL;
   if (!schedulingUrl) throw new Error("Scheduling URL is not configured");
   const schedule = new URL(schedulingUrl);
   if (schedule.protocol !== "https:") throw new Error("Invalid scheduling URL");
   return {
-    subject: "【KYUTE】採用密着動画のご相談｜日程調整のお願い",
-    text: `${data.company}\n${data.name} 様\n\nこのたびは「採用密着動画制作サービス」の資料をご覧いただき、誠にありがとうございます。\n\n貴社の採用課題や、候補者へ伝えたい「人・カルチャー」の魅力について、ぜひ一度お話を伺えればと存じます。\n\nお打ち合わせでは、現在の採用活動や採用したい人物像を伺ったうえで、密着動画の活用方法、制作の進め方、費用の目安を具体的にご案内いたします。まだ実施を決めていない段階でも、どうぞお気軽にご相談ください。\n\n以下のページから、ご都合のよい日時をお選びいただけます。\n${schedule.toString()}\n\nご都合の合う日時がない場合や、ご不明点がございましたら、本メールにそのままご返信ください。\n\nお話しできることを、心より楽しみにしております。\n\nKYUTE合同会社\n採用密着動画制作サービス\n${CONTACT_EMAIL}`,
-    html: `<div style="margin:0 auto;max-width:640px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','Yu Gothic',YuGothic,Arial,sans-serif;color:#17201d;line-height:1.8"><p>${escapeHtml(data.company)}<br>${escapeHtml(data.name)} 様</p><p>このたびは「採用密着動画制作サービス」の資料をご覧いただき、誠にありがとうございます。</p><p>貴社の採用課題や、候補者へ伝えたい<strong>「人・カルチャー」の魅力</strong>について、ぜひ一度お話を伺えればと存じます。</p><p>お打ち合わせでは、現在の採用活動や採用したい人物像を伺ったうえで、密着動画の活用方法、制作の進め方、費用の目安を具体的にご案内いたします。<br>まだ実施を決めていない段階でも、どうぞお気軽にご相談ください。</p><p>以下のボタンから、ご都合のよい日時をお選びいただけます。</p><p style="margin:28px 0"><a href="${escapeHtml(schedule.toString())}" style="display:inline-block;padding:14px 28px;border-radius:8px;background:#0a4a37;color:#ffffff;text-decoration:none;font-weight:700">相談日時を選ぶ</a></p><p>ご都合の合う日時がない場合や、ご不明点がございましたら、本メールにそのままご返信ください。</p><p>お話しできることを、心より楽しみにしております。</p><p style="margin-top:32px">KYUTE合同会社<br>採用密着動画制作サービス<br><a href="mailto:${CONTACT_EMAIL}" style="color:#0a4a37">${CONTACT_EMAIL}</a></p></div>`,
+    subject: `【KYUTE】${serviceShort}のご相談｜日程調整のお願い`,
+    text: `${data.company}\n${data.name} 様\n\nこのたびは「${serviceName}」の資料をご覧いただき、誠にありがとうございます。\n\n貴社の採用課題や、候補者へ伝えたい「人・カルチャー」の魅力について、ぜひ一度お話を伺えればと存じます。\n\nお打ち合わせでは、現在の採用活動や採用したい人物像を伺ったうえで、${meetingContent}を具体的にご案内いたします。まだ実施を決めていない段階でも、どうぞお気軽にご相談ください。\n\n以下のページから、ご都合のよい日時をお選びいただけます。\n${schedule.toString()}\n\nご都合の合う日時がない場合や、ご不明点がございましたら、本メールにそのままご返信ください。\n\nお話しできることを、心より楽しみにしております。\n\nKYUTE合同会社\n${serviceName}\n${CONTACT_EMAIL}`,
+    html: `<div style="margin:0 auto;max-width:640px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue','Yu Gothic',YuGothic,Arial,sans-serif;color:#17201d;line-height:1.8"><p>${escapeHtml(data.company)}<br>${escapeHtml(data.name)} 様</p><p>このたびは「${serviceName}」の資料をご覧いただき、誠にありがとうございます。</p><p>貴社の採用課題や、候補者へ伝えたい<strong>「人・カルチャー」の魅力</strong>について、ぜひ一度お話を伺えればと存じます。</p><p>お打ち合わせでは、現在の採用活動や採用したい人物像を伺ったうえで、${meetingContent}を具体的にご案内いたします。<br>まだ実施を決めていない段階でも、どうぞお気軽にご相談ください。</p><p>以下のボタンから、ご都合のよい日時をお選びいただけます。</p><p style="margin:28px 0"><a href="${escapeHtml(schedule.toString())}" style="display:inline-block;padding:14px 28px;border-radius:8px;background:#0a4a37;color:#ffffff;text-decoration:none;font-weight:700">相談日時を選ぶ</a></p><p>ご都合の合う日時がない場合や、ご不明点がございましたら、本メールにそのままご返信ください。</p><p>お話しできることを、心より楽しみにしております。</p><p style="margin-top:32px">KYUTE合同会社<br>${serviceName}<br><a href="mailto:${CONTACT_EMAIL}" style="color:#0a4a37">${CONTACT_EMAIL}</a></p></div>`,
   };
 }
 
@@ -88,7 +93,7 @@ export async function sendScheduleEmail(data: ApprovalData) {
     reply_to: CONTACT_EMAIL,
     ...template,
     tags: [{ name: "type", value: "schedule_followup" }],
-  }, `schedule-${data.requestId}`);
+  }, `${data.service === "culture" ? "culture-schedule" : "schedule"}-${data.requestId}`);
 }
 
 export function verifySlackSignature(rawBody: string, timestamp: string, signature: string) {
@@ -101,17 +106,19 @@ export function verifySlackSignature(rawBody: string, timestamp: string, signatu
 }
 
 export async function postSlackApproval(token: string, data: Omit<ApprovalData, "expiresAt">) {
+  const sourceName = data.service === "culture" ? "採用YouTube LP" : "採用密着動画LP";
   const botToken = process.env.MATERIAL_SLACK_BOT_TOKEN;
   const channel = process.env.MATERIAL_SLACK_CHANNEL_ID;
   if (!botToken || !channel) throw new Error("Slack configuration is incomplete");
   const response = await fetch("https://slack.com/api/chat.postMessage", {
     method: "POST",
     headers: { Authorization: `Bearer ${botToken}`, "Content-Type": "application/json; charset=utf-8" },
+    signal: AbortSignal.timeout(15_000),
     body: JSON.stringify({
       channel,
-      text: `採用密着動画LPから新しい資料請求がありました。${data.company} ${data.name}様（${data.email}）へ資料PDFは自動送信済みです。`,
+      text: `${sourceName}から新しい資料請求がありました。${data.company} ${data.name}様（${data.email}）へ資料PDFは自動送信済みです。`,
       blocks: [
-        { type: "header", text: { type: "plain_text", text: "採用密着動画LP｜新しい資料請求", emoji: true } },
+        { type: "header", text: { type: "plain_text", text: `${sourceName}｜新しい資料請求`, emoji: true } },
         { type: "section", fields: [
           { type: "mrkdwn", text: `*会社名*\n${escapeSlack(data.company)}` },
           { type: "mrkdwn", text: `*担当者名*\n${escapeSlack(data.name)}` },

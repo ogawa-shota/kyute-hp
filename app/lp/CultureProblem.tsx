@@ -1,27 +1,43 @@
-/* eslint-disable @next/next/no-img-element -- First-party frames from KYUTE productions. */
+/* eslint-disable @next/next/no-img-element -- First-party frame from KYUTE's production. */
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import { cultureFrames as frames } from "./culture-media";
+
 export default function CultureProblem() {
-  const section=useRef<HTMLElement>(null);
-  const manual=useRef(false);
-  const [real,setReal]=useState(false);
-  useEffect(()=>{
-    let raf=0;
-    const update=()=>{raf=0;if(manual.current||innerWidth<800)return;const rect=section.current?.getBoundingClientRect();if(rect)setReal(rect.top < -140);};
-    const scroll=()=>{if(!raf)raf=requestAnimationFrame(update);};
-    window.addEventListener("scroll",scroll,{passive:true});window.addEventListener("resize",scroll);update();
-    return()=>{cancelAnimationFrame(raf);window.removeEventListener("scroll",scroll);window.removeEventListener("resize",scroll);};
-  },[]);
-  function choose(value:boolean){manual.current=true;setReal(value);}
-  return <section className="cs-problem" id="gap" ref={section}>
-    <div className="cs-problem-sticky cs-wrap">
-      <div className="cs-problem-intro"><p className="cs-eyebrow">求人票の、その先へ。</p><h2>いい会社なのに。<br/>その「いい」が、<br/>伝わらない。</h2><p>「風通しがいい」。<br/>そのひと言から、<br/>どんな風景が浮かびますか。</p><div className="cs-view-switch" aria-label="伝わり方を切り替える"><button type="button" aria-pressed={!real} onClick={()=>choose(false)}>文字で見る</button><button type="button" aria-pressed={real} onClick={()=>choose(true)}>映像で見る <span aria-hidden="true">↗</span></button></div><span className="cs-switch-note">スクロール、または切り替えて体験</span></div>
-      <div className={`cs-reality-stage ${real?'is-real':''}`}>
-        <div className="cs-paper-view" aria-hidden={real}><div className="cs-browser-bar"><i/><i/><i/><span>採用情報</span></div><div className="cs-paper-body"><p>私たちの会社について</p><h3>風通しの良い会社です。</h3><ul><li>若手が活躍しています。</li><li>裁量があります。</li><li>社員同士の仲が良いです。</li></ul><div className="cs-fake-lines"><i/><i/><i/></div><span>※説明用の架空の求人情報</span></div><p className="cs-candidate-question">……実際、どんな会社？<span aria-hidden="true">↙</span></p></div>
-        <div className="cs-real-view" aria-hidden={!real}><figure className="cs-real-main"><img src={frames.smile} alt="笑顔で会話するカフェ経営者。自社制作映像より" width="1280" height="720" loading="lazy"/><figcaption>言葉の、その先の表情。</figcaption></figure><figure className="cs-real-work"><img src={frames.work} alt="カフェ厨房で仕事をする姿。自社制作映像より" width="1280" height="720" loading="lazy"/><figcaption>働く日常</figcaption></figure><figure className="cs-real-story"><img src={frames.story} alt="仕事への想いを語る起業家。自社制作映像より" width="1280" height="720" loading="lazy"/><figcaption>仕事への想い</figcaption></figure><span className="cs-frame-source">KYUTE自社メディアの制作映像より</span></div>
+  const [real, setReal] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const section = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0 });
+    if (section.current) observer.observe(section.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return <section className={`cp-section cs-section ${real ? "cp-is-real" : ""}`} id="gap" ref={section}>
+    <div className="cs-wrap cp-layout">
+      <div className="cp-intro">
+        <p className="cs-eyebrow">同じカルチャーでも、伝わり方が変わる。</p>
+        <h2 aria-live="polite">{real ? "動画だと、" : "テキストだと、"}<br/>「良いカルチャー」が<br/><em>{real ? "伝わる。" : "伝わらない。"}</em></h2>
+        <p className="cp-description">{real ? "表情や声、仕事への向き合い方。言葉の背景まで見えるから、その会社らしさを感じられる。" : "「風通しがいい」「若手が活躍」。文字だけでは、実際の会話や働く空気まで想像しづらい。"}</p>
+        <div className="cp-switch" role="group" aria-label="テキストと動画の伝わり方を比較">
+          <button type="button" aria-pressed={!real} aria-controls="culture-comparison" onClick={() => setReal(false)}>テキストで見る</button>
+          <span aria-hidden="true">→</span>
+          <button type="button" aria-pressed={real} aria-controls="culture-comparison" onClick={() => setReal(true)}>動画で見る</button>
+        </div>
       </div>
-      <p className="cs-problem-punch">文字では、<span>空気までは伝わらない。</span></p>
+      <div className="cp-panel" id="culture-comparison">
+        {real ? <div className="cp-video-view">
+          <div className="cp-player">
+            {visible ? <iframe src="https://www.youtube-nocookie.com/embed/QzPRS_T-D4Q?autoplay=1&mute=1&playsinline=1&rel=0&start=789" title="カフェ経営者の表情と会話 — KYUTE自社メディア制作映像" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen referrerPolicy="strict-origin-when-cross-origin"/> : <img src={frames.smile} alt="自社メディアに出演したカフェ経営者" width="1280" height="720"/>}
+          </div>
+          <div className="cp-details"><span>自然な表情</span><span>会話の空気</span><span>仕事への想い</span></div>
+          <p className="cp-caption">KYUTE自社メディアの表現例。顧客企業の採用導入事例ではありません。</p>
+        </div> : <div className="cp-paper">
+          <div className="cp-paper-bar"><span>採用情報</span><span aria-hidden="true">― □ ×</span></div>
+          <div className="cp-paper-body"><p>私たちの会社について</p><h3>風通しの良い会社です。</h3><ul><li>若手が活躍しています。</li><li>裁量があります。</li><li>社員同士の仲が良いです。</li></ul><p className="cp-question">……実際、どんな雰囲気なんだろう？</p><small>※比較のための架空の求人情報</small></div>
+        </div>}
+      </div>
     </div>
   </section>;
 }

@@ -1,0 +1,224 @@
+/* Keep each idea and its supporting visual within a comfortable reading area. */
+#culture-lp .cs-wrap { width: calc(100% - 80px); max-width: 1120px; }
+#culture-lp .cs-section { padding: 72px 0; }
+#culture-lp h2,
+#culture-lp .cs-data-heading h2,
+#culture-lp .cs-why .cs-section-opening h2,
+#culture-lp .cs-experience-title h2,
+#culture-lp .cs-download h2 { font-size: clamp(30px, 3vw, 40px) !important; line-height: 1.5 !important; letter-spacing: -.045em; }
+#culture-lp .cs-eyebrow { font-size: 13px; margin-bottom: 18px !important; }
+#culture-lp .cs-header { height: 70px; }
+#culture-lp .cs-logo { font-size: 36px; }
+#culture-lp section { scroll-margin-top: 70px; }
+#culture-lp .cs-hero { height: min(610px, calc(100svh - 120px)); min-height: 520px; max-height: 610px; }
+#culture-lp .cs-hero-content { max-width: 1200px; margin-inline: auto; padding: 30px 40px 68px; }
+#culture-lp .cs-hero h1 { font-size: clamp(44px, 4.6vw, 62px); line-height: 1.23; padding-top: 22px; }
+#culture-lp .cs-hero-service { font-size: 16px; }
+#culture-lp .cs-hero-bottom { margin-top: 24px; gap: 28px; align-items: center; }
+#culture-lp .cs-hero-bottom > p { font-size: 15px; }
+#culture-lp .cs-hero-bottom .cs-button { min-height: 50px; padding: 13px 18px; }
+#culture-lp .cs-hero-watch { bottom: 105px; right: max(40px, calc((100% - 1120px)/2)); font-size: 12px; }
+#culture-lp .cs-hero-watch > span { width: 44px; height: 44px; }
+#culture-lp .cs-film-controls { left: max(40px, calc((100% - 1120px)/2)); right: max(40px, calc((100% - 1120px)/2)); bottom: 16px; }
+#culture-lp .cs-intro-line { padding: 20px max(40px, calc((100% - 1120px)/2)); }
+#culture-lp .cs-intro-line p { font-size: 16px; }
+#culture-lp .cs-intro-line > span { font-size: 11px; }
+#culture-lp .cs-intro-line i { margin-inline: 3px; }
+#culture-lp .cs-section-opening { margin-bottom: 32px; gap: 8px 40px; }
+#culture-lp .cs-section-opening > p:last-child { font-size: 15px; max-width: 430px; }
+#culture-lp .cs-data { padding-block: 64px 40px; }
+#culture-lp .cs-data-primary .c-big-number { font-size: clamp(130px, 13vw, 180px); }
+#culture-lp .cs-data-primary > p { margin-bottom: -12px !important; }
+#culture-lp .cs-data-primary h3 { font-size: 23px; margin-top: -4px !important; }
+#culture-lp .cs-data-secondary .c-big-number { font-size: 76px; }
+#culture-lp .cs-data-heading > p:last-child { margin-top: 16px !important; font-size: 15px; }
+#culture-lp .cs-data-secondary { margin-top: 10px; padding-top: 10px; }
+#culture-lp .cs-data-secondary > p { font-size: 14px; }
+#culture-lp .cs-data .cs-source { margin-top: 22px; }
+#culture-lp .cs-frame-editorial { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
+#culture-lp .cs-frame-editorial figure { grid-column: auto; aspect-ratio: 1.4; margin: 0 !important; }
+#culture-lp .cs-frame-editorial figcaption { padding: 28px 16px 12px; }
+#culture-lp .cs-frame-editorial figcaption > span { font-size: 13px; margin-bottom: 6px; }
+#culture-lp .cs-frame-editorial figcaption > b { font-size: 42px; }
+#culture-lp .cs-frame-message { grid-column: 1/-1; margin: 6px 0 0 !important; padding: 0; font-size: 20px; line-height: 1.7; }
+#culture-lp .cs-frame-message br { display: none; }
+#culture-lp .cs-frame-message small { display: block; font-size: 11px; margin-top: 12px; }
+#culture-lp .cs-works-heading { gap: 40px; margin-bottom: 32px; }
+#culture-lp .cs-works-heading > p { font-size: 15px; }
+#culture-lp .cs-work-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
+#culture-lp .cs-work-1 { grid-column: auto; }
+#culture-lp .cs-work-image, #culture-lp .cs-work-1 .cs-work-image { aspect-ratio: 16/9; }
+#culture-lp .cs-work-1 .cs-work-play, #culture-lp .cs-work-play { width: 48px; height: 48px; }
+#culture-lp .cs-work-caption { display: block; margin-top: 16px; }
+#culture-lp .cs-work-caption h3, #culture-lp .cs-work:not(.cs-work-1) .cs-work-caption h3 { font-size: 19px; line-height: 1.6; }
+#culture-lp .cs-work-caption p { font-size: 13px; line-height: 1.8; margin-top: 8px !important; }
+#culture-lp .cs-work-caption > span { display: block; font-size: 11px; margin-top: 12px; }
+#culture-lp .cs-work-note { margin-top: 28px; font-size: 11px; }
+#culture-lp .cs-discipline { padding-block: 25px; grid-template-columns: 30px 1fr 1.15fr; gap: 20px; }
+#culture-lp .cs-discipline > strong { font-size: 48px; }
+#culture-lp .cs-discipline h3 { font-size: 18px; }
+#culture-lp .cs-discipline p { font-size: 14px; }
+#culture-lp .cs-times { font-size: 22px; }
+#culture-lp .cs-convergence { padding-top: 26px; }
+#culture-lp .cs-convergence p { font-size: 26px; }
+#culture-lp .ce-section { padding: 72px 40px; }
+#culture-lp .ce-inner { max-width: 1120px; }
+#culture-lp .ce-heading { grid-template-columns: 1.25fr 1fr; gap: 5%; margin-bottom: 28px; }
+#culture-lp .ce-heading h2 { font-size: clamp(29px,2.7vw,36px) !important; }
+#culture-lp .ce-heading p { font-size: 14px; }
+#culture-lp .ce-layout { grid-template-columns: .85fr 1.15fr; gap: 6%; }
+#culture-lp .ce-diagram { max-width: 355px; }
+#culture-lp .ce-step-list { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; }
+#culture-lp .ce-step { min-height: 42px; gap: 10px; }
+#culture-lp .ce-step-title { font-size: 16px; }
+#culture-lp .ce-step-number { flex-basis: 20px; font-size: 14px; }
+#culture-lp .ce-detail { min-height: 210px; margin-top: 16px; padding-top: 16px; }
+#culture-lp .ce-outputs div { grid-template-columns: 125px 1fr; }
+#culture-lp .cs-experience-title { margin-bottom: 28px; }
+#culture-lp .cs-experience-title > p:last-child { margin-top: 16px !important; font-size: 15px; }
+#culture-lp .cs-experience-before, #culture-lp .cs-experience-after { min-height: 380px; padding: 24px; }
+#culture-lp .cs-mini-job { padding: 12px 18px; margin: 22px auto 0; }
+#culture-lp .cs-experience-before .cs-feeling { font-size: 25px; margin: 18px 0 !important; }
+#culture-lp .cs-experience-after .cs-feeling { font-size: 31px; padding-block: 24px; }
+#culture-lp .cs-video-data { margin-top: 28px; gap: 40px; }
+#culture-lp .cs-video-data .c-big-number { font-size: 90px; }
+#culture-lp .cs-big-message { padding: 76px max(40px,calc((100% - 1120px)/2)); min-height: 350px; }
+#culture-lp .cs-big-message > p { margin-bottom: 25px !important; }
+#culture-lp .cs-big-message h2 { font-size: clamp(34px,4vw,54px) !important; }
+#culture-lp .cs-big-message > a { width: 70px; height: 70px; font-size: 38px; bottom: 70px; }
+#culture-lp .cs-download > .cs-wrap { gap: 6%; }
+#culture-lp .cs-guide-preview { margin-top: 28px; }
+#culture-lp .cs-guide-book { min-height: 230px; width: 156px; min-width: 156px; }
+#culture-lp .cs-guide-book > b { font-size: 30px; }
+#culture-lp .c-form-panel { padding: 30px; }
+#culture-lp .c-form-panel h3 { font-size: 24px; }
+#culture-lp .cs-dialog { width: min(920px,calc(100% - 40px)); }
+
+/* A compact comparison switches the claim and the evidence together. */
+#culture-lp .cp-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: center; }
+#culture-lp .cp-intro h2 { font-size: clamp(28px,2.9vw,38px) !important; line-height: 1.6 !important; }
+#culture-lp .cp-intro h2 em { text-decoration: underline; text-decoration-color: #b8bcb0; text-decoration-thickness: 5px; text-underline-offset: 9px; }
+#culture-lp .cp-is-real h2 em { text-decoration-color: var(--cs-acid); }
+#culture-lp .cp-description { margin-top: 24px; max-width: 360px; font-size: 15px; color: #62665b; line-height: 1.9; min-height: 86px; }
+#culture-lp .cp-switch { display: flex; gap: 10px; align-items: center; margin-top: 24px; }
+#culture-lp .cp-switch button { min-height: 44px; padding: 9px 16px; font-size: 13px; font-weight: 700; border: 1px solid #afb5a1; background: transparent; }
+#culture-lp .cp-switch button[aria-pressed=true] { background: var(--cs-black); color: white; border-color: var(--cs-black); }
+#culture-lp .cp-is-real .cp-switch button[aria-pressed=true] { background: var(--cs-acid); color: var(--cs-black); border-color: var(--cs-acid); }
+#culture-lp .cp-panel { min-height: 355px; }
+#culture-lp .cp-paper { border: 1px solid #d3d5ce; background: #f0f1eb; }
+#culture-lp .cp-paper-bar { display: flex; justify-content: space-between; padding: 10px 22px; border-bottom: 1px solid #d3d5ce; font-size: 12px; color: #62665b; }
+#culture-lp .cp-paper-body { padding: 22px 26px; }
+#culture-lp .cp-paper-body > p:first-child { font-size: 12px; color: #62665b; }
+#culture-lp .cp-paper h3 { font-size: 22px; margin-top: 12px; }
+#culture-lp .cp-paper ul { font-size: 15px; color: #62665b; line-height: 2.1; margin: 10px 0 18px; padding-left: 22px; }
+#culture-lp .cp-question { padding-top: 16px; border-top: 1px solid #c9cdc1; font-size: 16px; font-weight: 700; }
+#culture-lp .cp-paper small { display: block; color: #686d60; font-size: 11px; margin-top: 14px; }
+#culture-lp .cp-player { aspect-ratio: 16/9; background: #141414; }
+#culture-lp .cp-player iframe, #culture-lp .cp-player img { width: 100%; height: 100%; border: 0; display: block; }
+#culture-lp .cp-details { display: flex; justify-content: space-between; padding: 13px 10px; font-size: 13px; border-bottom: 1px solid var(--cs-line); }
+#culture-lp .cp-caption { font-size: 11px; color: #62665b; margin-top: 12px; line-height: 1.8; }
+
+@media (max-width: 1000px) and (min-width: 800px) {
+  #culture-lp .cs-hero-watch { top: 50px; bottom: auto; }
+  #culture-lp .cp-layout { gap: 28px; }
+  #culture-lp .cp-switch { gap: 7px; }
+  #culture-lp .cp-switch button { padding-inline: 10px; font-size: 12px; }
+  #culture-lp .cs-discipline > strong { font-size: 36px; }
+  #culture-lp .cs-work-grid { gap: 18px; }
+  #culture-lp .cs-work-caption h3 { font-size: 17px; }
+  #culture-lp .ce-layout { gap: 4%; }
+}
+@media (max-width: 799px) {
+  #culture-lp .cs-wrap { width: calc(100% - 40px); }
+  #culture-lp .cs-section { padding: 48px 0; }
+  #culture-lp h2, #culture-lp .cs-data-heading h2, #culture-lp .cs-why .cs-section-opening h2, #culture-lp .cs-experience-title h2, #culture-lp .cs-download h2 { font-size: 28px !important; line-height: 1.55 !important; }
+  #culture-lp .cs-header { height: 62px; }
+  #culture-lp .cs-logo { font-size: 31px; }
+  #culture-lp section { scroll-margin-top: 62px; }
+  #culture-lp .cs-hero { height: 600px; min-height: 560px; max-height: 640px; }
+  #culture-lp .cs-hero-content { padding: 24px 22px 72px; }
+  #culture-lp .cs-hero h1 { font-size: clamp(36px,7vw,48px); line-height: 1.3; padding-top: 42px; }
+  #culture-lp .cs-hero-service { font-size: 14px; }
+  #culture-lp .cs-hero-bottom { margin-top: 22px; display: block; }
+  #culture-lp .cs-hero-bottom > p { font-size: 14px; }
+  #culture-lp .cs-hero-bottom .cs-button { min-height: 48px; font-size: 12px; margin-top: 16px; padding: 12px 16px; }
+  #culture-lp .cs-hero-watch { top: 120px; bottom: auto; right: 22px; font-size: 11px; }
+  #culture-lp .cs-hero-watch > span { width: 38px; height: 38px; }
+  #culture-lp .cs-film-controls { left: 22px; right: 22px; }
+  #culture-lp .cs-intro-line { padding: 20px; }
+  #culture-lp .cs-intro-line p { font-size: 15px; }
+  #culture-lp .cs-intro-line > span { font-size: 10px; }
+  #culture-lp .cs-eyebrow { font-size: 12px; margin-bottom: 16px !important; }
+  #culture-lp .cp-layout { display: block; }
+  #culture-lp .cp-intro h2 { font-size: 28px !important; }
+  #culture-lp .cp-description { min-height: 0; font-size: 14px; margin-top: 20px; max-width: 100%; }
+  #culture-lp .cp-switch { margin-top: 20px; }
+  #culture-lp .cp-switch button { font-size: 12px; padding-inline: 14px; }
+  #culture-lp .cp-panel { margin-top: 24px; min-height: 310px; }
+  #culture-lp .cp-paper-body { padding: 20px; }
+  #culture-lp .cp-paper h3 { font-size: 19px; }
+  #culture-lp .cp-paper ul { font-size: 14px; }
+  #culture-lp .cp-question { font-size: 14px; }
+  #culture-lp .cp-details { font-size: 12px; padding-inline: 0; }
+  #culture-lp .cs-data { padding: 48px 0 32px; }
+  #culture-lp .cs-data-primary .c-big-number { font-size: 130px; }
+  #culture-lp .cs-data-primary h3 { font-size: 21px; }
+  #culture-lp .cs-data-secondary .c-big-number { font-size: 68px; }
+  #culture-lp .cs-data-secondary > p { font-size: 12px; }
+  #culture-lp .cs-section-opening { margin-bottom: 26px; display: block; }
+  #culture-lp .cs-section-opening > p:last-child { margin-top: 18px !important; font-size: 14px; }
+  #culture-lp .cs-frame-editorial { grid-template-columns: 1fr; gap: 16px; }
+  #culture-lp .cs-frame-editorial figure { aspect-ratio: 16/9; }
+  #culture-lp .cs-frame-editorial figcaption > b { font-size: 35px; }
+  #culture-lp .cs-frame-message { font-size: 18px; margin-top: 8px !important; }
+  #culture-lp .cs-works-heading { display: block; margin-bottom: 26px; }
+  #culture-lp .cs-works-heading > p { font-size: 14px; margin-top: 18px !important; }
+  #culture-lp .cs-work-grid { grid-template-columns: 1fr; gap: 30px; }
+  #culture-lp .cs-work-caption h3, #culture-lp .cs-work:not(.cs-work-1) .cs-work-caption h3 { font-size: 19px; }
+  #culture-lp .cs-work-caption { margin-top: 12px; }
+  #culture-lp .cs-work-caption > span { margin-top: 8px; }
+  #culture-lp .cs-discipline { grid-template-columns: 22px 1fr; gap: 10px; padding-block: 23px; }
+  #culture-lp .cs-discipline > strong { font-size: 37px; }
+  #culture-lp .cs-discipline > div { grid-column: 2; }
+  #culture-lp .cs-discipline h3 { font-size: 17px; }
+  #culture-lp .cs-discipline p { font-size: 14px; }
+  #culture-lp .cs-convergence p { font-size: 23px; }
+  #culture-lp .ce-section { padding: 48px 20px; }
+  #culture-lp .ce-heading, #culture-lp .ce-layout { display: block; }
+  #culture-lp .ce-heading h2 { font-size: 27px !important; }
+  #culture-lp .ce-heading p { margin-top: 18px; font-size: 14px; }
+  #culture-lp .ce-cycle { max-width: 240px; margin: 0 auto 25px; }
+  #culture-lp .ce-step-title { font-size: 15px; }
+  #culture-lp .ce-step-list { gap: 4px 12px; }
+  #culture-lp .ce-step-arrow { flex-basis: 15px; font-size: 18px; }
+  #culture-lp .ce-detail { min-height: 220px; }
+  #culture-lp .ce-outputs div { grid-template-columns: 1fr; }
+  #culture-lp .cs-experience-title > p:last-child { font-size: 14px; }
+  #culture-lp .cs-experience-before, #culture-lp .cs-experience-after { padding: 22px; min-height: 355px; }
+  #culture-lp .cs-experience-after .cs-feeling { font-size: 29px; }
+  #culture-lp .cs-video-data { margin-top: 24px; }
+  #culture-lp .cs-video-data .c-big-number { font-size: 82px; }
+  #culture-lp .cs-video-data > div { gap: 18px; }
+  #culture-lp .cs-video-data strong { font-size: 19px; }
+  #culture-lp .cs-big-message { padding: 55px 20px 85px; min-height: 310px; }
+  #culture-lp .cs-big-message > p { font-size: 12px; }
+  #culture-lp .cs-big-message h2 { font-size: clamp(25px,6.6vw,40px) !important; }
+  #culture-lp .cs-big-message > a { width: 48px; height: 48px; bottom: 25px; right: 22px; font-size: 29px; }
+  #culture-lp .c-form-panel { padding: 24px; }
+  #culture-lp .c-form-panel h3 { font-size: 22px; }
+  #culture-lp .cs-guide-book { min-width: 130px; width: 130px; padding: 18px 14px; min-height: 215px; }
+  #culture-lp .cs-guide-book > b { font-size: 27px; }
+  #culture-lp .cs-dialog { width: calc(100% - 20px); }
+}
+@media (max-width: 359px) {
+  #culture-lp .cs-wrap { width: calc(100% - 32px); }
+  #culture-lp .cs-hero h1 { font-size: 33px; }
+  #culture-lp .cp-intro h2 { font-size: 25px !important; }
+  #culture-lp .cp-switch { gap: 7px; }
+  #culture-lp .cp-switch button { padding-inline: 10px; font-size: 11px; }
+  #culture-lp .cp-paper h3 { font-size: 17px; }
+  #culture-lp .cs-data-primary .c-big-number { font-size: 118px; }
+  #culture-lp .ce-heading h2 { font-size: 24px !important; }
+  #culture-lp .ce-step-title { font-size: 13px; }
+  #culture-lp .ce-step { gap: 6px; }
+}
