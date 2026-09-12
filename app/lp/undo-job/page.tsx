@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Runtime from './Runtime';
 import HeroFilm from './HeroFilm';
-import InsightDesign from './InsightDesign';
 import Strengths from './Strengths';
 import './undo-job.css';
 
@@ -10,10 +9,10 @@ const ASSET = '/lp-assets/studio/';
 const GUIDE = '/undo-job-assets/undo-job-service-guide.pdf';
 const CONTACT = 'https://www.kyute.jp/contact';
 export const metadata: Metadata = {
-  title: '運動部のシゴト。｜体育会人材に選ばれる理由を、社員の一日から。',
+  title: '運動部のシゴト。｜挑戦したい人に刺さる、採用PR動画を制作します。',
   description: '体育会人材を採用したい企業のための1日密着型採用メディア。採用広報・YouTube・体育会理解を組み合わせ、人・仕事・チームを伝える採用動画を企画・制作・公開します。',
   alternates: { canonical: 'https://www.kyute.jp/lp/undo-job' },
-  openGraph: { title: '体育会人材に選ばれる理由を、社員の一日から。', description: '採用広報 × YouTube × 体育会理解。人・仕事・チームを伝える1日密着型採用メディア。', url: 'https://www.kyute.jp/lp/undo-job', images: [{ url: '/lp-assets/studio/okada-2.webp', width: 1112, height: 626 }], locale: 'ja_JP', type: 'website' },
+  openGraph: { title: '挑戦したい人に刺さる、採用PR動画を制作します。', description: '採用のプロと体育会出身の制作陣が、挑戦したい人に刺さる1日密着型採用動画をつくります。', url: 'https://www.kyute.jp/lp/undo-job', images: [{ url: '/lp-assets/studio/okada-2.webp', width: 1112, height: 626 }], locale: 'ja_JP', type: 'website' },
 };
 function Arrow({ down = false }: { down?: boolean }) { return <span aria-hidden="true">{down ? '↓' : '↗'}</span>; }
 function CTAs({ light = false }: { light?: boolean }) { return <div className={`uj-ctas ${light ? 'uj-ctas-light' : ''}`}><a className="uj-btn uj-btn-gold" href={GUIDE} download="運動部のシゴト_サービスガイド.pdf">サービス資料をダウンロード <Arrow /></a><a className="uj-btn uj-btn-line" href={CONTACT}>制作・掲載について相談する <Arrow /></a></div>; }
@@ -26,29 +25,27 @@ return <div className="uj" id="uj-top">
   <a className="uj-skip" href="#uj-main">本文へ進む</a>
   <header className="uj-header">
     <a className="uj-logo" href="#uj-top" aria-label="運動部のシゴト。 ページの先頭へ"><Image src="/undo-job-assets/channel-logo.jpg" width={58} height={58} alt="" priority /><span>運動部のシゴト。<small>1日密着型採用メディア</small></span></a>
-    <nav aria-label="メインナビゲーション"><a href="#uj-strengths">3つの強み</a><a href="#uj-films">制作映像</a><a href="#uj-use">採用での活用</a></nav>
+    <nav aria-label="メインナビゲーション"><a href="#uj-strengths">3つの強み</a><a href="#uj-reality">制作映像</a><a href="#uj-use">採用での活用</a></nav>
     <a className="uj-header-cta" href={GUIDE} download="運動部のシゴト_サービスガイド.pdf">サービス資料 <Arrow /></a>
   </header>
   <main id="uj-main">
     <section className="uj-hero" aria-labelledby="uj-hero-title">
       <div className="uj-hero-copy">
         <p className="uj-eyebrow"><i />体育会経験者を採用したい企業へ</p>
-        <h1 id="uj-hero-title" className="uj-concept-title">体育会人材に<br />選ばれる理由を、<br /><span className="uj-mark">社員の一日から。</span></h1>
+        <h1 id="uj-hero-title" className="uj-concept-title uj-title-v5">挑戦したい人に<br />刺さる、<br />採用PR動画を<br /><span className="uj-mark">制作します。</span></h1>
         <p className="uj-hero-lead uj-concept-lead">体育会人材を採用したい企業のための、<br /><strong>1日密着型採用メディア。</strong></p>
         <CTAs />
       </div>
-      <div className="uj-hero-visual"><HeroFilm /><div className="uj-film-edge" aria-hidden="true">PEOPLE. WORK. REAL.</div><a href="#uj-films" className="uj-hero-watch"><span className="uj-round-arrow">↗</span><span>なぜ、この会社で働くのか。<br /><strong>実際の制作映像を見る。</strong></span></a></div>
-      <div className="uj-hero-bottom uj-expertise-bar"><span>採用広報 <b>×</b> YouTube <b>×</b> 体育会理解</span><a href="#uj-strengths">KYUTEに頼む理由 <Arrow down /></a></div>
+      <div className="uj-hero-visual"><HeroFilm /><div className="uj-film-edge" aria-hidden="true">PEOPLE. WORK. REAL.</div><a href="#uj-reality" className="uj-hero-watch"><span className="uj-round-arrow">↗</span><span>なぜ、この会社で働くのか。<br /><strong>実際の制作映像を見る。</strong></span></a></div>
     </section>
 
     <section className="uj-section uj-problem" id="uj-problem">
       <div className="uj-wrap"><Tag n="01">採用担当者の皆さまへ</Tag>
-        <h2 data-uj-reveal>多くの企業が求める、<br />体育会人材。<br /><em>選ばれる理由は、<br className="uj-mobile" />一人ひとり違う。</em></h2>
-        <div className="uj-origin"><p>競技での役割も、将来像も、仕事に求めるものも違う。<br /><strong>「体育会だから」で一括りにせず、採用したい人を理解する。</strong></p></div>
+        <h2 data-uj-reveal>多くの企業が求める、<br />体育会人材。<br /><em>何かに熱中してきた人は、<br />「また夢中になれる<br className="uj-mobile" />環境」を<br className="uj-wide-break" />求めています。</em></h2>
         <div className="uj-gap uj-gap-deep">
           <div className="uj-company-words"><span className="uj-mini-label">企業が伝えていること</span><p>体育会歓迎。</p><p>若手が活躍。</p><p>チームワーク。</p><p>成長できる環境。</p></div>
           <div className="uj-gap-arrow" aria-hidden="true">→<span>その言葉の、<br />もう一つ奥へ。</span></div>
-          <div className="uj-candidate-words"><span className="uj-mini-label">候補者が知りたいこと・一例</span><p>あの頃みたいに、<br />仕事にも本気に<br />なれるだろうか。</p><ul><li>どんな仕事と責任を任される？</li><li>自分を高めてくれる仲間はいる？</li><li>大変なとき、どう向き合うチーム？</li></ul></div>
+          <div className="uj-candidate-words"><p>あの頃みたいに、<br />仕事にも本気に<br />なれるだろうか。</p><ul><li>どんな仕事と責任を任される？</li><li>自分を高めてくれる仲間はいる？</li><li>大変なとき、どう向き合うチーム？</li></ul></div>
         </div>
         <div className="uj-problem-bridge"><p>採用したい人の「知りたい」から、<br /><strong>誰を、何を、どう撮るかを決める。</strong></p></div>
       </div>
@@ -65,10 +62,8 @@ return <div className="uj" id="uj-top">
       </div>
     </div></section>
 
-    <InsightDesign />
-
     <section className="uj-section uj-reality" id="uj-reality"><div className="uj-wrap">
-      <Tag n="05">言葉と映像で、伝わり方は変わる</Tag><h2 data-uj-reveal>「仕事に本気」を、<br /><em>その人の一日で見せる。</em></h2>
+      <Tag n="04">言葉と映像で、伝わり方は変わる</Tag><h2 data-uj-reveal>「仕事に本気」を、<br /><em>その人の一日で見せる。</em></h2>
       <div className="uj-compare-open">
         <div className="uj-compare-words"><p className="uj-compare-label">01　求人票の言葉</p><div className="uj-job-sheet"><p className="uj-job-top">RECRUITMENT <span>表現例</span></p><h3>仕事に本気で、<br />向き合える会社です。</h3><div className="uj-job-pills"><span>体育会歓迎</span><span>若手活躍</span><span>チームで成長</span></div></div><p className="uj-compare-question">その「本気」は、どんな姿だろう。</p></div>
         <div className="uj-compare-arrow" aria-hidden="true">→</div>
@@ -78,20 +73,20 @@ return <div className="uj" id="uj-top">
 
     <section className="uj-section uj-three-lenses" id="uj-content"><div className="uj-wrap"><p className="uj-tag"><span>人・仕事・チーム</span>一日の中で伝える3つ</p><h2 data-uj-reveal>働く姿を見れば、<br /><em>会社の輪郭が見えてくる。</em></h2><div className="uj-lenses-grid"><article><span className="uj-lens-name">人</span><h3>どんな人と<br />働くのか。</h3><p>経歴だけでなく、選択と行動。<br />なぜ、この会社と仕事を選んだのか。</p></article><article><span className="uj-lens-name">仕事</span><h3>何を任され、<br />どう働くのか。</h3><p>準備、判断、責任、工夫。<br />やりがいも、難しさも、実際の場面から。</p></article><article><span className="uj-lens-name">チーム</span><h3>誰と、どう<br />進めているのか。</h3><p>相談、役割分担、意見の違い。<br />会話と関わり方から、職場の文化を。</p></article></div></div></section>
 
-    <section className="uj-section uj-films" id="uj-films"><div className="uj-wrap"><Tag n="06">「運動部のシゴト。」の制作映像</Tag><div className="uj-section-head"><h2 data-uj-reveal>人に興味を持つ。<br /><em>仕事を、もっと知りたくなる。</em></h2><a className="uj-text-link" href="https://www.youtube.com/@undo-job/videos" target="_blank" rel="noreferrer">公式YouTubeを見る <Arrow /></a></div>
-      <article className="uj-feature-film"><div className="uj-feature-visual"><FilmButton name="okada-2" alt="パソコンを前に、分析について語る教育事業の起業家" id="QT5ZYECnOUM" title="筑波大蹴球部からオンライン塾を起業した24歳の一日" /><span className="uj-film-index" aria-hidden="true">01</span></div><div className="uj-feature-story"><p className="uj-mini-label">筑波大蹴球部 → 教育事業</p><h3>追いかける目標は、<br />変わっても。</h3><p>プロを断念し、オンライン塾で起業。<br />競技と向き合った経験は、<br />いま、誰かを教える仕事の中にある。</p><div className="uj-chapter"><span>この作品で見せていること</span><p>指導の前に、どこまで準備するのか。<br />競技の経験が、いまの仕事でどう生きているのか。</p><button type="button" data-uj-video="QT5ZYECnOUM" data-start="790" data-title="準備から個別指導へ" className="uj-text-link">13:10〜の場面を見る <Arrow /></button></div><a className="uj-original" href="https://www.youtube.com/watch?v=QT5ZYECnOUM" target="_blank" rel="noreferrer">YouTubeで本編を見る（30:47） ↗</a></div></article>
-      <div className="uj-film-rail"><article><FilmButton name="cafe-5" alt="カフェを開業した理由について語る女性経営者" id="QzPRS_T-D4Q" title="外資コンサルからカフェを開業した女性の一日" /><div className="uj-film-meta"><span>02</span><p>外資コンサル → カフェ開業</p></div><h3>自分が大切にしたいことを、<br />仕事にする。</h3><p>肩書きからは分からない、仕事を選んだ理由。<br />何を大切にしたい人なのか、その背景に近づく。</p><button className="uj-text-link" type="button" data-uj-video="QzPRS_T-D4Q" data-start="761" data-title="カフェ開業への想い">12:41〜 想いを語る場面 <Arrow /></button></article><article><FilmButton name="uosaki-2" alt="普段の会話を通して、自分の考えを話す起業家" id="wtRbJX3bq4o" title="慶大法学部から新卒短期離職を経て起業した26歳の一日" /><div className="uj-film-meta"><span>03</span><p>新卒での短期離職 → 起業</p></div><h3>肩書きの先に、<br />その人らしい働き方がある。</h3><p>用意した自己紹介に収まらない人柄。<br />何気ない場面の選択や会話から、その人を知る。</p><button className="uj-text-link" type="button" data-uj-video="wtRbJX3bq4o" data-start="399" data-title="何気ない会話から人柄を知る">06:39〜 会話の場面 <Arrow /></button></article></div>
-      <p className="uj-note uj-work-note">自社メディアの制作作品です。顧客企業の採用成果事例ではありません。</p>
-    </div></section>
-
-    <section className="uj-section uj-use" id="uj-use"><div className="uj-wrap"><Tag n="07">理解を、応募前から届ける</Tag><div className="uj-section-head"><h2 data-uj-reveal>メディアで出会い、<br /><em>採用資産として残る。</em></h2></div>
-      <div className="uj-asset-pair"><article><span>運動部のシゴト。</span><h3>人物コンテンツとして、公開。</h3><p>社員を主役に、外部の制作陣が取材。<br />企業を知らない人にも関心を持てる入口をつくる。</p><a href="https://www.youtube.com/@undo-job/videos" target="_blank" rel="noreferrer" className="uj-text-link">自社メディアを見る <Arrow /></a></article><b aria-hidden="true">＋</b><article><span>御社の採用活動</span><h3>相性を判断できる、採用資産に。</h3><p>人・仕事・チームを知り、働く自分を想像する。<br />契約範囲に応じて、採用の接点で繰り返し使える。</p></article></div>
-      <div className="uj-use-list"><div><b>応募前</b><h3>採用サイト・求人・スカウトメール</h3><p>条件に加え、仕事への姿勢や仲間を知ってもらう。</p></div><div><b>選考中</b><h3>説明会・カジュアル面談・面接</h3><p>説明会・面談・面接前後の対話を深める。</p></div><div><b>内定後</b><h3>内定者フォロー</h3><p>自分がどんな役割で力を発揮するか、具体的に。</p></div></div>
-      <p className="uj-delivery-promise">企画・制作・自社メディアでの公開・契約範囲の採用利用。<br /><span>再生数・応募数の保証は行いません。</span></p>
+    <section className="uj-section uj-use uj-use-v5" id="uj-use"><div className="uj-wrap"><Tag n="05">動画の活用シーン</Tag><h2 data-uj-reveal>私たちのメディアへの掲載から、<br /><em>御社と候補者の、あらゆる接点へ。</em></h2>
+      <div className="uj-distribution">
+        <div className="uj-url-origin"><FilmButton name="okada-2" alt="運動部のシゴト。の実際の密着映像" id="QT5ZYECnOUM" title="運動部のシゴト。実際の制作映像" /><h3>一本の動画を、<br />何度でも届ける。</h3><a href="https://www.youtube.com/watch?v=QT5ZYECnOUM" target="_blank" rel="noreferrer">動画URL <Arrow /></a></div>
+        <div className="uj-use-branches">
+          <article><span className="uj-use-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="4" y="5" width="24" height="22" rx="2"/><path d="M4 11h24M12 11v16"/></svg></span><div><h3>採用サイトへの埋め込み</h3><p>社員紹介やカルチャーページで、<br />働くリアルを伝える。</p></div></article>
+          <article><span className="uj-use-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="6" width="26" height="20" rx="2"/><path d="m4 8 12 9L28 8"/></svg></span><div><h3>候補者へのメール送信</h3><p>スカウトや選考フォローにURLを添え、<br />会う前から、会社を知ってもらう。</p></div></article>
+          <article><span className="uj-use-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="5" width="26" height="22" rx="4"/><path d="m13 11 9 5-9 5Z"/></svg></span><div><h3>御社YouTubeとの<br />タイアップ投稿</h3><p>御社の発信とも連動し、<br />採用コンテンツとして使い続ける。</p></div></article>
+        </div>
+      </div>
+      <p className="uj-use-terms">掲載・利用方法は、契約内容に応じて設計します。</p>
       <div className="uj-before-apply"><div className="uj-small-stat" role="img" aria-label="69パーセント"><span data-uj-count="69" aria-hidden="true">69</span><small aria-hidden="true">%</small></div><div><p className="uj-mini-label">エン転職ユーザー調査</p><h3>採用動画を見たいのは、<br />「応募する前」。</h3><p className="uj-source-brief">エン転職ユーザー調査・全体1,393名<br /><a href="#uj-research">調査・出典を見る ↗</a></p></div></div>
     </div></section>
 
-    <section className="uj-research" id="uj-research"><div className="uj-wrap"><details><summary><span>調査・出典</span><span>根拠と調査条件を確認する ＋</span></summary><div className="uj-research-content"><p>候補者が知りたいこと・一例は企画仮説です。体育会経験者にも価値観の違いがあり、学生調査を中途人材全体や採用効果へ一般化するものではありません。</p><ol>
+    <section className="uj-research" id="uj-research"><div className="uj-wrap"><details><summary><span>調査・出典</span><span>根拠と調査条件を確認する ＋</span></summary><div className="uj-research-content"><p>「また夢中になれる環境」などの候補者理解は、調査や個別の語りから導いた企画仮説です。体育会経験者にも価値観の違いがあり、学生調査を中途人材全体や採用効果へ一般化するものではありません。再生数・応募数の保証は行いません。</p><ol>
 <li><a href="https://www.sports-f.co.jp/survey-report/2026-07-15-4/" target="_blank" rel="noreferrer">スポーツフィールド｜27卒2月 体育会学生の就職活動状況調査 ↗</a><p>2026年2月1〜28日・調査全体1,225名、複数回答、個別設問n未公表。働きたい環境に「相談しやすく、心理的安全性が高い」を選択した68%を掲載。</p></li>
 <li><a href="https://note.onecareer.co.jp/n/n26c6edadd416" target="_blank" rel="noreferrer">ONE CAREER｜学生時代を超える挑戦と成長を。 ↗</a><p>体育会出身社員3名の座談会。熱意ある同僚や挑戦の機会を選んだ語りを、没頭や成長の仮説に生かしています。一社の個別事例であり、社員間にも価値観の違いがあります。</p></li>
 <li><a href="https://prtimes.jp/main/html/rd/p/000000099.000036999.html" target="_blank" rel="noreferrer">アーシャルデザイン｜体育会系学生の就職活動実態調査 ↗</a><p>2024年11月11日〜2025年1月29日・イベント参加学生102名、複数回答。仕事内容70%、人間関係・職場の雰囲気63%など。スポーツ経験を就活でアピールできるとする回答は97%。強みとしてチームワークや目標への努力も挙がっています。</p></li>
@@ -100,7 +95,7 @@ return <div className="uj" id="uj-top">
 <li><a href="https://www.jstage.jst.go.jp/article/jspehssconf/72/0/72_198/_article/-char/ja/" target="_blank" rel="noreferrer">宮﨑・松尾｜キャリア形成をめぐる体育会文化に関する実証的研究 ↗</a><p>2022年・競技を引退した大学4年生7名の質的研究。競技経験と自己理解の関係を考える思想背景です。特定の企業への選好や動画の効果を示す証拠ではありません。<a href="https://jssspe.org/wp-content/uploads/b27a4f8bc3f44815500470fff7ebadf0.pdf" target="_blank" rel="noreferrer">学会公式の長版抄録 ↗</a></p></li>
 <li><a href="https://corp.en-japan.com/newsrelease/2025/41694.html" target="_blank" rel="noreferrer">エン・ジャパン｜採用動画調査 ↗</a><p>2025年4月1〜30日・エン転職ユーザー、調査全体1,393名。視聴希望のタイミングに「応募前」を選択した69%を掲載。複数回答、個別設問n未公表。体育会限定の調査ではありません。</p></li><li><a href="https://www2.jpx.co.jp/disc/70800/140120260511523654.pdf" target="_blank" rel="noreferrer">スポーツフィールド｜2026年 第1四半期決算説明資料 ↗</a><p>体育会学生中心の採用イベントへの企業需要と、スポナビ27卒向け紹介企業1,413社（2026年3月末時点、重複なし）を確認。「多くの企業が求める」の背景資料です。一事業者の実績であり、企業全体の割合ではありません。</p></li></ol></div></details></div></section>
 
-    <section className="uj-positioning uj-positioning-v4"><div className="uj-wrap"><p className="uj-mini-label">KYUTEに発注する理由</p><div className="uj-triple-statement"><p><span>採用を分かっているから、</span><strong>伝える内容を外さない。</strong></p><p><span>YouTubeを分かっているから、</span><strong>会社説明で終わらない。</strong></p><p><span>体育会を分かっているから、</span><strong>表面的な美談で終わらない。</strong></p></div><div className="uj-client-value"><h2 data-uj-reveal>会社の魅力を、<br /><em>社員が働く事実から。</em></h2><p>「自分に合う会社か」「この人たちと働きたいか」。<br />候補者が判断できる一本を、御社の採用資産に。</p></div></div></section>
+    <section className="uj-positioning uj-positioning-v4"><div className="uj-wrap"><p className="uj-mini-label">KYUTEに発注する理由</p><div className="uj-triple-statement"><p><span>採用を分かっているから、</span><strong>伝える内容を外さない。</strong></p><p><span>YouTubeを分かっているから、</span><strong>会社説明で終わらない。</strong></p><p><span>体育会を分かっているから、</span><strong>表面的な美談で終わらない。</strong></p></div></div></section>
 
     <section className="uj-final" id="uj-download"><div className="uj-wrap"><p className="uj-tag"><span>次は、御社の一日を。</span></p><h2 data-uj-reveal>選ばれる理由を、<br /><em>御社の一日から。</em></h2><div className="uj-final-bottom"><p>まずは、採用したい人物像から。<br />社員の一日を、採用につながるコンテンツへ。</p><div><CTAs light /></div></div></div></section>
   </main>
