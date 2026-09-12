@@ -4,7 +4,7 @@ import { CONTACT_EMAIL, SITE_URL, createApprovalToken, escapeHtml, postSlackAppr
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-const PDF_URL = `${SITE_URL}/undo-job-assets/undo-job-service-guide.pdf`;
+const PDF_URL = `${SITE_URL}/undo-job-assets/undo-job-service-slides-v12.pdf`;
 
 const MAX_BYTES = 4096;
 const EMAIL = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/;
@@ -78,6 +78,17 @@ export async function POST(request: Request) {
     return reply(503, "現在、資料送付の準備中です。contact@kyute.jp へお問い合わせください。");
   }
   const lead = { company, name, email, requestId, service: "undo-job" as const };
+  const paragraphs = [
+    `${company}\n${name} 様`,
+    "このたびは「運動部のシゴト。」の資料をご請求いただき、誠にありがとうございます。\nKYUTE合同会社「運動部のシゴト。」担当です。",
+    "私たちは、社員一人ひとりの働く姿や仕事への想いを通じて、候補者が「この人たちと働きたい」と感じられる出会いをつくりたいと考えています。会社の魅力が候補者に届ききっていないと感じる企業の力になれれば、という想いで取り組んでいます。",
+    "本メールにサービス紹介資料のPDFを添付しました。\n資料では、サービスの考え方、密着動画で伝える内容、採用での活用方法をご紹介しています。社内でのご検討の一助になれば幸いです。",
+    "ご不明な点や「自社なら誰に密着できるだろう」といったご相談がありましたら、本メールにそのままご返信ください。ご検討の初期段階でも、どうぞお気軽にお声がけください。",
+    `資料PDF：${PDF_URL}`,
+    `KYUTE合同会社\n運動部のシゴト。\n${CONTACT_EMAIL}`,
+  ];
+  const mailHtml = paragraphs.map(paragraph => `<p>${escapeHtml(paragraph).replace(/\n/g, "<br>")
+    .replace(PDF_URL, `<a href="${PDF_URL}">${PDF_URL}</a>`)}</p>`).join("");
   let token: string;
   try {
     token = createApprovalToken(lead);
@@ -85,10 +96,10 @@ export async function POST(request: Request) {
       from,
       to: [email],
       reply_to: CONTACT_EMAIL,
-      subject: "運動部のシゴト。｜資料のご案内",
-      text: `${company}\n${name} 様\n\n資料をご請求いただき、ありがとうございます。\n本メールに運動部のシゴト。の資料PDFを添付しました。\n\n資料URL：${PDF_URL}\n\nKYUTE合同会社\n${CONTACT_EMAIL}`,
-      html: `<p>${escapeHtml(company)}<br>${escapeHtml(name)} 様</p><p>資料をご請求いただき、ありがとうございます。<br>本メールに運動部のシゴト。の資料PDFを添付しました。</p><p><a href="${PDF_URL}">資料PDFを開く</a></p><p>KYUTE合同会社<br><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></p>`,
-      attachments: [{ path: PDF_URL, filename: "運動部のシゴト_サービスガイド.pdf" }],
+      subject: "【運動部のシゴト。】資料のご請求ありがとうございます",
+      text: paragraphs.join("\n\n"),
+      html: `<div style="max-width:640px;margin:0 auto;font-family:-apple-system,BlinkMacSystemFont,'Yu Gothic',sans-serif;line-height:1.9;color:#24332d">${mailHtml}</div>`,
+      attachments: [{ path: PDF_URL, filename: "運動部のシゴト_サービス紹介資料.pdf" }],
       tags: [{ name: "type", value: "undo_job_material_delivery" }],
     }, `undo-job-material-${requestId}`);
   } catch (error) {

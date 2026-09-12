@@ -49,8 +49,23 @@ function pass(label) { count++; console.log('PASS: ' + label); }
   assert.equal(response.headers.get('cache-control'), 'no-store');
   assert.equal(calls.length, 3);
   assert.deepEqual(calls[0].body.to, ['test@example.com']);
-  assert.equal(calls[0].body.attachments[0].path, 'https://www.kyute.jp/undo-job-assets/undo-job-service-guide.pdf');
+  assert.equal(calls[0].body.attachments[0].path, 'https://www.kyute.jp/undo-job-assets/undo-job-service-slides-v12.pdf');
   assert.match(calls[0].body.html, /&lt;安全&gt;/);
+  assert.equal(calls[0].body.subject, '【運動部のシゴト。】資料のご請求ありがとうございます');
+  assert.equal(calls[0].body.attachments[0].filename, '運動部のシゴト_サービス紹介資料.pdf');
+  assert.equal(calls[0].body.reply_to, 'contact@kyute.jp');
+  const delivery = calls[0].body;
+  const plainHtml = delivery.html.replace(/<br\s*\/?>/g, '\n').replace(/<\/p>/g, '\n\n').replace(/<[^>]*>/g, '')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').trim();
+  assert.equal(plainHtml, delivery.text);
+  for (const phrase of ['資料をご請求いただき、誠にありがとうございます', '社員一人ひとりの働く姿や仕事への想い', 'この人たちと働きたい', '会社の魅力が候補者に届ききっていない', 'サービスの考え方', '密着動画で伝える内容', '採用での活用方法', '社内でのご検討の一助', '自社なら誰に密着できるだろう', '本メールにそのままご返信', 'ご検討の初期段階']) {
+    assert.ok(delivery.text.includes(phrase), phrase);
+  }
+  assert.ok(delivery.text.includes(delivery.attachments[0].path));
+  assert.ok(delivery.html.includes('href="' + delivery.attachments[0].path + '"'));
+  assert.doesNotMatch(delivery.text, /必ず採用|応募を保証|日程調整|service-guide\.pdf/);
+  pass('New service-slides PDF, grateful subject, service intent and reply invitation match in text and HTML');
+
   assert.equal(calls[1].body.to[0], 'contact@kyute.jp');
   assert.equal(calls[2].body.channel, 'MOCK-KYUTE-CHANNEL');
   assert.match(calls[2].body.text, /運動部のシゴト/);
@@ -231,5 +246,14 @@ function pass(label) { count++; console.log('PASS: ' + label); }
   assert.equal(calls[0].key,'undo-job-schedule-' + valid.requestId);
   assert.match(calls[0].body.subject,/運動部のシゴト/);
   pass('Existing signed Slack approval sends correct service; invalid signatures never send');
+  calls = [];
+  const escapedLead = {...valid, company:'検証 <script>alert(1)</script> & "会社"', name:"<担当> & '確認'", requestId:'aabbccdd-7158-45fd-b793-a9ff6b1501f6'};
+  assert.equal((await undoJob.POST(request(escapedLead))).status,200);
+  assert.ok(calls[0].body.text.startsWith(escapedLead.company + '\n' + escapedLead.name + ' 様'));
+  assert.match(calls[0].body.html,/&lt;script&gt;alert\(1\)&lt;\/script&gt; &amp; &quot;会社&quot;/);
+  assert.match(calls[0].body.html,/&lt;担当&gt; &amp; &#39;確認&#39;/);
+  assert.doesNotMatch(calls[0].body.html,/<script>|<担当>/);
+  assert.match(calls[1].body.html,/&lt;script&gt;/);
+  pass('Untrusted addressee is escaped in delivery/internal HTML and preserved as plain text');
   console.log(count + ' checks passed. All fetch calls were mocked; no real emails or Slack posts.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

@@ -70,7 +70,7 @@ export default function MaterialRequestForm() {
 
   return <div className="uj-material-form">
     <h3 id="uj-material-title">サービス資料をメールで受け取る</h3>
-    <p className="uj-form-intro">会社名・お名前・メールアドレスをご入力ください。<br />「運動部のシゴト。」の資料PDFをメールでお送りします。</p>
+    <p className="uj-form-intro">会社名・お名前・メールアドレスをご入力ください。<br />「運動部のシゴト。」のサービス紹介スライドをPDFでお送りします。</p>
     {status === "success" ? <div className="uj-form-success" role="status" aria-live="polite" ref={resultRef} tabIndex={-1}>
       <p><strong>メールを送信しました。</strong></p>
       <p>{sentTo} に、資料PDFをお送りしました。</p>

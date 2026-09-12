@@ -4,9 +4,12 @@ import Image from "next/image";
 
 type Clip={videoId:string;startSeconds:number;endSeconds:number;poster:string};
 const clips:Clip[]=[
- {videoId:"QT5ZYECnOUM",startSeconds:790,endSeconds:803,poster:"/lp-assets/studio/okada-2.webp"},
  {videoId:"QzPRS_T-D4Q",startSeconds:1033,endSeconds:1040,poster:"/culture-assets/kitchen-real-v3.png"},
+ {videoId:"QT5ZYECnOUM",startSeconds:790,endSeconds:800,poster:"/lp-assets/studio/okada-1.webp"},
  {videoId:"wtRbJX3bq4o",startSeconds:399,endSeconds:408,poster:"/lp-assets/studio/uosaki-2.webp"},
+ {videoId:"QzPRS_T-D4Q",startSeconds:789,endSeconds:797,poster:"/lp-assets/studio/cafe-5.webp"},
+ {videoId:"QT5ZYECnOUM",startSeconds:913,endSeconds:923,poster:"/lp-assets/studio/okada-4.webp"},
+ {videoId:"QzPRS_T-D4Q",startSeconds:1043,endSeconds:1049,poster:"/culture-assets/storefront-real-v3.png"},
 ];
 type Player={mute():void;playVideo():void;pauseVideo():void;getCurrentTime():number;loadVideoById(clip:Omit<Clip,'poster'>):void;getIframe():HTMLIFrameElement;destroy():void};
 type Youtube={Player:new(el:HTMLElement,options:Record<string,unknown>)=>Player};
@@ -57,6 +60,6 @@ export default function HeroFilm(){
  function toggle(){if(!enabled){paused.current=false;setEnabled(true);setStatus('loading');return;}if(status==='playing'){paused.current=true;player.current?.pauseVideo();setStatus('paused');}else{paused.current=false;player.current?.mute();player.current?.playVideo();}}
  return <div className="uj-hero-film" data-video-state={status} data-clip={clip}>
   <div className="uj-hero-screen"><Image src={clips[clip].poster} sizes="(max-width:760px) 100vw, 48vw" alt="運動部のシゴト。実際の密着映像。働く人の一日" width="1280" height="720" fetchPriority="high"/><div className={`uj-hero-player ${seen?'is-visible':''}`} ref={host}/></div>
-  <div className="uj-film-controls"><span><i aria-hidden="true"/> 自社メディア制作映像 <b>0{clip+1} / 03</b></span>{status==='error'?<a href="#uj-films">作品を見る ↗</a>:<button type="button" onClick={toggle} disabled={status==='loading'} aria-label={status==='playing'?'背景映像を停止':'背景映像を再生'}>{status==='playing'?<><span aria-hidden="true">Ⅱ</span> 無音再生中</>:status==='loading'?'読み込み中':<><span aria-hidden="true">▶</span> 映像を再生</>}</button>}</div>
+  <div className="uj-film-controls"><span><i aria-hidden="true"/> 自社メディア制作映像 <b>{String(clip+1).padStart(2,'0')} / {String(clips.length).padStart(2,'0')}</b></span>{status==='error'?<a href="#uj-reality">作品を見る ↗</a>:<button type="button" onClick={toggle} disabled={status==='loading'} aria-label={status==='playing'?'背景映像を停止':'背景映像を再生'}>{status==='playing'?<><span aria-hidden="true">Ⅱ</span> 無音再生中</>:status==='loading'?'読み込み中':<><span aria-hidden="true">▶</span> 映像を再生</>}</button>}</div>
  </div>;
 }
