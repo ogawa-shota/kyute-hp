@@ -19,10 +19,26 @@ export default function CultureLP(){
  function closeFilm(){dialog.current?.close();setPlaying(null);trigger.current?.focus();}
  return <div id="culture-lp">
   <a className="cs-skip" href="#main">本文へスキップ</a>
-  <header className="cs-header"><a href="#top" className="cs-logo" aria-label="KYUTE トップへ">KYUTE<span>.</span></a><p>採用に、カルチャーという選ばれ方を。</p><nav aria-label="メインナビゲーション"><a href="#works">制作映像</a><a href="#operation">支援内容</a><GuideLink/></nav></header>
+  <header className="cs-header"><a href="#top" className="cs-logo" aria-label="KYUTE トップへ">KYUTE<span>.</span></a><p>採用動画制作・YouTube運用</p><nav aria-label="メインナビゲーション"><a href="#works">制作映像</a><a href="#operation">支援内容</a><GuideLink/></nav></header>
   <main id="main">
-   <section id="top" className="cs-hero"><HeroVideo suspended={playing!==null}/><div className="cs-hero-shade"/><div className="cs-hero-content"><p className="cs-hero-service">カルチャー訴求特化の、<br/>採用YouTube運用代行。</p><h1>カルチャーは、<br/>文字では<br/><em>伝わらない。</em></h1><div className="cs-hero-bottom"><p>求人票では伝わらない、<br/>人・仕事・会社の空気まで。</p><GuideLink>採用YouTubeのサービス資料を見る</GuideLink></div></div><a className="cs-hero-watch" href="#works"><span><Play/></span>制作映像を見る</a></section>
-   <div className="cs-intro-line"><p>その会社らしさを、採用の力に。</p><span>採用戦略 <i>／</i> コンテンツ企画 <i>／</i> 映像制作 <i>／</i> YouTube運用</span></div>
+   <section id="top" className="cs-hero">
+    <div className="cs-hero-layout">
+     <div className="cs-hero-content">
+      <p className="cs-hero-service">人とカルチャーの魅力を、映像に。</p>
+      <h1><span>「ここで働きたい」をつくる。</span><em>採用動画制作。</em></h1>
+      <p className="cs-hero-description">社員の表情、仕事への想い、職場の空気。<br/>求人票では伝わらない魅力を、<br/>KYUTEが企画・撮影・編集で届けます。</p>
+      <ul className="cs-hero-types" aria-label="制作する採用動画"><li>社員密着</li><li>インタビュー</li><li>カルチャー紹介</li></ul>
+      <div className="cs-hero-actions"><GuideLink>サービス資料を見る</GuideLink><a className="cs-hero-work-link" href="#works"><Play/>制作映像を見る</a></div>
+      <p className="cs-hero-support">動画制作から、採用YouTubeの運用まで。</p>
+     </div>
+     <div className="cs-hero-showcase">
+      <div className="cs-hero-reel"><HeroVideo suspended={playing!==null}/></div>
+      <div className="cs-hero-reel-caption"><p>人柄まで、映し出す。</p><button type="button" onClick={()=>openFilm(0)}><Play/>本編を再生</button></div>
+      <p className="cs-hero-credit">KYUTE自社メディア「運動部のシゴト。」の制作映像</p>
+     </div>
+    </div>
+   </section>
+   <div className="cs-production"><div className="cs-production-inner"><p>採用を考えた映像を、<br/><strong>企画から公開後まで。</strong></p><ol><li><span>01</span>企画・構成</li><li><span>02</span>撮影・取材</li><li><span>03</span>編集・制作</li><li><span>04</span>YouTube運用</li></ol></div></div>
    <CultureProblem/>
    <section className="cs-data cs-section" id="culture"><div className="cs-wrap"><div className="cs-data-heading"><p className="cs-eyebrow">入社の決め手は、条件だけじゃない。</p><h2>人は、<br/>人に惹かれる。</h2><p>「誰と、どんな空気の中で働くか」。<br/>それは、会社を選ぶ理由になっている。</p></div><div className="cs-data-primary"><p>入社予定先を決めた理由</p><CountUp value={42.4}/><h3>社員の雰囲気・人柄が<br/>自分に合っている。</h3></div><div className="cs-data-secondary"><CountUp value={37.5}/><p>社風が自分に合っている。</p></div><details className="cs-source"><summary>調査の対象・出典を見る <span>＋</span></summary><p>マイナビ「2025年卒 大学生 活動実態調査（6月15日）」。2024年6月調査、入社先決定者1,898人／複数回答・ウエイトバック集計。採用YouTubeの効果を測った数値ではありません。</p><a href="https://career-research.mynavi.jp/wp-content/uploads/2024/06/s-nainaitei-0615.pdf" target="_blank" rel="noopener noreferrer">調査原典を読む ↗</a></details></div></section>
    <section className="cs-language cs-section" id="youtube"><div className="cs-wrap"><div className="cs-section-opening"><p className="cs-eyebrow">見れば、想像できることがある。</p><h2>だから、<br/>採用YouTube。</h2><p>声も、表情も、仕事のリズムも。<br/>「ここで働く自分」を想像できる情報を、<br/>見たくなるコンテンツに。</p></div><div className="cs-frame-editorial"><figure className="cs-language-person"><img src={frames.smile} width="1280" height="720" alt="会話の中で自然な笑顔を見せる出演者" loading="lazy"/><figcaption><span>表情から、人柄が見える。</span><b>PEOPLE.</b></figcaption></figure><figure className="cs-language-work"><img src={frames.work} width="1280" height="720" alt="カフェ厨房で働く姿" loading="lazy"/><figcaption><span>一日から、仕事が見える。</span><b>WORK.</b></figcaption></figure><figure className="cs-language-story"><img src={frames.story} width="1280" height="720" alt="自分の仕事について語る起業家" loading="lazy"/><figcaption><span>選択から、想いが見える。</span><b>STORY.</b></figcaption></figure><p className="cs-frame-message">人を知る。<br/>仕事を知る。<br/><em>会社を、好きになる。</em><small>KYUTE自社メディアの制作映像より</small></p></div></div></section>

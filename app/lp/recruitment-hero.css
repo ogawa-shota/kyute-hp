@@ -1,0 +1,77 @@
+/* Recruitment production is the first message; real footage is its evidence. */
+#culture-lp .cs-header > p { opacity: .85; }
+#culture-lp .cs-hero { height: auto; min-height: 0; max-height: none; background: #141512; }
+#culture-lp .cs-hero-layout { width: calc(100% - 80px); max-width: 1120px; margin: auto; display: grid; grid-template-columns: 1fr 1.08fr; gap: 40px; align-items: center; padding: 60px 0 48px; }
+#culture-lp .cs-hero-content { padding: 0; margin: 0; height: auto; max-width: none; pointer-events: auto; }
+#culture-lp .cs-hero-service { font-size: 13px; letter-spacing: .06em; color: #c7cbbf; }
+#culture-lp .cs-hero h1 { margin-top: 22px !important; padding: 0; text-shadow: none; letter-spacing: -.045em; line-height: 1.3; }
+#culture-lp .cs-hero h1 > span { display: block; font-size: clamp(19px, 2vw, 26px); font-weight: 500; letter-spacing: -.055em; margin-bottom: 10px; }
+#culture-lp .cs-hero h1 > em { display: block; font-size: clamp(43px, 4.7vw, 62px); white-space: nowrap; }
+#culture-lp .cs-hero-description { margin-top: 25px; font-size: 14px; line-height: 1.95; color: #e0e2da; }
+#culture-lp .cs-hero-types { list-style: none; display: flex; flex-wrap: wrap; gap: 0; padding: 0; margin: 21px 0 0; font-size: 11px; color: #c7cbbf; }
+#culture-lp .cs-hero-types li + li { border-left: 1px solid #55594b; margin-left: 13px; padding-left: 13px; }
+#culture-lp .cs-hero-actions { display: flex; gap: 22px; align-items: center; margin-top: 28px; }
+#culture-lp .cs-hero-actions .cs-button { min-height: 50px; font-size: 12px; padding: 13px 18px; gap: 24px; }
+#culture-lp .cs-hero-work-link { display: inline-flex; gap: 6px; align-items: center; font-size: 12px; border-bottom: 1px solid #777c69; padding-block: 9px; }
+#culture-lp .cs-hero-work-link svg { width: 16px; height: 16px; }
+#culture-lp .cs-hero-support { margin-top: 14px; color: #aeb3a4; font-size: 11px; }
+#culture-lp .cs-hero-showcase { min-width: 0; border-top: 2px solid var(--cs-acid); padding-top: 10px; }
+#culture-lp .cs-hero-reel { position: relative; aspect-ratio: 16/10; background: #282c22; }
+#culture-lp .cs-hero-screen > img { object-position: center; }
+#culture-lp .cs-hero-screen::after { content: ''; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent,#000a); pointer-events: none; }
+#culture-lp .cs-film-controls { left: 14px; right: 14px; bottom: 12px; gap: 8px; font-size: 10px; }
+#culture-lp .cs-film-controls > span { gap: 5px; }
+#culture-lp .cs-film-controls b { margin-left: 4px; }
+#culture-lp .cs-film-controls button { min-height: 32px; font-size: 10px; padding: 4px 9px; background: #0005; }
+#culture-lp .cs-hero-reel-caption { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 16px; }
+#culture-lp .cs-hero-reel-caption > p { font-size: 19px; font-weight: 500; letter-spacing: .02em; }
+#culture-lp .cs-hero-reel-caption button { display: inline-flex; align-items: center; gap: 7px; background: transparent; color: white; border: 1px solid #686f59; min-height: 38px; padding: 8px 12px; font-size: 11px; }
+#culture-lp .cs-hero-reel-caption svg { width: 14px; height: 14px; }
+#culture-lp .cs-hero-credit { margin-top: 9px; font-size: 10px; color: #aeb3a4; }
+#culture-lp .cs-production { background: #ecefe3; border-bottom: 1px solid var(--cs-line); }
+#culture-lp .cs-production-inner { width: calc(100% - 80px); max-width: 1120px; margin: auto; display: grid; grid-template-columns: 1fr 2.6fr; align-items: center; gap: 40px; padding: 24px 0; }
+#culture-lp .cs-production-inner > p { font-size: 12px; line-height: 1.8; }
+#culture-lp .cs-production-inner strong { font-size: 16px; }
+#culture-lp .cs-production ol { display: grid; grid-template-columns: repeat(4,1fr); margin: 0; padding: 0; list-style: none; }
+#culture-lp .cs-production li { position: relative; border-left: 1px solid #c5cab9; padding-left: 20px; font-weight: 700; font-size: 14px; }
+#culture-lp .cs-production li span { display: block; font-size: 10px; font-weight: 500; color: #67734d; margin-bottom: 5px; }
+@media (max-width: 1000px) and (min-width: 800px) {
+ #culture-lp .cs-hero-layout { gap: 24px; width: calc(100% - 48px); }
+ #culture-lp .cs-hero h1 > em { font-size: 43px; }
+ #culture-lp .cs-hero-actions { gap: 15px; flex-wrap: wrap; }
+ #culture-lp .cs-film-controls > span { white-space: nowrap; }
+ #culture-lp .cs-film-controls b { display: none; }
+ #culture-lp .cs-production li { font-size: 12px; padding-left: 13px; }
+}
+@media (max-width: 799px) {
+ #culture-lp .cs-hero-layout { width: calc(100% - 40px); display: flex; flex-direction: column; gap: 28px; padding: 30px 0 25px; align-items: stretch; }
+ #culture-lp .cs-hero-content { padding: 0; }
+ #culture-lp .cs-hero-service { font-size: 11px; }
+ #culture-lp .cs-hero h1 { margin-top: 14px !important; }
+ #culture-lp .cs-hero h1 > span { font-size: clamp(17px,4.7vw,24px); margin-bottom: 6px; }
+ #culture-lp .cs-hero h1 > em { font-size: clamp(40px,10.9vw,60px); }
+ #culture-lp .cs-hero-description { font-size: 13px; line-height: 1.85; margin-top: 17px; }
+ #culture-lp .cs-hero-types { margin-top: 15px; font-size: 10px; }
+ #culture-lp .cs-hero-types li + li { margin-left: 10px; padding-left: 10px; }
+ #culture-lp .cs-hero-actions { margin-top: 22px; gap: 18px; }
+ #culture-lp .cs-hero-actions .cs-button { font-size: 11px; padding: 11px 13px; min-height: 46px; gap: 14px; }
+ #culture-lp .cs-hero-work-link { font-size: 11px; gap: 4px; }
+ #culture-lp .cs-hero-support { font-size: 10px; margin-top: 10px; }
+ #culture-lp .cs-hero-reel { aspect-ratio: 16/9; }
+ #culture-lp .cs-film-controls { left: 10px; right: 10px; bottom: 10px; font-size: 9px; }
+ #culture-lp .cs-hero-reel-caption { margin-top: 11px; }
+ #culture-lp .cs-hero-reel-caption > p { font-size: 17px; }
+ #culture-lp .cs-hero-credit { font-size: 9px; margin-top: 6px; }
+ #culture-lp .cs-production-inner { width: calc(100% - 40px); display: block; padding: 22px 0; }
+ #culture-lp .cs-production-inner > p { font-size: 12px; margin-bottom: 18px; }
+ #culture-lp .cs-production-inner > p br { display: none; }
+ #culture-lp .cs-production-inner strong { font-size: 13px; margin-left: 5px; }
+ #culture-lp .cs-production li { font-size: 11px; padding-left: 10px; }
+ #culture-lp .cs-production li:first-child { border: 0; padding-left: 0; }
+}
+@media (max-width: 359px) {
+ #culture-lp .cs-hero h1 > em { font-size: 38px; }
+ #culture-lp .cs-hero-actions { gap: 12px; }
+ #culture-lp .cs-hero-actions .cs-button { gap: 8px; padding-inline: 10px; }
+ #culture-lp .cs-production li { font-size: 10px; padding-left: 6px; }
+}
