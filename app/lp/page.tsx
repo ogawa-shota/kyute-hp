@@ -5,7 +5,7 @@ import "./culture-refinements.css";
 import "./recruitment-hero.css";
 
 const title = "採用動画制作・採用YouTube運用 | KYUTE";
-const description = "「ここで働きたい」をつくる、KYUTEの採用動画制作。社員密着・インタビュー・カルチャー紹介を、企画・撮影・編集から採用YouTubeの運用まで支援します。";
+const description = "「ここで働きたい」をつくる、KYUTEの採用動画制作。テキストでは伝わらない魅力を動画で届けます。ショート・ロング動画制作から、YouTube・Instagram運用まで支援します。";
 export const metadata: Metadata = {
   title: { absolute: title }, description,
   robots: { index: true, follow: true },
