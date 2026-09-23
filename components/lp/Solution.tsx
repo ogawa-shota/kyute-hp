@@ -23,7 +23,7 @@ export function Solution() {
         <Reveal>
           <p className="eyebrow mb-4">THE SOLUTION</p>
           <h2 className="section-title text-[var(--text-primary)]">
-            密着動画だから、伝わる。
+            採用動画だから、伝わる。
           </h2>
         </Reveal>
 

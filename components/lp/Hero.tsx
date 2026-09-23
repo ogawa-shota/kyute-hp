@@ -25,7 +25,7 @@ export function Hero() {
             採用は「どれだけ伝わるか」が全て。
           </p>
           <p className="mx-auto mt-5 max-w-[38rem] text-base leading-[2] text-[var(--ink-soft)] sm:text-lg">
-            密着動画で企業のリアルを届け、
+            採用動画で企業のリアルを届け、
             <br className="hidden sm:block" />
             応募・承諾・定着につながる採用広報を実現します。
           </p>

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/lp/Hero";
 import { Youtube } from "@/components/lp/Youtube";
 import { Services } from "@/components/lp/Services";
-import { Funnel } from "@/components/lp/Funnel";
 import { Closing } from "@/components/lp/Closing";
 import {
   OG_DESCRIPTION,
@@ -41,8 +40,6 @@ export default function Home() {
       <Youtube />
       {/* サービス一望（概要） */}
       <Services />
-      {/* 効果の証明（採用ファネル図） */}
-      <Funnel />
       {/* ブランドクロージング＋CTA */}
       <Closing />
     </>
