@@ -1,80 +1,118 @@
-# KYUTE LP
+# KYUTE Website
 
-採用成果は、「伝わる会社」から生まれる。 — KYUTE の採用広報ソリューションを紹介する1ページLP（Next.js App Router + TypeScript + Tailwind CSS）。
+KYUTEのコーポレートサイト、採用動画・採用YouTubeサービスページ、独立型ランディングページを管理するNext.jsアプリケーションです。
 
-## 開発
+## Requirements
 
-```bash
-cd /Users/shota/Projects/kyute-hp
-npm install
-npm run dev        # http://localhost:3000
-```
-
-## ビルド / 本番
+- Node.js 24 recommended (`.nvmrc`)
+- npm
+- External delivery integrationsを使う場合のみ、`.env.example`に記載した環境変数
 
 ```bash
-npm run build
-npm start
+nvm use
+npm ci
+npm run dev
 ```
 
-## 問い合わせフォーム
+開発サーバーは通常 `http://localhost:3000` で起動します。
 
-問い合わせ内容は、サーバー側のResend APIを経由して`contact@kyute.jp`へ送信します。
-Resendで`kyute.jp`ドメインを認証し、`.env.example`を参考に以下の環境変数を設定してください。
+## Commands
 
-- `RESEND_API_KEY`: ResendのAPIキー
-- `CONTACT_FROM_EMAIL`: 認証済みドメインの送信元（例: `KYUTE Website <noreply@kyute.jp>`）
-
-VercelではProject SettingsのEnvironment Variablesに同じ値を設定してください。
-
-## ページ構成（4ページ）
-
-`app/layout.tsx` に共通のヘッダー・フッター・モバイル追従CTAを配置し、各ルートが本文を差し込みます。
-
-| ページ | ルート | ファイル | 構成 |
-| --- | --- | --- | --- |
-| **HOME** | `/` | `app/page.tsx` | HERO → サービス概要(S1) → 採用ファネル(S6) → クロージング |
-| **SERVICE** | `/service` | `app/service/page.tsx` | S1→S9 のストーリー本体（サービス→課題→原因→転換→解決→証明→YouTube→事例→流れ）＋クロージング |
-| **ABOUT US** | `/about` | `app/about/page.tsx` | 価値観(S4) → 自社動画メディア → 会社概要 → ブランドクロージング |
-| **CONTACT** | `/contact` | `app/contact/page.tsx` | 問い合わせフォーム(4項目) → FAQ |
-
-各ページは `export const metadata` で個別のtitle/descriptionを設定しています。
-
-### セクションコンポーネント（`components/lp/`）
-
-| ファイル | 役割 |
+| Command | Purpose |
 | --- | --- |
-| `Hero.tsx` | HERO（成果の約束） |
-| `Services.tsx` | S1 サービス一望（概要のみ） |
-| `Challenges.tsx` | S2 課題の言語化 |
-| `Cause.tsx` | S3 原因の特定 |
-| `Shift.tsx` | S4 転換（価値観の提示） |
-| `Solution.tsx` | S5 解決策（密着動画） |
-| `Funnel.tsx` | S6 効果の証明（採用ファネル図） |
-| `Youtube.tsx` | S7 なぜYouTubeなのか |
-| `Flow.tsx` | S9 導入の流れ |
-| `Closing.tsx` | S10 ブランドクロージング＋CTA |
-| `OwnedMedia.tsx` | 自社動画メディア（ABOUT） |
-| `CompanyInfo.tsx` | 会社概要（ABOUT） |
-| `ContactForm.tsx` / `Faq.tsx` | 問い合わせフォーム / FAQ（CONTACT） |
+| `npm run dev` | Turbopackで開発サーバーを起動 |
+| `npm run lint` | `app/` と `components/` をESLintで検査 |
+| `npm test` | Resend・Slackをmockした資料請求/APIテストを実行 |
+| `npm run build` | production buildを生成 |
+| `npm run check` | lint、test、buildを順に実行 |
+| `npm start` | production serverを起動 |
 
-> SERVICEページ内のセクションはストーリー設計上、この順番を変更しないでください。
+テストは外部通信をmockし、実際のメールやSlackメッセージを送信しません。
 
-共通: `Header.tsx`（追従ヘッダー・ルートナビ） / `SiteFooter.tsx`（全ページ共通フッター） / `MobileCtaBar.tsx`（モバイル下部追従CTA） / `PageHeader.tsx`（サブページ見出し） / `CtaButton.tsx` / `Reveal.tsx`（スクロールで静かにフェードイン） / `MediaPlaceholder.tsx`。
+## Routes
 
-## 差し替え箇所（公開前チェック）
+### Corporate and service pages
 
-すべて `{/* 差し替え: ... */}` コメントを目印にしています。
+| Route | Purpose |
+| --- | --- |
+| `/` | KYUTEトップ。採用YouTubeの価値、サービス、自社メディアへの導線 |
+| `/service` | 2つのサービスの一覧 |
+| `/service/youtube` | 採用YouTube運営代行 |
+| `/service/media` | 自社動画メディア「運動部のシゴト。」 |
+| `/about` | KYUTEの考え方と会社情報 |
+| `/contact` | Google Formsを埋め込んだ問い合わせページとFAQ |
 
-- **HEROビジュアル** — `components/lp/Hero.tsx`：現状はコピー主役の1カラム構成。将来的にHERO動画を設置する場合はここに追加。
-- **短尺クリップ** — `components/lp/Solution.tsx`：`MediaPlaceholder` を実際の密着クリップサムネに差し替え。
-- **自社メディア埋め込み** — `components/lp/OwnedMedia.tsx`：自社メディア『運動部のしごと』のチャンネルカード（`@undo-job` へ誘導）。チャンネルに公開動画が揃ったら、カードを `<iframe src="https://www.youtube.com/embed/【動画ID】">` に差し替え可能。
-- **FAQ回答** — `components/lp/Faq.tsx`：回答文を実内容に差し替え。
-- **会社概要** — `components/lp/CompanyInfo.tsx`：所在地・連絡先を差し替え。
-- **SNS / 自社メディアリンク** — `components/lp/SiteFooter.tsx`：各リンク（現状 `#`）を差し替え。
-- **問い合わせ送信処理** — `app/api/contact/route.ts`：Resend経由で`contact@kyute.jp`へ送信。公開前に環境変数を設定。
-- **OGP画像** — `app/layout.tsx`：`/og.jpg`（HEROコピー＋密着動画の1カット）を配置。
+### Standalone landing pages
 
-## 計測
+`components/SiteChrome.tsx` は `/lp` 配下で共通ヘッダー・フッターを表示しません。それぞれが独立したデザイン、ナビゲーション、レスポンシブ実装を持ちます。
 
-各CTAには `data-cta="..."` 属性を付与しています（`hero-primary`, `after-s6`, `closing-primary`, `contact-submit` ほか）。計測タグは後付けで各イベントに紐付け可能です。
+| Route | Purpose |
+| --- | --- |
+| `/lp` | 採用動画制作・採用YouTube運用LP |
+| `/lp/day-in-the-life` | 採用向け密着動画制作サービスLP |
+| `/lp/undo-job` | 「運動部のシゴト。」企業向けLP |
+| `/lp/pace` | `public/pace/index.html` へrewriteする静的LP |
+
+## Application structure
+
+```text
+app/
+  api/                  Resend・Slack・承認フローのRoute Handlers
+  lp/                   独立型LPとroute-scoped CSS/runtime
+  service/              サービスページ
+  layout.tsx            font、metadata、Analytics、SiteChrome
+components/
+  SiteChrome.tsx        通常ページとLPのshell切り替え
+  lp/                   コーポレート/サービス共通コンポーネント
+public/                 画像、PDF、OGP、sitemap、静的LP
+scripts/                外部通信をmockしたAPIテスト
+```
+
+現行デザインのsource of truthは `app/`、`components/`、`app/globals.css`、各LPのroute-scoped CSSです。`docs/site-structure-kyute.md` はAOナビ時代の履歴資料であり、現在のサイト仕様ではありません。`docs/site-structure-aonavi.md` を含む既存資料・アセットは履歴保持のため残しています。
+
+## Forms and integrations
+
+- `/contact` は `components/lp/ContactForm.tsx` でGoogle Formsを埋め込みます。
+- `/api/contact` はResend問い合わせRoute Handlerとして残っていますが、現在のContactページからは呼ばれていません。
+- `/api/material-request`、`/api/culture-material`、`/api/undo-job-material` は、資料PDF送信、社内通知、Slack承認を扱います。
+- `/api/material-request/approve` と `/api/slack/material-request` は、日程調整メールの承認フローを扱います。
+- YouTube埋め込み、Vercel Analytics、Resend、Slack、日程調整URLは外部サービスです。
+
+`.env.example` をコピーしてローカル環境を設定してください。秘密情報をcommitしないでください。
+
+| Variable | Purpose |
+| --- | --- |
+| `RESEND_API_KEY` | Resend API認証 |
+| `CONTACT_FROM_EMAIL` | 認証済みドメインの送信元 |
+| `MATERIAL_APPROVAL_SECRET` | 資料請求承認トークンの暗号鍵（32文字以上） |
+| `MATERIAL_SCHEDULING_URL` | 承認後に案内する日程調整URL |
+| `MATERIAL_SLACK_BOT_TOKEN` | Slack通知・reaction用Bot token |
+| `MATERIAL_SLACK_CHANNEL_ID` | 通知先Slack channel |
+| `MATERIAL_SLACK_SIGNING_SECRET` | Slack request署名検証 |
+
+## QA
+
+通常の変更では以下を実行します。
+
+```bash
+npm run lint
+npm test
+npm run build
+```
+
+UI変更時は、影響する全ルートをDesktop / Tablet / Mobileで実ブラウザ確認してください。特に以下を確認します。
+
+- ナビゲーション、CTA、フォーム、動画dialog、外部リンク
+- キーボード操作、focus表示、見出し構造、reduced motion
+- overflow、文字サイズ、余白、画像cropping、sticky UI
+- console error、失敗したnetwork request、metadata、OGP、sitemap
+- LCPと大容量画像/PDFが与える影響
+
+本番デプロイ、実メール送信、実Slack投稿は検証に含めません。
+
+## Deployment notes
+
+- `https://kyute.jp` / `https://www.kyute.jp` をproduction originとして扱います。
+- Preview環境ではroot metadataが検索indexを無効にします。
+- Vercel側にも必要な環境変数を設定します。
+- 公開前に `public/robots.txt`、`public/sitemap.xml`、各route metadata、資料PDF URLを現行ルートと照合してください。
