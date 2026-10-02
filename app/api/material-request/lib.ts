@@ -106,6 +106,23 @@ export function verifySlackSignature(rawBody: string, timestamp: string, signatu
   return left.length === right.length && timingSafeEqual(left, right);
 }
 
+export async function addSlackReaction(channel: string, timestamp: string) {
+  const botToken = process.env.MATERIAL_SLACK_BOT_TOKEN;
+  if (!botToken || !channel || !timestamp) throw new Error("Slack reaction context is incomplete");
+  const response = await fetch("https://slack.com/api/reactions.add", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${botToken}`, "Content-Type": "application/json; charset=utf-8" },
+    signal: AbortSignal.timeout(15_000),
+    body: JSON.stringify({ channel, timestamp, name: "ballot_box_with_check" }),
+  });
+  if (!response.ok) throw new Error(`Slack reaction HTTP ${response.status}`);
+  const result = await response.json() as { ok?: boolean; error?: string };
+  if (result.ok !== true && result.error !== "already_reacted") {
+    throw new Error(`Slack reaction API ${result.error || "unknown_error"}`);
+  }
+  return true;
+}
+
 export async function postSlackApproval(token: string, data: Omit<ApprovalData, "expiresAt">) {
   const sourceName = data.service === "undo-job" ? "運動部のシゴト。LP" : data.service === "culture" ? "採用YouTube LP" : "採用密着動画LP";
   const botToken = process.env.MATERIAL_SLACK_BOT_TOKEN;

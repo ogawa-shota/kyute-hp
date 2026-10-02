@@ -41,6 +41,11 @@ function pass(label) { count++; console.log('PASS: ' + label); }
   assert.deepEqual(calls[0].body.to, ['test@example.com']);
   assert.equal(calls[0].body.attachments[0].path, 'https://www.kyute.jp/culture-assets/kyute-culture-guide.pdf');
   assert.match(calls[0].body.html, /&lt;安全&gt;/);
+  for (const phrase of ['資料をご請求いただき、誠にありがとうございます', '人・仕事・会社の空気', '候補者が応募の前に会社への理解を深め', '誇張せず', '企画・制作・運用の進め方', '本メールにそのままご返信', 'ご検討の初期段階']) {
+    assert.ok(calls[0].body.text.includes(phrase), phrase);
+  }
+  assert.ok(calls[0].body.text.includes(calls[0].body.attachments[0].path));
+  assert.ok(calls[0].body.html.includes('href="' + calls[0].body.attachments[0].path + '"'));
   assert.equal(calls[1].body.to[0], 'contact@kyute.jp');
   assert.equal(calls[2].body.channel, 'MOCK-KYUTE-CHANNEL');
   assert.match(calls[2].body.text, /採用YouTube/);
@@ -76,6 +81,11 @@ function pass(label) { count++; console.log('PASS: ' + label); }
   const docResponse = await documentary.POST(request(valid, {}, 'material-request'));
   assert.equal(docResponse.status, 200);
   assert.equal(calls[0].body.attachments[0].path, 'https://www.kyute.jp/lp-assets/service-guide-v10.pdf');
+  for (const phrase of ['資料をご請求いただき、誠にありがとうございます', '社員の働く姿や仕事への想い、職場の空気', 'ここで働く自分', '密着動画で伝える内容', '制作の進め方・費用の目安', '本メールにそのままご返信', 'ご検討の初期段階']) {
+    assert.ok(calls[0].body.text.includes(phrase), phrase);
+  }
+  assert.ok(calls[0].body.text.includes(calls[0].body.attachments[0].path));
+  assert.ok(calls[0].body.html.includes('href="' + calls[0].body.attachments[0].path + '"'));
   assert.match(calls[2].body.text, /採用密着動画LP/);
   assert.equal(calls[0].key, 'material-' + valid.requestId);
   pass('Existing documentary request, PDF, notification and scheduling templates unchanged');

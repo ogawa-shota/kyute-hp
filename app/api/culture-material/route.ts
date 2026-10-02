@@ -64,6 +64,17 @@ export async function POST(request: Request) {
     return reply(503, "現在、資料送付の準備中です。contact@kyute.jp へお問い合わせください。");
   }
   const lead = { company, name, email, requestId, service: "culture" as const };
+  const paragraphs = [
+    `${company}\n${name} 様`,
+    "このたびは「採用YouTube運用代行サービス」の資料をご請求いただき、誠にありがとうございます。\nKYUTE合同会社です。",
+    "私たちは、単発の会社紹介ではなく、人・仕事・会社の空気が伝わる動画を継続して届けることで、候補者が応募の前に会社への理解を深め、納得して選べる採用体験をつくりたいと考えています。求人票だけでは届きにくい会社らしさを、誇張せず、そこで働く方々の言葉と姿から伝えることを大切にしています。",
+    "本メールに採用YouTube運用代行サービスの資料PDFを添付しました。\n資料では、サービスの考え方、企画・制作・運用の進め方、採用活動での活用方法をご紹介しています。社内でのご検討の一助になれば幸いです。",
+    "ご不明な点や「自社ではどんな発信ができるだろう」といったご相談がありましたら、本メールにそのままご返信ください。ご検討の初期段階でも、どうぞお気軽にお声がけください。",
+    `資料PDF：${PDF_URL}`,
+    `KYUTE合同会社\n採用YouTube運用代行サービス\n${CONTACT_EMAIL}`,
+  ];
+  const mailHtml = paragraphs.map(paragraph => `<p>${escapeHtml(paragraph).replace(/\n/g, "<br>")
+    .replace(PDF_URL, `<a href="${PDF_URL}">${PDF_URL}</a>`)}</p>`).join("");
   let token: string;
   try {
     token = createApprovalToken(lead);
@@ -72,8 +83,8 @@ export async function POST(request: Request) {
       to: [email],
       reply_to: CONTACT_EMAIL,
       subject: "採用YouTube運用代行サービス｜資料のご案内",
-      text: `${company}\n${name} 様\n\n資料をご請求いただき、ありがとうございます。\n本メールに採用YouTube運用代行サービスの資料PDFを添付しました。\n\n資料URL：${PDF_URL}\n\nKYUTE合同会社\n${CONTACT_EMAIL}`,
-      html: `<p>${escapeHtml(company)}<br>${escapeHtml(name)} 様</p><p>資料をご請求いただき、ありがとうございます。<br>本メールに採用YouTube運用代行サービスの資料PDFを添付しました。</p><p><a href="${PDF_URL}">資料PDFを開く</a></p><p>KYUTE合同会社<br><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></p>`,
+      text: paragraphs.join("\n\n"),
+      html: `<div style="max-width:640px;margin:0 auto;font-family:-apple-system,BlinkMacSystemFont,'Yu Gothic',sans-serif;line-height:1.9;color:#24332d">${mailHtml}</div>`,
       attachments: [{ path: PDF_URL, filename: "採用YouTube運用代行サービス_ご案内.pdf" }],
       tags: [{ name: "type", value: "culture_material_delivery" }],
     }, `culture-material-${requestId}`);
