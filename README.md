@@ -2,6 +2,8 @@
 
 KYUTEのコーポレートサイト、採用動画・採用YouTubeサービスページ、独立型ランディングページを管理するNext.jsアプリケーションです。
 
+現在のルートと役割は [`docs/SITE.md`](docs/SITE.md)、現在実装されているvisual systemは [`docs/DESIGN.md`](docs/DESIGN.md) を参照してください。DESIGN.mdは観測記録であり、user-approved Goldではありません。
+
 ## Requirements
 
 - Node.js 24 recommended (`.nvmrc`)
@@ -29,30 +31,6 @@ npm run dev
 
 テストは外部通信をmockし、実際のメールやSlackメッセージを送信しません。
 
-## Routes
-
-### Corporate and service pages
-
-| Route | Purpose |
-| --- | --- |
-| `/` | KYUTEトップ。採用YouTubeの価値、サービス、自社メディアへの導線 |
-| `/service` | 2つのサービスの一覧 |
-| `/service/youtube` | 採用YouTube運営代行 |
-| `/service/media` | 自社動画メディア「運動部のシゴト。」 |
-| `/about` | KYUTEの考え方と会社情報 |
-| `/contact` | Google Formsを埋め込んだ問い合わせページとFAQ |
-
-### Standalone landing pages
-
-`components/SiteChrome.tsx` は `/lp` 配下で共通ヘッダー・フッターを表示しません。それぞれが独立したデザイン、ナビゲーション、レスポンシブ実装を持ちます。
-
-| Route | Purpose |
-| --- | --- |
-| `/lp` | 採用動画制作・採用YouTube運用LP |
-| `/lp/day-in-the-life` | 採用向け密着動画制作サービスLP |
-| `/lp/undo-job` | 「運動部のシゴト。」企業向けLP |
-| `/lp/pace` | `public/pace/index.html` へrewriteする静的LP |
-
 ## Application structure
 
 ```text
@@ -64,11 +42,15 @@ app/
 components/
   SiteChrome.tsx        通常ページとLPのshell切り替え
   lp/                   コーポレート/サービス共通コンポーネント
+docs/
+  SITE.md               current route and surface truth
+  DESIGN.md             observed visual implementation contract
+  archive/              historical documents; not current specifications
 public/                 画像、PDF、OGP、sitemap、静的LP
 scripts/                外部通信をmockしたAPIテスト
 ```
 
-現行デザインのsource of truthは `app/`、`components/`、`app/globals.css`、各LPのroute-scoped CSSです。`docs/site-structure-kyute.md` はAOナビ時代の履歴資料であり、現在のサイト仕様ではありません。`docs/site-structure-aonavi.md` を含む既存資料・アセットは履歴保持のため残しています。
+2026-05-06のAOナビ企業サイト構成書は [`docs/archive/2026-05-06_ao-navi-corporate-site.md`](docs/archive/2026-05-06_ao-navi-corporate-site.md) に履歴として保存しています。現行仕様として使用しないでください。
 
 ## Forms and integrations
 
@@ -92,23 +74,13 @@ scripts/                外部通信をmockしたAPIテスト
 
 ## QA
 
-通常の変更では以下を実行します。
-
 ```bash
 npm run lint
 npm test
 npm run build
 ```
 
-UI変更時は、影響する全ルートをDesktop / Tablet / Mobileで実ブラウザ確認してください。特に以下を確認します。
-
-- ナビゲーション、CTA、フォーム、動画dialog、外部リンク
-- キーボード操作、focus表示、見出し構造、reduced motion
-- overflow、文字サイズ、余白、画像cropping、sticky UI
-- console error、失敗したnetwork request、metadata、OGP、sitemap
-- LCPと大容量画像/PDFが与える影響
-
-本番デプロイ、実メール送信、実Slack投稿は検証に含めません。
+UI変更時のscope判断、Preservation Mode、before/after比較はShota AI OSの `web-product` skillに従います。project-specificなpreserve対象は `docs/DESIGN.md` を使用してください。本番デプロイ、実メール送信、実Slack投稿は検証に含めません。
 
 ## Deployment notes
 

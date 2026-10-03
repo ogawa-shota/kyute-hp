@@ -3,13 +3,12 @@
 @tailwind utilities;
 
 /* =============================================================
-   KYUTE LP — Design tokens
-   Tone: quiet / premium / documentary
-   Palette: GLIS reference — off-white × charcoal × warm gold accent
+   Shared corporate/service tokens — current implementation values.
+   These values are observed project defaults, not an approval record.
    ============================================================= */
 :root {
   --bg: #ffffff;
-  --bg-soft: #f4f4f6;      /* off-white section（GLIS #f5f5f7系） */
+  --bg-soft: #f4f4f6;      /* off-white section */
   --bg-tint: #fff8e1;      /* pale gold block */
   --ink: #2c2e33;          /* 本文（純黒を避けた墨色） */
   --ink-strong: #0a0a0f;   /* 見出し用の漆黒 */
@@ -146,7 +145,7 @@ h4 {
   background: var(--bg-tint);
 }
 
-/* Dark dramatic section (GLIS-style charcoal with gold accent) */
+/* Dark section using the current charcoal and gold tokens */
 .bg-dark {
   background: var(--ink-strong);
   color: #f2f2f4;

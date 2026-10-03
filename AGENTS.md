@@ -1,23 +1,24 @@
 # kyute-hp repository guidance
 
-## Purpose and stack
-
-KYUTE's corporate site and recruitment-video landing pages. The application uses Next.js 16 App Router, React 19, TypeScript, Tailwind CSS 3, and Vercel Analytics. Use npm and the committed `package-lock.json`; Node 24 is recommended by `.nvmrc`.
-
 ## Read first
 
-- `README.md` for routes, integrations, commands, and environment variables.
-- `app/`, `components/`, and route-scoped CSS are the current implementation source of truth.
-- `docs/site-structure-kyute.md` is legacy AO Navi material and does not describe the current site.
-- For company facts, consult the sibling `KYUTE/context/` repository context. Do not invent missing facts.
+- `docs/SITE.md` is the current route, purpose, CTA, navigation, and surface map.
+- `docs/DESIGN.md` is the current observed implementation contract. It is neither user approval nor Gold.
+- `README.md` records setup, architecture, integrations, and commands.
+- For company facts, consult the sibling `KYUTE/context/` repository. Do not invent missing facts or copy private Vault material.
+- Use [Shota AI OS orchestration](../shota-ai-os/core/orchestration.md) and its `web-product` skill for methodology.
 
-## Architecture constraints
+## Local constraints
 
 - `app/layout.tsx` and `components/SiteChrome.tsx` provide shared chrome; `/lp` routes intentionally render without it.
-- Preserve each LP's scoped visual system and responsive behavior.
-- API routes integrate with Resend, Slack, and the scheduling flow. Never expose secrets or send real email/Slack messages during tests.
-- Preserve historical source assets unless removal is explicitly approved.
-- Shared product/design methods belong in `shota-ai-os`; keep this file repository-specific.
+- Preserve the distinct surface contracts in `docs/DESIGN.md`; do not normalize one LP to another or to the shared corporate system without an explicit redesign request.
+- API routes integrate with Resend, Slack, and scheduling. Tests must use mocks; never expose secrets or send real email/Slack messages without explicit approval.
+- Preserve historical source documents and assets unless removal is explicitly approved. Archived documents are not current specifications.
+- Keep generic web methodology in Shota AI OS, not in this repository.
+
+## Change routing
+
+Classify UI scope and run the corresponding workflow through the canonical Shota AI OS `web-product` skill. This repository contributes only the applicable surface contract in `docs/DESIGN.md`, local constraints, and commands; do not replace an existing surface contract without an explicit redesign request.
 
 ## Commands
 
@@ -31,11 +32,9 @@ npm run build
 
 ## Definition of done
 
-- Lint, mocked API tests, and production build pass.
-- Product-facing changes are checked in a real browser on desktop, tablet, and mobile, including keyboard use, reduced motion, console/network errors, and affected forms/video dialogs.
-- Metadata, sitemap, accessibility, performance, and responsive behavior remain correct for affected routes.
-- Tests must use mocks; production deployment and real external messages require explicit approval.
-
-## Shota AI OS entry point
-
-Use [canonical orchestration](../shota-ai-os/core/orchestration.md) to select the workflow and completion gates. Read the relevant skill there; do not duplicate its methodology here. Keep this repository's architecture, constraints, commands, and local instructions in force. If the sibling checkout is unavailable, resolve `~/.agents/skills/context-router/SKILL.md` to its canonical directory.
+- `npm run lint`, `npm test`, and `npm run build` pass, or skipped/failed checks are reported.
+- `docs/SITE.md` and `docs/DESIGN.md` remain accurate when routes, navigation, CTAs, or visual systems change.
+- Technical QA and visual QA are reported separately. Affected UI is checked in a real browser at desktop and mobile; add tablet for large changes.
+- Small UI work changes only the requested scope; unrelated Hero, sections, and LP surfaces remain visually unchanged.
+- Metadata, accessibility, responsive behavior, forms, and video dialogs remain correct for affected routes.
+- No production deployment, real external message, secret, or private Vault content is included without explicit approval.
