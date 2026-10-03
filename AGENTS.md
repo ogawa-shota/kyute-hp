@@ -35,3 +35,7 @@ npm run build
 - Product-facing changes are checked in a real browser on desktop, tablet, and mobile, including keyboard use, reduced motion, console/network errors, and affected forms/video dialogs.
 - Metadata, sitemap, accessibility, performance, and responsive behavior remain correct for affected routes.
 - Tests must use mocks; production deployment and real external messages require explicit approval.
+
+## Shota AI OS entry point
+
+Use [canonical orchestration](../shota-ai-os/core/orchestration.md) to select the workflow and completion gates. Read the relevant skill there; do not duplicate its methodology here. Keep this repository's architecture, constraints, commands, and local instructions in force. If the sibling checkout is unavailable, resolve `~/.agents/skills/context-router/SKILL.md` to its canonical directory.
