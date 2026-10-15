@@ -5,6 +5,7 @@
 - `docs/SITE.md` is the current route, purpose, CTA, navigation, and surface map.
 - `docs/DESIGN.md` is the current observed implementation contract. It is neither user approval nor Gold.
 - `README.md` records setup, architecture, integrations, and commands.
+- `docs/COLUMN.md` and `.claude/skills/column/` define how column articles are written, checked, and published. Use the `column` skill for any article work.
 - For company facts, consult the sibling `KYUTE/context/` repository. Do not invent missing facts or copy private Vault material.
 - Use [Shota AI OS orchestration](../shota-ai-os/core/orchestration.md) and its `web-product` skill for methodology.
 

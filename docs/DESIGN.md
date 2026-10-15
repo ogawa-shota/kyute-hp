@@ -11,7 +11,7 @@ This document records what the repository currently renders so that scoped chang
 ## Corporate / service / contact shared system
 
 - **Status:** Current observed shared implementation; not approval.
-- **Routes:** `/`, `/service`, `/service/youtube`, `/service/media`, `/about`, `/contact`.
+- **Routes:** `/`, `/service`, `/service/youtube`, `/service/media`, `/about`, `/contact`, `/column/**` (article body typography in `app/column/column.css`).
 - **Typography:** Zen Kaku Gothic New for Japanese/body content and Inter for Latin text and numerals, with fluid heading/body tokens.
 - **Colors:** White and light-gray surfaces; charcoal/near-black text; a warm yellow-gold accent (`#ffdb67`) and related tint/deeper values. These are implementation values, not accepted corporate-brand rules.
 - **Spacing:** Wide section spacing, commonly around `py-20` through desktop `py-28`, with bounded content widths and split section headers.

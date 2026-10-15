@@ -26,6 +26,9 @@ All `/lp` routes bypass the shared header and footer. Each LP owns its navigatio
 | `/service/media` | Owned-media service / 「運動部のシゴト。」 detail | `/contact` and media/video destinations |
 | `/about` | Company approach and company information | `/contact` |
 | `/contact` | Embedded Google Forms contact surface and FAQ | Form completion in the embedded external form |
+| `/column` | Column index with category filter | Article pages |
+| `/column/category/[category]` | Column list per service (`recruit-video`, `recruit-youtube`, `ai-casual-interview`, `experience-briefing`, `general`) | Article pages |
+| `/column/[slug]` | Column article from `content/column/<slug>.md`; drafts render only locally and on Vercel previews (noindex) | Per-service end-of-article CTA defined in `lib/column/core.mjs` |
 
 ### Independent LP surfaces
 
@@ -49,7 +52,7 @@ All `/lp` routes bypass the shared header and footer. Each LP owns its navigatio
 
 ## Major surfaces and ownership
 
-- **Shared system:** `/`, `/service`, `/service/youtube`, `/service/media`, `/about`, and `/contact` share global tokens, typography, header/footer, and common content components.
+- **Shared system:** `/`, `/service`, `/service/youtube`, `/service/media`, `/about`, `/contact`, and `/column/**` share global tokens, typography, header/footer, and common content components.
 - **Independent LPs:** `/lp`, `/lp/day-in-the-life`, and `/lp/undo-job` use route-scoped components, CSS, runtime interactions, forms, and media treatments.
 - **Independent static LP:** `/lp/pace` is a self-contained static HTML/CSS/JS implementation under `public/pace/` and is not governed by the React LP styles.
 
@@ -59,7 +62,7 @@ Do not make a shared-token change under the assumption that every LP inherits it
 
 ### Current
 
-Only the routes listed above are represented as currently implemented. Public sitemap, metadata, PDFs, and external destinations must be checked separately when route behavior changes.
+Only the routes listed above are represented as currently implemented. `app/sitemap.ts` generates the sitemap (static pages plus published columns). Public sitemap, metadata, PDFs, and external destinations must be checked separately when route behavior changes.
 
 ### Planned
 

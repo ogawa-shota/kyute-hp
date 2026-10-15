@@ -24,7 +24,9 @@ npm run dev
 | --- | --- |
 | `npm run dev` | Turbopackで開発サーバーを起動 |
 | `npm run lint` | `app/` と `components/` をESLintで検査 |
-| `npm test` | Resend・Slackをmockした資料請求/APIテストを実行 |
+| `npm test` | Resend・Slackをmockした資料請求/APIテストと、コラムのチェックを実行 |
+| `npm run column:check` | コラム記事の必須項目・一次情報・検索ワード重複などを検査 |
+| `npm run column:keywords` | コラムが狙う検索ワードの一覧を表示 |
 | `npm run build` | production buildを生成 |
 | `npm run check` | lint、test、buildを順に実行 |
 | `npm start` | production serverを起動 |
@@ -38,15 +40,22 @@ app/
   api/                  Resend・Slack・承認フローのRoute Handlers
   lp/                   独立型LPとroute-scoped CSS/runtime
   service/              サービスページ
+  column/               お役立ちコラム（一覧・カテゴリ・記事）
+  sitemap.ts            sitemap.xml（固定ページ＋公開済みコラム）
   layout.tsx            font、metadata、Analytics、SiteChrome
+content/
+  column/               コラム記事（Markdown）。書き方は docs/COLUMN.md
+  authors/              コラムの著者プロフィール
+lib/column/             コラムの読み込み・検証・Markdown変換
 components/
   SiteChrome.tsx        通常ページとLPのshell切り替え
   lp/                   コーポレート/サービス共通コンポーネント
+  column/               コラム用コンポーネント
 docs/
   SITE.md               current route and surface truth
   DESIGN.md             observed visual implementation contract
   archive/              historical documents; not current specifications
-public/                 画像、PDF、OGP、sitemap、静的LP
+public/                 画像、PDF、OGP、静的LP
 scripts/                外部通信をmockしたAPIテスト
 ```
 
