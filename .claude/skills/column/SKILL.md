@@ -92,6 +92,10 @@ CTA: （省略可）
 
 「PR #◯ を公開設定にして」と頼まれたら、依頼者が編集責任者（`docs/COLUMN.md` に記載）であることを確認してから、記事の `reviewer` に依頼者の id、`status: published`、`publishedAt`（指定が無ければ今日）を入れる。`column:check` を通して push し、「GitHubで Approve → Merge すると公開されます」と伝える。マージは人が行う。
 
+## 非公開中のサービス
+
+`lib/column/core.mjs` で `hidden: true` のサービス（現在はAIカジュアル面談・体験型会社説明会）は、下書きまでしか作れない。依頼されたら、公開はまだできないことを最初に伝える。
+
 ## やらないこと
 
 - 一次情報なしで書く、上位記事を言い換えてつなぐ

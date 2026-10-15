@@ -2,20 +2,20 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/lp/PageHeader";
 import { CategoryNav, ColumnGrid } from "@/components/column/ColumnParts";
-import { SERVICES, getColumns, type ServiceId } from "@/lib/column";
+import { SERVICES, VISIBLE_SERVICES, getColumns, type ServiceId } from "@/lib/column";
 
 type Props = { params: Promise<{ category: string }> };
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return Object.keys(SERVICES).map((category) => ({ category }));
+  return VISIBLE_SERVICES.map((category) => ({ category }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
   const service = SERVICES[category as ServiceId];
-  if (!service) return {};
+  if (!service || !VISIBLE_SERVICES.includes(category as ServiceId)) return {};
   return {
     title: `${service.label}のコラム｜KYUTE`,
     description: `${service.name}について、KYUTEが現場で得た知見をもとに解説するコラムの一覧です。`,
@@ -31,7 +31,7 @@ export default async function ColumnCategoryPage({ params }: Props) {
   const { category } = await params;
   const id = category as ServiceId;
   const service = SERVICES[id];
-  if (!service) notFound();
+  if (!service || !VISIBLE_SERVICES.includes(id)) notFound();
   return (
     <>
       <PageHeader eyebrow="COLUMN" title={`${service.label}のコラム`} />

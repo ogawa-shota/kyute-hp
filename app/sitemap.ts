@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SERVICES, getColumns } from "@/lib/column";
+import { VISIBLE_SERVICES, getColumns } from "@/lib/column";
 import { SITE_URL } from "./seo";
 
 type Entry = MetadataRoute.Sitemap[number];
@@ -30,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority,
     })),
     { url: `${SITE_URL}/column`, lastModified: latest, changeFrequency: "weekly", priority: 0.8 },
-    ...(Object.keys(SERVICES) as (keyof typeof SERVICES)[])
+    ...VISIBLE_SERVICES
       .filter((id) => columns.some((c) => c.service === id))
       .map((id) => ({
         url: `${SITE_URL}/column/category/${id}`,

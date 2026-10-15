@@ -27,7 +27,7 @@ All `/lp` routes bypass the shared header and footer. Each LP owns its navigatio
 | `/about` | Company approach and company information | `/contact` |
 | `/contact` | Embedded Google Forms contact surface and FAQ | Form completion in the embedded external form |
 | `/column` | Column index with category filter | Article pages |
-| `/column/category/[category]` | Column list per service (`recruit-video`, `recruit-youtube`, `ai-casual-interview`, `experience-briefing`, `general`) | Article pages |
+| `/column/category/[category]` | Column list per visible service (`recruit-video`, `recruit-youtube`, `general`; `ai-casual-interview` and `experience-briefing` are hidden until announced) | Article pages |
 | `/column/[slug]` | Column article from `content/column/<slug>.md`; drafts render only locally and on Vercel previews (noindex) | Per-service end-of-article CTA defined in `lib/column/core.mjs` |
 
 ### Independent LP surfaces

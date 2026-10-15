@@ -10,8 +10,8 @@ import {
 } from "@/components/column/ColumnParts";
 import {
   SERVICES,
+  getAllColumns,
   getColumn,
-  getColumns,
   getRelated,
   headings,
   renderMarkdown,
@@ -24,7 +24,7 @@ type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return getColumns().map((c) => ({ slug: c.slug }));
+  return getAllColumns().map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

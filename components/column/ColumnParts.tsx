@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CtaButton } from "@/components/lp/CtaButton";
-import { SERVICES, type Column, type ServiceId } from "@/lib/column";
+import { SERVICES, VISIBLE_SERVICES, type Column, type ServiceId } from "@/lib/column";
 
 export function formatDate(date?: string) {
   return date ? date.replaceAll("-", ".") : "";
@@ -10,7 +10,7 @@ export function formatDate(date?: string) {
 export function CategoryNav({ current }: { current?: ServiceId }) {
   const items: { href: string; label: string; active: boolean }[] = [
     { href: "/column", label: "すべて", active: !current },
-    ...(Object.keys(SERVICES) as ServiceId[]).map((id) => ({
+    ...VISIBLE_SERVICES.map((id) => ({
       href: `/column/category/${id}`,
       label: SERVICES[id].label,
       active: current === id,

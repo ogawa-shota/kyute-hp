@@ -47,4 +47,12 @@ assert.match(messages(validateColumns([item(base, body + "![](/a.png)")], author
 // Unknown author and CTA.
 assert.match(messages(validateColumns([item({ ...base, author: "nobody", cta: "x" })], authors)), /author[\s\S]*cta/);
 
+// Hidden (unannounced) services can be drafted but not published.
+const hidden = validateColumns(
+  [item({ ...base, service: "experience-briefing", status: "published", reviewer: "shota", publishedAt: "2026-10-01" })],
+  authors,
+);
+assert.match(messages(hidden), /まだサイトで公開していない/);
+assert.equal(validateColumns([item({ ...base, service: "experience-briefing" })], authors).errors.length, 0);
+
 console.log("column check tests passed");

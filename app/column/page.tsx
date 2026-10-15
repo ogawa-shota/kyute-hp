@@ -6,7 +6,7 @@ import { getColumns } from "@/lib/column";
 export const metadata: Metadata = {
   title: "お役立ちコラム｜KYUTE",
   description:
-    "採用動画・採用YouTube・会社説明会・カジュアル面談について、KYUTEが現場で得た知見をもとに解説します。",
+    "採用動画・採用YouTube・採用広報について、KYUTEが現場で得た知見をもとに解説します。",
   alternates: { canonical: "/column" },
 };
 
@@ -16,7 +16,7 @@ export default function ColumnIndexPage() {
       <PageHeader
         eyebrow="COLUMN"
         title="採用広報のお役立ちコラム"
-        lead="採用動画・採用YouTube・会社説明会・カジュアル面談について、KYUTEが現場で得た知見をもとに解説します。"
+        lead="採用動画・採用YouTube・採用広報について、KYUTEが現場で得た知見をもとに解説します。"
       />
       <section className="pb-28">
         <div className="mx-auto max-w-6xl px-5 lg:px-8">

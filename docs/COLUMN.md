@@ -79,6 +79,10 @@ Claude Code が、検索上位の記事を読んで「上位記事に無いこ�
 
 `npm run column:keywords` で、今ある記事の検索ワード一覧が見られます。
 
+## 非公開中のサービス
+
+AIカジュアル面談と体験型会社説明会は、サイトでまだ公開していません（`lib/column/core.mjs` の `hidden: true`）。この2つの記事は下書きまで書けますが、公開はできず、カテゴリのタブも表示されません。公開するときは `hidden` を外します。
+
 ## 記事末尾のCTA
 
 `service` ごとに自動で決まります（`lib/column/core.mjs` の `CTAS`）。サイトのリニューアルで新しいサービスページができたら、リンク先をそこへ差し替えます。
@@ -87,6 +91,6 @@ Claude Code が、検索上位の記事を読んで「上位記事に無いこ�
 |---|---|
 | recruit-video | 採用動画の資料をもらう |
 | recruit-youtube | 採用YouTubeの資料をもらう |
-| ai-casual-interview | デモ・先行導入について相談する |
-| experience-briefing | デモ・先行導入について相談する |
+| ai-casual-interview | デモ・先行導入について相談する（※サービス非公開中。下書きのみ） |
+| experience-briefing | デモ・先行導入について相談する（※サービス非公開中。下書きのみ） |
 | general | 無料で相談する |

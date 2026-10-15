@@ -11,6 +11,7 @@ import {
   isPublic,
   readAuthors,
   readColumns,
+  visibleServiceIds,
 } from "./core.mjs";
 
 export type ServiceId = keyof typeof SERVICES;
@@ -40,6 +41,9 @@ export type Column = {
 
 export { SERVICES };
 
+/** Services with a public category tab and page. */
+export const VISIBLE_SERVICES = visibleServiceIds() as ServiceId[];
+
 /**
  * Drafts are visible locally and on Vercel preview deployments (which are
  * noindex), so a reviewer can read the article from the PR's preview link.
@@ -51,6 +55,8 @@ const showDrafts =
 function load(): Column[] {
   const authors = readAuthors() as Record<string, Author>;
   return readColumns()
+    // Hidden services stay out of lists everywhere; their drafts are still
+    // reachable by URL on previews so a reviewer can read them.
     .filter(({ data }) => showDrafts || isPublic(data))
     .map(({ data, body }) => ({
       slug: data.slug,
@@ -73,7 +79,14 @@ function load(): Column[] {
 
 export function getColumns(service?: ServiceId): Column[] {
   const all = load();
-  return service ? all.filter((c) => c.service === service) : all;
+  return service
+    ? all.filter((c) => c.service === service)
+    : all.filter((c) => VISIBLE_SERVICES.includes(c.service));
+}
+
+/** Every article this build may render, including hidden-service drafts on previews. */
+export function getAllColumns(): Column[] {
+  return load();
 }
 
 export function getColumn(slug: string): Column | undefined {
