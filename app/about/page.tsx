@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { COMPANY } from "@/components/site/data";
-import { AnswerCards, AssetCompare, HeartCurve, MoneyCycle } from "@/components/site/diagrams";
-import { Breadcrumb, Button, Container, Eyebrow, Heading, Lead, Section } from "@/components/site/ui";
+import { Breadcrumb, Container, Eyebrow, Heading, Section } from "@/components/site/ui";
 
 export const metadata: Metadata = {
   title: "会社紹介｜KYUTE",
@@ -24,40 +23,12 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <Section tone="dark" className="!pb-16" labelledBy="philosophy">
+      <Section tone="dark" labelledBy="philosophy">
         <Eyebrow onDark>PHILOSOPHY</Eyebrow>
         <h2 id="philosophy" className="text-[40px] leading-[1.3] text-white md:text-[72px]">採用を、<br />消費から資産へ。</h2>
       </Section>
 
-      <Section labelledBy="money">
-        <Heading id="money">1人の応募を獲得するのに、<br />膨大なお金がかかるのが採用。</Heading>
-        <Lead>しかも、そのお金は毎年毎年、かかっては消えていく。</Lead>
-        <MoneyCycle />
-      </Section>
-
-      <Section tone="soft" labelledBy="heart">
-        <Heading id="heart">なのに、一度掴んだ心が、<br />何度も離れてしまうのが採用。</Heading>
-        <HeartCurve />
-      </Section>
-
-      <Section tone="dark" labelledBy="answer">
-        <h2 id="answer" className="text-[40px] leading-[1.3] text-white md:text-[72px]">
-          認知を取って、<br />心を掴んで、<br /><span className="text-[var(--brand)]">離さない。</span>
-        </h2>
-        <p className="mt-5 text-[22px] font-extrabold text-[var(--brand)]">それが、採用YouTube。</p>
-        <AnswerCards />
-      </Section>
-
-      <Section labelledBy="asset">
-        <Heading id="asset">しかも、採用YouTubeは<br />消費ではなく、資産。</Heading>
-        <Lead>一度つくったコンテンツは、公開後も働き続ける。</Lead>
-        <AssetCompare />
-        <div className="mt-12 flex justify-center">
-          <Button href="/service/recruit-youtube" variant="dark" cta="about-youtube">採用YouTube運用代行を見る →</Button>
-        </div>
-      </Section>
-
-      <Section tone="soft" id="company" labelledBy="company-h">
+      <Section id="company" labelledBy="company-h">
         <Eyebrow>COMPANY</Eyebrow>
         <Heading id="company-h">会社概要</Heading>
         <dl className="mt-8 border-t border-[var(--line)]">

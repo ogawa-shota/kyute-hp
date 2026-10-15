@@ -17,13 +17,16 @@ export default function WorksPage() {
         lead="KYUTEが制作した、面白く、心に残る動画をご紹介します。"
         crumbs={[{ label: "トップ", href: "/" }, { label: "制作事例" }]}
       />
-      <Section tone="soft" id="undo-job" labelledBy="undo-job-h">
+      <Section tone="soft" labelledBy="undo-job-h">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
           <div>
             <Eyebrow>OWNED MEDIA</Eyebrow>
             <Heading id="undo-job-h">運動部のシゴト。</Heading>
             <Lead>元運動部の“今”を追う、1日密着ドキュメンタリー。KYUTEが企画・撮影・編集・運用まで行っている自社メディアです。</Lead>
-            <div className="mt-8"><Button href={CHANNEL_URL} variant="outline" cta="works-channel">YouTubeチャンネルを見る ↗</Button></div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button href="/media" cta="works-media">運動部のシゴト。について →</Button>
+              <Button href={CHANNEL_URL} variant="outline" cta="works-channel">YouTubeチャンネル ↗</Button>
+            </div>
           </div>
           <div className="grid gap-8 sm:grid-cols-2">
             {OWNED_VIDEOS.map((v) => (

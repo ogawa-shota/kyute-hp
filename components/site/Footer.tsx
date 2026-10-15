@@ -8,7 +8,7 @@ const GROUPS = [
   ] },
   { title: "事例", links: [
     { label: "制作事例", href: "/works" },
-    { label: "運動部のシゴト。", href: "/works#undo-job" },
+    { label: "運動部のシゴト。", href: "/media" },
   ] },
   { title: "コラム", links: [
     { label: "コラム一覧", href: "/column" },
@@ -24,7 +24,7 @@ const GROUPS = [
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--ink-strong)] pb-28 pt-16 text-white/80 md:pb-12 md:pt-20">
+    <footer className="bg-[var(--ink-strong)] pb-28 pt-16 text-white/80 md:pt-20 xl:pb-12">
       <Container>
         <div className="flex flex-col gap-8 border-b border-white/15 pb-12 md:flex-row md:items-center md:justify-between">
           <p className="text-[24px] font-extrabold leading-[1.5] text-white md:text-[30px]">
@@ -58,7 +58,7 @@ export function Footer() {
 /** Mobile-only bottom bar with the two primary actions. */
 export function MobileBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 flex gap-2 border-t border-[var(--line)] bg-white/95 px-3 py-2.5 backdrop-blur lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 flex gap-2 border-t border-[var(--line)] bg-white/95 px-3 py-2.5 backdrop-blur xl:hidden">
       <Button href="/download" variant="outline" size="sm" cta="mobile-download" className="flex-1">資料請求</Button>
       <Button href="/contact" size="sm" cta="mobile-contact" className="flex-1">無料相談</Button>
     </div>

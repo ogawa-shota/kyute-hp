@@ -10,7 +10,7 @@ The application serves KYUTE's corporate site (renewed 2026-10): two services (�
 
 ## Shared navigation and primary actions
 
-Every route except `/lp/**` uses `SiteChrome` (`components/site/Header.tsx`, `Footer.tsx`). Header: サービス (dropdown: 採用動画制作 / 採用YouTube運用代行), 制作事例, 運動部のシゴト。, コラム, 会社紹介, plus 資料請求 (`/download`) and 無料相談 (`/contact`). Mobile shows both actions in a fixed bottom bar.
+Every route except `/lp/**` uses `SiteChrome` (`components/site/Header.tsx`, `Footer.tsx`). Header (from 1280px): 採用動画制作, 採用YouTube運用代行, 運動部のシゴト。, 制作事例, コラム, 会社紹介, plus 資料請求 (`/download`) and 無料相談 (`/contact`). Narrower screens use a menu button and a fixed bottom bar with both actions.
 
 Each service page has its own material request form (`#download`), posting to the existing delivery endpoints: 採用動画 → `/api/material-request`, 採用YouTube → `/api/culture-material`.
 
@@ -26,15 +26,16 @@ AIカジュアル面談 and 体験型会社説明会 are not announced yet and a
 | `/service` | Index of the two services | Service pages |
 | `/service/recruit-video` | 採用動画制作: 情報過多 → 心に残る採用広報 → works → price (incl. 初回トライアル) → 活用 → FAQ → form | `#download` form, `/contact` |
 | `/service/recruit-youtube` | 採用YouTube運用代行: お金が消える → 心が離れる → 認知を取って、心を掴んで、離さない → 資産 → proof → plans → FAQ → form | `#download` form, `/contact` |
-| `/works` | Owned-media works and 「運動部のシゴト。」 (`#undo-job`) | YouTube, `/service/recruit-video` |
-| `/about` | Mission, 「採用を、消費から資産へ。」, company profile | `/service/recruit-youtube` |
+| `/media` | 「運動部のシゴト。」 media page: the `/lp/undo-job` content embedded in the site chrome (LP layout and colors, site typeface) | Material request form, `/contact` |
+| `/works` | Owned-media works list | `/media`, YouTube, `/service/recruit-video` |
+| `/about` | Mission, 「採用を、消費から資産へ。」, company profile | — |
 | `/download` | Both material request forms | Forms |
 | `/contact` | Embedded Google Forms contact surface and FAQ | Embedded external form |
 | `/column` | Column index with category filter | Article pages |
 | `/column/category/[category]` | Column list per visible service (`recruit-video`, `recruit-youtube`, `general`; `ai-casual-interview` and `experience-briefing` are hidden until announced) | Article pages |
 | `/column/[slug]` | Column article from `content/column/<slug>.md`; drafts render only locally and on Vercel previews (noindex) | Per-service end-of-article CTA defined in `lib/column/core.mjs` |
 
-Redirects (`next.config.ts`, permanent): `/service/youtube` → `/service/recruit-youtube`, `/service/media` → `/works#undo-job`, `/lp/pace` and `/pace/*` → `/`.
+Redirects (`next.config.ts`, permanent): `/service/youtube` → `/service/recruit-youtube`, `/service/media` → `/media`, `/lp/pace` and `/pace/*` → `/`.
 
 ### Landing pages (all noindex, outside the sitemap)
 
@@ -44,7 +45,7 @@ Redirects (`next.config.ts`, permanent): `/service/youtube` → `/service/recrui
 | `/lp/recruit-youtube` | Ad LP: the 採用YouTube運用代行 page without site navigation | `#download` form |
 | `/lp` | Legacy recruitment-YouTube campaign LP (kept for existing links) | Material download, consultation |
 | `/lp/day-in-the-life` | Legacy day-in-the-life LP (kept for existing links) | Material request form |
-| `/lp/undo-job` | Corporate-facing LP for 「運動部のシゴト。」 | Service-material request and consultation |
+| `/lp/undo-job` | Standalone 「運動部のシゴト。」 LP with its own header/footer; same content as `/media` (`app/lp/undo-job/UndoJobContent.tsx`) | Service-material request and consultation |
 
 ### Route handlers
 
