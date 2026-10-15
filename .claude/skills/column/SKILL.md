@@ -84,6 +84,14 @@ CTA: （省略可）
 4. Vercel のプレビューURLで、下書きのまま記事を読める（プレビューは検索エンジンに載らない）。
 5. 承認者が `reviewer`・`status: published`・`publishedAt` を入れてマージすると公開される。
 
+## レビューコメントの反映
+
+「PR #◯ のレビューコメントを反映して」と頼まれたら、`gh pr view <番号> --comments` と `gh api repos/{owner}/{repo}/pulls/<番号>/comments` でコメントを読み、該当ブランチに切り替えて直す。`column:check` を通してから push し、どのコメントにどう対応したかをPRにコメントで返す。
+
+## 公開設定（編集責任者だけ）
+
+「PR #◯ を公開設定にして」と頼まれたら、依頼者が編集責任者（`docs/COLUMN.md` に記載）であることを確認してから、記事の `reviewer` に依頼者の id、`status: published`、`publishedAt`（指定が無ければ今日）を入れる。`column:check` を通して push し、「GitHubで Approve → Merge すると公開されます」と伝える。マージは人が行う。
+
 ## やらないこと
 
 - 一次情報なしで書く、上位記事を言い換えてつなぐ
