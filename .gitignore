@@ -40,8 +40,9 @@ yarn-error.log*
 # obsidian (personal workspace settings)
 .obsidian/
 
-# claude code (local tooling settings)
-.claude/
+# claude code: local settings stay private; shared team skills are tracked
+.claude/*
+!.claude/skills/
 
 # typescript
 *.tsbuildinfo

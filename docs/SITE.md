@@ -1,0 +1,78 @@
+# KYUTE Site Contract
+
+Status: current implemented route and surface map.
+
+This document describes the routes currently present in the repository. It does not approve their design or content quality. When this document conflicts with executable routing, `app/**`, `next.config.*`, and `components/SiteChrome.tsx` are authoritative and this document must be corrected.
+
+## Purpose
+
+The application serves KYUTE's corporate site (renewed 2026-10): two services (採用動画制作, 採用YouTube運用代行) that each convert on their own page, owned-media works (「運動部のシゴト。」), the column, and ad / legacy landing pages.
+
+## Shared navigation and primary actions
+
+Every route except `/lp/**` uses `SiteChrome` (`components/site/Header.tsx`, `Footer.tsx`). Header: サービス (dropdown: 採用動画制作 / 採用YouTube運用代行), 制作事例, 運動部のシゴト。, コラム, 会社紹介, plus 資料請求 (`/download`) and 無料相談 (`/contact`). Mobile shows both actions in a fixed bottom bar.
+
+Each service page has its own material request form (`#download`), posting to the existing delivery endpoints: 採用動画 → `/api/material-request`, 採用YouTube → `/api/culture-material`.
+
+AIカジュアル面談 and 体験型会社説明会 are not announced yet and appear nowhere on the site.
+
+## Current implemented routes
+
+### Corporate site
+
+| Route | Current role | Main CTA or destination |
+| --- | --- | --- |
+| `/` | FV, 課題から選ぶ (2 services), 制作事例, latest columns (hidden while none are published), FAQ | `/contact`, `/download`, service pages |
+| `/service` | Index of the two services | Service pages |
+| `/service/recruit-video` | 採用動画制作: 情報過多 → 心に残る採用広報 → works → price (incl. 初回トライアル) → 活用 → FAQ → form | `#download` form, `/contact` |
+| `/service/recruit-youtube` | 採用YouTube運用代行: お金が消える → 心が離れる → 認知を取って、心を掴んで、離さない → 資産 → proof → plans → FAQ → form | `#download` form, `/contact` |
+| `/works` | Owned-media works and 「運動部のシゴト。」 (`#undo-job`) | YouTube, `/service/recruit-video` |
+| `/about` | Mission, 「採用を、消費から資産へ。」, company profile | `/service/recruit-youtube` |
+| `/download` | Both material request forms | Forms |
+| `/contact` | Embedded Google Forms contact surface and FAQ | Embedded external form |
+| `/column` | Column index with category filter | Article pages |
+| `/column/category/[category]` | Column list per visible service (`recruit-video`, `recruit-youtube`, `general`; `ai-casual-interview` and `experience-briefing` are hidden until announced) | Article pages |
+| `/column/[slug]` | Column article from `content/column/<slug>.md`; drafts render only locally and on Vercel previews (noindex) | Per-service end-of-article CTA defined in `lib/column/core.mjs` |
+
+Redirects (`next.config.ts`, permanent): `/service/youtube` → `/service/recruit-youtube`, `/service/media` → `/works#undo-job`, `/lp/pace` and `/pace/*` → `/`.
+
+### Landing pages (all noindex, outside the sitemap)
+
+| Route | Current role | Main CTA or destination |
+| --- | --- | --- |
+| `/lp/recruit-video` | Ad LP: the 採用動画制作 page without site navigation, trial band under the FV | `#download` form |
+| `/lp/recruit-youtube` | Ad LP: the 採用YouTube運用代行 page without site navigation | `#download` form |
+| `/lp` | Legacy recruitment-YouTube campaign LP (kept for existing links) | Material download, consultation |
+| `/lp/day-in-the-life` | Legacy day-in-the-life LP (kept for existing links) | Material request form |
+| `/lp/undo-job` | Corporate-facing LP for 「運動部のシゴト。」 | Service-material request and consultation |
+
+### Route handlers
+
+| Route | Current role |
+| --- | --- |
+| `/api/contact` | Resend contact handler retained in the codebase; not called by the current `/contact` page |
+| `/api/culture-material` | Culture LP material delivery flow |
+| `/api/material-request` | Material request and internal notification flow |
+| `/api/material-request/approve` | Approval step for scheduling guidance |
+| `/api/slack/material-request` | Slack interaction endpoint for the approval flow |
+| `/api/undo-job-material` | 「運動部のシゴト。」 material delivery flow |
+
+## Major surfaces and ownership
+
+- **Corporate site:** every non-`/lp` route, built from `components/site/` and scoped tokens under `.site` in `app/globals.css`.
+- **Ad LPs:** `/lp/recruit-video` and `/lp/recruit-youtube` reuse the service page components inside `app/lp/LpShell.tsx`.
+- **Legacy LPs:** `/lp`, `/lp/day-in-the-life`, `/lp/undo-job` keep their own route-scoped systems.
+
+## Status boundaries
+
+### Current
+
+Only the routes listed above are represented as currently implemented. `app/sitemap.ts` generates the sitemap (static pages plus published columns). Public sitemap, metadata, PDFs, and external destinations must be checked separately when route behavior changes.
+
+### Planned
+
+No additional page route is established as an approved plan by the current implementation or current project-truth documents. A proposal must be recorded as planned before an agent treats it as committed scope.
+
+### Archived
+
+- [`archive/2026-05-06_ao-navi-corporate-site.md`](archive/2026-05-06_ao-navi-corporate-site.md) is a historical AOナビ-focused corporate-site plan. It conflicts with the current product and visual implementation and must not be used as a current specification.

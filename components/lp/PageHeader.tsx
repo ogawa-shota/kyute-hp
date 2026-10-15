@@ -9,7 +9,7 @@ type PageHeaderProps = {
 /** サブページ共通の見出しブロック。ヘッダー分の余白を確保。 */
 export function PageHeader({ eyebrow, title, lead }: PageHeaderProps) {
   return (
-    <section className="bg-white pb-16 pt-32 md:pb-20 md:pt-40">
+    <section className="bg-white pb-12 pt-12 md:pb-16 md:pt-16">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <Reveal>
           <p className="eyebrow mb-4">{eyebrow}</p>

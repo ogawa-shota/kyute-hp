@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Zen_Kaku_Gothic_New, Inter } from "next/font/google";
+import { Zen_Kaku_Gothic_New, Inter, LINE_Seed_JP } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SiteChrome } from "@/components/SiteChrome";
@@ -18,6 +18,14 @@ const latin = Inter({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-latin",
+  display: "swap",
+});
+
+// コーポレートサイト（/lp 以外）の書体。営業資料（Figma Slides）と同じ LINE Seed JP。
+const kyute = LINE_Seed_JP({
+  weight: ["400", "700", "800"],
+  subsets: ["latin"],
+  variable: "--font-kyute",
   display: "swap",
 });
 
@@ -45,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${sans.variable} ${latin.variable} font-sans antialiased`}
+        className={`${sans.variable} ${latin.variable} ${kyute.variable} font-sans antialiased`}
       >
         <SiteChrome>{children}</SiteChrome>
         <Analytics />

@@ -1,12 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async rewrites() {
+  async redirects() {
     return [
-      {
-        source: "/lp/pace",
-        destination: "/pace/index.html",
-      },
+      // 2026-10 renewal: old service URLs and the retired PACE LP.
+      { source: "/service/youtube", destination: "/service/recruit-youtube", permanent: true },
+      { source: "/service/media", destination: "/works#undo-job", permanent: true },
+      { source: "/lp/pace", destination: "/", permanent: true },
+      { source: "/pace/:path*", destination: "/", permanent: true },
     ];
   },
   images: {
