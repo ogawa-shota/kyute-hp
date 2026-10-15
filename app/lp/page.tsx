@@ -8,7 +8,7 @@ const title = "採用動画制作・採用YouTube運用 | KYUTE";
 const description = "「ここで働きたい」をつくる、KYUTEの採用動画制作。テキストでは伝わらない魅力を動画で届けます。ショート・ロング動画制作から、YouTube・Instagram運用まで支援します。";
 export const metadata: Metadata = {
   title: { absolute: title }, description,
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true }, // ad/sales LP; the corporate service pages are the search entry
   alternates: { canonical: "https://kyute.jp/lp" },
   openGraph: { title, description, type: "website", locale: "ja_JP", siteName: "KYUTE", url: "https://kyute.jp/lp", images: [{ url: "/lp-assets/story-turn-scene-v11.webp", width: 1200, height: 675, alt: "KYUTE — 採用動画制作・採用YouTube運用" }] },
   twitter: { card: "summary_large_image", title, description, images: ["/lp-assets/story-turn-scene-v11.webp"] },

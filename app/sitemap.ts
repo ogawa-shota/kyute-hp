@@ -4,17 +4,17 @@ import { SITE_URL } from "./seo";
 
 type Entry = MetadataRoute.Sitemap[number];
 
-// Static pages, carried over unchanged from the former public/sitemap.xml.
+// Corporate pages. Ad LPs under /lp are noindex and stay out of the sitemap.
+const RENEWED = "2026-10-15";
 const PAGES: [string, string, Entry["changeFrequency"], number][] = [
-  ["/", "2026-07-11", "weekly", 1.0],
-  ["/service", "2026-07-11", "weekly", 0.9],
-  ["/service/youtube", "2026-07-11", "weekly", 0.9],
-  ["/service/media", "2026-07-11", "weekly", 0.9],
-  ["/about", "2026-07-11", "monthly", 0.7],
-  ["/contact", "2026-07-11", "monthly", 0.8],
-  ["/lp", "2026-09-09", "monthly", 0.8],
-  ["/lp/day-in-the-life", "2026-09-09", "monthly", 0.8],
-  ["/lp/pace", "2026-09-09", "monthly", 0.8],
+  ["/", RENEWED, "weekly", 1.0],
+  ["/service", RENEWED, "monthly", 0.8],
+  ["/service/recruit-video", RENEWED, "monthly", 0.9],
+  ["/service/recruit-youtube", RENEWED, "monthly", 0.9],
+  ["/works", RENEWED, "monthly", 0.8],
+  ["/about", RENEWED, "monthly", 0.7],
+  ["/download", RENEWED, "monthly", 0.7],
+  ["/contact", RENEWED, "monthly", 0.7],
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

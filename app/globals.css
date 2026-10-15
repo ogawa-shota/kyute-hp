@@ -190,3 +190,33 @@ h4 {
   .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
   .no-scrollbar::-webkit-scrollbar { display: none; }
 }
+
+/* =============================================================
+   Corporate site (everything except /lp/**), 2026-10 renewal.
+   Matches the KYUTE sales decks: white / charcoal / one yellow accent,
+   LINE Seed JP + Inter. Scoped to .site so the LPs keep their own systems.
+   ============================================================= */
+.site {
+  --ink: #2a2c31;
+  --ink-strong: #1d1f24;
+  --ink-soft: #55575c;
+  --ink-mute: #6b6b66;
+  --text-primary: #1d1f24;
+  --bg-soft: #f4f3ef;
+  --bg-tint: #fff3cf;
+  --brand: #ffdb67;
+  --brand-deep: #f2c53f;
+  --brand-soft: #fff3cf;
+  --brand-ink: #8a6a12;
+  --line: #e2e0d8;
+  --line-soft: #ecebe5;
+  --font-ja: var(--font-kyute), "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  font-family: var(--font-ja);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.9;
+}
+.site :is(h1, h2, h3, h4) { color: inherit; font-weight: 800; letter-spacing: 0.01em; }
+.site .num { font-family: var(--font-en); font-weight: 800; letter-spacing: -0.02em; }
+.site .marker { background: linear-gradient(transparent 62%, var(--brand) 62%); }
+.site :focus-visible { outline: 3px solid var(--ink-strong); outline-offset: 3px; }

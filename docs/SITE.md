@@ -6,38 +6,45 @@ This document describes the routes currently present in the repository. It does 
 
 ## Purpose
 
-The application currently serves KYUTE's corporate presence, recruitment-video and recruitment-YouTube service information, owned-media information, contact entry points, and several independently designed campaign landing pages.
+The application serves KYUTE's corporate site (renewed 2026-10): two services (採用動画制作, 採用YouTube運用代行) that each convert on their own page, owned-media works (「運動部のシゴト。」), the column, and ad / legacy landing pages.
 
-## Shared navigation and primary action
+## Shared navigation and primary actions
 
-Corporate, service, about, and contact pages use the shared `SiteChrome`. The shared header links to Home, Service, About, and Contact; service navigation exposes recruitment YouTube and owned-media surfaces. The principal shared conversion action is `/contact` (displayed as a free-consultation action in the current UI).
+Every route except `/lp/**` uses `SiteChrome` (`components/site/Header.tsx`, `Footer.tsx`). Header: サービス (dropdown: 採用動画制作 / 採用YouTube運用代行), 制作事例, 運動部のシゴト。, コラム, 会社紹介, plus 資料請求 (`/download`) and 無料相談 (`/contact`). Mobile shows both actions in a fixed bottom bar.
 
-All `/lp` routes bypass the shared header and footer. Each LP owns its navigation, CTA labels, forms, sticky controls, and responsive behavior.
+Each service page has its own material request form (`#download`), posting to the existing delivery endpoints: 採用動画 → `/api/material-request`, 採用YouTube → `/api/culture-material`.
+
+AIカジュアル面談 and 体験型会社説明会 are not announced yet and appear nowhere on the site.
 
 ## Current implemented routes
 
-### Shared corporate/service surface
+### Corporate site
 
 | Route | Current role | Main CTA or destination |
 | --- | --- | --- |
-| `/` | KYUTE overview; introduces recruitment YouTube, services, and owned media | `/contact` and service detail routes |
-| `/service` | Index for the two currently presented service areas | `/service/youtube`, `/service/media`, `/contact` |
-| `/service/youtube` | Recruitment YouTube operation service detail | `/contact` |
-| `/service/media` | Owned-media service / 「運動部のシゴト。」 detail | `/contact` and media/video destinations |
-| `/about` | Company approach and company information | `/contact` |
-| `/contact` | Embedded Google Forms contact surface and FAQ | Form completion in the embedded external form |
+| `/` | FV, 課題から選ぶ (2 services), 制作事例, latest columns (hidden while none are published), FAQ | `/contact`, `/download`, service pages |
+| `/service` | Index of the two services | Service pages |
+| `/service/recruit-video` | 採用動画制作: 情報過多 → 心に残る採用広報 → works → price (incl. 初回トライアル) → 活用 → FAQ → form | `#download` form, `/contact` |
+| `/service/recruit-youtube` | 採用YouTube運用代行: お金が消える → 心が離れる → 認知を取って、心を掴んで、離さない → 資産 → proof → plans → FAQ → form | `#download` form, `/contact` |
+| `/works` | Owned-media works and 「運動部のシゴト。」 (`#undo-job`) | YouTube, `/service/recruit-video` |
+| `/about` | Mission, 「採用を、消費から資産へ。」, company profile | `/service/recruit-youtube` |
+| `/download` | Both material request forms | Forms |
+| `/contact` | Embedded Google Forms contact surface and FAQ | Embedded external form |
 | `/column` | Column index with category filter | Article pages |
 | `/column/category/[category]` | Column list per visible service (`recruit-video`, `recruit-youtube`, `general`; `ai-casual-interview` and `experience-briefing` are hidden until announced) | Article pages |
 | `/column/[slug]` | Column article from `content/column/<slug>.md`; drafts render only locally and on Vercel previews (noindex) | Per-service end-of-article CTA defined in `lib/column/core.mjs` |
 
-### Independent LP surfaces
+Redirects (`next.config.ts`, permanent): `/service/youtube` → `/service/recruit-youtube`, `/service/media` → `/works#undo-job`, `/lp/pace` and `/pace/*` → `/`.
+
+### Landing pages (all noindex, outside the sitemap)
 
 | Route | Current role | Main CTA or destination |
 | --- | --- | --- |
-| `/lp` | Recruitment-video / recruitment-YouTube campaign LP | Service-material download section and consultation/video pathways |
-| `/lp/day-in-the-life` | Day-in-the-life recruitment-video service LP | Material request form and video viewing |
+| `/lp/recruit-video` | Ad LP: the 採用動画制作 page without site navigation, trial band under the FV | `#download` form |
+| `/lp/recruit-youtube` | Ad LP: the 採用YouTube運用代行 page without site navigation | `#download` form |
+| `/lp` | Legacy recruitment-YouTube campaign LP (kept for existing links) | Material download, consultation |
+| `/lp/day-in-the-life` | Legacy day-in-the-life LP (kept for existing links) | Material request form |
 | `/lp/undo-job` | Corporate-facing LP for 「運動部のシゴト。」 | Service-material request and consultation |
-| `/lp/pace` | Static PACE LP rewritten to `public/pace/index.html` by Next config | `/contact` consultation action |
 
 ### Route handlers
 
@@ -52,11 +59,9 @@ All `/lp` routes bypass the shared header and footer. Each LP owns its navigatio
 
 ## Major surfaces and ownership
 
-- **Shared system:** `/`, `/service`, `/service/youtube`, `/service/media`, `/about`, `/contact`, and `/column/**` share global tokens, typography, header/footer, and common content components.
-- **Independent LPs:** `/lp`, `/lp/day-in-the-life`, and `/lp/undo-job` use route-scoped components, CSS, runtime interactions, forms, and media treatments.
-- **Independent static LP:** `/lp/pace` is a self-contained static HTML/CSS/JS implementation under `public/pace/` and is not governed by the React LP styles.
-
-Do not make a shared-token change under the assumption that every LP inherits it. Do not copy one LP's visual rules into another without an explicit redesign decision.
+- **Corporate site:** every non-`/lp` route, built from `components/site/` and scoped tokens under `.site` in `app/globals.css`.
+- **Ad LPs:** `/lp/recruit-video` and `/lp/recruit-youtube` reuse the service page components inside `app/lp/LpShell.tsx`.
+- **Legacy LPs:** `/lp`, `/lp/day-in-the-life`, `/lp/undo-job` keep their own route-scoped systems.
 
 ## Status boundaries
 

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: { absolute: "採用向け密着動画制作サービス｜人とカルチャーで、選ばれる会社へ。" },
   description: "採用の設計力と、YouTubeの企画・編集力。働く一日に密着し、人・仕事・カルチャーのリアルを届けるKYUTEの採用向け密着動画制作サービス。",
   alternates: { canonical: "https://www.kyute.jp/lp/day-in-the-life" },
+  robots: { index: false, follow: true }, // ad/sales LP; the corporate service pages are the search entry
   openGraph: { title: "人とカルチャーで、選ばれる会社へ。｜KYUTE", description: "採用の設計力と、YouTubeの企画・編集力でつくる採用向け密着動画。", url: "https://www.kyute.jp/lp/day-in-the-life", locale: "ja_JP", type: "website" },
 };
 const A = "/lp-assets/studio/";

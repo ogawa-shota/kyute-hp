@@ -8,22 +8,17 @@ Gold: Not Gold
 
 This document records what the repository currently renders so that scoped changes can preserve it. It does **not** claim that the design is good, finished, approved, or an accepted brand standard. Shota AI OS defines the work method; this file defines only the current project-specific evidence.
 
-## Corporate / service / contact shared system
+## Corporate site (2026-10 renewal)
 
-- **Status:** Current observed shared implementation; not approval.
-- **Routes:** `/`, `/service`, `/service/youtube`, `/service/media`, `/about`, `/contact`, `/column/**` (article body typography in `app/column/column.css`).
-- **Typography:** Zen Kaku Gothic New for Japanese/body content and Inter for Latin text and numerals, with fluid heading/body tokens.
-- **Colors:** White and light-gray surfaces; charcoal/near-black text; a warm yellow-gold accent (`#ffdb67`) and related tint/deeper values. These are implementation values, not accepted corporate-brand rules.
-- **Spacing:** Wide section spacing, commonly around `py-20` through desktop `py-28`, with bounded content widths and split section headers.
-- **Borders:** Fine, low-contrast dividers and outline states.
-- **Radius:** Mostly restrained; some dropdown, form, and content surfaces use rounded corners such as `rounded-xl`.
-- **Motion:** Smooth scrolling and quiet reveal transitions. Preserve existing reduced-motion handling on affected components.
-- **Section rhythm:** Alternation of white, soft-gray, tinted, and dark sections with generous reading space.
-- **Component language:** Shared header/footer/mobile CTA, typographic section headings, structured service blocks, evidence/content sections, and restrained decorative treatment.
-- **Imagery/video:** Recruitment footage, company/media imagery, and YouTube embeds support the narrative; current cropping and aspect ratios are part of the observed layout.
-- **CTA:** The primary shared action leads to `/contact`, currently framed as a free consultation. Service-detail links are secondary.
-- **Responsive behavior:** Desktop navigation and multi-column sections collapse to mobile navigation, stacked content, and mobile CTA behavior at Tailwind/component breakpoints.
-- **Preserve rules:** Do not apply an LP palette or display type to this surface. Keep shared-chrome behavior, content width, section rhythm, CTA hierarchy, and unaffected routes stable.
+- **Status:** Implemented from the Figma direction selected by Shota on 2026-10-15 (file 「KYUTE HP リニューアル」, page 「構成・ワイヤー」, v4 row). Not Gold.
+- **Routes:** every route outside `/lp/**`, plus `/lp/recruit-video` and `/lp/recruit-youtube` (same components without site navigation).
+- **Typography:** LINE Seed JP (400/700/800) for Japanese, Inter for numerals and Latin labels — the same faces as the KYUTE sales decks. Headings are 800 weight; body text is 17px or larger.
+- **Colors:** White and warm off-white (`#f4f3ef`) surfaces, charcoal (`#1d1f24`) text and dark sections, a single yellow accent (`#ffdb67`) for primary buttons, markers and small labels, pale yellow (`#fff3cf`) for asset panels. Tokens live under `.site` in `app/globals.css`.
+- **Spacing and shape:** Sections `py-20`/`md:py-28`, content width 1200px, rounded 24px panels and pill buttons.
+- **Imagery:** Thumbnails of KYUTE's own 「運動部のシゴト。」 videos (`public/works/`), always labelled as owned media, not customer work.
+- **Story:** 採用動画 follows 情報過多 → 心に残る採用広報 → 面白く、心に残る採用動画. 採用YouTube follows お金が消える → 心が離れる → 認知を取って、心を掴んで、離さない → 資産. Both come from the 2026-10 sales decks.
+- **CTA:** 資料請求 (service-specific form) and 無料相談 (`/contact`) on every page; mobile fixed bottom bar with both.
+- **Preserve rules:** Do not show AIカジュアル面談 or 体験型会社説明会 until announced. Do not publish customer names, outcomes or SoVa material without permission. Keep the LP systems below separate.
 
 ## Culture / recruitment-video LP
 
@@ -78,24 +73,11 @@ This document records what the repository currently renders so that scoped chang
 
 ## PACE LP
 
-- **Status:** Current observed independent static implementation; not approval.
-- **Routes:** `/lp/pace`, rewritten to `public/pace/index.html`.
-- **Typography:** The standalone file loads Montserrat, Noto Sans JP, and Oswald while also using local Avenir/Yu Gothic and Yu Mincho-style stacks in different sections. This mixed stack is an observed fact, not a recommended standard.
-- **Colors:** The file defines paper (`#f7f5ed`), ink (`#12241d`), lime (`#d8ff73`), coral (`#ff6a4c`), sky/amber/mint tokens and later layered blue/teal/lime styling. Preserve the effective cascade when making scoped changes.
-- **Spacing:** Self-contained max-width layout (about `1180px`) with dense feature, diagram, pricing, and calculator sections.
-- **Borders:** Graphic outlines and section/card separators vary within the standalone campaign system.
-- **Radius:** Rounded cards and pills are prominent; a base radius around `28px` is defined.
-- **Motion:** Reveal and decorative animation behavior is implemented in the static document; reduced-motion overrides exist and must remain effective.
-- **Section rhythm:** Dense explanatory diagrams and pricing/product modules alternate with broad campaign statements and CTA bands.
-- **Component language:** Rounded cards, pills, diagrams, comparison/pricing structures, interactive simulator, and bright campaign accents.
-- **Imagery/video:** Static assets and diagrams are integrated directly into the standalone HTML.
-- **CTA:** The main consultation action leads to `/contact` and is currently labeled for PACE consultation.
-- **Responsive behavior:** Major layout changes occur around `980px` and `640px`; complex modules stack or simplify on narrow screens.
-- **Preserve rules:** Treat `public/pace/index.html` as its own visual system. Do not assume React shared tokens apply, and do not flatten its layered cascade during a small edit.
+- **Status:** Retired 2026-10-15. `/lp/pace` and `/pace/*` redirect to `/`; the static files remain in `public/pace/` as history.
 
 ## Evidence locations
 
-- Shared system: `app/globals.css`, `app/layout.tsx`, `components/SiteChrome.tsx`, `components/lp/`.
+- Corporate site: `app/globals.css` (`.site`), `app/layout.tsx`, `components/SiteChrome.tsx`, `components/site/`, `app/lp/LpShell.tsx`.
 - Culture LP: `app/lp/page.tsx`, `app/lp/CultureLP.tsx`, `app/lp/culture.css`, `app/lp/culture-refinements.css`, `app/lp/culture-engine.css`, and its sibling route components.
 - Day-in-the-life LP: `app/lp/day-in-the-life/` and its route components/styles.
 - Undo Job LP: `app/lp/undo-job/` and its route components/styles.

@@ -89,7 +89,7 @@ export default async function ColumnPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
-      <article className="pb-24 pt-32 md:pt-40">
+      <article className="pb-24 pt-10 md:pt-14">
         <div className="mx-auto max-w-3xl px-5">
           <nav aria-label="パンくずリスト" className="text-sm text-[var(--ink-mute)]">
             <Link href="/" className="hover:text-[var(--brand-ink)]">トップ</Link>
