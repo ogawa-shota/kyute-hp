@@ -1,0 +1,286 @@
+{
+  "recordedDate": "2026-10-16",
+  "deploymentContext": {
+    "commit": "38477b8897a4bbd29cda6ef54f61470baadeceeb",
+    "githubDeploymentId": "7112403197",
+    "productionSuccessAt": "2026-10-16T06:18:50Z",
+    "source": "GitHub Production deployment status verified; measurements use public URLs only."
+  },
+  "method": {
+    "runs": 3,
+    "repeatRuns": 0,
+    "credentialUse": false,
+    "protectionBypass": false,
+    "chromeFlags": [
+      "--headless=new",
+      "--no-sandbox"
+    ],
+    "limits": [
+      "Single lab run per URL; not real-user CrUX or Search Console CWV.",
+      "Same Lighthouse/mobile simulated configuration as baseline; timing differences are observations, not precise causal attribution.",
+      "No Vercel CLI, env run, credentials, deploy, configuration changes or application edits."
+    ]
+  },
+  "results": [
+    {
+      "name": "home",
+      "url": "https://www.kyute.jp/",
+      "finalUrl": "https://www.kyute.jp/",
+      "recordedAt": "2026-10-16T06:21:40.807Z",
+      "lighthouseVersion": "13.5.0",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "mode": "single-run mobile simulated lab; not field CWV",
+      "formFactor": "mobile",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "scores": {
+        "performance": 94,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "largest-contentful-paint": {
+          "value": 2973.4719999999998,
+          "unit": "millisecond",
+          "display": "3.0 s"
+        },
+        "first-contentful-paint": {
+          "value": 1814.472,
+          "unit": "millisecond",
+          "display": "1.8 s"
+        },
+        "total-blocking-time": {
+          "value": 9,
+          "unit": "millisecond",
+          "display": "10 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0,
+          "unit": "unitless",
+          "display": "0"
+        },
+        "speed-index": {
+          "value": 1814.472,
+          "unit": "millisecond",
+          "display": "1.8 s"
+        },
+        "total-byte-weight": {
+          "value": 1903928,
+          "unit": "byte",
+          "display": "Total size was 1,859 KiB"
+        }
+      },
+      "networkRequests": 95,
+      "fontRequests": 65,
+      "fontBytes": 1134748,
+      "protocols": {
+        "h2": 95
+      },
+      "warnings": [],
+      "runtimeError": null,
+      "comparison": {
+        "baselineRecordedAt": "2026-10-16T03:38:45.143Z",
+        "baselineSource": "lighthouse-production-home-mobile-20261016.report.json.gz",
+        "performanceBefore": 52,
+        "performanceAfter": 94,
+        "lcpBeforeMs": 41052.349,
+        "lcpAfterMs": 2973.4719999999998,
+        "fontRequestsBefore": 505,
+        "fontRequestsAfter": 65,
+        "fontBytesBefore": 7619487,
+        "fontBytesAfter": 1134748,
+        "totalBytesBefore": 8429168,
+        "totalBytesAfter": 1903928
+      }
+    },
+    {
+      "name": "service-video",
+      "url": "https://www.kyute.jp/service/recruit-video",
+      "finalUrl": "https://www.kyute.jp/service/recruit-video",
+      "recordedAt": "2026-10-16T06:22:09.119Z",
+      "lighthouseVersion": "13.5.0",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "mode": "single-run mobile simulated lab; not field CWV",
+      "formFactor": "mobile",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "scores": {
+        "performance": 86,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "largest-contentful-paint": {
+          "value": 3687.076,
+          "unit": "millisecond",
+          "display": "3.7 s"
+        },
+        "first-contentful-paint": {
+          "value": 2412.076,
+          "unit": "millisecond",
+          "display": "2.4 s"
+        },
+        "total-blocking-time": {
+          "value": 15,
+          "unit": "millisecond",
+          "display": "20 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0.001933337360669702,
+          "unit": "unitless",
+          "display": "0.002"
+        },
+        "speed-index": {
+          "value": 2412.076,
+          "unit": "millisecond",
+          "display": "2.4 s"
+        },
+        "total-byte-weight": {
+          "value": 1786442,
+          "unit": "byte",
+          "display": "Total size was 1,745 KiB"
+        }
+      },
+      "networkRequests": 109,
+      "fontRequests": 76,
+      "fontBytes": 1292577,
+      "protocols": {
+        "h2": 109
+      },
+      "warnings": [],
+      "runtimeError": null,
+      "comparison": {
+        "baselineRecordedAt": "2026-10-16T03:40:41.384Z",
+        "baselineSource": "lighthouse-production-service-video-mobile-20261016.report.json.gz",
+        "performanceBefore": 71,
+        "performanceAfter": 86,
+        "lcpBeforeMs": 40037.130000000005,
+        "lcpAfterMs": 3687.076,
+        "fontRequestsBefore": 511,
+        "fontRequestsAfter": 76,
+        "fontBytesBefore": 7704786,
+        "fontBytesAfter": 1292577,
+        "totalBytesBefore": 8257675,
+        "totalBytesAfter": 1786442
+      }
+    },
+    {
+      "name": "column",
+      "url": "https://www.kyute.jp/column/recruit-video-production-company",
+      "finalUrl": "https://www.kyute.jp/column/recruit-video-production-company",
+      "recordedAt": "2026-10-16T06:22:43.595Z",
+      "lighthouseVersion": "13.5.0",
+      "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "mode": "single-run mobile simulated lab; not field CWV",
+      "formFactor": "mobile",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "scores": {
+        "performance": 75,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 100
+      },
+      "metrics": {
+        "largest-contentful-paint": {
+          "value": 5399.415499999999,
+          "unit": "millisecond",
+          "display": "5.4 s"
+        },
+        "first-contentful-paint": {
+          "value": 2857.895499999999,
+          "unit": "millisecond",
+          "display": "2.9 s"
+        },
+        "total-blocking-time": {
+          "value": 14.5,
+          "unit": "millisecond",
+          "display": "10 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0.0004983815318155679,
+          "unit": "unitless",
+          "display": "0"
+        },
+        "speed-index": {
+          "value": 2857.895499999999,
+          "unit": "millisecond",
+          "display": "2.9 s"
+        },
+        "total-byte-weight": {
+          "value": 2872471,
+          "unit": "byte",
+          "display": "Total size was 2,805 KiB"
+        }
+      },
+      "networkRequests": 115,
+      "fontRequests": 72,
+      "fontBytes": 1238226,
+      "protocols": {
+        "h2": 110,
+        "h3": 5
+      },
+      "warnings": [],
+      "runtimeError": null,
+      "comparison": {
+        "baselineRecordedAt": "2026-10-16T03:41:56.660Z",
+        "baselineSource": "lighthouse-production-column-mobile-20261016.report.json.gz",
+        "performanceBefore": 68,
+        "performanceAfter": 75,
+        "lcpBeforeMs": 40898.568000000014,
+        "lcpAfterMs": 5399.415499999999,
+        "fontRequestsBefore": 517,
+        "fontRequestsAfter": 72,
+        "fontBytesBefore": 7810555,
+        "fontBytesAfter": 1238226,
+        "totalBytesBefore": 9499808,
+        "totalBytesAfter": 2872471
+      }
+    }
+  ],
+  "evidenceNote": "Compact public measurements. Full raw Lighthouse reports are retained in the private local audit archive; no account data was used."
+}

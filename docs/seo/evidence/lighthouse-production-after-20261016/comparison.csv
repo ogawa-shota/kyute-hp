@@ -1,0 +1,4 @@
+name,url,performanceBefore,performanceAfter,lcpBeforeMs,lcpAfterMs,fcpAfterMs,tbtAfterMs,clsAfter,fontRequestsBefore,fontRequestsAfter,fontBytesBefore,fontBytesAfter,totalBytesBefore,totalBytesAfter
+home,https://www.kyute.jp/,52,94,41052.349,2973.4719999999998,1814.472,9,0,505,65,7619487,1134748,8429168,1903928
+service-video,https://www.kyute.jp/service/recruit-video,71,86,40037.130000000005,3687.076,2412.076,15,0.001933337360669702,511,76,7704786,1292577,8257675,1786442
+column,https://www.kyute.jp/column/recruit-video-production-company,68,75,40898.568000000014,5399.415499999999,2857.895499999999,14.5,0.0004983815318155679,517,72,7810555,1238226,9499808,2872471
