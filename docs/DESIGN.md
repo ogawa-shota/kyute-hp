@@ -21,6 +21,15 @@ This document records what the repository currently renders so that scoped chang
 - **/media exception:** `/media` embeds the Undo Job LP below unchanged except for the typeface (`.site .uj-embedded` in `app/globals.css`) and its sticky mobile CTA, which the site bar replaces.
 - **Preserve rules:** Do not show AIカジュアル面談 or 体験型会社説明会 until announced. Do not publish customer names, outcomes or SoVa material without permission. Keep the LP systems below separate.
 
+### Column articles (`/column/[slug]`)
+
+- **Status:** Current observed implementation inside the corporate system; not approval.
+- **Layout:** Single 768px reading column (`max-w-3xl`), breadcrumb, title, meta, 16:9 eyecatch (rounded 16px), table of contents (3+ H2), body, end CTA, author box, related columns on off-white.
+- **Body typography:** `app/column/column.css` — 17px (18px from 640px), line-height 2; H2 with a charcoal underline, H3 with a yellow left rule; strong text uses a pale-yellow marker.
+- **Visual blocks:** Markdown tables (horizontal scroll on narrow screens), figures with captions (image with a Markdown title), `> [!POINT]` / `> [!NOTE]` boxes (charcoal border, yellow label), YouTube embeds.
+- **CTA:** In-body cards from `<!-- cta: id -->` (pale-yellow panel, rounded 24px, yellow pill button, 48px minimum height) placed after decision material; the dark end-of-article CTA per service; the site's mobile bottom bar stays.
+- **Imagery:** Article-specific 1600×900 JPG eyecatch under `public/column/<slug>/`, shared by the list card, the article, OGP and Article structured data. AI-generated images must not be presented as real employees, customers or shoots. Rules: `.claude/skills/column/references/visual-design.md`.
+
 ## Culture / recruitment-video LP
 
 - **Status:** Current observed independent implementation; not approval.

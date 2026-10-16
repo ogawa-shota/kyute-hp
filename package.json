@@ -13,7 +13,8 @@
     "test": "node scripts/test-culture-material.cjs && node scripts/test-undo-job-material.cjs && node scripts/test-column-check.mjs && node scripts/check-columns.mjs",
     "check": "npm run lint && npm test && npm run build",
     "column:check": "node scripts/check-columns.mjs",
-    "column:keywords": "node scripts/check-columns.mjs --keywords"
+    "column:keywords": "node scripts/check-columns.mjs --keywords",
+    "column:eyecatch": "node scripts/column-eyecatch.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
