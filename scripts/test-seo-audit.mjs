@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import assert from 'node:assert/strict';
-import { parseHtml, attributes, decodeEntities, sitemapLocations, robotsAllows, scopedUrl, fetchDocument, analyzeAudit } from './audit-seo.mjs';
+import { fileURLToPath } from 'node:url';
+import { parseHtml, attributes, decodeEntities, sitemapLocations, robotsAllows, scopedUrl, fetchDocument, analyzeAudit, repositoryRoutes } from './audit-seo.mjs';
 
 const page = parseHtml(`<!doctype html><html lang="ja"><head>
 <title>採用 &amp; KYUTE</title><meta content='説明 &quot;本文&quot;' NAME='description'>
@@ -55,7 +56,7 @@ const failed = await fetchDocument('https://www.kyute.jp/', { fetchImpl: async (
 assert.equal(failed.status, null); assert.equal(failed.outcome, 'fetch_failed');
 const denied = await fetchDocument('https://www.kyute.jp/', { fetchImpl: async () => new Response('Denied', { status: 403 }) });
 assert.equal(denied.outcome, 'access_restricted');
-const basic = (url, { robots = [], canonical = url, title = 'Unique', alt = '' } = {}) => ({ requestedUrl: url, finalUrl: url, outcome: 'http_response', status: 200, redirects: [], headers: {}, html: { title: [title], description: ['desc ' + url], canonical: [canonical], robots, h1: ['heading'], jsonLd: [], images: [{ alt }], links: [], ids: [] } });
+const basic = (url, { robots = [], canonical = url, title = 'Unique', description = 'desc ' + url, alt = '' } = {}) => ({ requestedUrl: url, finalUrl: url, outcome: 'http_response', status: 200, redirects: [], headers: {}, html: { title: [title], description: [description], canonical: [canonical], robots, h1: ['heading'], jsonLd: [], images: [{ alt }], links: [], ids: [] } });
 const audit = { expectedOrigin: 'https://www.kyute.jp', pages: [basic('https://www.kyute.jp/'), basic('https://www.kyute.jp/lp', { robots: ['noindex'], canonical: 'https://www.kyute.jp/service' }), { ...failed, requestedUrl: 'https://www.kyute.jp/unverified' }], sitemap: { entries: [{ url: 'https://www.kyute.jp/', response: { status: 200, redirects: [] } }] }, inbound: {}, brokenAnchors: [] };
 const issues = analyzeAudit(audit);
 assert.deepEqual(issues.map((i) => i.code), ['fetch_failed']);
@@ -89,4 +90,39 @@ const wrongSitemapHost = analyzeAudit({ ...audit, sitemap: { entries: [{ url: 'h
 assert.ok(wrongSitemapHost.some((i) => i.code === 'sitemap_url_noncanonical'));
 const explicitAbsent = analyzeAudit({ ...audit, expectedIndexablePaths: ['/', '/service/recruit-video'], pages: [basic('https://www.kyute.jp/')] });
 assert.ok(explicitAbsent.some((i) => i.code === 'expected_page_not_crawled'));
-console.log('SEO audit fixtures passed: HTML, entities, sitemap, robots, scoped GET, redirects, network failures, intentional noindex and canonical checks.');
+
+// PACE became an indexable static rewrite in main. Its file alias is the same
+// canonical document; unrelated LPs and arbitrary canonical claims are not.
+const paceUrl = 'https://www.kyute.jp/lp/pace';
+const paceAlias = 'https://www.kyute.jp/pace/index.html';
+const paceFields = { canonical: paceUrl, title: 'PACE', description: 'PACE service' };
+const pacePage = basic(paceUrl, paceFields);
+const paceFile = basic(paceAlias, paceFields);
+const paceAudit = {
+  ...audit,
+  expectedIndexablePaths: ['/lp/pace'],
+  pages: [pacePage, paceFile, { ...pacePage, requestedUrl: 'https://www.kyute.jp/pace', redirects: [{ url: 'https://www.kyute.jp/pace', status: 308, location: paceUrl }] }],
+  sitemap: { entries: [{ url: paceUrl, response: { status: 200, redirects: [] } }] },
+  inbound: { '/lp/pace': ['/'] },
+};
+assert.deepEqual(analyzeAudit(paceAudit), []);
+assert.ok(analyzeAudit({ ...paceAudit, sitemap: emptyMap }).some((i) => i.code === 'sitemap_missing_expected_url'));
+assert.ok(analyzeAudit({ ...paceAudit, pages: [basic(paceUrl, { ...paceFields, robots: ['noindex'] })] }).some((i) => i.code === 'expected_indexable_noindex'));
+const wrongAlias = analyzeAudit({ ...paceAudit, pages: [pacePage, basic(paceAlias, { ...paceFields, canonical: paceAlias })] });
+assert.ok(wrongAlias.some((i) => i.code === 'canonical_mismatch'));
+assert.ok(wrongAlias.some((i) => i.code === 'duplicate_title'));
+assert.ok(wrongAlias.some((i) => i.code === 'duplicate_description'));
+const claimedAlias = analyzeAudit({ ...paceAudit, pages: [...paceAudit.pages, basic('https://www.kyute.jp/other', paceFields)] });
+assert.ok(claimedAlias.some((i) => i.code === 'canonical_mismatch'));
+assert.ok(claimedAlias.some((i) => i.code === 'duplicate_title'));
+assert.ok(claimedAlias.some((i) => i.code === 'duplicate_description'));
+for (const excluded of ['https://www.kyute.jp/lp/recruit-video', paceAlias]) {
+  assert.ok(analyzeAudit({ ...paceAudit, sitemap: { entries: [...paceAudit.sitemap.entries, { url: excluded }] } }).some((i) => i.code === 'sitemap_unexpected_url' && i.url === excluded));
+}
+const repository = await repositoryRoutes(fileURLToPath(new URL('..', import.meta.url)), '2026-10-16');
+for (const route of ['/lp/pace', '/pace/index.html', '/pace']) assert.ok(repository.routes.includes(route), `${route} must be fetched`);
+assert.ok(repository.expectedIndexablePaths.includes('/lp/pace'));
+assert.ok(!repository.expectedNoindexPaths.includes('/lp/pace'));
+assert.ok(!repository.expectedIndexablePaths.includes('/pace/index.html'));
+assert.ok(repository.expectedNoindexPaths.includes('/lp/recruit-video'));
+console.log('SEO audit fixtures passed: HTML, entities, sitemap, robots, scoped GET, redirects, network failures, intentional noindex, PACE aliases and canonical checks.');

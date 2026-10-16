@@ -11,7 +11,7 @@
 
 ## 判断の要点
 
-- 公開本体は`https://www.kyute.jp`。改善前はcanonical11件とsitemap12件が転送元apexを指定し、contactのcanonical1件が未設定だった。修正後ローカルは23URLのstrict監査でerror/warning/unverifiedすべて0。本番反映は承認待ち。
+- 公開本体は`https://www.kyute.jp`。改善前はcanonical11件とsitemap12件が転送元apexを指定し、contactのcanonical1件が未設定だった。修正後ローカルは23URLのstrict監査でerror/warning/unverifiedすべて0。本番反映は承認済み。最新mainのPACE変更を統合して再検証中。
 - Ahrefs公式無料画面でDR **0**、被リンク **717**、Linking websites **378**を取得した。競合8社のDRは2.6〜46。独自指標であり、Googleの評価や問い合わせ数を表さない。
 - 不要な日本語フォント先読みを外した。ホームのfont preloadは483から1へ減った。ローカルで通信削減を確認したが、コラムのモバイルLab性能は残件。Field CWVは未取得。
 - 外注先・費用を比較するB層と、依頼先を探すA層を優先。2サービスLP、既存比較記事、費用・導入判断記事を役割分担する。記事数やDRだけを成果にしない。

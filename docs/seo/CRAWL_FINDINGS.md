@@ -46,7 +46,7 @@ Lighthouseの詳細条件・スコア・ネットワーク内訳は[初期計測
 
 2026-10-16、`http://127.0.0.1:3107`のproduction buildに対し、正規URLを`https://www.kyute.jp`として`--strict`で検証。23ページURL、19直接HTML200、サイトマップ12URL、**error0 / warning0 / unverified0、探索打切りなし**。根拠: [local JSON](evidence/local-20261016.json)、[local CSV](evidence/local-20261016.csv)。公開環境への反映はこの結果からは主張しない。
 
-監視ルールはサイトマップと観測metaだけに依存しない。実装の公開予定ルート10件＋公開条件を満たした記事/カテゴリにindex許可とサイトマップ収録を要求し、LPと既知の記事0件カテゴリにはnoindexを要求する。Googlebot用のrobots規則は監査botの取得許可と分けて検査する。ローカルへのURL読み替え時も、サイトマップ本文に書かれた公開hostがwwwであることを検査する。
+監視ルールはサイトマップと観測metaだけに依存しない。実装の公開予定ルート10件＋公開条件を満たした記事/カテゴリにindex許可とサイトマップ収録を要求し、PACE以外の広告・旧LPと既知の記事0件カテゴリにはnoindexを要求する。Googlebot用のrobots規則は監査botの取得許可と分けて検査する。ローカルへのURL読み替え時も、サイトマップ本文に書かれた公開hostがwwwであることを検査する。
 
 独立reviewで指摘された「LPのnoindexが消える」「重要ページがnoindexになりサイトマップも空になる」「Googlebotだけブロックされる」をfixture化し、独立reviewerの再現テストも通過した。取得できないサイトマップは空とは断定せず、未検証として扱う。
 
@@ -68,3 +68,7 @@ Lighthouseの詳細条件・スコア・ネットワーク内訳は[初期計測
 全3ページのLighthouse Accessibility/SEOは100。Best Practicesはホーム・採用動画96、コラム92。ローカル全ページの`/_vercel/insights/script.js`404がconsole減点となり、コラムは加えてYouTube埋め込みのCookie issueがある。Vercel配信固有の計測スクリプトがローカルにないことと、公開サイトのHTTP障害を混同しない。
 
 根拠: [ローカル集計JSON（再測定含む）](evidence/lighthouse-local-summary-20261016.json)、[ホームHTML](evidence/lighthouse-local-home-mobile-20261016.report.html)、[採用動画HTML](evidence/lighthouse-local-service-video-mobile-20261016.report.html)、[コラム初回HTML](evidence/lighthouse-local-column-mobile-20261016.report.html)、[コラム再測定HTML](evidence/lighthouse-local-column-repeat-mobile-20261016.report.html)。全て完全な生JSONを同名`.report.json.gz`として保存した。現時点で「CWV合格」「全ページ高速化完了」「公開後の改善」を意味しない。
+
+## 2026-10-16 公開直前の追記
+
+初期監査後にmainのPR #8/#9でPACEが検索対象として復元された。初期件数は当時の基準として維持する。最新監視では`/lp/pace`をindexable/sitemap必須、`/pace/index.html`を本体と同内容の既知canonical別名、`/pace`をredirectとして検査し、広告LP/別名のsitemap混入は検出する。

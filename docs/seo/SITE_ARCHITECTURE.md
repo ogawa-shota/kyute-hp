@@ -22,10 +22,10 @@
 | `/column/category/recruit-youtube` | 採用YouTubeの情報整理 | 該当記事 | 空の間はnoindex |
 | `/column/category/general` | 採用広報全般の情報整理 | 該当記事 | 空の間はnoindex |
 | `/column/recruit-video-production-company` | 制作会社の比較検討 | 料金確認・資料請求・相談 | 公開記事、index |
-| `/lp` と `/lp/**` | 広告・営業・既存リンクからの流入 | 各LP固有の資料請求 | noindex、sitemap対象外 |
+| `/lp` と `/lp/**`（PACE除く） | 広告・営業・既存リンクからの流入 | 各LP固有の資料請求 | noindex、sitemap対象外 |
 | 存在しない記事・非公開カテゴリ | 公開対象外 | 404 | index対象外 |
 
-全previewはnoindex。非公開サービス（AIカジュアル面談・体験型会社説明会）のカテゴリ・記事・CTAを本番に露出させない。既存LPはそのまま維持する。
+アプリのpreview metadataはnoindex。静的PACEの公開条件は別仕様として維持する。非公開サービス（AIカジュアル面談・体験型会社説明会）のカテゴリ・記事・CTAを本番に露出させない。既存LPはそのまま維持する。2026-10-16のmain更新でPACEは検索対象になったため、`/lp/pace`をindexableかつsitemap収録、`/pace/index.html`は同URLへのcanonical別名、`/pace`は恒久redirectとして扱う。
 
 ## 情報構造と検索意図
 

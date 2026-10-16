@@ -38,3 +38,7 @@
 - `docs/SITE.md`、`docs/DESIGN.md`、root `README.md`を現在の実装へ更新。`docs/seo/`へ依頼された16文書と補足所見・証跡を保存。
 
 検証の結果・警告・未実施範囲は[PROGRESS.md](PROGRESS.md)。公開後の変更は日付とdeploymentを追記し、改善前証跡を上書きしない。
+
+### 公開直前のmain統合
+
+別PR #8/#9で追加されたPACEの検索対象化を保持。監視は`/lp/pace`のindexable例外、`/pace/index.html`のcanonical別名、`/pace`のredirectに追従する。広告LPのnoindex回帰検出は維持。lint/test/build/typecheckと統合後strictクロールを再実行した。Search Consoleの読み取りはユーザー承認後に成功し、非公開データは公開repoに保存しない。

@@ -18,8 +18,12 @@ const AGENT = 'KyuteSeoAudit/1.0 (+https://www.kyute.jp; read-only site QA)';
 const HOSTS = new Set(['kyute.jp', 'www.kyute.jp']);
 const EXTENSION = /\.(?:pdf|png|jpe?g|webp|avif|gif|svg|ico|css|js|mjs|map|woff2?|ttf|mp4|webm|mp3|zip|xml|txt)$/i;
 // Explicit route intent is independent of runtime meta tags and sitemap output.
-const PUBLIC_PATHS = ['/', '/service', '/service/recruit-video', '/service/recruit-youtube', '/media', '/works', '/about', '/download', '/contact', '/column'];
-const REDIRECTS = ['/service/youtube', '/service/media', '/lp/pace', '/pace/index.html'];
+const PUBLIC_PATHS = ['/', '/service', '/service/recruit-video', '/service/recruit-youtube', '/media', '/works', '/about', '/download', '/contact', '/column', '/lp/pace'];
+const REDIRECTS = ['/service/youtube', '/service/media', '/pace'];
+// PACE is an indexable standalone page. Its static file serves the same HTML;
+// only the public /lp/pace route belongs in the sitemap and duplicate inventory.
+const CANONICAL_ALIASES = new Map([['/pace/index.html', '/lp/pace']]);
+const isAdLp = (pathname) => /^\/lp(?:\/|$)/.test(pathname) && pathname !== '/lp/pace';
 const prohibitedPath = (pathname) => {
   try { return /^\/+(?:api|_next)(?:\/|$)/.test(decodeURIComponent(pathname).replaceAll('\\', '/')); }
   catch { return true; }
@@ -164,7 +168,7 @@ export function analyzeAudit(audit) {
     p.noindex = noindex;
     const pathname = new URL(p.requestedUrl).pathname;
     if (expectedIndexable.has(pathname) && noindex) add('error', 'expected_indexable_noindex', p.requestedUrl, 'Repository intent requires this route to permit indexing');
-    if ((expectedNoindex.has(pathname) || /^\/lp(?:\/|$)/.test(pathname)) && !noindex) add('error', 'expected_noindex_missing', p.requestedUrl, 'LP or known empty category must remain noindex');
+    if ((expectedNoindex.has(pathname) || isAdLp(pathname)) && !noindex) add('error', 'expected_noindex_missing', p.requestedUrl, 'Ad LP or known empty category must remain noindex');
     if (!noindex && !expectedIndexable.has(pathname) && p.googlebotAllowed === false) add('error', 'googlebot_disallowed', p.requestedUrl, 'robots.txt blocks Googlebot from this index-permitted HTML');
     if (h.jsonLd.some((j) => !j.valid)) add('error', 'invalid_json_ld', p.requestedUrl, 'JSON-LD cannot be parsed');
     if (h.images.some((i) => i.alt === null)) add('warning', 'image_alt_missing', p.requestedUrl, `${h.images.filter((i) => i.alt === null).length} image(s) without alt. Empty alt is recorded separately, not an automatic defect.`);
@@ -175,11 +179,14 @@ export function analyzeAudit(audit) {
     if (h.canonical.length !== 1) add('error', 'canonical_missing_or_multiple', p.requestedUrl, `${h.canonical.length} canonical elements`);
     else {
       let canonical; try { canonical = new URL(h.canonical[0], p.finalUrl); } catch { /* reported below */ }
-      const expected = new URL(new URL(p.finalUrl).pathname, audit.expectedOrigin).href;
+      const finalPath = new URL(p.finalUrl).pathname;
+      const expected = new URL(CANONICAL_ALIASES.get(finalPath) ?? finalPath, audit.expectedOrigin).href;
       if (!canonical || canonical.href !== expected) add('error', 'canonical_mismatch', p.requestedUrl, `Expected ${expected}; got ${h.canonical[0]}`);
     }
   }
   for (const entry of audit.sitemap.entries) {
+    const sitemapPath = new URL(entry.url).pathname;
+    if (isAdLp(sitemapPath) || expectedNoindex.has(sitemapPath) || CANONICAL_ALIASES.has(sitemapPath)) add('error', 'sitemap_unexpected_url', entry.url, 'Ad LP, known noindex route, or static canonical alias must not be in sitemap');
     if (entry.response?.redirects?.length) add('error', 'sitemap_url_redirects', entry.url, entry.response.redirects.map((r) => `${r.status} → ${r.location}`).join('; '));
     else if (new URL(entry.url).href !== new URL(new URL(entry.url).pathname, audit.expectedOrigin).href) add('error', 'sitemap_url_noncanonical', entry.url, `Sitemap URL must use canonical origin ${audit.expectedOrigin} without query/fragment; local GET remapping does not excuse a wrong public origin`);
     if (entry.response?.status >= 400 && entry.response?.outcome === 'http_response') add('error', 'sitemap_http_error', entry.url, `HTTP ${entry.response.status}`);
@@ -194,6 +201,15 @@ export function analyzeAudit(audit) {
     const groups = new Map();
     for (const p of direct.filter((p) => !p.noindex)) {
       const value = p.html[field][0]; if (!value) continue;
+      const aliasTarget = CANONICAL_ALIASES.get(new URL(p.requestedUrl).pathname);
+      const expectedCanonical = aliasTarget && new URL(aliasTarget, audit.expectedOrigin).href;
+      // Ignore only a declared alias with the correct canonical and an observed
+      // canonical page carrying the same field. Arbitrary canonical claims never
+      // suppress duplicate warnings or canonical mismatch errors.
+      if (expectedCanonical && p.html.canonical.length === 1 && p.html.canonical[0] === expectedCanonical && direct.some((target) =>
+        !target.noindex && new URL(target.requestedUrl).pathname === aliasTarget &&
+        target.html.canonical.length === 1 && target.html.canonical[0] === expectedCanonical && target.html[field][0] === value
+      )) continue;
       groups.set(value, [...(groups.get(value) ?? []), p.requestedUrl]);
     }
     for (const [value, urls] of groups) if (urls.length > 1) add('warning', `duplicate_${field}`, urls.join(' | '), value);
@@ -201,7 +217,7 @@ export function analyzeAudit(audit) {
   for (const link of audit.brokenAnchors) add('warning', 'anchor_target_missing', link.from, `${link.to} (${link.text})`);
   return issues;
 }
-async function repositoryRoutes(root, today) {
+export async function repositoryRoutes(root, today) {
   const routes = []; async function walk(dir) {
     for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
       if (entry.name.startsWith('.') || entry.name === 'api' || entry.name.startsWith('[')) continue;
@@ -216,9 +232,9 @@ async function repositoryRoutes(root, today) {
   const populatedCategories = visibleServiceIds().filter((service) => publicColumns.some((c) => c.data.service === service)).map((service) => `/column/category/${service}`);
   const emptyCategories = visibleServiceIds().filter((service) => !publicColumns.some((c) => c.data.service === service)).map((service) => `/column/category/${service}`);
   return {
-    routes: [...new Set([...routes, ...PUBLIC_PATHS, ...publishedPaths, ...populatedCategories, ...emptyCategories, ...REDIRECTS])],
+    routes: [...new Set([...routes, ...PUBLIC_PATHS, ...publishedPaths, ...populatedCategories, ...emptyCategories, ...REDIRECTS, ...CANONICAL_ALIASES.keys()])],
     expectedIndexablePaths: [...PUBLIC_PATHS, ...publishedPaths, ...populatedCategories],
-    expectedNoindexPaths: [...routes.filter((route) => /^\/lp(?:\/|$)/.test(route)), ...emptyCategories],
+    expectedNoindexPaths: [...routes.filter(isAdLp), ...emptyCategories],
   };
 }
 export async function crawl({ baseUrl, expectedOrigin, maxPages = 100, timeout = 20000, delay = 100, root = process.cwd(), today = new Date().toISOString().slice(0, 10) }) {

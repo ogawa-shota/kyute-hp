@@ -23,7 +23,7 @@
 ## 維持した仕組み
 
 - 通常ページの本文はNext.jsサーバー生成HTML。記事はMarkdown → unified/remark/rehype → HTMLで、検索エンジンが本文を読むためにクライアントJSだけへ依存しない。
-- LPはnoindexかつsitemap対象外。robots.txtでLPを遮断しないため、クローラーがnoindexを読める。公開リンクはfollowできる。
+- PACE以外の広告・旧LPはnoindexかつsitemap対象外。robots.txtでLPを遮断しないため、クローラーがnoindexを読める。公開リンクはfollowできる。
 - previewのmetadataはnoindex。helperを使うrouteも独自robotsでこれを解除しない。
 - draft/review、未公開サービス、未来公開記事は本番の生成対象外。非公開カテゴリと存在しない記事はnotFound経路。
 - 既存の永続URL移転、料金・保証・顧客成果・提供サービス・LP独自デザインを変更していない。
@@ -60,10 +60,14 @@ VideoObjectは動画ごとの公開日・説明・サムネイル・URL、視聴
 
 - [正規URLの指定](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)：T01。redirect先・canonical・sitemapの整合を判断する根拠。
 - [sitemap作成](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)：T08。lastmodは実質的な更新を示す。priority/changefreqはGoogleが無視するため順位制御として扱わない。
-- [noindex](https://developers.google.com/search/docs/crawling-indexing/block-indexing)：preview・LPをindex対象外にし、robotsで遮断しない判断。
+- [noindex](https://developers.google.com/search/docs/crawling-indexing/block-indexing)：アプリpreview・PACE以外の広告LPをindex対象外にし、robotsで遮断しない判断。
 - [Article](https://developers.google.com/search/docs/appearance/structured-data/article)：T05。Person/Organizationの著者と公開・更新情報を正確に伝える。
 - [Breadcrumb](https://developers.google.com/search/docs/appearance/structured-data/breadcrumb)：T05/T06。情報階層をURLと結び付ける。
 - [Organization](https://developers.google.com/search/docs/appearance/structured-data/organization) / [サイト名](https://developers.google.com/search/docs/appearance/site-names)：T06。法人とサイトの同一性を伝える。
 - [構造化データ品質](https://developers.google.com/search/docs/appearance/structured-data/sd-policies)：見えている事実と対応させ、表示を保証しない。
 - [クロール可能なリンク](https://developers.google.com/search/docs/crawling-indexing/links-crawlable)：hrefと具体的なアンカーで文脈のあるリンクを作る。
 - [検索ドキュメント更新履歴](https://developers.google.com/search/updates)：2026年のFAQ機能終了を確認。
+
+## 最新mainとの統合
+
+2026-10-16のPR #8/#9でPACEが独立した検索対象として復元された。`/lp/pace`のindex/sitemapと`/pace/index.html`のcanonical別名を監視の明示契約へ加え、`/pace`のredirectも検査する。PACE以外の広告LPのnoindex回帰検査は維持する。初期23URLの証跡は当時の状態として上書きしない。

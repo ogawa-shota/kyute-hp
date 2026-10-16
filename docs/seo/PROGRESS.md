@@ -1,6 +1,6 @@
 # 進捗・検証結果
 
-2026-10-16 JST。調査・戦略・優先改善の実装とローカル検証は完了。本番未公開、GA4未設定、GSC未取得。確認済みの結果と承認・権限が必要な残件を分ける。
+2026-10-16 JST。調査・戦略・優先改善の実装とローカル検証は完了。本番公開は承認済み・統合再検証中、GA4未設定。GSCは読み取り権限を確認し、データを非公開領域へ取得済み。確認済みの結果と承認・権限が必要な残件を分ける。
 
 ## 完了した範囲
 
@@ -63,8 +63,8 @@ localのVercel計測スクリプト404と、コラムのYouTube Cookie issueも�
 
 | 項目 | 現状 / 次の行動 |
 |---|---|
-| 本番公開 | ユーザー承認待ち。承認後Codexが反映・公開HTTP/主要導線を再検証 |
-| Search Console | 読み取りを試みたが自動承認レビューがアカウントアクセスを拒否。明示承認を依頼中。代替経路で回避せず、値は未取得 |
+| 本番公開 | ユーザー承認済み。最新mainのPACE変更を統合して再検証後に反映 |
+| Search Console | 明示承認後、既存のKYUTEアカウントで読取成功。非公開データのため公開repoへ数値・exportは保存しない |
 | GA4 | ID/管理画面設定と通知・同意運用の確認待ち。コードだけで計測開始としない |
 | Google Forms完了・適合商談 | フォーム所有者/CRMの匿名集計が必要。clickやiframe表示を完了に代用しない |
 | 表示速度の残件 | コラムのsimulated性能、レスポンシブ画像、YouTubeの読み込みを次に診断。公開後同一ホストで再計測しField28日も確認 |
@@ -73,3 +73,9 @@ localのVercel計測スクリプト404と、コラムのYouTube Cookie issueも�
 | 週次監視 | workflow作成済み。承認済みdefault branch反映後に稼働、初回Actions結果を確認 |
 
 手順・時間・未完了時の影響は[USER_ACTIONS](USER_ACTIONS.md)、優先順位は[ロードマップ](IMPLEMENTATION_ROADMAP.md)。
+
+## PACE統合の再検証
+
+最新mainのPR #8/#9を保持して統合。`npm run check`（lint/tests/build/typecheck）合格。ローカルproduction buildのstrict監査は24URL、直接HTML200は21、sitemap13、error0 / warning1 / unverified0、打切りなし。[JSON](evidence/local-pace-integrated-20261016.json)。warningはPACEへの内部HTML入リンク未発見で、独立LPを通常ナビへ追加しない既存方針に従い、隠さず記録した。初期23URLの証跡は当時のものとして維持する。
+
+誤作成した検証用Vercel projectは明示承認後に削除し、API/配信aliasの404を確認。復旧記録は非公開のローカル領域に保存。追加の保護preview計測は再試行していない。

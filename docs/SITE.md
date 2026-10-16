@@ -10,7 +10,7 @@ The application serves KYUTE's corporate site (renewed 2026-10): two services (�
 
 ## Shared navigation and primary actions
 
-Every route except `/lp/**` uses `SiteChrome` (`components/site/Header.tsx`, `Footer.tsx`). Header (from 1280px): 採用動画制作, 採用YouTube運用代行, 運動部のシゴト。, 制作事例, コラム, 会社紹介, plus 資料請求 (`/download`) and 無料相談 (`/contact`). Narrower screens use a menu button and a fixed bottom bar with both actions.
+Every application route except `/lp/**` uses `SiteChrome` (`components/site/Header.tsx`, `Footer.tsx`). The standalone static PACE LP is also outside this chrome. Header (from 1280px): 採用動画制作, 採用YouTube運用代行, 運動部のシゴト。, 制作事例, コラム, 会社紹介, plus 資料請求 (`/download`) and 無料相談 (`/contact`). Narrower screens use a menu button and a fixed bottom bar with both actions.
 
 Each service page has its own material request form (`#download`), posting to the existing delivery endpoints: 採用動画 → `/api/material-request`, 採用YouTube → `/api/culture-material`.
 
@@ -39,9 +39,13 @@ AIカジュアル面談 and 体験型会社説明会 are not announced yet and a
 | `/column/category/[category]` | Column list per visible service (`recruit-video`, `recruit-youtube`, `general`; `ai-casual-interview` and `experience-briefing` are hidden until announced) | Article pages |
 | `/column/[slug]` | Column article from `content/column/<slug>.md`; drafts render only locally and on Vercel previews (noindex) | Per-service end-of-article CTA and optional in-body CTA cards (`<!-- cta: id -->`), both from `CTAS` in `lib/column/core.mjs`: service `#price` / `#download`, `/works`, `/contact`. Clicks on any `data-cta` element are sent as the Vercel Analytics event `column_cta_click` |
 
-Redirects (`next.config.ts`, permanent): `/service/youtube` → `/service/recruit-youtube`, `/service/media` → `/media`, `/lp/pace` and `/pace/*` → `/`.
+Redirects (`next.config.ts`, permanent): `/service/youtube` → `/service/recruit-youtube`, `/service/media` → `/media`, `/pace` → `/lp/pace`.
 
-### Landing pages (all noindex, outside the sitemap)
+Rewrite (`next.config.ts`): `/lp/pace` → `/pace/index.html`. The static file remains directly accessible; it has the same `index,follow` metadata and canonical URL (`https://www.kyute.jp/lp/pace`). Only the canonical PACE URL is included in the sitemap.
+
+### Landing pages
+
+PACE is indexable and included in the sitemap, as requested on 2026-10-16. Other LPs remain noindex and outside the sitemap.
 
 | Route | Current role | Main CTA or destination |
 | --- | --- | --- |
@@ -50,6 +54,7 @@ Redirects (`next.config.ts`, permanent): `/service/youtube` → `/service/recrui
 | `/lp` | Legacy recruitment-YouTube campaign LP (kept for existing links) | Material download, consultation |
 | `/lp/day-in-the-life` | Legacy day-in-the-life LP (kept for existing links) | Material request form |
 | `/lp/undo-job` | Standalone 「運動部のシゴト。」 LP with its own header/footer; same content as `/media` (`app/lp/undo-job/UndoJobContent.tsx`) | Service-material request and consultation |
+| `/lp/pace` | Standalone PACE recruiting-operations LP served from `public/pace/index.html`; monthly plans from 49,800円 | Consultation (`https://www.kyute.jp/contact`), pricing simulator (`#pricing`) |
 
 Articles display their public reference URLs in a collapsed source list and an optional named content reviewer in the author box. The existing comparison article links to the recruitment-video pricing section using the existing in-body CTA catalog. Future publication dates require a production rebuild on or after the JST publication date; there is no automatic publishing job.
 
@@ -66,9 +71,10 @@ Articles display their public reference URLs in a collapsed source list and an o
 
 ## Major surfaces and ownership
 
-- **Corporate site:** every non-`/lp` route, built from `components/site/` and scoped tokens under `.site` in `app/globals.css`.
+- **Corporate site:** every non-`/lp` application route, built from `components/site/` and scoped tokens under `.site` in `app/globals.css`; excludes the standalone static PACE file.
 - **Ad LPs:** `/lp/recruit-video` and `/lp/recruit-youtube` reuse the service page components inside `app/lp/LpShell.tsx`.
 - **Legacy LPs:** `/lp`, `/lp/day-in-the-life`, `/lp/undo-job` keep their own route-scoped systems.
+- **PACE LP:** `/lp/pace` serves `public/pace/index.html` with its own styles, runtime, header/footer, and mobile consultation CTA. It is not included in the corporate service navigation.
 
 ## Status boundaries
 
