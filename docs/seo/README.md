@@ -1,19 +1,19 @@
 # KYUTE SEO・問い合わせ改善の運用入口
 
-最終更新：2026-10-16 JST。目的は**自然検索からの適合問い合わせ・商談・受注を増やすこと**。監査、戦略、優先修正、ローカル検証を実施した。本番公開、アカウント設定、顧客への連絡は未実施。
+最終更新：2026-10-16 JST。目的は**自然検索からの適合問い合わせ・商談・受注を増やすこと**。監査、戦略、優先修正、本番公開と公開後クロール・Lighthouse測定を完了した。[PR #7](https://github.com/ogawa-shota/kyute-hp/pull/7)の本番deployment `7112403197`は15:18:50 JSTに成功。Search Consoleは読み取り完了・結果を非公開で保存済み。GA4設定、実通知テスト、Field CWV確認、事業上の根拠・掲載許諾、外部連絡の承認が残る。
 
 ## 最初に読む
 
 1. [SEO_AUDIT.md](SEO_AUDIT.md)：現状、重要課題、根拠、対応状況。
 2. [PROGRESS.md](PROGRESS.md)：実装・検証の確定結果と残件。
-3. [USER_ACTIONS.md](USER_ACTIONS.md)：公開承認、権限、一次情報など人間が必要な作業。
+3. [USER_ACTIONS.md](USER_ACTIONS.md)：GA4設定、実通知テスト、一次情報・掲載許諾など人間が必要な作業。
 4. [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md)：1週間・1か月・3か月の順序。
 
 ## 判断の要点
 
-- 公開本体は`https://www.kyute.jp`。改善前はcanonical11件とsitemap12件が転送元apexを指定し、contactのcanonical1件が未設定だった。修正後ローカルは23URLのstrict監査でerror/warning/unverifiedすべて0。本番反映は承認済み。最新mainのPACE変更を統合して再検証中。
+- 公開本体は`https://www.kyute.jp`。改善前はcanonical11件とsitemap12件が転送元apexを指定し、contactのcanonical1件が未設定だった。最新mainのPACE変更を保持して本番公開済み。公開後strict監査は24URL、直接HTML200は21、sitemap13、error0 / warning1 / unverified0、打切りなし。warningは独立LP方針によるPACEの内部入リンク未発見。[公開後JSON](evidence/production-after-20261016.json)。初期ローカル23URLの測定は当時の履歴として保存する。
 - Ahrefs公式無料画面でDR **0**、被リンク **717**、Linking websites **378**を取得した。競合8社のDRは2.6〜46。独自指標であり、Googleの評価や問い合わせ数を表さない。
-- 不要な日本語フォント先読みを外した。ホームのfont preloadは483から1へ減った。ローカルで通信削減を確認したが、コラムのモバイルLab性能は残件。Field CWVは未取得。
+- 不要な日本語フォント先読みを外した。公開後Lighthouseはホーム94 / LCP 2.97秒、採用動画86 / 3.69秒、コラム75 / 5.40秒。改善前公開は順に52 / 41.1秒、71 / 40.0秒、68 / 40.9秒。各1回のLab測定で、実ユーザーのCWVではない。コラムの5.40秒は改善余地として残す。[公開後サマリー](evidence/lighthouse-production-after-20261016/summary.json)。
 - 外注先・費用を比較するB層と、依頼先を探すA層を優先。2サービスLP、既存比較記事、費用・導入判断記事を役割分担する。記事数やDRだけを成果にしない。
 - 資料請求の成功イベントと任意GA4連携を実装した。GA4 IDは未設定。Vercel Hobbyではカスタムイベントを集計できないため、コードの追加を計測開始と呼ばない。
 
@@ -54,7 +54,7 @@ SEO_BASE_URL=http://localhost:3000 SEO_EXPECTED_ORIGIN=https://www.kyute.jp \
 npm run seo:audit -- --strict --output /tmp/kyute-seo-production
 ```
 
-PRのCIでlint/test/build/typecheckとビルド後クロールを行う。週次Actionsは月曜09:00 JST予定（GitHubの遅延あり）で、default branchに反映後に稼働する。検出失敗はGitHub Actionsの失敗通知設定で受け取る。専用の外部メッセージ通知は追加していない。
+PRのCIでlint/test/build/typecheckとビルド後クロールを行う。週次Actionsはdefault branchに反映済みで、月曜09:00 JSTに実行予定（GitHubの遅延あり）。初回手動実行は成功したが、初回の定期実行はまだ行われていない。検出失敗はGitHub Actionsの失敗通知設定で受け取る。専用の外部メッセージ通知は追加していない。
 
 月次はGSCのページ/クエリ別流入、GA4のLP遷移/資料成功、匿名化した適合問い合わせ/商談/受注を照合する。DR・関連媒体の引用・紹介流入を補助指標として更新。権限のないデータを推定せず、取得日と範囲を固定する。
 
