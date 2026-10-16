@@ -12,7 +12,7 @@ KYUTEのコラムの目的は、**検索から来た人事・経営者が、KYUT
 1. **KYUTEにしか書けない一次情報が無い記事は作らない。** 上位記事の要約は評価を下げます。
 2. **本文だけでは完成ではない。** CV戦略（`strategy`）・アイキャッチ・必要な図表・本文中のCTA・プレビュー確認がそろって初めて完成です。`npm run column:check` が `status: review` 以降でこれを強制します。
 3. **提供していないものを提供済みと書かない。** 資料・料金表・事例は、サイトにあるものだけをCTAにします（[CV設計](references/cv-design.md)）。
-4. **公開は承認者が決める。** `reviewer` と `status: published` は承認者が入れます。
+4. **公開は依頼者が決める。** 人の承認はありません。依頼者が「公開して」と頼んだら、`status: published` を入れてマージします。
 
 参照するもの：
 
@@ -110,7 +110,7 @@ CTA: （省略可）
 
 ## プルリクエスト
 
-1. ファイル名と `slug` を同じにする。`status: review`、`author` は依頼者（`content/authors/<id>.json` が無ければ作る。名前・役割・経歴を本人に確認する）、`mode` を記録する。`reviewer` と `status: published` は**承認者が入れる**。
+1. ファイル名と `slug` を同じにする。`status: review`、`author` は依頼者（`content/authors/<id>.json` が無ければ作る。名前・役割・経歴を本人に確認する）、`mode` を記録する。`status: published` は依頼者が公開を頼んだときに入れる。
 2. `npm run column:check`・`npm run lint`・`npm run build` を通す。
 3. コミットして `column/<slug>` を push し、PR を作る。PR本文に入れるもの：
    - 狙う検索ワード、検索意図、検討フェーズ、想定読者
@@ -122,15 +122,20 @@ CTA: （省略可）
    - `column:check` の注意（△）と、残した理由
    - 確認してほしい点
 4. Vercel のプレビューURLで、下書きのまま記事を読める（プレビューは検索エンジンに載らない）。
-5. 承認者が `reviewer`・`status: published`・`publishedAt` を入れてマージすると公開される。
+5. 依頼者に、プレビューで読んで問題なければ「公開して」と頼むよう伝える。
 
 ## レビューコメントの反映
 
 「PR #◯ のレビューコメントを反映して」と頼まれたら、`gh pr view <番号> --comments` と `gh api repos/{owner}/{repo}/pulls/<番号>/comments` でコメントを読み、該当ブランチに切り替えて直す。画像やCTAの指摘なら、プレビューで再確認してスクリーンショットを付ける。`column:check` を通してから push し、どのコメントにどう対応したかをPRにコメントで返す。
 
-## 公開設定（編集責任者だけ）
+## 公開
 
-「PR #◯ を公開設定にして」と頼まれたら、依頼者が編集責任者（`docs/COLUMN.md` に記載）であることを確認してから、記事の `reviewer` に依頼者の id、`status: published`、`publishedAt`（指定が無ければ今日）を入れる。`column:check` を通して push し、「GitHubで Approve → Merge すると公開されます」と伝える。マージは人が行う。
+「公開して」「PR #◯ を公開して」と頼まれたら、誰の依頼でも次の順で公開まで進める。人の承認は要らない。
+
+1. 該当ブランチで、記事に `status: published` と `publishedAt`（指定が無ければ今日）を入れる。
+2. `npm run column:check`（エラー0）・`npm run lint`・`npm run build` を通し、push する。
+3. GitHub の自動チェック（`check`）が通るのを待ち、`gh pr merge <番号> --merge --delete-branch` でマージする。チェックが落ちたら直してからやり直す。
+4. マージ後、Vercel の本番デプロイが終わったら `https://kyute.jp/column/<slug>` を開いて表示を確かめ、URLを依頼者に伝える。
 
 ## 公開後の改善
 
@@ -149,5 +154,6 @@ CTA: （省略可）
 - 提供していない資料・診断・料金シミュレーションを、あるかのようにCTAにする
 - AIカジュアル面談・体験型会社説明会について、効果を言い切る（どちらも検証中のサービス。チェックでエラーになる）
 - 画像・CTA・プレビュー確認が終わっていない記事を「完成」として報告する
-- 承認なしに有料の画像生成サービスやAPIキーを追加する
-- `main` に直接 push する、自分の記事を自分で `published` にする
+- 依頼者の了承なしに有料の画像生成サービスやAPIキーを追加する
+- `main` に直接 push する（記事は必ずPRと自動チェックを通す）
+- 依頼者が「公開して」と言う前に `published` にしてマージする

@@ -20,8 +20,7 @@ references:                   # 参考にした記事・出典の URL
 primarySources:               # KYUTEにしか書けない一次情報。1つ以上必須。公開してよい内容だけ書く
   - 2026年9月の1日密着撮影で、出演者の事前ヒアリングを30分から60分に延ばした結果
 author: kyute-editorial       # content/authors/<id>.json
-reviewer: kyute-editorial     # 公開時に必須。承認した人
-status: draft                 # draft → review → published
+status: draft                 # draft → review → published（公開を依頼されたら published）
 mode: auto                    # auto（おまかせ）/ plan（じっくり）
 publishedAt: 2026-11-01       # 公開日。未来の日付にすると、その日まで公開されない
 # updatedAt: 2026-12-01

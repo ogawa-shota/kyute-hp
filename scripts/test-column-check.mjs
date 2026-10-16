@@ -97,10 +97,10 @@ assert.match(messages(validate([item({ ...base, primarySources: [] })])), /prima
 const dup = validate([item(base), item({ ...base, slug: "other" })]);
 assert.match(messages(dup), /重複/);
 
-// Published needs reviewer and date, and no leftover TODO.
+// Published needs a date and no leftover TODO, but no approver.
 const pub = validate([item({ ...base, status: "published" }, body + "TODO")]);
 assert.match(messages(pub), /publishedAt/);
-assert.match(messages(pub), /reviewer/);
+assert.doesNotMatch(messages(pub), /reviewer/);
 assert.match(messages(pub), /TODO/);
 
 // Unproven services may not assert outcomes.
@@ -119,7 +119,7 @@ assert.match(messages(validate([item({ ...base, author: "nobody", cta: "x" })]))
 
 // Hidden (unannounced) services can be drafted but not published.
 const hidden = validate(
-  [item({ ...base, service: "experience-briefing", status: "published", reviewer: "shota", publishedAt: "2026-10-01" })],
+  [item({ ...base, service: "experience-briefing", status: "published", publishedAt: "2026-10-01" })],
   authors,
 );
 assert.match(messages(hidden), /まだサイトで公開していない/);

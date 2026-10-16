@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Checks every column article before review. Errors exit 1 (the PR cannot merge);
-// warnings are hints for the reviewer.
+// warnings are hints for the writer.
 //   npm run column:check            all articles
 //   npm run column:check -- --keywords   list the keyword registry
 import { CTAS, SERVICES, ctaFor, readAuthors, readColumns, validateColumns } from "../lib/column/core.mjs";
