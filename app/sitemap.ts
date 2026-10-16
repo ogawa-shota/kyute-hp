@@ -4,7 +4,7 @@ import { SITE_URL } from "./seo";
 
 type Entry = MetadataRoute.Sitemap[number];
 
-// Corporate pages. Ad LPs under /lp are noindex and stay out of the sitemap.
+// Corporate pages. PACE is indexable; other ad LPs remain outside the sitemap.
 const RENEWED = "2026-10-15";
 const PAGES: [string, string, Entry["changeFrequency"], number][] = [
   ["/", RENEWED, "weekly", 1.0],
@@ -30,6 +30,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency,
       priority,
     })),
+    {
+      url: "https://www.kyute.jp/lp/pace",
+      lastModified: "2026-10-16",
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     { url: `${SITE_URL}/column`, lastModified: latest, changeFrequency: "weekly", priority: 0.8 },
     ...VISIBLE_SERVICES
       .filter((id) => columns.some((c) => c.service === id))
