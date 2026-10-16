@@ -6,14 +6,11 @@ import { usePathname } from "next/navigation";
 import { Logo } from "@/components/lp/Logo";
 import { Button } from "./ui";
 
-const SERVICE_LINKS = [
+const NAV = [
   { label: "採用動画制作", href: "/service/recruit-video" },
   { label: "採用YouTube運用代行", href: "/service/recruit-youtube" },
-];
-
-const NAV = [
+  { label: "運動部のシゴト。", href: "/media" },
   { label: "制作事例", href: "/works" },
-  { label: "運動部のシゴト。", href: "/works#undo-job" },
   { label: "コラム", href: "/column" },
   { label: "会社紹介", href: "/about" },
 ];
@@ -45,19 +42,7 @@ export function Header() {
           <Logo />
         </Link>
 
-        <nav aria-label="メイン" className="hidden items-center gap-8 text-[15px] font-bold lg:flex">
-          <div className="group relative">
-            <Link href="/service" aria-current={current("/service")} className="inline-flex items-center gap-1 py-6 hover:text-[var(--brand-ink)]">
-              サービス <span aria-hidden="true" className="text-xs">▾</span>
-            </Link>
-            <div className="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 rounded-2xl border border-[var(--line)] bg-white p-2 opacity-0 shadow-xl transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-              {SERVICE_LINKS.map((s) => (
-                <Link key={s.href} href={s.href} className="block rounded-xl px-4 py-3 hover:bg-[var(--bg-soft)]">
-                  {s.label}
-                </Link>
-              ))}
-            </div>
-          </div>
+        <nav aria-label="メイン" className="hidden items-center gap-6 text-[15px] font-bold xl:flex 2xl:gap-8">
           {NAV.map((n) => (
             <Link key={n.href} href={n.href} aria-current={current(n.href)} className="hover:text-[var(--brand-ink)] aria-[current=page]:text-[var(--brand-ink)]">
               {n.label}
@@ -65,14 +50,14 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <Button href="/download" variant="outline" size="sm" cta="header-download">資料請求</Button>
           <Button href="/contact" size="sm" cta="header-contact">無料相談</Button>
         </div>
 
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center lg:hidden"
+          className="flex h-11 w-11 items-center justify-center xl:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "メニューを閉じる" : "メニューを開く"}
@@ -83,11 +68,7 @@ export function Header() {
       </div>
 
       {open && (
-        <nav id="mobile-menu" aria-label="メイン" className="h-[calc(100dvh-64px)] overflow-y-auto border-t border-[var(--line)] bg-white px-5 pb-32 pt-4 lg:hidden">
-          <p className="pt-2 text-sm font-bold text-[var(--ink-mute)]">サービス</p>
-          {SERVICE_LINKS.map((s) => (
-            <Link key={s.href} href={s.href} className="block border-b border-[var(--line)] py-4 text-lg font-bold">{s.label}</Link>
-          ))}
+        <nav id="mobile-menu" aria-label="メイン" className="h-[calc(100dvh-64px)] overflow-y-auto border-t border-[var(--line)] bg-white px-5 pb-32 pt-4 md:h-[calc(100dvh-76px)] xl:hidden">
           {NAV.map((n) => (
             <Link key={n.href} href={n.href} className="block border-b border-[var(--line)] py-4 text-lg font-bold">{n.label}</Link>
           ))}

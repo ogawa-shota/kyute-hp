@@ -220,3 +220,12 @@ h4 {
 .site .num { font-family: var(--font-en); font-weight: 800; letter-spacing: -0.02em; }
 .site .marker { background: linear-gradient(transparent 62%, var(--brand) 62%); }
 .site :focus-visible { outline: 3px solid var(--ink-strong); outline-offset: 3px; }
+
+/* 「運動部のシゴト。」 embedded at /media: keep the LP's layout and colors,
+   but use the corporate site's typeface everywhere (incl. its Helvetica labels). */
+.site .uj-embedded,
+.site .uj-embedded * {
+  font-family: var(--font-ja) !important;
+}
+/* The site's own mobile bar replaces the LP's sticky dual CTA. */
+.site .uj-embedded .uj-mobile-cta { display: none !important; }

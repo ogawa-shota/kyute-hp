@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       // 2026-10 renewal: old service URLs and the retired PACE LP.
       { source: "/service/youtube", destination: "/service/recruit-youtube", permanent: true },
-      { source: "/service/media", destination: "/works#undo-job", permanent: true },
+      { source: "/service/media", destination: "/media", permanent: true },
       { source: "/lp/pace", destination: "/", permanent: true },
       { source: "/pace/:path*", destination: "/", permanent: true },
     ];

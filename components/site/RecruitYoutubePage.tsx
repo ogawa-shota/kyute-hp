@@ -99,7 +99,7 @@ export function RecruitYoutubePage({ lp = false }: { lp?: boolean }) {
             <Eyebrow>PROOF</Eyebrow>
             <Heading id="proof">自社メディアで、<br />採用YouTubeの運用を<br />実践しています。</Heading>
             <Lead>「運動部のシゴト。」では、企画・撮影・編集・サムネイル・分析までをKYUTEが行っています。そこで試して効いたことを、貴社のチャンネルに持ち込みます。</Lead>
-            {!lp && <div className="mt-8"><Button href="/works#undo-job" variant="outline" cta="youtube-proof-media">運動部のシゴト。を見る</Button></div>}
+            {!lp && <div className="mt-8"><Button href="/media" variant="outline" cta="youtube-proof-media">運動部のシゴト。を見る</Button></div>}
           </div>
           <div className="grid grid-cols-2 gap-3">
             {OWNED_VIDEOS.map((v) => <VideoThumb key={v.id} video={v} play={false} sizes="(min-width: 1024px) 25vw, 50vw" />)}

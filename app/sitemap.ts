@@ -11,6 +11,7 @@ const PAGES: [string, string, Entry["changeFrequency"], number][] = [
   ["/service", RENEWED, "monthly", 0.8],
   ["/service/recruit-video", RENEWED, "monthly", 0.9],
   ["/service/recruit-youtube", RENEWED, "monthly", 0.9],
+  ["/media", RENEWED, "monthly", 0.8],
   ["/works", RENEWED, "monthly", 0.8],
   ["/about", RENEWED, "monthly", 0.7],
   ["/download", RENEWED, "monthly", 0.7],

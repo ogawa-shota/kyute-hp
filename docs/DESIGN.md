@@ -18,6 +18,7 @@ This document records what the repository currently renders so that scoped chang
 - **Imagery:** Thumbnails of KYUTE's own 「運動部のシゴト。」 videos (`public/works/`), always labelled as owned media, not customer work.
 - **Story:** 採用動画 follows 情報過多 → 心に残る採用広報 → 面白く、心に残る採用動画. 採用YouTube follows お金が消える → 心が離れる → 認知を取って、心を掴んで、離さない → 資産. Both come from the 2026-10 sales decks.
 - **CTA:** 資料請求 (service-specific form) and 無料相談 (`/contact`) on every page; mobile fixed bottom bar with both.
+- **/media exception:** `/media` embeds the Undo Job LP below unchanged except for the typeface (`.site .uj-embedded` in `app/globals.css`) and its sticky mobile CTA, which the site bar replaces.
 - **Preserve rules:** Do not show AIカジュアル面談 or 体験型会社説明会 until announced. Do not publish customer names, outcomes or SoVa material without permission. Keep the LP systems below separate.
 
 ## Culture / recruitment-video LP
