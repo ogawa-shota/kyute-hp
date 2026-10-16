@@ -37,9 +37,11 @@ AIカジュアル面談 and 体験型会社説明会 are not announced yet and a
 
 Redirects (`next.config.ts`, permanent): `/service/youtube` → `/service/recruit-youtube`, `/service/media` → `/media`, `/pace` → `/lp/pace`.
 
-Rewrite (`next.config.ts`): `/lp/pace` → `/pace/index.html`. The static file remains directly accessible; it has the same `noindex,follow` metadata and canonical URL (`https://www.kyute.jp/lp/pace`).
+Rewrite (`next.config.ts`): `/lp/pace` → `/pace/index.html`. The static file remains directly accessible; it has the same `index,follow` metadata and canonical URL (`https://www.kyute.jp/lp/pace`). Only the canonical PACE URL is included in the sitemap.
 
-### Landing pages (all noindex, outside the sitemap)
+### Landing pages
+
+PACE is indexable and included in the sitemap, as requested on 2026-10-16. Other LPs remain noindex and outside the sitemap.
 
 | Route | Current role | Main CTA or destination |
 | --- | --- | --- |

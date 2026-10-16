@@ -84,7 +84,7 @@ This document records what the repository currently renders so that scoped chang
 ## PACE LP
 
 - **Status:** Restored 2026-10-16 as an independent LP; current observed implementation, not approval.
-- **Routes:** `/lp/pace` rewrites to `public/pace/index.html`; `/pace` redirects to `/lp/pace`. The static `/pace/index.html` remains directly accessible. All served versions use `noindex,follow` and the canonical URL `https://www.kyute.jp/lp/pace`.
+- **Routes:** `/lp/pace` rewrites to `public/pace/index.html`; `/pace` redirects to `/lp/pace`. The static `/pace/index.html` remains directly accessible. All served versions use `index,follow` and the canonical URL `https://www.kyute.jp/lp/pace`. The canonical URL is included in the sitemap, as requested on 2026-10-16.
 - **Typography and colors:** Noto Sans JP for Japanese with Montserrat and Oswald display treatments; navy, light blue, cyan, and lime accents.
 - **Layout and runtime:** Standalone header/footer, large sections, candidate-journey diagram, interactive pricing simulator, plan comparison, expandable FAQ, scroll reveals, and mobile sticky consultation CTA. Primary responsive changes occur at 980px and 640px.
 - **CTA and pricing:** Consultation links use `https://www.kyute.jp/contact`; the pricing simulator is linked from the hero. Preserve the three plans, starting at 49,800円 per month, and existing service copy.
