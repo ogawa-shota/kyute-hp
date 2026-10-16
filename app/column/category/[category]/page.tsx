@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/lp/PageHeader";
 import { CategoryNav, ColumnGrid } from "@/components/column/ColumnParts";
-import { SERVICES, VISIBLE_SERVICES, getColumns, type ServiceId } from "@/lib/column";
+import { SERVICES, VISIBLE_SERVICES, getColumns, getPublishedColumns, type ServiceId } from "@/lib/column";
+import { pageMetadata } from "@/app/seo";
 
 type Props = { params: Promise<{ category: string }> };
 
@@ -16,15 +17,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
   const service = SERVICES[category as ServiceId];
   if (!service || !VISIBLE_SERVICES.includes(category as ServiceId)) return {};
-  return {
+  return pageMetadata({
+    path: `/column/category/${category}`,
     title: `${service.label}のコラム｜KYUTE`,
     description: `${service.name}について、KYUTEが現場で得た知見をもとに解説するコラムの一覧です。`,
-    alternates: { canonical: `/column/category/${category}` },
     // An empty category is a thin page; keep it out of search until it has articles.
-    robots: getColumns(category as ServiceId).some((c) => c.status === "published")
-      ? undefined
-      : { index: false, follow: true },
-  };
+    noindex: getPublishedColumns(category as ServiceId).length === 0,
+  });
 }
 
 export default async function ColumnCategoryPage({ params }: Props) {

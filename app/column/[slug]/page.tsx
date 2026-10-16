@@ -5,19 +5,22 @@ import {
   AuthorBox,
   ColumnCta,
   ColumnGrid,
+  ColumnReferences,
   DraftBadge,
   formatDate,
 } from "@/components/column/ColumnParts";
 import { ColumnCtaTracker } from "@/components/column/CtaTracker";
 import {
   SERVICES,
+  VISIBLE_SERVICES,
   getAllColumns,
   getColumn,
   getRelated,
   headings,
+  isPublic,
   renderMarkdown,
 } from "@/lib/column";
-import { SITE_URL } from "@/app/seo";
+import { breadcrumbSchema, jsonLd, ORGANIZATION, pageMetadata, SITE_URL } from "@/app/seo";
 import "../column.css";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -33,12 +36,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const column = getColumn(slug);
   if (!column) return {};
   return {
-    title: `${column.title}｜KYUTE`,
-    description: column.description,
-    alternates: { canonical: `/column/${column.slug}` },
-    robots: column.status === "published" ? undefined : { index: false, follow: false },
+    ...pageMetadata({
+      path: `/column/${column.slug}`, title: `${column.title}｜KYUTE`,
+      description: column.description, image: column.eyecatch?.src,
+      noindex: !isPublic(column),
+    }),
     openGraph: {
       type: "article",
+      siteName: "KYUTE",
+      locale: "ja_JP",
       title: column.title,
       description: column.description,
       url: `/column/${column.slug}`,
@@ -48,7 +54,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ? [{ url: column.eyecatch.src, alt: column.eyecatch.alt, width: 1600, height: 900 }]
         : ["/og.jpg"],
     },
-    twitter: { card: "summary_large_image" },
   };
 }
 
@@ -63,7 +68,7 @@ export default async function ColumnPage({ params }: Props) {
   const service = SERVICES[column.service];
   const url = `${SITE_URL}/column/${column.slug}`;
 
-  const jsonLd = [
+  const schema = [
     {
       "@context": "https://schema.org",
       "@type": "Article",
@@ -71,20 +76,19 @@ export default async function ColumnPage({ params }: Props) {
       description: column.description,
       datePublished: column.publishedAt,
       dateModified: column.updatedAt ?? column.publishedAt,
-      author: { "@type": "Person", name: column.author.name },
-      publisher: { "@type": "Organization", name: "KYUTE合同会社", url: SITE_URL },
+      author: { "@type": column.author.type ?? "Person", name: column.author.name, url: `${url}#author` },
+      publisher: ORGANIZATION,
+      inLanguage: "ja",
+      citation: column.references,
       mainEntityOfPage: url,
       image: column.eyecatch ? new URL(column.eyecatch.src, SITE_URL).toString() : undefined,
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "トップ", item: SITE_URL },
-        { "@type": "ListItem", position: 2, name: "コラム", item: `${SITE_URL}/column` },
-        { "@type": "ListItem", position: 3, name: column.title, item: url },
-      ],
-    },
+    breadcrumbSchema([
+      { name: "トップ", path: "/" },
+      { name: "コラム", path: "/column" },
+      ...(VISIBLE_SERVICES.includes(column.service) ? [{ name: service.label, path: `/column/category/${column.service}` }] : []),
+      { name: column.title, path: `/column/${column.slug}` },
+    ]),
   ];
 
   return (
@@ -92,7 +96,7 @@ export default async function ColumnPage({ params }: Props) {
       <ColumnCtaTracker slug={column.slug} service={column.service} />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(schema) }}
       />
       <article className="pb-24 pt-10 md:pt-14">
         <div className="mx-auto max-w-3xl px-5">
@@ -100,10 +104,12 @@ export default async function ColumnPage({ params }: Props) {
             <Link href="/" className="hover:text-[var(--brand-ink)]">トップ</Link>
             <span className="mx-2">›</span>
             <Link href="/column" className="hover:text-[var(--brand-ink)]">コラム</Link>
-            <span className="mx-2">›</span>
-            <Link href={`/column/category/${column.service}`} className="hover:text-[var(--brand-ink)]">
-              {service.label}
-            </Link>
+            {VISIBLE_SERVICES.includes(column.service) && <>
+              <span className="mx-2">›</span>
+              <Link href={`/column/category/${column.service}`} className="hover:text-[var(--brand-ink)]">
+                {service.label}
+              </Link>
+            </>}
           </nav>
 
           {column.status !== "published" && (
@@ -148,6 +154,8 @@ export default async function ColumnPage({ params }: Props) {
           )}
 
           <div className="column-body mt-12" dangerouslySetInnerHTML={{ __html: html }} />
+
+          <ColumnReferences references={column.references} />
 
           <div className="mt-16 flex flex-col gap-8">
             <ColumnCta column={column} />

@@ -1,0 +1,34 @@
+name: Weekly public SEO audit
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Monday 09:00 Asia/Tokyo; GitHub may delay scheduled runs.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seo-monitor
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Read-only crawl of public pages
+        run: npm run seo:audit -- --strict --output seo-audit/production
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: weekly-seo-audit
+          path: seo-audit/
+          if-no-files-found: error
+          retention-days: 90

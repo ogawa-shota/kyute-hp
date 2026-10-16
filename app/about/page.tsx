@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/app/seo";
 import { COMPANY } from "@/components/site/data";
 import { Breadcrumb, Container, Eyebrow, Heading, Section } from "@/components/site/ui";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/about",
   title: "会社紹介｜KYUTE",
   description: "すべての企業に、YouTube採用を。KYUTEは、採用を消費から資産へ変えます。KYUTEの考え方と会社概要をご紹介します。",
-  alternates: { canonical: "/about" },
-};
+});
 
 export default function AboutPage() {
   return (

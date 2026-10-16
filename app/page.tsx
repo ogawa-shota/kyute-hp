@@ -1,18 +1,12 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { OWNED_VIDEOS, SERVICES, VIEWS_NOTE, thumb } from "@/components/site/data";
 import { Button, Container, Eyebrow, Faq, Heading, Pill, Section, VideoThumb } from "@/components/site/ui";
 import { ColumnGrid } from "@/components/column/ColumnParts";
 import { getColumns } from "@/lib/column";
-import { OG_DESCRIPTION, SITE_DESCRIPTION, SITE_TITLE } from "./seo";
+import { jsonLd, pageMetadata, SITE_DESCRIPTION, SITE_TITLE, WEBSITE_SCHEMA } from "./seo";
 
-export const metadata: Metadata = {
-  title: SITE_TITLE,
-  description: SITE_DESCRIPTION,
-  alternates: { canonical: "/" },
-  openGraph: { title: SITE_TITLE, description: OG_DESCRIPTION, url: "/", images: ["/og.jpg"] },
-};
+export const metadata = pageMetadata({ path: "/", title: SITE_TITLE, description: SITE_DESCRIPTION });
 
 const FAQ = [
   {
@@ -41,6 +35,7 @@ export default function Home() {
   const [cafe, lab, ...rest] = OWNED_VIDEOS;
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(WEBSITE_SCHEMA) }} />
       {/* FV */}
       <section className="overflow-hidden bg-white pb-16 pt-12 md:pb-24 md:pt-16">
         <Container>

@@ -113,7 +113,7 @@ export function ColumnCta({ column }: { column: Column }) {
 export function AuthorBox({ column }: { column: Column }) {
   const { author } = column;
   return (
-    <section aria-label="この記事を書いた人" className="flex gap-5 rounded-2xl bg-[var(--bg-soft)] p-6">
+    <section id="author" aria-label="この記事を書いた人" className="flex gap-5 rounded-2xl bg-[var(--bg-soft)] p-6">
       {author.image && (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={author.image} alt="" className="h-16 w-16 flex-none rounded-full object-cover" />
@@ -125,7 +125,22 @@ export function AuthorBox({ column }: { column: Column }) {
           <span className="ml-2 text-sm font-normal text-[var(--ink-soft)]">{author.role}</span>
         </p>
         <p className="mt-2 text-[15px] leading-[1.9] text-[var(--ink-soft)]">{author.bio}</p>
+        {column.reviewer && <p className="mt-3 text-[15px] text-[var(--ink-soft)]">内容確認：{column.reviewer.name}（{column.reviewer.role}）</p>}
+        <Link href="/about" className="mt-3 inline-block text-[15px] underline">運営会社について</Link>
       </div>
     </section>
+  );
+}
+
+/** Only public reference URLs are rendered; private primarySources stay private. */
+export function ColumnReferences({ references }: { references: string[] }) {
+  if (!references.length) return null;
+  return (
+    <details className="mt-12 rounded-2xl border border-[var(--line)] p-6">
+      <summary className="cursor-pointer font-bold">出典・参考資料</summary>
+      <ul className="mt-4 list-disc space-y-3 pl-5 text-[15px] leading-[1.8] text-[var(--ink-soft)]">
+        {[...new Set(references)].map((url) => <li key={url}><a href={url} className="break-all underline">{url}</a></li>)}
+      </ul>
+    </details>
   );
 }

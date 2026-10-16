@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/app/seo";
 import { PageHeader } from "@/components/lp/PageHeader";
 import { ContactForm } from "@/components/lp/ContactForm";
 import { FaqSection } from "@/components/lp/Faq";
 import { Reveal } from "@/components/lp/Reveal";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/contact",
   title: "CONTACT｜KYUTE",
   description:
     "採用課題のヒアリングから始めます。相談は無料。会社名・担当者名・メール・いまの採用課題をお送りください。",
-};
+});
 
 export default function ContactPage() {
   return (

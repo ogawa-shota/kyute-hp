@@ -1,5 +1,8 @@
 name: check
 
+permissions:
+  contents: read
+
 on:
   pull_request:
   push:
@@ -20,3 +23,24 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run build
+      - run: npm run typecheck
+      - name: Audit rendered production build
+        env:
+          SEO_BASE_URL: http://localhost:3000
+          SEO_EXPECTED_ORIGIN: https://www.kyute.jp
+        run: |
+          npm start > /tmp/kyute-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent http://localhost:3000/ > /dev/null; then break; fi
+            sleep 1
+          done
+          npm run seo:audit -- --strict --output seo-audit/local
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rendered-seo-audit
+          path: seo-audit/
+          if-no-files-found: ignore
+          retention-days: 14

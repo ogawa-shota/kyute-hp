@@ -1,0 +1,11 @@
+{
+  "observedAt": "2026-10-16",
+  "method": "Python urllib GET with no browser session cookies; no submission",
+  "url": "https://docs.google.com/forms/d/e/1FAIpQLSfOgXzFc4zxbbpM-gGva7KDwkIC1vUR5ajfvKe57fNs6z_YPw/viewform?embedded=true",
+  "status": 200,
+  "finalHost": "docs.google.com",
+  "title": "KYUTE お問い合わせフォーム",
+  "hasFormContent": true,
+  "questionListItems": 4,
+  "browserLimitation": "Existing IAB Google session required account reverification; this is not proof that anonymous visitors must log in."
+}

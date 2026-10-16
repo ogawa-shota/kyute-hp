@@ -44,7 +44,7 @@ export function Footer() {
             <nav key={g.title} aria-label={g.title} className="flex flex-col gap-2 text-[15px]">
               <p className="font-bold text-white">{g.title}</p>
               {g.links.map((l) => (
-                <Link key={l.href} href={l.href} className="hover:text-white">{l.label}</Link>
+                <Link key={l.href} href={l.href} data-cta={`footer-nav-${l.href.slice(1).replaceAll("/", "-")}`} className="hover:text-white">{l.label}</Link>
               ))}
             </nav>
           ))}

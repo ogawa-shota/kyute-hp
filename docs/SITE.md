@@ -14,6 +14,10 @@ Every application route except `/lp/**` uses `SiteChrome` (`components/site/Head
 
 Each service page has its own material request form (`#download`), posting to the existing delivery endpoints: 採用動画 → `/api/material-request`, 採用YouTube → `/api/culture-material`.
 
+The canonical origin is `https://www.kyute.jp`; the apex currently redirects there with HTTP 307 at the hosting layer. Each corporate route has its own canonical/OG/Twitter metadata. Home carries Organization/WebSite JSON-LD; the two service pages carry Service/BreadcrumbList. Their visible service labels and hero copy are included in each H1.
+
+Material requests emit a success event only after an acknowledged successful API response. Shared CTAs use `site_cta_click`; article pages retain `column_cta_click` with exclusive ownership to avoid duplicate counting. Optional GA4 is disabled unless `NEXT_PUBLIC_GA_MEASUREMENT_ID` is configured, and runs only on the production domains. Vercel Hobby does not aggregate custom events. See `docs/seo/MEASUREMENT_PLAN.md` for activation and privacy constraints.
+
 AIカジュアル面談 and 体験型会社説明会 are not announced yet and appear nowhere on the site.
 
 ## Current implemented routes
@@ -51,6 +55,8 @@ PACE is indexable and included in the sitemap, as requested on 2026-10-16. Other
 | `/lp/day-in-the-life` | Legacy day-in-the-life LP (kept for existing links) | Material request form |
 | `/lp/undo-job` | Standalone 「運動部のシゴト。」 LP with its own header/footer; same content as `/media` (`app/lp/undo-job/UndoJobContent.tsx`) | Service-material request and consultation |
 | `/lp/pace` | Standalone PACE recruiting-operations LP served from `public/pace/index.html`; monthly plans from 49,800円 | Consultation (`https://www.kyute.jp/contact`), pricing simulator (`#pricing`) |
+
+Articles display their public reference URLs in a collapsed source list and an optional named content reviewer in the author box. The existing comparison article links to the recruitment-video pricing section using the existing in-body CTA catalog. Future publication dates require a production rebuild on or after the JST publication date; there is no automatic publishing job.
 
 ### Route handlers
 

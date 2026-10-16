@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/app/seo";
 import { PageHeader } from "@/components/lp/PageHeader";
 import { CategoryNav, ColumnGrid } from "@/components/column/ColumnParts";
 import { getColumns } from "@/lib/column";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/column",
   title: "お役立ちコラム｜KYUTE",
   description:
     "採用動画・採用YouTube・採用広報について、KYUTEが現場で得た知見をもとに解説します。",
-  alternates: { canonical: "/column" },
-};
+});
 
 export default function ColumnIndexPage() {
   return (

@@ -44,7 +44,7 @@ export function Header() {
 
         <nav aria-label="メイン" className="hidden items-center gap-6 text-[15px] font-bold xl:flex 2xl:gap-8">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} aria-current={current(n.href)} className="hover:text-[var(--brand-ink)] aria-[current=page]:text-[var(--brand-ink)]">
+            <Link key={n.href} href={n.href} data-cta={`header-nav-${n.href.slice(1).replaceAll("/", "-")}`} aria-current={current(n.href)} className="hover:text-[var(--brand-ink)] aria-[current=page]:text-[var(--brand-ink)]">
               {n.label}
             </Link>
           ))}
@@ -70,9 +70,9 @@ export function Header() {
       {open && (
         <nav id="mobile-menu" aria-label="メイン" className="h-[calc(100dvh-64px)] overflow-y-auto border-t border-[var(--line)] bg-white px-5 pb-32 pt-4 md:h-[calc(100dvh-76px)] xl:hidden">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="block border-b border-[var(--line)] py-4 text-lg font-bold">{n.label}</Link>
+            <Link key={n.href} href={n.href} data-cta={`mobile-nav-${n.href.slice(1).replaceAll("/", "-")}`} className="block border-b border-[var(--line)] py-4 text-lg font-bold">{n.label}</Link>
           ))}
-          <Link href="/contact" className="block border-b border-[var(--line)] py-4 text-lg font-bold">お問い合わせ</Link>
+          <Link href="/contact" data-cta="mobile-menu-contact" className="block border-b border-[var(--line)] py-4 text-lg font-bold">お問い合わせ</Link>
         </nav>
       )}
     </header>

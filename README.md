@@ -29,6 +29,8 @@ npm run dev
 | `npm run column:keywords` | コラムが狙う検索ワードの一覧を表示 |
 | `npm run column:eyecatch -- <slug> <元画像>` | コラムのアイキャッチを 1600×900 のJPGにして `public/column/<slug>/` に置く |
 | `npm run build` | production buildを生成 |
+| `npm run typecheck` | TypeScriptの型チェック |
+| `npm run seo:audit` | 公開サイトのHTML、sitemap、canonical、内部リンクをGETだけで検査 |
 | `npm run check` | lint、test、buildを順に実行 |
 | `npm start` | production serverを起動 |
 
@@ -92,9 +94,17 @@ npm run build
 
 UI変更時のscope判断、Preservation Mode、before/after比較はShota AI OSの `web-product` skillに従います。project-specificなpreserve対象は `docs/DESIGN.md` を使用してください。本番デプロイ、実メール送信、実Slack投稿は検証に含めません。
 
+## SEO運用
+
+監査・戦略・実装履歴・人間の設定作業は [`docs/seo/README.md`](docs/seo/README.md) を参照してください。記事制作の正本は引き続き [`docs/COLUMN.md`](docs/COLUMN.md) と column skill です。
+
+`NEXT_PUBLIC_GA_MEASUREMENT_ID` は任意です。未設定ならGoogleタグは読み込まれません。本番ドメインでのみ有効になります。GA4の管理画面設定、拡張計測の無効化、イベント定義は [`MEASUREMENT_PLAN.md`](docs/seo/MEASUREMENT_PLAN.md) に従ってください。Vercel Hobbyではカスタムイベントを集計できないため、コード実装と計測稼働を区別します。
+
+PRではビルドしたローカルサイトをクロールします。週次の公開監視は `.github/workflows/seo-monitor.yml` で月曜09:00 JST予定です。default branchへの反映後に有効になります。検索順位やDRはこのHTTP検査では取得しません。失敗通知はGitHubのActions通知設定に依存します。
+
 ## Deployment notes
 
-- `https://kyute.jp` / `https://www.kyute.jp` をproduction originとして扱います。
+- 正規originは `https://www.kyute.jp`。2026-10-16の公開観測で `https://kyute.jp` はwwwへ307転送されます。
 - Preview環境ではroot metadataが検索indexを無効にします。
 - Vercel側にも必要な環境変数を設定します。
-- 公開前に `public/robots.txt`、`public/sitemap.xml`、各route metadata、資料PDF URLを現行ルートと照合してください。
+- 公開前に `public/robots.txt`、`app/sitemap.ts` が生成するsitemap、各route metadata、資料PDF URLを現行ルートと照合してください。本番デプロイには明示承認が必要です。
