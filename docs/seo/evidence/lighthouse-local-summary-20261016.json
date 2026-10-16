@@ -1,0 +1,375 @@
+[
+  {
+    "name": "home",
+    "url": "http://127.0.0.1:3107/",
+    "recordedAt": "2026-10-16T03:50:20.835Z",
+    "lighthouseVersion": "13.5.0",
+    "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "mode": "single-run mobile simulated lab on localhost production build; not deployed result or field CWV",
+    "throttling": {
+      "rttMs": 150,
+      "throughputKbps": 1638.4,
+      "requestLatencyMs": 562.5,
+      "downloadThroughputKbps": 1474.5600000000002,
+      "uploadThroughputKbps": 675,
+      "cpuSlowdownMultiplier": 4
+    },
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 88,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": {
+        "value": 3591.7345,
+        "unit": "millisecond",
+        "display": "3.6 s"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "unit": "unitless",
+        "display": "0"
+      },
+      "total-blocking-time": {
+        "value": 63,
+        "unit": "millisecond",
+        "display": "60 ms"
+      },
+      "first-contentful-paint": {
+        "value": 2140.134,
+        "unit": "millisecond",
+        "display": "2.1 s"
+      },
+      "speed-index": {
+        "value": 2140.134,
+        "unit": "millisecond",
+        "display": "2.1 s"
+      },
+      "total-byte-weight": {
+        "value": 2023581,
+        "unit": "byte",
+        "display": "Total size was 1,976 KiB"
+      }
+    },
+    "networkRequests": 95,
+    "fontRequests": 65,
+    "fontBytes": 1137841,
+    "warnings": [],
+    "failedBestPracticeAudits": [
+      {
+        "id": "errors-in-console",
+        "title": "Browser errors were logged to the console",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "sourceLocation",
+              "valueType": "source-location",
+              "label": "Source"
+            },
+            {
+              "key": "description",
+              "valueType": "code",
+              "label": "Description"
+            }
+          ],
+          "items": [
+            {
+              "source": "network",
+              "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+              "sourceLocation": {
+                "type": "source-location",
+                "url": "http://127.0.0.1:3107/_vercel/insights/script.js",
+                "urlProvider": "network",
+                "line": 0,
+                "column": 0
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "source": "lighthouse-local-home-mobile-20261016.report.json.gz"
+  },
+  {
+    "name": "service-video",
+    "url": "http://127.0.0.1:3107/service/recruit-video",
+    "recordedAt": "2026-10-16T03:51:16.446Z",
+    "lighthouseVersion": "13.5.0",
+    "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "mode": "single-run mobile simulated lab on localhost production build; not deployed result or field CWV",
+    "throttling": {
+      "rttMs": 150,
+      "throughputKbps": 1638.4,
+      "requestLatencyMs": 562.5,
+      "downloadThroughputKbps": 1474.5600000000002,
+      "uploadThroughputKbps": 675,
+      "cpuSlowdownMultiplier": 4
+    },
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 83,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": {
+        "value": 4151.26845,
+        "unit": "millisecond",
+        "display": "4.2 s"
+      },
+      "cumulative-layout-shift": {
+        "value": 0.001933337360669702,
+        "unit": "unitless",
+        "display": "0.002"
+      },
+      "total-blocking-time": {
+        "value": 50.00000000000023,
+        "unit": "millisecond",
+        "display": "50 ms"
+      },
+      "first-contentful-paint": {
+        "value": 2426.2684500000005,
+        "unit": "millisecond",
+        "display": "2.4 s"
+      },
+      "speed-index": {
+        "value": 2426.2684500000005,
+        "unit": "millisecond",
+        "display": "2.4 s"
+      },
+      "total-byte-weight": {
+        "value": 1907660,
+        "unit": "byte",
+        "display": "Total size was 1,863 KiB"
+      }
+    },
+    "networkRequests": 109,
+    "fontRequests": 76,
+    "fontBytes": 1296077,
+    "warnings": [],
+    "failedBestPracticeAudits": [
+      {
+        "id": "errors-in-console",
+        "title": "Browser errors were logged to the console",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "sourceLocation",
+              "valueType": "source-location",
+              "label": "Source"
+            },
+            {
+              "key": "description",
+              "valueType": "code",
+              "label": "Description"
+            }
+          ],
+          "items": [
+            {
+              "source": "network",
+              "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+              "sourceLocation": {
+                "type": "source-location",
+                "url": "http://127.0.0.1:3107/_vercel/insights/script.js",
+                "urlProvider": "network",
+                "line": 0,
+                "column": 0
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "source": "lighthouse-local-service-video-mobile-20261016.report.json.gz"
+  },
+  {
+    "name": "column",
+    "url": "http://127.0.0.1:3107/column/recruit-video-production-company",
+    "recordedAt": "2026-10-16T03:52:14.078Z",
+    "lighthouseVersion": "13.5.0",
+    "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "mode": "single-run mobile simulated lab on localhost production build; not deployed result or field CWV",
+    "throttling": {
+      "rttMs": 150,
+      "throughputKbps": 1638.4,
+      "requestLatencyMs": 562.5,
+      "downloadThroughputKbps": 1474.5600000000002,
+      "uploadThroughputKbps": 675,
+      "cpuSlowdownMultiplier": 4
+    },
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 55,
+      "accessibility": 100,
+      "best-practices": 92,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": {
+        "value": 18848.32962499999,
+        "unit": "millisecond",
+        "display": "18.8 s"
+      },
+      "cumulative-layout-shift": {
+        "value": 0.0004983815318155679,
+        "unit": "unitless",
+        "display": "0"
+      },
+      "total-blocking-time": {
+        "value": 0,
+        "unit": "millisecond",
+        "display": "0 ms"
+      },
+      "first-contentful-paint": {
+        "value": 13950.1695,
+        "unit": "millisecond",
+        "display": "14.0 s"
+      },
+      "speed-index": {
+        "value": 13950.1695,
+        "unit": "millisecond",
+        "display": "14.0 s"
+      },
+      "total-byte-weight": {
+        "value": 2987776,
+        "unit": "byte",
+        "display": "Total size was 2,918 KiB"
+      }
+    },
+    "networkRequests": 116,
+    "fontRequests": 72,
+    "fontBytes": 1241665,
+    "warnings": [],
+    "failedBestPracticeAudits": [
+      {
+        "id": "errors-in-console",
+        "title": "Browser errors were logged to the console",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "sourceLocation",
+              "valueType": "source-location",
+              "label": "Source"
+            },
+            {
+              "key": "description",
+              "valueType": "code",
+              "label": "Description"
+            }
+          ],
+          "items": [
+            {
+              "source": "network",
+              "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+              "sourceLocation": {
+                "type": "source-location",
+                "url": "http://127.0.0.1:3107/_vercel/insights/script.js",
+                "urlProvider": "network",
+                "line": 0,
+                "column": 0
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "inspector-issues",
+        "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+        "details": {
+          "type": "table",
+          "headings": [
+            {
+              "key": "issueType",
+              "valueType": "text",
+              "subItemsHeading": {
+                "key": "url",
+                "valueType": "url"
+              },
+              "label": "Issue type"
+            }
+          ],
+          "items": [
+            {
+              "issueType": "Cookie",
+              "subItems": {
+                "type": "subitems",
+                "items": [
+                  {
+                    "url": "https://www.youtube-nocookie.com/embed/zeCEpDVI24s"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "source": "lighthouse-local-column-mobile-20261016.report.json.gz"
+  },
+  {
+    "name": "column-repeat",
+    "url": "http://127.0.0.1:3107/column/recruit-video-production-company",
+    "recordedAt": "2026-10-16T03:54:18.419Z",
+    "lighthouseVersion": "13.5.0",
+    "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "mode": "single-run repeat for anomalous simulated first run; localhost production build, not deployed/field",
+    "throttling": {
+      "rttMs": 150,
+      "throughputKbps": 1638.4,
+      "requestLatencyMs": 562.5,
+      "downloadThroughputKbps": 1474.5600000000002,
+      "uploadThroughputKbps": 675,
+      "cpuSlowdownMultiplier": 4
+    },
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 55,
+      "accessibility": 100,
+      "best-practices": 92,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": {
+        "value": 19291.5901,
+        "unit": "millisecond",
+        "display": "19.3 s"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "unit": "unitless",
+        "display": "0"
+      },
+      "total-blocking-time": {
+        "value": 0,
+        "unit": "millisecond",
+        "display": "0 ms"
+      },
+      "first-contentful-paint": {
+        "value": 13905.887099999993,
+        "unit": "millisecond",
+        "display": "13.9 s"
+      },
+      "speed-index": {
+        "value": 13905.887099999993,
+        "unit": "millisecond",
+        "display": "13.9 s"
+      },
+      "total-byte-weight": {
+        "value": 2987798,
+        "unit": "byte",
+        "display": "Total size was 2,918 KiB"
+      }
+    },
+    "networkRequests": 116,
+    "fontRequests": 72,
+    "fontBytes": 1241665,
+    "warnings": [],
+    "source": "lighthouse-local-column-repeat-mobile-20261016.report.json.gz"
+  }
+]

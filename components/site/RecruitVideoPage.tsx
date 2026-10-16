@@ -40,10 +40,12 @@ export function RecruitVideoPage({ lp = false }: { lp?: boolean }) {
           <div className="mt-8 grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
             <div>
               <Eyebrow>KYUTEの採用動画制作</Eyebrow>
-              <h1 className="text-[64px] leading-[1.1] md:text-[104px]">面白く、</h1>
-              <p className="mt-4 text-[28px] font-extrabold leading-[1.45] md:text-[44px]">
-                企業の魅力を伝える、<br /><span className="marker">採用動画制作サービス</span>
-              </p>
+              <h1>
+                <span className="block text-[64px] leading-[1.1] md:text-[104px]">面白く、</span>
+                <span className="mt-4 block text-[28px] font-extrabold leading-[1.45] [letter-spacing:var(--ls-body)] [text-wrap:pretty] md:text-[44px]">
+                  企業の魅力を伝える、<br /><span className="marker">採用動画制作サービス</span>
+                </span>
+              </h1>
               <Lead>人・仕事・カルチャーの魅力を、最後まで見たくなる映像に。</Lead>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button href="#download" cta="video-fv-download">採用動画の資料をもらう →</Button>

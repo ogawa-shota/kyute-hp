@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { VISIBLE_SERVICES, getColumns } from "@/lib/column";
+import { VISIBLE_SERVICES, getPublishedColumns } from "@/lib/column";
 import { SITE_URL } from "./seo";
 
 type Entry = MetadataRoute.Sitemap[number];
@@ -20,8 +20,8 @@ const PAGES: [string, string, Entry["changeFrequency"], number][] = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Only published articles; drafts never reach the sitemap, even on previews.
-  const columns = getColumns().filter((c) => c.status === "published");
-  const latest = columns[0]?.updatedAt ?? columns[0]?.publishedAt;
+  const columns = getPublishedColumns();
+  const latest = columns.map((c) => c.updatedAt ?? c.publishedAt).filter((date): date is string => Boolean(date)).sort().at(-1);
 
   return [
     ...PAGES.map(([path, lastModified, changeFrequency, priority]) => ({
@@ -35,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       .filter((id) => columns.some((c) => c.service === id))
       .map((id) => ({
         url: `${SITE_URL}/column/category/${id}`,
+        lastModified: columns.filter((c) => c.service === id).map((c) => c.updatedAt ?? c.publishedAt).filter((date): date is string => Boolean(date)).sort().at(-1),
         changeFrequency: "weekly" as const,
         priority: 0.6,
       })),

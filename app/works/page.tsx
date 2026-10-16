@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/app/seo";
 import { CHANNEL_URL, OWNED_VIDEOS, VIEWS_NOTE } from "@/components/site/data";
 import { Button, Eyebrow, Heading, Lead, PageIntro, Pill, Section, VideoThumb } from "@/components/site/ui";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/works",
   title: "制作事例・運動部のシゴト。｜KYUTE",
   description: "KYUTEが制作した採用動画と、自社メディア「運動部のシゴト。」の1日密着動画をご紹介します。",
-  alternates: { canonical: "/works" },
-};
+});
 
 export default function WorksPage() {
   return (

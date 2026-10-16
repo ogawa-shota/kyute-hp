@@ -1,0 +1,81 @@
+{
+  "observedAt": "2026-10-16",
+  "source": "Ahrefs official Website Authority Checker browser UI",
+  "url": "https://ahrefs.com/website-authority-checker",
+  "attribution": "Domain Rating by Ahrefs (https://ahrefs.com/)",
+  "scope": "Root domains; displayed rounded values retained. Not GA/GSC traffic.",
+  "metrics": [
+    {
+      "domain": "kyute.jp",
+      "dr": 0,
+      "backlinksDisplay": "717",
+      "linkingWebsitesDisplay": "378",
+      "backlinksDofollowPercent": 15,
+      "websitesDofollowPercent": 14
+    },
+    {
+      "domain": "moovy.jp",
+      "dr": 44,
+      "backlinksDisplay": "5.5K",
+      "linkingWebsitesDisplay": "971",
+      "backlinksDofollowPercent": 67,
+      "websitesDofollowPercent": 31
+    },
+    {
+      "domain": "jpc-ltd.co.jp",
+      "dr": 43,
+      "backlinksDisplay": "34K",
+      "linkingWebsitesDisplay": "873",
+      "backlinksDofollowPercent": 96,
+      "websitesDofollowPercent": 33
+    },
+    {
+      "domain": "foursons.co.jp",
+      "dr": 46,
+      "backlinksDisplay": "1.8K",
+      "linkingWebsitesDisplay": "901",
+      "backlinksDofollowPercent": 62,
+      "websitesDofollowPercent": 33
+    },
+    {
+      "domain": "cine-mato.com",
+      "dr": 39,
+      "backlinksDisplay": "2.9K",
+      "linkingWebsitesDisplay": "1.1K",
+      "backlinksDofollowPercent": 34,
+      "websitesDofollowPercent": 48
+    },
+    {
+      "domain": "humancentrix.com",
+      "dr": 42,
+      "backlinksDisplay": "4.6K",
+      "linkingWebsitesDisplay": "1.2K",
+      "backlinksDofollowPercent": 74,
+      "websitesDofollowPercent": 50
+    },
+    {
+      "domain": "hypex.jp",
+      "dr": 36,
+      "backlinksDisplay": "1.4K",
+      "linkingWebsitesDisplay": "681",
+      "backlinksDofollowPercent": 54,
+      "websitesDofollowPercent": 31
+    },
+    {
+      "domain": "behealthy.co.jp",
+      "dr": 41,
+      "backlinksDisplay": "1.8K",
+      "linkingWebsitesDisplay": "707",
+      "backlinksDofollowPercent": 27,
+      "websitesDofollowPercent": 27
+    },
+    {
+      "domain": "naminori-inc.com",
+      "dr": 2.6,
+      "backlinksDisplay": "580",
+      "linkingWebsitesDisplay": "316",
+      "backlinksDofollowPercent": 6,
+      "websitesDofollowPercent": 6
+    }
+  ]
+}

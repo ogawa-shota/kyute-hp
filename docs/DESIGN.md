@@ -29,6 +29,8 @@ This document records what the repository currently renders so that scoped chang
 - **Visual blocks:** Markdown tables (horizontal scroll on narrow screens), figures with captions (image with a Markdown title), `> [!POINT]` / `> [!NOTE]` boxes (charcoal border, yellow label), YouTube embeds.
 - **CTA:** In-body cards from `<!-- cta: id -->` (pale-yellow panel, rounded 24px, yellow pill button, 48px minimum height) placed after decision material; the dark end-of-article CTA per service; the site's mobile bottom bar stays.
 - **Imagery:** Article-specific 1600×900 JPG eyecatch under `public/column/<slug>/`, shared by the list card, the article, OGP and Article structured data. AI-generated images must not be presented as real employees, customers or shoots. Rules: `.claude/skills/column/references/visual-design.md`.
+- **Trust footer:** A collapsed `出典・参考資料` details block follows the body; public reference URLs wrap on mobile. The existing author panel also shows the named content reviewer when provided and a link to `/about`. This is a scoped extension of the existing reading surface.
+- **Performance:** Japanese font preloading is disabled to prevent hundreds of initial font downloads. Font families, weights and `display: swap` are unchanged. This is not a typography redesign.
 
 ## Culture / recruitment-video LP
 

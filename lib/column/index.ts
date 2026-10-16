@@ -19,6 +19,7 @@ export type ServiceId = keyof typeof SERVICES;
 export type CtaId = keyof typeof CTAS;
 
 export type Author = {
+  type?: "Person" | "Organization";
   name: string;
   role: string;
   bio: string;
@@ -34,6 +35,8 @@ export type Column = {
   ctaId: CtaId;
   cta: (typeof CTAS)[CtaId];
   author: Author;
+  reviewer?: Author;
+  references: string[];
   status: "draft" | "review" | "published";
   publishedAt?: string;
   updatedAt?: string;
@@ -41,7 +44,7 @@ export type Column = {
   body: string;
 };
 
-export { SERVICES };
+export { SERVICES, isPublic };
 
 /** Services with a public category tab and page. */
 export const VISIBLE_SERVICES = visibleServiceIds() as ServiceId[];
@@ -69,6 +72,8 @@ function load(): Column[] {
       ctaId: ctaFor(data) as CtaId,
       cta: CTAS[ctaFor(data) as CtaId],
       author: authors[data.author],
+      reviewer: data.reviewer ? authors[data.reviewer] : undefined,
+      references: Array.isArray(data.references) ? data.references.filter((url: unknown): url is string => typeof url === "string" && /^https?:\/\//.test(url)) : [],
       status: data.status,
       publishedAt: data.publishedAt,
       updatedAt: data.updatedAt,
@@ -85,6 +90,11 @@ export function getColumns(service?: ServiceId): Column[] {
   return service
     ? all.filter((c) => c.service === service)
     : all.filter((c) => VISIBLE_SERVICES.includes(c.service));
+}
+
+/** Public URLs only, also on preview builds (never include scheduled articles). */
+export function getPublishedColumns(service?: ServiceId): Column[] {
+  return getColumns(service).filter((column) => isPublic(column));
 }
 
 /** Every article this build may render, including hidden-service drafts on previews. */

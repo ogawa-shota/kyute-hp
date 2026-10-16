@@ -1,0 +1,34 @@
+{
+  "observedAt": "2026-10-16",
+  "id": "dpl_6SCaZRBJh8becSsQtzjkbwsMukmH",
+  "project": {
+    "name": "kyute-hp",
+    "framework": "nextjs"
+  },
+  "gitSource": {
+    "ref": "main",
+    "sha": "c3fa40bdcbd93bd1cbdc90fb341e1bc801351b49",
+    "type": "github",
+    "prId": null
+  },
+  "gitRepo": "ogawa-shota/kyute-hp",
+  "alias": [
+    "www.kyute.jp",
+    "kyute-hp.vercel.app",
+    "kyute.jp"
+  ],
+  "target": "production",
+  "state": "READY",
+  "plan": "hobby",
+  "nodeVersion": "24.x",
+  "webAnalytics": {
+    "enabledAt": 1783577714546,
+    "hasData": true
+  },
+  "speedInsights": {
+    "hasData": false,
+    "enabledAt": 1783643409064,
+    "disabledAt": 1789516800000
+  },
+  "evidenceNote": "Authenticated Vercel CLI read, minimized for public audit: project/analytics IDs, workspace deployment URL and nonessential aliases omitted."
+}

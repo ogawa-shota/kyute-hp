@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Zen_Kaku_Gothic_New, Inter, LINE_Seed_JP } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
+import { SiteAnalytics } from "@/components/analytics/SiteAnalytics";
 import "./globals.css";
 import { SiteChrome } from "@/components/SiteChrome";
-import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "./seo";
+import { pageRobots, SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "./seo";
 
 // 和文: 端正で知的な人文系ゴシック。太字でも圧迫感が少なく、BtoB採用サイトに合う。
 const sans = Zen_Kaku_Gothic_New({
@@ -11,6 +11,7 @@ const sans = Zen_Kaku_Gothic_New({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
+  preload: false,
 });
 
 // 欧文・数字: 中立で図形的に美しく、和文と自然に併記できる。ラベル/ロゴ/数字に使用。
@@ -27,22 +28,14 @@ const kyute = LINE_Seed_JP({
   subsets: ["latin"],
   variable: "--font-kyute",
   display: "swap",
+  preload: false,
 });
-
-const isPreview = process.env.VERCEL_ENV === "preview";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
-  robots: {
-    index: !isPreview,
-    follow: !isPreview,
-    googleBot: {
-      index: !isPreview,
-      follow: !isPreview,
-    },
-  },
+  robots: pageRobots(),
 };
 
 export default function RootLayout({
@@ -56,7 +49,7 @@ export default function RootLayout({
         className={`${sans.variable} ${latin.variable} ${kyute.variable} font-sans antialiased`}
       >
         <SiteChrome>{children}</SiteChrome>
-        <Analytics />
+        <SiteAnalytics />
       </body>
     </html>
   );

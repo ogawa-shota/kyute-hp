@@ -10,11 +10,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint app components",
-    "test": "node scripts/test-culture-material.cjs && node scripts/test-undo-job-material.cjs && node scripts/test-column-check.mjs && node scripts/check-columns.mjs",
-    "check": "npm run lint && npm test && npm run build",
+    "test": "node scripts/test-culture-material.cjs && node scripts/test-undo-job-material.cjs && node scripts/test-column-check.mjs && node scripts/check-columns.mjs && npm run seo:audit:test && node scripts/test-analytics.cjs && node scripts/test-seo.mjs",
+    "check": "npm run lint && npm test && npm run build && npm run typecheck",
     "column:check": "node scripts/check-columns.mjs",
     "column:keywords": "node scripts/check-columns.mjs --keywords",
-    "column:eyecatch": "node scripts/column-eyecatch.mjs"
+    "column:eyecatch": "node scripts/column-eyecatch.mjs",
+    "typecheck": "tsc --noEmit",
+    "seo:audit": "node scripts/audit-seo.mjs",
+    "seo:audit:test": "node scripts/test-seo-audit.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

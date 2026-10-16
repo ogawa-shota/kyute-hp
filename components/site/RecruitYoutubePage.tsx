@@ -34,9 +34,11 @@ export function RecruitYoutubePage({ lp = false }: { lp?: boolean }) {
           {!lp && <Breadcrumb items={[{ label: "トップ", href: "/" }, { label: "サービス", href: "/service" }, { label: "採用YouTube運用代行" }]} />}
           <div className="mt-8 grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]">
             <div>
-              <Eyebrow>KYUTEの採用YouTube運用代行</Eyebrow>
-              <h1 className="text-[44px] leading-[1.25] md:text-[72px]">
-                認知を取って、<br />心を掴んで、<br /><span className="marker">離さない。</span>
+              <h1>
+                <span className="mb-4 block font-[family-name:var(--font-en)] text-sm font-bold tracking-[0.14em] text-[var(--brand-ink)]">KYUTEの採用YouTube運用代行</span>
+                <span className="block text-[44px] leading-[1.25] md:text-[72px]">
+                  認知を取って、<br />心を掴んで、<br /><span className="marker">離さない。</span>
+                </span>
               </h1>
               <Lead>消費ではなく、資産になる採用を。<br />企画・撮影・編集・運用・分析まで、採用YouTubeを一気通貫で支援します。</Lead>
               <div className="mt-8 flex flex-wrap gap-3">

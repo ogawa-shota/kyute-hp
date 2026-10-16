@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/app/seo";
 import Link from "next/link";
 import { SERVICES } from "@/components/site/data";
 import { PageIntro, Section } from "@/components/site/ui";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/service",
   title: "サービス｜KYUTE",
   description: "KYUTEのサービス。面白く、心に残る採用動画制作と、認知を取って心を掴んで離さない採用YouTube運用代行をご紹介します。",
-  alternates: { canonical: "/service" },
-};
+});
 
 export default function ServicePage() {
   return (

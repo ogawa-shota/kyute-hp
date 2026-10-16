@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/app/seo";
 import { MaterialForm } from "@/components/site/MaterialForm";
 import { PageIntro, Section } from "@/components/site/ui";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/download",
   title: "資料請求｜KYUTE",
   description: "採用動画制作・採用YouTube運用代行の資料をメールでお送りします。",
-  alternates: { canonical: "/download" },
-};
+});
 
 export default function DownloadPage() {
   return (

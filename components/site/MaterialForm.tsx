@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
+import { trackMaterialRequestSuccess } from "@/lib/analytics";
 
 /**
  * Material request form. Posts to the existing delivery endpoints, which take
@@ -21,6 +22,8 @@ export function MaterialForm({
   const [error, setError] = useState("");
   const [sentTo, setSentTo] = useState("");
   const attempt = useRef<{ fingerprint: string; id: string } | null>(null);
+  const inFlight = useRef(false);
+  const measuredAttempt = useRef<string | null>(null);
   const resultRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -29,7 +32,7 @@ export function MaterialForm({
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (status === "sending") return;
+    if (inFlight.current || status === "done") return;
     const form = event.currentTarget;
     if (!form.reportValidity()) return;
     const data = new FormData(form);
@@ -45,6 +48,7 @@ export function MaterialForm({
     if (!attempt.current || attempt.current.fingerprint !== fingerprint) {
       attempt.current = { fingerprint, id: crypto.randomUUID() };
     }
+    inFlight.current = true;
     setStatus("sending");
     setError("");
     try {
@@ -62,9 +66,15 @@ export function MaterialForm({
       }
       setSentTo(fields.email);
       setStatus("done");
+      if (measuredAttempt.current !== attempt.current.id) {
+        measuredAttempt.current = attempt.current.id;
+        trackMaterialRequestSuccess(endpoint, window.location.pathname);
+      }
     } catch {
       setError("送信を確認できませんでした。入力内容を変えずに、時間をおいて再度お試しください。");
       setStatus("idle");
+    } finally {
+      inFlight.current = false;
     }
   }
 

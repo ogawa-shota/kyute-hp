@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { track } from "@vercel/analytics";
+import { ctaEvent, sendAnalyticsEvent } from "@/lib/analytics";
 
 /**
  * Sends a `column_cta_click` event (Vercel Analytics custom event) for every
@@ -11,11 +11,15 @@ import { track } from "@vercel/analytics";
 export function ColumnCtaTracker({ slug, service }: { slug: string; service: string }) {
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
-      const target = (event.target as Element | null)?.closest<HTMLElement>("[data-cta]");
+      if (!(event.target instanceof Element)) return;
+      const target = event.target.closest<HTMLElement>("a[data-cta]");
       if (!target) return;
-      const cta = target.dataset.cta ?? "";
-      const position = cta.startsWith("column-inline-") ? "inline" : cta.startsWith("column-end-") ? "end" : "site";
-      track("column_cta_click", { slug, service, cta, position, href: target.getAttribute("href") ?? "" });
+      sendAnalyticsEvent(ctaEvent({
+        cta: target.dataset.cta ?? "",
+        href: target.getAttribute("href") ?? "",
+        path: window.location.pathname,
+        column: { slug, service },
+      }));
     };
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);
