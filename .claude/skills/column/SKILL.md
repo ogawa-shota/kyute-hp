@@ -7,7 +7,7 @@ description: KYUTEのお役立ちコラム（kyute.jp/column）を書く。`/col
 
 KYUTEのコラムは、問い合わせの自然流入を増やすための記事です。**KYUTEにしか書けない一次情報が入っていない記事は作りません。** 検索上位の要約記事は、Googleの評価が下がる原因になります。
 
-記事は `content/column/<slug>.md` に置き、プルリクエストで編集責任者が承認すると公開されます。書き方の型は `content/column/_template.md`、品質基準は [references/review-checklist.md](references/review-checklist.md)、文章のルールは [references/writing-rules.md](references/writing-rules.md) です。
+記事は `content/column/<slug>.md` に置き、プルリクエストの自動チェックが通ったあと、依頼者が「公開して」と頼むとマージして公開します。人の承認はありません。書き方の型は `content/column/_template.md`、品質基準は [references/review-checklist.md](references/review-checklist.md)、文章のルールは [references/writing-rules.md](references/writing-rules.md) です。
 
 ## モードの選び方
 
@@ -73,7 +73,7 @@ CTA: （省略可）
 
 ## プルリクエスト
 
-1. ファイル名と `slug` を同じにする。`status: review`、`author` は依頼者（`content/authors/<id>.json` が無ければ作る。名前・役割・経歴を本人に確認する）、`mode` を記録する。`reviewer` と `status: published` は**承認者が入れる**。
+1. ファイル名と `slug` を同じにする。`status: review`、`author` は依頼者（`content/authors/<id>.json` が無ければ作る。名前・役割・経歴を本人に確認する）、`mode` を記録する。`status: published` は依頼者が公開を頼んだときに入れる。
 2. `npm run column:check` と `npm run build` を通す。
 3. コミットして `column/<slug>` を push し、PR を作る。PR本文に入れるもの：
    - 狙う検索ワードと検索意図
@@ -82,15 +82,22 @@ CTA: （省略可）
    - `column:check` の注意（△）と、残した理由
    - 確認してほしい点
 4. Vercel のプレビューURLで、下書きのまま記事を読める（プレビューは検索エンジンに載らない）。
-5. 承認者が `reviewer`・`status: published`・`publishedAt` を入れてマージすると公開される。
+5. 依頼者に、プレビューで読んで問題なければ「公開して」と頼むよう伝える。
 
 ## レビューコメントの反映
 
 「PR #◯ のレビューコメントを反映して」と頼まれたら、`gh pr view <番号> --comments` と `gh api repos/{owner}/{repo}/pulls/<番号>/comments` でコメントを読み、該当ブランチに切り替えて直す。`column:check` を通してから push し、どのコメントにどう対応したかをPRにコメントで返す。
 
-## 公開設定（編集責任者だけ）
+## 公開
 
-「PR #◯ を公開設定にして」と頼まれたら、依頼者が編集責任者（`docs/COLUMN.md` に記載）であることを確認してから、記事の `reviewer` に依頼者の id、`status: published`、`publishedAt`（指定が無ければ今日）を入れる。`column:check` を通して push し、「GitHubで Approve → Merge すると公開されます」と伝える。マージは人が行う。
+「公開して」「PR #◯ を公開して」と頼まれたら、誰の依頼でも次の順で公開まで進める。人の承認は要らない。
+
+1. 該当ブランチで、記事に `status: published` と `publishedAt`（指定が無ければ今日）を入れる。
+2. `npm run column:check`（エラー0）と `npm run build` を通し、push する。
+3. GitHub の自動チェック（`check`）が通るのを待ち、`gh pr merge <番号> --merge --delete-branch` でマージする。チェックが落ちたら直してからやり直す。
+4. マージ後、Vercel の本番デプロイが終わったら `https://kyute.jp/column/<slug>` を開いて表示を確かめ、URLを依頼者に伝える。
+
+`hidden: true` のサービスの記事は公開できない（チェックでエラーになる）。
 
 ## 非公開中のサービス
 
@@ -101,4 +108,5 @@ CTA: （省略可）
 - 一次情報なしで書く、上位記事を言い換えてつなぐ
 - 掲載許可の確認できない顧客名・数字・ロゴ・動画を出す
 - AIカジュアル面談・体験型会社説明会について、効果を言い切る（どちらも検証中のサービス。チェックでエラーになる）
-- `main` に直接 push する、自分の記事を自分で `published` にする
+- `main` に直接 push する（記事は必ずPRと自動チェックを通す）
+- 依頼者が「公開して」と言う前に `published` にしてマージする

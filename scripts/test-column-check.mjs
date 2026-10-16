@@ -27,11 +27,12 @@ assert.match(messages(validateColumns([item({ ...base, primarySources: [] })], a
 const dup = validateColumns([item(base), item({ ...base, slug: "other" })], authors);
 assert.match(messages(dup), /重複/);
 
-// Published needs reviewer and date, and no leftover TODO.
+// Published needs a date and no leftover TODO, but no approver.
 const pub = validateColumns([item({ ...base, status: "published" }, body + "TODO")], authors);
 assert.match(messages(pub), /publishedAt/);
-assert.match(messages(pub), /reviewer/);
 assert.match(messages(pub), /TODO/);
+assert.doesNotMatch(messages(pub), /reviewer/);
+assert.equal(validateColumns([item({ ...base, status: "published", publishedAt: "2026-10-01" })], authors).errors.length, 0);
 
 // Unproven services may not assert outcomes.
 const ai = validateColumns([item({ ...base, service: "ai-casual-interview" }, body + "応募が必ず増えます")], authors);
@@ -49,7 +50,7 @@ assert.match(messages(validateColumns([item({ ...base, author: "nobody", cta: "x
 
 // Hidden (unannounced) services can be drafted but not published.
 const hidden = validateColumns(
-  [item({ ...base, service: "experience-briefing", status: "published", reviewer: "shota", publishedAt: "2026-10-01" })],
+  [item({ ...base, service: "experience-briefing", status: "published", publishedAt: "2026-10-01" })],
   authors,
 );
 assert.match(messages(hidden), /まだサイトで公開していない/);
