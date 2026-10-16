@@ -26,8 +26,10 @@ primarySources:
   - KYUTEの自社メディア「運動部のシゴト。」の1日密着動画「慶應卒 外資コンサルから脱サラしてカフェ開業した20代女性のリアル1日」が、公開から約1か月半で8.6万回再生（2026年10月14日時点のYouTube公開値。顧客の導入実績ではない）
   - 「運動部のシゴト。」の企画で、1日密着動画で伝える3つの要素（どんな人か／何を任されどう働くか／誰とどう進めるか）
 author: kyute-editorial
-status: review
+reviewer: ogawa
+status: published
 mode: auto
+publishedAt: 2026-10-16
 eyecatch:
   src: /column/recruit-video-production-company/eyecatch.jpg
   alt: オフィスで談笑する社員を、撮影スタッフがカメラで撮影している様子
