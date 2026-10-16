@@ -11,7 +11,7 @@ This document records what the repository currently renders so that scoped chang
 ## Corporate site (2026-10 renewal)
 
 - **Status:** Implemented from the Figma direction selected by Shota on 2026-10-15 (file 「KYUTE HP リニューアル」, page 「構成・ワイヤー」, v4 row). Not Gold.
-- **Routes:** every route outside `/lp/**`, plus `/lp/recruit-video` and `/lp/recruit-youtube` (same components without site navigation).
+- **Routes:** every application route outside `/lp/**` (excluding the standalone static PACE file), plus `/lp/recruit-video` and `/lp/recruit-youtube` (same components without site navigation).
 - **Typography:** LINE Seed JP (400/700/800) for Japanese, Inter for numerals and Latin labels — the same faces as the KYUTE sales decks. Headings are 800 weight; body text is 17px or larger.
 - **Colors:** White and warm off-white (`#f4f3ef`) surfaces, charcoal (`#1d1f24`) text and dark sections, a single yellow accent (`#ffdb67`) for primary buttons, markers and small labels, pale yellow (`#fff3cf`) for asset panels. Tokens live under `.site` in `app/globals.css`.
 - **Spacing and shape:** Sections `py-20`/`md:py-28`, content width 1200px, rounded 24px panels and pill buttons.
@@ -83,7 +83,12 @@ This document records what the repository currently renders so that scoped chang
 
 ## PACE LP
 
-- **Status:** Retired 2026-10-15. `/lp/pace` and `/pace/*` redirect to `/`; the static files remain in `public/pace/` as history.
+- **Status:** Restored 2026-10-16 as an independent LP; current observed implementation, not approval.
+- **Routes:** `/lp/pace` rewrites to `public/pace/index.html`; `/pace` redirects to `/lp/pace`. The static `/pace/index.html` remains directly accessible. All served versions use `noindex,follow` and the canonical URL `https://www.kyute.jp/lp/pace`.
+- **Typography and colors:** Noto Sans JP for Japanese with Montserrat and Oswald display treatments; navy, light blue, cyan, and lime accents.
+- **Layout and runtime:** Standalone header/footer, large sections, candidate-journey diagram, interactive pricing simulator, plan comparison, expandable FAQ, scroll reveals, and mobile sticky consultation CTA. Primary responsive changes occur at 980px and 640px.
+- **CTA and pricing:** Consultation links use `https://www.kyute.jp/contact`; the pricing simulator is linked from the hero. Preserve the three plans, starting at 49,800円 per month, and existing service copy.
+- **Preserve rules:** Keep the static LP's design and runtime independent from the corporate site and other LPs. Do not add PACE to corporate service navigation as part of this restoration.
 
 ## Evidence locations
 
