@@ -8,6 +8,7 @@ import {
   DraftBadge,
   formatDate,
 } from "@/components/column/ColumnParts";
+import { ColumnCtaTracker } from "@/components/column/CtaTracker";
 import {
   SERVICES,
   getAllColumns,
@@ -43,8 +44,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `/column/${column.slug}`,
       publishedTime: column.publishedAt,
       modifiedTime: column.updatedAt ?? column.publishedAt,
-      images: column.eyecatch ? [{ url: column.eyecatch.src, alt: column.eyecatch.alt }] : undefined,
+      images: column.eyecatch
+        ? [{ url: column.eyecatch.src, alt: column.eyecatch.alt, width: 1600, height: 900 }]
+        : ["/og.jpg"],
     },
+    twitter: { card: "summary_large_image" },
   };
 }
 
@@ -85,6 +89,7 @@ export default async function ColumnPage({ params }: Props) {
 
   return (
     <>
+      <ColumnCtaTracker slug={column.slug} service={column.service} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
@@ -122,6 +127,9 @@ export default async function ColumnPage({ params }: Props) {
             <img
               src={column.eyecatch.src}
               alt={column.eyecatch.alt}
+              width={1600}
+              height={900}
+              fetchPriority="high"
               className="mt-10 aspect-[16/9] w-full rounded-2xl object-cover"
             />
           )}

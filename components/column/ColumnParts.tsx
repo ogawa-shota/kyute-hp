@@ -46,6 +46,10 @@ export function ColumnCard({ column }: { column: Column }) {
             <img
               src={column.eyecatch.src}
               alt={column.eyecatch.alt}
+              width={1600}
+              height={900}
+              loading="lazy"
+              decoding="async"
               className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
             />
           )}
@@ -95,10 +99,10 @@ export function ColumnCta({ column }: { column: Column }) {
       <p className="mt-3 text-2xl font-bold leading-[1.5]">{cta.title}</p>
       <p className="mt-3 leading-[1.9] text-white/80">{cta.body}</p>
       <div className="mt-6 flex flex-wrap gap-3">
-        <CtaButton href={cta.href} cta={`column-${column.slug}`}>
+        <CtaButton href={cta.href} cta={`column-end-${column.ctaId}`}>
           {cta.label}
         </CtaButton>
-        <CtaButton href="/contact" variant="secondary" onDark cta={`column-${column.slug}-contact`}>
+        <CtaButton href="/contact" variant="secondary" onDark cta="column-end-contact">
           無料で相談する
         </CtaButton>
       </div>

@@ -6,6 +6,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import {
   CTAS,
+  INLINE_CTA_RE,
   SERVICES,
   ctaFor,
   isPublic,
@@ -30,6 +31,7 @@ export type Column = {
   description: string;
   service: ServiceId;
   keyword: string;
+  ctaId: CtaId;
   cta: (typeof CTAS)[CtaId];
   author: Author;
   status: "draft" | "review" | "published";
@@ -64,6 +66,7 @@ function load(): Column[] {
       description: data.description,
       service: data.service,
       keyword: data.keyword,
+      ctaId: ctaFor(data) as CtaId,
       cta: CTAS[ctaFor(data) as CtaId],
       author: authors[data.author],
       status: data.status,
@@ -105,6 +108,8 @@ const YOUTUBE_RE =
 type MdNode = {
   type: string;
   url?: string;
+  alt?: string | null;
+  title?: string | null;
   value?: string;
   children?: MdNode[];
   data?: Record<string, unknown>;
@@ -146,10 +151,102 @@ function remarkYouTube() {
   };
 }
 
+type HastNode = {
+  type: "element" | "text";
+  tagName?: string;
+  properties?: Record<string, unknown>;
+  children?: HastNode[];
+  value?: string;
+};
+
+const el = (tagName: string, properties: Record<string, unknown>, children: HastNode[] = []): HastNode => ({
+  type: "element",
+  tagName,
+  properties,
+  children,
+});
+const text = (value: string): HastNode => ({ type: "text", value });
+
+/**
+ * A line `<!-- cta: <id> -->` becomes an in-body CTA card built from CTAS.
+ * Unknown ids render nothing (the checker reports them).
+ */
+function remarkInlineCta() {
+  const marker = new RegExp(INLINE_CTA_RE.source);
+  return (tree: MdNode) => {
+    tree.children = (tree.children ?? []).flatMap((node) => {
+      const id = node.type === "html" ? marker.exec(node.value ?? "")?.[1] : undefined;
+      if (!id) return [node];
+      const cta = CTAS[id as CtaId];
+      if (!cta) return [];
+      return [
+        {
+          type: "columnCta",
+          data: {
+            hName: "aside",
+            hProperties: { className: ["column-inline-cta"], "aria-label": cta.eyebrow },
+            hChildren: [
+              el("p", { className: ["column-inline-cta-eyebrow"] }, [text(cta.eyebrow)]),
+              el("p", { className: ["column-inline-cta-title"] }, [text(cta.title)]),
+              el("p", { className: ["column-inline-cta-body"] }, [text(cta.body)]),
+              el("a", { href: cta.href, className: ["column-inline-cta-button"], dataCta: `column-inline-${id}` }, [
+                text(cta.label),
+              ]),
+            ],
+          },
+        },
+      ];
+    });
+  };
+}
+
+/**
+ * Images load lazily. An image alone in a paragraph with a title
+ * (`![alt](/column/x/a.png "caption")`) becomes a figure with a caption.
+ * A blockquote that starts with [!POINT] or [!NOTE] becomes a labelled box.
+ */
+function remarkFigures() {
+  const CALLOUTS: Record<string, string> = { POINT: "ポイント", NOTE: "補足" };
+  return (tree: MdNode) => {
+    const visit = (node: MdNode) => {
+      for (const child of node.children ?? []) {
+        if (child.type === "image") {
+          child.data = { hProperties: { loading: "lazy", decoding: "async" } };
+        }
+        const only = child.children?.length === 1 ? child.children[0] : null;
+        if (child.type === "paragraph" && only?.type === "image" && only.title) {
+          child.data = {
+            hName: "figure",
+            hChildren: [
+              el("img", { src: only.url, alt: only.alt ?? "", loading: "lazy", decoding: "async" }),
+              el("figcaption", {}, [text(only.title)]),
+            ],
+          };
+          continue;
+        }
+        if (child.type === "blockquote") {
+          const first = child.children?.[0]?.children?.[0];
+          const m = first?.type === "text" ? /^\[!(POINT|NOTE)\][ \t]*\n?/.exec(first.value ?? "") : null;
+          if (first && m) {
+            first.value = (first.value ?? "").slice(m[0].length);
+            child.data = {
+              hProperties: { className: ["column-callout"], dataLabel: CALLOUTS[m[1]] },
+            };
+          }
+        }
+        visit(child);
+      }
+    };
+    visit(tree);
+  };
+}
+
 export async function renderMarkdown(body: string): Promise<string> {
   const file = await unified()
     .use(remarkParse)
     .use(remarkGfm)
+    .use(remarkInlineCta)
+    .use(remarkFigures)
     .use(remarkYouTube)
     .use(remarkRehype)
     .use(rehypeSlug)

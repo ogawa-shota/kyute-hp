@@ -25,8 +25,9 @@ npm run dev
 | `npm run dev` | Turbopackで開発サーバーを起動 |
 | `npm run lint` | `app/` と `components/` をESLintで検査 |
 | `npm test` | Resend・Slackをmockした資料請求/APIテストと、コラムのチェックを実行 |
-| `npm run column:check` | コラム記事の必須項目・一次情報・検索ワード重複などを検査 |
+| `npm run column:check` | コラム記事の必須項目・一次情報・検索ワード重複・CV戦略・アイキャッチ・CTA・画像などを検査 |
 | `npm run column:keywords` | コラムが狙う検索ワードの一覧を表示 |
+| `npm run column:eyecatch -- <slug> <元画像>` | コラムのアイキャッチを 1600×900 のJPGにして `public/column/<slug>/` に置く |
 | `npm run build` | production buildを生成 |
 | `npm run check` | lint、test、buildを順に実行 |
 | `npm start` | production serverを起動 |

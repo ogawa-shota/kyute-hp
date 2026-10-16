@@ -33,7 +33,7 @@ AIカジュアル面談 and 体験型会社説明会 are not announced yet and a
 | `/contact` | Embedded Google Forms contact surface and FAQ | Embedded external form |
 | `/column` | Column index with category filter | Article pages |
 | `/column/category/[category]` | Column list per visible service (`recruit-video`, `recruit-youtube`, `general`; `ai-casual-interview` and `experience-briefing` are hidden until announced) | Article pages |
-| `/column/[slug]` | Column article from `content/column/<slug>.md`; drafts render only locally and on Vercel previews (noindex) | Per-service end-of-article CTA defined in `lib/column/core.mjs` |
+| `/column/[slug]` | Column article from `content/column/<slug>.md`; drafts render only locally and on Vercel previews (noindex) | Per-service end-of-article CTA and optional in-body CTA cards (`<!-- cta: id -->`), both from `CTAS` in `lib/column/core.mjs`: service `#price` / `#download`, `/works`, `/contact`. Clicks on any `data-cta` element are sent as the Vercel Analytics event `column_cta_click` |
 
 Redirects (`next.config.ts`, permanent): `/service/youtube` → `/service/recruit-youtube`, `/service/media` → `/media`, `/lp/pace` and `/pace/*` → `/`.
 
