@@ -627,7 +627,7 @@
     .cost-model article,.ops-compare article { padding:36px; border:1px solid #dbe9f2; border-radius:26px; background:#fff; box-shadow:0 16px 45px rgba(21,63,100,.07); }
     .cost-model article.pace,.ops-compare article.pace { border-color:#9ee9f1; background:linear-gradient(145deg,#fff,#eefdff); }
     .cost-model small,.ops-compare small { color:#0b9bb3;font-weight:900;letter-spacing:.1em}.cost-model h3,.ops-compare h3{margin:8px 0 24px;font-size:25px}.cost-model p{color:#5c7184;line-height:1.8}.cost-model-arrow,.ops-vs{text-align:center;color:#13a8bf;font:900 20px/1 "Montserrat",sans-serif}
-    .cost-block{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:10px;font-size:11px;font-weight:800}.cost-block b{display:block;height:18px;border-radius:20px;background:#8fa3b5}.cost-block.fixed b{width:95%}.cost-block.variable b:first-of-type{width:78%;background:#17b8cc}.cost-block.variable b:last-of-type{width:48%;background:#77d9e5}
+    .cost-block{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:10px;font-size:11px;font-weight:800}.cost-block b{display:block;height:18px;border-radius:20px;background:#8fa3b5}.cost-block.fixed b{width:95%}.cost-block.flat b{width:65%;background:#17b8cc}
     .ops-compare ul{display:grid;gap:0;margin:0;padding:0;list-style:none}.ops-compare li{padding:12px 0;border-bottom:1px solid #e5eef4;color:#435e76;font-weight:700}.ops-compare li::before{content:"✓";margin-right:10px;color:#0faabd}.workload-transfer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;padding:12px 14px;border-radius:12px;color:#fff;background:#8da0b2;font-size:10px;font-weight:900}.ops-compare .pace .workload-transfer{background:#12b5ca}.workload-transfer b{font-size:11px}
     .cx-stage { display:grid; grid-template-columns:.8fr 1.4fr .8fr; gap:18px; align-items:center; padding:34px; border:1px solid rgba(255,255,255,.12); border-radius:32px; background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.04)); }
     .candidate-card,.company-impression { padding:28px 22px; border-radius:22px; color:#153c63; background:#f1fbff; }
@@ -671,9 +671,7 @@
     .stack-segment.admin { background:#d5dcdd; }
     .stack-segment.scout { background:#aab9bd; }
     .stack-segment.agent { background:#96a9ae; }
-    .stack-segment.pace-fee { flex:1; color:#123655; background:linear-gradient(145deg,#d9ff76,var(--lime)); }
-    .stack-segment.pace-fee span { font-size:12px; }
-    .stack-segment.pace-fee b { font-size:10px; }
+    .stack-segment.pace-fee { flex:1; min-height:0; padding:0; border:0; color:#123655; background:linear-gradient(145deg,#d9ff76,var(--lime)); }
     .saving-bubble { position:absolute; z-index:4; left:50%; top:92px; display:grid; place-content:center; width:154px; height:154px; transform:translateX(-50%); border:4px solid #1e8966; border-radius:50%; color:#176e53; background:#fff; text-align:center; box-shadow:0 14px 36px rgba(18,80,59,.12); }
     .saving-bubble::after { content:""; position:absolute; left:50%; bottom:-14px; width:22px; height:22px; transform:translateX(-50%) rotate(45deg); border-right:4px solid #1e8966; border-bottom:4px solid #1e8966; background:#fff; }
     .saving-bubble small { font-size:10px; font-weight:900; }
@@ -686,14 +684,9 @@
     .cost-comparison>p { position:relative; z-index:2; margin:14px 0 0; color:#547063; font-size:10px; text-align:center; }
     .cost-comparison .sim-caution { margin:7px auto 16px; max-width:580px; color:#73877d; }
     .cost-comparison .button { position:relative; z-index:2; width:100%; }
-    .cost-comparison.is-over .cost-column { opacity:.08; }
-    .cost-comparison.is-over .cost-chart::before { opacity:.12; }
-    .cost-comparison.is-over .saving-bubble { border-style:dashed; }
-    .cost-comparison.is-over .saving-bubble b { font-size:20px; }
-    .cost-comparison.is-over .saving-bubble::after { display:none; }
     @media (max-width: 980px) { .task-storm{min-height:560px}.storm-card{width:165px;font-size:10px}.impact-grid,.cx-stage{grid-template-columns:1fr}.price-simulator{grid-template-columns:1fr}.problem-scene:nth-child(even){transform:none}.cx-stage{max-width:680px;margin:auto}.company-impression{text-align:left}.cost-model,.ops-compare{grid-template-columns:1fr}.cost-model-arrow,.ops-vs{transform:rotate(90deg)} }
     @media (max-width: 640px) { .task-storm{min-height:700px;margin-top:20px}.storm-person{width:170px;top:49%}.storm-card{width:145px;padding:11px;font-size:9px}.storm-card i{width:19px;height:19px}.storm-card.c1{left:2%;top:9%}.storm-card.c2{right:1%;top:8%}.storm-card.c9{top:22%;width:160px}.storm-card.c3{left:1%;top:34%}.storm-card.c4{right:1%;top:33%}.storm-card.c5{left:1%;bottom:26%}.storm-card.c6{right:1%;bottom:25%}.storm-card.c7{left:3%;bottom:6%}.storm-card.c8{right:2%;bottom:5%}.problem-scene{grid-template-columns:72px 1fr;gap:12px}.person-illust{width:70px;height:70px}.person-illust span{font-size:24px}.person-illust i{font-size:8px}.speech-bubble{padding:20px}.speech-bubble::before{left:-9px;top:30px;width:16px;height:16px}.speech-bubble h3{font-size:17px}.speech-bubble p{font-size:11px}.impact-grid{grid-template-columns:1fr}.cost-model article,.ops-compare article{padding:25px}.cx-stage{padding:18px}.sim-controls,.sim-result{padding:20px}.sim-bottom{grid-template-columns:1fr}.price-simulator{padding:10px;margin-top:34px}.bar-row{grid-template-columns:64px 1fr 70px}.header-nav>a:not(.header-cta){display:none} }
-    @media (max-width: 640px) { .price-simulator{padding:8px}.cost-comparison{padding:18px 10px 16px}.comparison-titles{gap:12px}.comparison-titles b{padding:10px 5px;font-size:11px}.cost-chart{gap:42px;min-height:330px;padding:0 4px}.cost-chart::before{inset:80px 11% 0}.internal-stack{height:calc(220px * var(--internal-ratio,1))}.pace-stack{height:calc(220px * var(--pace-ratio,.438))}.column-total{gap:3px}.column-total b{font-size:25px}.column-total span{font-size:8px}.saving-bubble{left:43%;top:88px;width:108px;height:108px;border-width:3px}.saving-bubble::after{bottom:-10px;width:15px;height:15px;border-width:3px}.saving-bubble b{font-size:24px}.saving-bubble span{font-size:8px}.saving-bubble i{font-size:8px}.stack-segment{min-height:34px;padding:5px 2px}.stack-segment span,.stack-segment b{font-size:7px}.stack-segment.pace-fee span{font-size:9px} }
+    @media (max-width: 640px) { .price-simulator{padding:8px}.cost-comparison{padding:18px 10px 16px}.comparison-titles{gap:12px}.comparison-titles b{padding:10px 5px;font-size:11px}.cost-chart{gap:42px;min-height:330px;padding:0 4px}.cost-chart::before{inset:80px 11% 0}.internal-stack{height:calc(220px * var(--internal-ratio,1))}.pace-stack{height:calc(220px * var(--pace-ratio,.438))}.column-total{gap:3px}.column-total b{font-size:25px}.column-total span{font-size:8px}.saving-bubble{left:43%;top:88px;width:108px;height:108px;border-width:3px}.saving-bubble::after{bottom:-10px;width:15px;height:15px;border-width:3px}.saving-bubble b{font-size:24px}.saving-bubble span{font-size:8px}.saving-bubble i{font-size:8px}.stack-segment{min-height:34px;padding:5px 2px}.stack-segment span,.stack-segment b{font-size:7px} }
 
     /* v4 · hierarchy and contrast refinement */
     .flow-item { padding: 10px 12px; }
@@ -958,7 +951,6 @@
       .saving-bubble b { justify-self: end; font-size: 30px; }
       .saving-bubble span { justify-self: start; align-self: end; padding-bottom: 3px; font-size: 10px; }
       .saving-bubble i { font-size: 9px; }
-      .cost-comparison.is-over .saving-bubble b { font-size: 20px; }
       .cost-chart::before { inset: 155px 10% 0; }
       .column-total b { font-size: 24px; }
       .cost-comparison .sim-caution { font-size: 10px !important; line-height: 1.65; }
@@ -1149,16 +1141,16 @@
           <div class="role-bridge"><span>雑務を<br>すべて移管</span><b>→</b></div>
           <article class="role-card pace"><small>PACE OPS｜連絡・調整・更新・確認</small><h3>PACEが担う、<br>採用の雑務すべて</h3><p>判断の前後に発生する実務を、一つの窓口へ。</p><div class="role-chips"><span>応募受付</span><span>候補者連絡</span><span>日程調整</span><span>リマインド</span><span>評価回収</span><span>候補者記録の管理</span><span>進捗・数値管理</span><span>スカウト対応</span><span>エージェント対応</span></div></article>
         </div>
-        <div class="impact-grid reveal"><article><i>Point 01</i><h3>作業量を<br>圧倒的削減</h3><div class="mini-bars"><span>人事｜採用事務を抱える</span><span class="pace-bar">PACE｜採用事務を移管</span></div><p>繰り返す採用事務を、一つの窓口へ。</p></article><article><i>Point 02</i><h3>固定費を<br>変動費化</h3><div class="cost-pulse"><span>任せる範囲</span><b>↕</b><span>月額プラン</span></div><p>必要な業務範囲に合わせて選択。</p></article><article class="cx-point-card"><i>Point 03</i><h3>神速返信で、<br>候補者の心を離さない</h3><div class="cx-mini-flow"><span>抜け漏れ防止</span><b>→</b><span>迅速・丁寧</span><b>→</b><span>CX向上</span></div><p>候補者との接点を、採用の強みに変える。</p><a class="impact-link" href="#point03">詳しく見る →</a></article></div>
+        <div class="impact-grid reveal"><article><i>Point 01</i><h3>作業量を<br>圧倒的削減</h3><div class="mini-bars"><span>人事｜採用事務を抱える</span><span class="pace-bar">PACE｜採用事務を移管</span></div><p>繰り返す採用事務を、一つの窓口へ。</p></article><article><i>Point 02</i><h3>面接人数が増えても<br>月額固定</h3><div class="cost-pulse"><span>任せる範囲</span><b>→</b><span>固定月額</span></div><p>必要な業務範囲に合わせて選択。</p></article><article class="cx-point-card"><i>Point 03</i><h3>神速返信で、<br>候補者の心を離さない</h3><div class="cx-mini-flow"><span>抜け漏れ防止</span><b>→</b><span>迅速・丁寧</span><b>→</b><span>CX向上</span></div><p>候補者との接点を、採用の強みに変える。</p><a class="impact-link" href="#point03">詳しく見る →</a></article></div>
       </div>
     </section>
 
     <section class="section scope point-section" id="point02">
       <div class="section-inner">
-        <div class="section-kicker reveal">Point 02 · Variable cost</div>
+        <div class="section-kicker reveal">Point 02 · Fixed monthly fee</div>
         <h2 class="reveal">人を増やす前に、<br>採用オペレーションを月額利用。</h2>
         <p class="section-lead reveal">繁忙期に合わせて固定人員を抱えるのではなく、必要な業務範囲をサービスとして切り出します。</p>
-        <div class="cost-model reveal"><article><small>自社で増員</small><h3>人を固定で抱える</h3><div class="cost-block fixed"><span>採用が多い月</span><b></b><span>採用が少ない月</span><b></b></div><p>採用・教育・引き継ぎ・管理が必要。採用量が落ち着いても固定費は続きます。</p></article><div class="cost-model-arrow">→</div><article class="pace"><small>PACE</small><h3>業務を月額で利用</h3><div class="cost-block variable"><span>任せる範囲</span><b></b><span>採用状況</span><b></b></div><p>候補者管理からスカウト・エージェント対応まで、必要な範囲に合わせてプランを選択できます。</p></article></div>
+        <div class="cost-model reveal"><article><small>自社で増員</small><h3>人を固定で抱える</h3><div class="cost-block fixed"><span>採用が多い月</span><b></b><span>採用が少ない月</span><b></b></div><p>採用・教育・引き継ぎ・管理が必要。採用量が落ち着いても固定費は続きます。</p></article><div class="cost-model-arrow">→</div><article class="pace"><small>PACE</small><h3>人数が増えても月額固定</h3><div class="cost-block flat"><span>採用が多い月</span><b></b><span>採用が少ない月</span><b></b></div><p>候補者管理からスカウト・エージェント対応まで、必要な範囲でプランを選択。面接人数による月額の変動はありません。</p></article></div>
       </div>
     </section>
 
@@ -1217,21 +1209,21 @@
       <div class="section-inner">
         <div class="section-kicker reveal">Pricing simulator</div>
         <h2 class="reveal">内製コストを見える化。<br>選択したPACEプラン料金と比べてみよう。</h2>
-        <p class="section-lead reveal">任せたい範囲と月間面接人数を選ぶと、参考内製コストと該当するPACE料金との差がわかります。</p>
+        <p class="section-lead reveal">PACEの月額は、面接人数にかかわらずプランごとに固定。月間面接人数を変えて、内製コストとの差を試算できます。</p>
         <div class="price-simulator reveal">
           <div class="sim-controls">
             <div class="sim-step"><span>STEP 1</span><h3>任せたい範囲</h3><div class="sim-options" role="radiogroup" aria-label="任せたい範囲"><label class="sim-option active"><input type="radio" name="scopePlan" value="standard" checked><i>01</i><b>選考まるごとプラン</b><small>応募受付・連絡・日程調整・候補者記録の管理</small></label><label class="sim-option"><input type="radio" name="scopePlan" value="plus"><i>02</i><b>スカウト対応付きプラン</b><small>選考まるごと＋スカウト返信・日程調整</small></label><label class="sim-option"><input type="radio" name="scopePlan" value="complete"><i>03</i><b>エージェント対応付きプラン</b><small>選考・スカウト対応＋推薦受付・問い合わせ・結果連絡</small></label></div></div>
-            <div class="sim-bottom"><label class="sim-field"><span>STEP 2　月間面接人数</span><select id="interviewCount"><option value="10" selected>0〜10名</option><option value="20">11〜20名</option><option value="30">21〜30名</option><option value="40">31〜50名</option><option value="over">51名以上</option></select><small>各人数帯の代表値（10名・20名・30名・40名）で内製工数を参考試算します。</small></label><div class="sim-summary"><span>試算する業務</span><b id="scopeSummary">候補者管理・対応</b><small id="hoursSummary">内製工数の目安 32.5時間 / 月</small></div></div>
+            <div class="sim-bottom"><label class="sim-field"><span>STEP 2　月間面接人数</span><select id="interviewCount"><option value="10" selected>0〜10名</option><option value="20">11〜20名</option><option value="30">21〜30名</option><option value="40">31〜50名</option><option value="51">51名以上</option></select><small>人数は内製工数の試算に使います。PACEの月額は変わりません。0〜50名は各帯の代表値（10・20・30・40名）、51名以上は51名で参考試算します。</small></label><div class="sim-summary"><span>試算する業務</span><b id="scopeSummary">候補者管理・対応</b><small id="hoursSummary">内製工数の目安 32.5時間 / 月</small></div></div>
             <details class="assumption-details"><summary>内製コストの試算前提を見る</summary><div><p><b>参考時間単価 3,500円</b>で、選択した業務を社内で行う工数を積み上げます。</p><ul><li>候補者連絡・日程調整：面接1名あたり2時間</li><li>候補者記録・進捗・数値管理：月5時間＋面接1名あたり0.75時間</li><li>スカウト対応：月8時間＋面接1名あたり0.5時間</li><li>エージェント対応：月6時間＋面接1名あたり0.5時間</li></ul><p class="assumption-source">時間単価は、厚生労働省「毎月勤労統計調査 2025年分」の一般労働者の現金給与総額465,923円÷総実労働時間160.5時間≒2,900円に、企業負担・間接コスト20%を仮置きして丸めた参考値です。業務工数はPACEの参考試算モデルであり、実績値ではありません。</p></div></details>
           </div>
           <div class="cost-comparison" id="costComparison" aria-live="polite">
-            <div class="comparison-titles"><b>試算モデル上の内製</b><b>PACEプラン料金</b></div>
+            <div class="comparison-titles"><b>試算モデル上の内製</b><b>PACEの固定月額</b></div>
             <div class="cost-chart">
               <div class="cost-column internal-column"><div class="column-total"><b id="internalCostTotal">113,750</b><span>円 / 月</span></div><div class="stack-bar internal-stack" id="internalStack"><div class="stack-segment candidate" id="candidateSegment"><span>候補者連絡・<br>日程調整</span><b id="candidateCost">70,000円</b></div><div class="stack-segment admin" id="adminSegment"><span>候補者記録・進捗・<br>数値管理</span><b id="adminCost">43,750円</b></div><div class="stack-segment scout" id="scoutSegment" hidden><span>スカウト対応</span><b id="scoutCost">0円</b></div><div class="stack-segment agent" id="agentSegment" hidden><span>エージェント対応</span><b id="agentCost">0円</b></div></div></div>
               <div class="saving-bubble" id="savingBubble"><small>月額</small><b id="savingAmount">63,950</b><span>円の差額目安</span><i id="savingRate">内製試算比 約56%</i></div>
-              <div class="cost-column pace-column"><div class="column-total"><b id="simPrice">49,800</b><span id="simUnit">円 / 月</span></div><div class="stack-bar pace-stack" id="paceStack"><div class="stack-segment pace-fee"><span>PACE<br>月額利用料</span><b id="paceCostLabel">49,800円</b></div></div></div>
+              <div class="cost-column pace-column"><div class="column-total"><b id="simPrice">49,800</b><span id="simUnit">円 / 月</span></div><div class="stack-bar pace-stack" id="paceStack"><div class="stack-segment pace-fee" aria-hidden="true"></div></div></div>
             </div>
-            <p id="simPlan">選考まるごとプラン｜0〜10名｜代表10名で試算</p><p class="sim-caution" id="simCaution">※差額は内製工数の参考試算と選択したPACEプラン料金との比較です。実際の費用削減を保証するものではありません。</p><a class="button hot" href="https://www.kyute.jp/contact">PACEについて相談する <span class="arrow">→</span></a>
+            <p id="simPlan">選考まるごとプラン｜月額固定｜0〜10名・代表10名で試算</p><p class="sim-caution" id="simCaution">※差額は内製工数の参考試算と選択したPACEプラン料金との比較です。実際の費用削減を保証するものではありません。</p><a class="button hot" href="https://www.kyute.jp/contact">PACEについて相談する <span class="arrow">→</span></a>
           </div>
         </div>
       </div>
@@ -1266,9 +1258,9 @@
       <div class="section-inner">
         <h2 class="plan-heading reveal" id="plans-title">任せたい範囲で、3つのプランから選べます。</h2>
         <div class="plan-grid">
-          <article class="plan-card reveal"><div class="plan-name">PACE STANDARD</div><div class="plan-scope">選考まるごとプラン</div><div class="plan-price"><b>49,800</b><span>円〜 / 月</span></div><ul><li>応募受付・候補者管理</li><li>候補者連絡</li><li>日程調整</li><li>面接官への連絡・リマインド</li><li>選考結果回収・次回案内</li><li>選考進捗管理・候補者記録の管理</li></ul><a class="button ghost" href="https://www.kyute.jp/contact">PACEについて相談する</a></article>
-          <article class="plan-card reveal"><div class="plan-name">PACE PLUS</div><div class="plan-scope">スカウト対応付きプラン</div><div class="plan-price"><b>79,800</b><span>円〜 / 月</span></div><ul><li>選考まるごとプランのすべて</li><li>スカウト返信対応</li><li>カジュアル面談・選考案内</li><li>日程調整</li><li>スカウト候補者の進捗管理</li></ul><a class="button ghost" href="https://www.kyute.jp/contact">PACEについて相談する</a></article>
-          <article class="plan-card reveal"><div class="plan-name">PACE COMPLETE</div><div class="plan-scope">エージェント対応付きプラン</div><div class="plan-price"><b>99,800</b><span>円〜 / 月</span></div><ul><li>スカウト対応付きプランのすべて</li><li>エージェント対応</li><li>推薦受付</li><li>問い合わせ対応</li><li>エージェントへの結果連絡</li></ul><a class="button ghost" href="https://www.kyute.jp/contact">PACEについて相談する</a></article>
+          <article class="plan-card reveal"><div class="plan-name">PACE STANDARD</div><div class="plan-scope">選考まるごとプラン</div><div class="plan-price"><b>49,800</b><span>円 / 月</span></div><ul><li>応募受付・候補者管理</li><li>候補者連絡</li><li>日程調整</li><li>面接官への連絡・リマインド</li><li>選考結果回収・次回案内</li><li>選考進捗管理・候補者記録の管理</li></ul><a class="button ghost" href="https://www.kyute.jp/contact">PACEについて相談する</a></article>
+          <article class="plan-card reveal"><div class="plan-name">PACE PLUS</div><div class="plan-scope">スカウト対応付きプラン</div><div class="plan-price"><b>79,800</b><span>円 / 月</span></div><ul><li>選考まるごとプランのすべて</li><li>スカウト返信対応</li><li>カジュアル面談・選考案内</li><li>日程調整</li><li>スカウト候補者の進捗管理</li></ul><a class="button ghost" href="https://www.kyute.jp/contact">PACEについて相談する</a></article>
+          <article class="plan-card reveal"><div class="plan-name">PACE COMPLETE</div><div class="plan-scope">エージェント対応付きプラン</div><div class="plan-price"><b>99,800</b><span>円 / 月</span></div><ul><li>スカウト対応付きプランのすべて</li><li>エージェント対応</li><li>推薦受付</li><li>問い合わせ対応</li><li>エージェントへの結果連絡</li></ul><a class="button ghost" href="https://www.kyute.jp/contact">PACEについて相談する</a></article>
         </div>
       </div>
     </section>
@@ -1298,8 +1290,8 @@
       <div class="section-inner">
         <div class="section-kicker reveal">Plan comparison</div>
         <h2 class="reveal">3プランの比較</h2>
-        <p class="section-lead reveal">月間面接人数ごとの月額料金と、各プランの対応範囲を比較できます。</p>
-        <div class="compare-wrap reveal"><table class="plan-table"><thead><tr><th>料金・対応業務</th><th>選考<br>まるごと</th><th>スカウト<br>対応付き</th><th>エージェント<br>対応付き</th></tr></thead><tbody><tr><td>0〜10名</td><td>49,800円</td><td>79,800円</td><td>99,800円</td></tr><tr><td>11〜20名</td><td>79,800円</td><td>109,800円</td><td>129,800円</td></tr><tr><td>21〜30名</td><td>99,800円</td><td>139,800円</td><td>169,800円</td></tr><tr><td>31〜50名</td><td>149,800円</td><td>199,800円</td><td>249,800円</td></tr><tr><td>51名以上</td><td>個別見積</td><td>個別見積</td><td>個別見積</td></tr><tr><td>応募受付・候補者管理</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>候補者連絡・日程調整</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>結果回収・進捗管理・候補者記録の管理</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>スカウト返信・日程調整</td><td class="dash">—</td><td class="check">●</td><td class="check">●</td></tr><tr><td>エージェント対応</td><td class="dash">—</td><td class="dash">—</td><td class="check">●</td></tr></tbody></table></div><p class="scroll-hint">← 表は横にスクロールできます →</p>
+        <p class="section-lead reveal">面接人数が増えても、月額は変わりません。任せたい業務範囲でプランを選べます。</p>
+        <div class="compare-wrap reveal"><table class="plan-table"><thead><tr><th>料金・対応業務</th><th>選考<br>まるごと</th><th>スカウト<br>対応付き</th><th>エージェント<br>対応付き</th></tr></thead><tbody><tr><td>固定月額</td><td>49,800円</td><td>79,800円</td><td>99,800円</td></tr><tr><td>応募受付・候補者管理</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>候補者連絡・日程調整</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>結果回収・進捗管理・候補者記録の管理</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>スカウト返信・日程調整</td><td class="dash">—</td><td class="check">●</td><td class="check">●</td></tr><tr><td>エージェント対応</td><td class="dash">—</td><td class="dash">—</td><td class="check">●</td></tr></tbody></table></div><p class="scroll-hint">← 表は横にスクロールできます →</p>
       </div>
     </section>
 
@@ -1336,7 +1328,7 @@
         <div class="faq-list reveal">
           <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q1</b><span>採用管理システムを導入していなくても利用できますか？</span><i>＋</i></button><div class="faq-a">はい。採用管理システムを新たに導入する必要はありません。応募管理から候補者のステータス・面接記録の管理まで、PACEが担当します。採用状況はダッシュボードで確認できます。</div></article>
           <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q2</b><span>一部の業務だけ依頼できますか？</span><i>＋</i></button><div class="faq-a">任せたい業務と現在の採用フローを伺い、対応範囲をご案内します。標準プラン外の個別対応は要相談です。</div></article>
-          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q3</b><span>月間面接人数に応じて料金はどう変わりますか？</span><i>＋</i></button><div class="faq-a">料金は「0〜10名」「11〜20名」「21〜30名」「31〜50名」の4段階です。51名以上は業務量と運用条件を確認して個別にお見積もりします。</div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q3</b><span>月間面接人数が増えると、料金は変わりますか？</span><i>＋</i></button><div class="faq-a">いいえ。月間面接人数にかかわらず、選考まるごとプランは月額49,800円、スカウト対応付きプランは月額79,800円、エージェント対応付きプランは月額99,800円です。51名以上でも月額は変わりません。シミュレーターの人数選択は、社内で対応する場合の工数・コストを試算するためのものです。</div></article>
           <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q4</b><span>独自の選考フローにも対応できますか？</span><i>＋</i></button><div class="faq-a">現在の選考ステップ、関係者、承認方法をヒアリングし、対応可否を確認します。複雑な例外対応は個別にご相談ください。</div></article>
           <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q5</b><span>スカウトへの返信も任せられますか？</span><i>＋</i></button><div class="faq-a">「スカウト対応付きプラン」では、スカウト返信、カジュアル面談・選考案内、日程調整、進捗管理などを含みます。「エージェント対応付きプラン」にも同じ範囲が含まれます。</div></article>
           <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q6</b><span>エージェントとのやり取りも任せられますか？</span><i>＋</i></button><div class="faq-a">「エージェント対応付きプラン」では、推薦受付、問い合わせ対応、選考結果の連絡などを含みます。</div></article>
@@ -1375,9 +1367,9 @@
     }));
 
     const plans = {
-      standard: { prices: { small: 49800, medium: 79800, upper: 99800, large: 149800 }, name: '選考まるごとプラン', scope: '候補者管理・対応' },
-      plus: { prices: { small: 79800, medium: 109800, upper: 139800, large: 199800 }, name: 'スカウト対応付きプラン', scope: '候補者管理・対応 ＋ スカウト対応' },
-      complete: { prices: { small: 99800, medium: 129800, upper: 169800, large: 249800 }, name: 'エージェント対応付きプラン', scope: '候補者管理・対応 ＋ スカウト対応 ＋ エージェント対応' }
+      standard: { price: 49800, name: '選考まるごとプラン', scope: '候補者管理・対応' },
+      plus: { price: 79800, name: 'スカウト対応付きプラン', scope: '候補者管理・対応 ＋ スカウト対応' },
+      complete: { price: 99800, name: 'エージェント対応付きプラン', scope: '候補者管理・対応 ＋ スカウト対応 ＋ エージェント対応' }
     };
     const internalHourlyCost = 3500;
     const interviewCount = document.getElementById('interviewCount');
@@ -1385,29 +1377,14 @@
     const simUnit = document.getElementById('simUnit');
     const simPlan = document.getElementById('simPlan');
     const simCaution = document.getElementById('simCaution');
-    const costComparison = document.getElementById('costComparison');
     const savingBubble = document.getElementById('savingBubble');
     const interviewBands = {
       10: { label: '0〜10名', trial: '代表10名で試算' },
       20: { label: '11〜20名', trial: '代表20名で試算' },
       30: { label: '21〜30名', trial: '代表30名で試算' },
-      40: { label: '31名〜50名', trial: '代表40名で試算' }
+      40: { label: '31〜50名', trial: '代表40名で試算' },
+      51: { label: '51名以上', trial: '51名で参考試算' }
     };
-    interviewCount.innerHTML = [
-      '<option value="10" selected>0〜10名</option>',
-      '<option value="20">11〜20名</option>',
-      '<option value="30">21〜30名</option>',
-      '<option value="40">31名〜50名</option>',
-      '<option value="over">51名以上</option>'
-    ].join('');
-
-    function getPriceTier(count) {
-      if (count <= 10) return { key: 'small', label: '0〜10名' };
-      if (count <= 20) return { key: 'medium', label: '11〜20名' };
-      if (count <= 30) return { key: 'upper', label: '21〜30名' };
-      return { key: 'large', label: '31名〜50名' };
-    }
-
     function setCostSegment(id, cost) {
       const segment = document.getElementById(`${id}Segment`);
       segment.hidden = cost === 0;
@@ -1420,28 +1397,9 @@
       const plan = plans[selected.value];
       document.querySelectorAll('.sim-option').forEach(option => option.classList.toggle('active', option.contains(selected)));
       document.getElementById('scopeSummary').textContent = plan.scope;
-      if (interviewCount.value === 'over') {
-        costComparison.classList.add('is-over');
-        savingBubble.classList.remove('is-negative');
-        simPlan.textContent = `${plan.name}｜51名以上`;
-        simPrice.textContent = '個別見積';
-        simUnit.textContent = '';
-        document.getElementById('internalCostTotal').textContent = '—';
-        document.getElementById('hoursSummary').textContent = '51名以上は業務量を確認して個別試算';
-        document.getElementById('paceCostLabel').textContent = '要個別見積';
-        ['candidate','admin','scout','agent'].forEach(key => setCostSegment(key, 0));
-        document.getElementById('savingBubble').querySelector('small').textContent = '51名以上';
-        document.getElementById('savingAmount').textContent = '個別試算';
-        document.getElementById('savingBubble').querySelector('span').textContent = '個別見積';
-        document.getElementById('savingRate').textContent = '';
-        simCaution.textContent = '※月間面接人数51名以上は、業務量と運用条件を確認して内製コスト・PACE料金を個別に試算します。';
-        return;
-      }
-      costComparison.classList.remove('is-over');
       const count = Number(interviewCount.value);
-      const tier = getPriceTier(count);
-      const pacePrice = plan.prices[tier.key];
-      simPlan.textContent = `${plan.name}｜${tier.label}｜${interviewBands[count].trial}`;
+      const pacePrice = plan.price;
+      simPlan.textContent = `${plan.name}｜月額固定｜${interviewBands[count].label}・${interviewBands[count].trial}`;
       const componentHours = {
         candidate: count * 2,
         admin: 5 + count * .75,
@@ -1464,7 +1422,6 @@
       ['candidate','admin','scout','agent'].forEach(key => setCostSegment(key, componentCosts[key]));
       simPrice.textContent = pacePrice.toLocaleString('ja-JP');
       simUnit.textContent = '円 / 月';
-      document.getElementById('paceCostLabel').textContent = `${pacePrice.toLocaleString('ja-JP')}円`;
       document.getElementById('internalStack').style.setProperty('--internal-ratio', String(internalCost / chartMax));
       document.getElementById('paceStack').style.setProperty('--pace-ratio', String(pacePrice / chartMax));
       document.getElementById('savingAmount').textContent = absoluteDifference.toLocaleString('ja-JP');

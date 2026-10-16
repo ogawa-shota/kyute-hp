@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint app components",
-    "test": "node scripts/test-culture-material.cjs && node scripts/test-undo-job-material.cjs && node scripts/test-column-check.mjs && node scripts/check-columns.mjs && npm run seo:audit:test && node scripts/test-analytics.cjs && node scripts/test-seo.mjs",
+    "test": "node scripts/test-culture-material.cjs && node scripts/test-undo-job-material.cjs && node scripts/test-column-check.mjs && node scripts/check-columns.mjs && npm run seo:audit:test && node scripts/test-analytics.cjs && node scripts/test-seo.mjs && node scripts/test-pace-pricing.cjs",
     "check": "npm run lint && npm test && npm run build && npm run typecheck",
     "column:check": "node scripts/check-columns.mjs",
     "column:keywords": "node scripts/check-columns.mjs --keywords",
