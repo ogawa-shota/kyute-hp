@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="人事が忙しくても、円滑な候補者対応を。採用オペレーションを任せられるPACEのサービス紹介。">
+  <meta name="description" content="神速×神対応で、選考辞退を防ぐ。採用管理システム不要。メールアドレス1つで、応募管理・日程調整・候補者対応・記録管理をPACEに丸投げ。">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://www.kyute.jp/lp/pace">
-  <title>PACE｜人事が忙しくても、円滑な候補者対応を。</title>
-  <meta property="og:title" content="PACE｜人事が忙しくても、円滑な候補者対応を。">
-  <meta property="og:description" content="採用オペレーションをPACEに。迅速かつ丁寧な候補者対応で、人事が採用のコア業務に集中できる体制をつくります。">
+  <title>PACE｜神速×神対応で、選考辞退を防ぐ。</title>
+  <meta property="og:title" content="PACE｜神速×神対応で、選考辞退を防ぐ。">
+  <meta property="og:description" content="神速×神対応で、選考辞退を防ぐ。採用管理システム不要。応募管理から候補者対応、記録管理、採用状況の見える化までPACEに丸投げ。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.kyute.jp/lp/pace">
   <meta property="og:image" content="https://www.kyute.jp/og.jpg">
@@ -1006,6 +1006,64 @@
       .mobile-sticky-cta { position: fixed; z-index: 70; right: 12px; bottom: 10px; left: 12px; display: flex; align-items: center; justify-content: center; gap: 14px; min-height: 50px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; color: var(--navy); background: var(--lime); box-shadow: 0 14px 36px rgba(7,29,58,.3); text-decoration: none; font-size: 12px; font-weight: 900; opacity: 0; pointer-events: none; transform: translateY(18px); transition: opacity .24s ease, transform .24s ease; }
       .mobile-sticky-cta.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
     }
+
+    /* Scoped PACE messaging additions · 2026-10-16 */
+    .pace-target-label { display: inline-flex; align-items: center; margin: 0 0 24px; padding: 10px 20px; border: 1px solid rgba(11,45,74,.12); border-radius: 8px; color: var(--navy); background: var(--lime); font-size: 17px; font-weight: 900; line-height: 1.5; }
+    .pace-mobile-break { display: none; }
+    .pace-challenges { color: var(--navy); background: #edf7fc; }
+    .pace-challenges h2 { text-align: center; }
+    .pace-challenge-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; margin-top: 46px; }
+    .pace-challenge-card { display: flex; flex-direction: column; align-items: center; padding: 20px 16px 28px; border: 1px solid #d5e6ef; border-radius: 24px; background: #fff; }
+    .pace-challenge-card img { display: block; width: 100%; height: auto; margin-bottom: 18px; }
+    .pace-challenge-card h3 { width: 100%; margin: 0; color: var(--navy); font-size: 20px; line-height: 1.65; text-align: center; letter-spacing: -.03em; }
+    .pace-challenge-close { margin: 40px 0 0; color: var(--teal); font-size: 23px; font-weight: 800; line-height: 1.65; text-align: center; }
+    #pricing .price-simulator { margin-bottom: 0; }
+    .pace-plans::before { display: none; }
+    .pace-plans .plan-heading { font-size: 30px; text-align: center; }
+    .pace-simple-start { color: var(--navy); background: #edf7fc; }
+    .pace-setup-heading { text-align: center; }
+    .pace-setup-label { display: inline-block; margin: 0 0 24px; padding: 9px 22px; border-radius: 8px; color: var(--navy); background: var(--lime); font-size: 21px; font-weight: 900; }
+    .pace-simple-start h2 { font-size: clamp(28px,3.1vw,43px); line-height: 1.65; letter-spacing: -.04em; }
+    .pace-simple-start h2 em { font-style: normal; color: var(--teal); box-shadow: inset 0 -.2em 0 #d7ff64; }
+    .pace-mail-handoff { display: flex; align-items: center; justify-content: center; gap: 38px; max-width: 940px; margin: 42px auto 44px; padding: 32px 40px; border: 1px solid #cce2ec; border-radius: 24px; background: #fff; }
+    .pace-mail-visual { flex: 0 0 160px; }
+    .pace-mail-visual svg { display: block; width: 100%; height: auto; }
+    .pace-mail-copy p { margin: 0 0 12px; color: #526d82; font-size: 18px; font-weight: 600; }
+    .pace-mail-copy h3 { margin: 0; color: var(--navy); font-size: 28px; line-height: 1.55; }
+    .pace-service-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 24px; }
+    .pace-service { padding: 12px 8px; text-align: center; }
+    .pace-service-icon { display: grid; place-items: center; width: 76px; height: 76px; margin: 0 auto 20px; border-radius: 20px; color: var(--teal); background: #d5f0f5; }
+    .pace-service-icon svg { width: 45px; height: 45px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+    .pace-service h3 { margin: 0; color: var(--navy); font-size: 20px; line-height: 1.65; letter-spacing: -.04em; }
+    @media (max-width: 1100px) {
+      .pace-challenge-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+      .pace-challenge-card { padding: 16px 24px 28px; }
+      .pace-challenge-card img { max-width: 300px; }
+      .pace-challenge-card h3 { font-size: 22px; }
+      .pace-service-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 30px; }
+    }
+    @media (max-width: 640px) {
+      .pace-target-label { margin-bottom: 24px; padding: 8px 14px; font-size: 16px; }
+      .pace-mobile-break { display: block; }
+      .pace-challenge-grid { grid-template-columns: 1fr; gap: 18px; margin-top: 30px; }
+      .pace-challenge-card { padding: 12px 24px 26px; }
+      .pace-challenge-card img { max-width: 280px; margin-bottom: 10px; }
+      .pace-challenge-card h3 { font-size: 22px; line-height: 1.55; }
+      .pace-challenge-close { margin-top: 30px; font-size: 20px; }
+      .pace-plans .plan-heading { font-size: 25px; line-height: 1.5; }
+      .pace-setup-label { padding: 8px 16px; font-size: 18px; }
+      .pace-simple-start h2 { font-size: 26px; line-height: 1.8; }
+      .pace-mail-handoff { flex-direction: column; gap: 18px; margin: 30px 0; padding: 22px 20px 28px; text-align: center; }
+      .pace-mail-visual { flex-basis: auto; width: 138px; }
+      .pace-mail-copy p { font-size: 17px; }
+      .pace-mail-copy h3 { font-size: 22px; }
+      .pace-service-grid { grid-template-columns: 1fr; gap: 0; }
+      .pace-service { display: grid; grid-template-columns: 58px 1fr; align-items: center; gap: 18px; padding: 24px 0; border-bottom: 1px solid #cce2ec; text-align: left; }
+      .pace-service:last-child { border-bottom: 0; }
+      .pace-service-icon { width: 58px; height: 58px; margin: 0; border-radius: 16px; }
+      .pace-service-icon svg { width: 36px; height: 36px; }
+      .pace-service h3 { font-size: 19px; }
+    }
   </style>
 </head>
 <body>
@@ -1030,8 +1088,8 @@
     <section class="hero" id="top">
       <div class="hero-grid">
         <div class="reveal">
-          <div class="eyebrow">Recruiting Operations as a Service</div>
-          <h1><span class="hero-value">人事が忙しくても、<br>円滑な候補者対応を。</span><br>採用オペレーションは、<br>PACEに丸投げ。</h1>
+          <p class="pace-target-label">採用管理システム不要</p>
+          <h1><span class="hero-value">神速×神対応で、<br>選考辞退を防ぐ。</span><br>採用オペレーションは、<br>PACEに丸投げ。</h1>
           <p class="hero-lead"><strong>迅速かつ丁寧なオペレーションで、入社意欲を向上させる選考体験をPACEが生み出します。</strong></p>
           <div class="cta-row">
             <a class="button hot" href="https://www.kyute.jp/contact">PACEについて相談する <span class="arrow">→</span></a>
@@ -1059,7 +1117,7 @@
         <h2 class="reveal">採用を進めたいのに、<br>事務仕事で1日が埋まっていませんか？</h2>
         <p class="section-lead reveal">一つひとつは小さくても、候補者・求人・関係者が増えるほど負担は大きくなります。</p>
         <div class="problem-scenes">
-          <article class="problem-scene hr reveal"><div class="person-illust"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M11 38c1.5-8 6-12 13-12s11.5 4 13 12"/><path d="M34 9h8M38 5v8"/></svg><i>人事</i></div><div class="speech-bubble"><small>人事の本音｜作業が終わらない</small><h3>候補者対応だけで、<br>今日も一日が終わる…</h3><p>応募確認、メール、日程調整、評価回収、ATS更新。採用したいのに、作業から抜け出せない。</p></div></article>
+          <article class="problem-scene hr reveal"><div class="person-illust"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M11 38c1.5-8 6-12 13-12s11.5 4 13 12"/><path d="M34 9h8M38 5v8"/></svg><i>人事</i></div><div class="speech-bubble"><small>人事の本音｜作業が終わらない</small><h3>候補者対応だけで、<br>今日も一日が終わる…</h3><p>応募確認、メール、日程調整、評価回収、候補者記録の管理。採用したいのに、作業から抜け出せない。</p></div></article>
           <article class="problem-scene management reveal"><div class="person-illust"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 39h32M11 39V18h11v21M27 39V9h10v30"/><path d="m14 13 8-7 6 5 10-8"/></svg><i>経営</i></div><div class="speech-bubble"><small>経営の本音｜固定費が重い</small><h3>採用数には波がある。<br>でも、人件費は毎月続く…</h3><p>繁忙期に合わせて増員すると、採用が落ち着いた月もコストと管理負担が残る。</p></div></article>
           <article class="problem-scene candidate reveal"><div class="person-illust"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="18" cy="15" r="7"/><path d="M7 38c1.5-8 5-12 11-12 4.5 0 7.5 2 9.5 6"/><rect x="28" y="22" width="13" height="13" rx="3"/><path d="m31 28 3 3 5-6"/></svg><i>候補者</i></div><div class="speech-bubble"><small>候補者の本音｜返信が来ない</small><h3>次の連絡はいつ？<br>ちゃんと届いている？</h3><p>社内の忙しさが、返信の遅れや案内のばらつきとして候補者に伝わってしまう。</p></div></article>
         </div>
@@ -1087,7 +1145,7 @@
         <div class="split-responsibility reveal">
           <article class="role-card core"><small>HR CORE｜判断と対話</small><h3>人事が担う、<br>採用のコア</h3><p>人に向き合い、採用の質を決める仕事。</p><div class="role-chips"><span>採用要件を決める</span><span>候補者を見極める</span><span>自社の魅力を伝える</span><span>採否を決める</span></div></article>
           <div class="role-bridge"><span>雑務を<br>すべて移管</span><b>→</b></div>
-          <article class="role-card pace"><small>PACE OPS｜連絡・調整・更新・確認</small><h3>PACEが担う、<br>採用の雑務すべて</h3><p>判断の前後に発生する実務を、一つの窓口へ。</p><div class="role-chips"><span>応募受付</span><span>候補者連絡</span><span>日程調整</span><span>リマインド</span><span>評価回収</span><span>ATS更新</span><span>進捗・数値管理</span><span>スカウト対応</span><span>エージェント対応</span></div></article>
+          <article class="role-card pace"><small>PACE OPS｜連絡・調整・更新・確認</small><h3>PACEが担う、<br>採用の雑務すべて</h3><p>判断の前後に発生する実務を、一つの窓口へ。</p><div class="role-chips"><span>応募受付</span><span>候補者連絡</span><span>日程調整</span><span>リマインド</span><span>評価回収</span><span>候補者記録の管理</span><span>進捗・数値管理</span><span>スカウト対応</span><span>エージェント対応</span></div></article>
         </div>
         <div class="impact-grid reveal"><article><i>Point 01</i><h3>作業量を<br>圧倒的削減</h3><div class="mini-bars"><span>人事｜採用事務を抱える</span><span class="pace-bar">PACE｜採用事務を移管</span></div><p>繰り返す採用事務を、一つの窓口へ。</p></article><article><i>Point 02</i><h3>固定費を<br>変動費化</h3><div class="cost-pulse"><span>任せる範囲</span><b>↕</b><span>月額プラン</span></div><p>必要な業務範囲に合わせて選択。</p></article><article class="cx-point-card"><i>Point 03</i><h3>神速返信で、<br>候補者の心を離さない</h3><div class="cx-mini-flow"><span>抜け漏れ防止</span><b>→</b><span>迅速・丁寧</span><b>→</b><span>CX向上</span></div><p>候補者との接点を、採用の強みに変える。</p><a class="impact-link" href="#point03">詳しく見る →</a></article></div>
       </div>
@@ -1107,7 +1165,7 @@
         <div class="section-kicker reveal">Point 01 · Less workload</div>
         <h2 class="reveal">採用事務を内製する。<br>それとも、PACEに丸投げする。</h2>
         <p class="section-lead reveal">採用担当者がやらなくてもいい仕事をまとめ、人事を面接・見極め・魅力づけへ戻します。</p>
-        <div class="ops-compare reveal"><article class="inhouse"><div class="compare-state">BEFORE｜分散・属人化</div><small>自社で内製する場合</small><h3>人事が、判断も雑務も抱える</h3><ul><li>応募を媒体ごとに確認</li><li>候補者・面接官と個別調整</li><li>評価を催促しATSへ更新</li><li>数値を手作業で集計・共有</li></ul><div class="workload-transfer"><span>人事の時間</span><b>雑務に分散</b></div></article><div class="ops-vs"><span>雑務を<br>PACEへ</span><b>→</b></div><article class="pace"><div class="compare-state">AFTER｜集中・標準化</div><small>PACEを利用する場合</small><h3>人事は、採用のコアに集中</h3><ul><li>候補者と対話する</li><li>候補者を見極める</li><li>自社の魅力を伝える</li><li>選考プロセスを改善する</li></ul><div class="pace-benefits"><span>連絡が止まらない</span><span>雑務をまとめて移管</span><span>必要な範囲だけ利用</span></div><div class="workload-transfer"><span>人事の時間</span><b>判断と対話へ</b></div></article></div>
+        <div class="ops-compare reveal"><article class="inhouse"><div class="compare-state">BEFORE｜分散・属人化</div><small>自社で内製する場合</small><h3>人事が、判断も雑務も抱える</h3><ul><li>応募を媒体ごとに確認</li><li>候補者・面接官と個別調整</li><li>評価を催促し候補者記録へ反映</li><li>数値を手作業で集計・共有</li></ul><div class="workload-transfer"><span>人事の時間</span><b>雑務に分散</b></div></article><div class="ops-vs"><span>雑務を<br>PACEへ</span><b>→</b></div><article class="pace"><div class="compare-state">AFTER｜集中・標準化</div><small>PACEを利用する場合</small><h3>人事は、採用のコアに集中</h3><ul><li>候補者と対話する</li><li>候補者を見極める</li><li>自社の魅力を伝える</li><li>選考プロセスを改善する</li></ul><div class="pace-benefits"><span>連絡が止まらない</span><span>雑務をまとめて移管</span><span>必要な範囲だけ利用</span></div><div class="workload-transfer"><span>人事の時間</span><b>判断と対話へ</b></div></article></div>
       </div>
     </section>
 
@@ -1160,25 +1218,76 @@
         <p class="section-lead reveal">任せたい範囲と月間面接人数を選ぶと、参考内製コストと該当するPACE料金との差がわかります。</p>
         <div class="price-simulator reveal">
           <div class="sim-controls">
-            <div class="sim-step"><span>STEP 1</span><h3>任せたい範囲</h3><div class="sim-options" role="radiogroup" aria-label="任せたい範囲"><label class="sim-option active"><input type="radio" name="scopePlan" value="standard" checked><i>01</i><b>選考まるごとプラン</b><small>応募受付・連絡・日程調整・ATS更新</small></label><label class="sim-option"><input type="radio" name="scopePlan" value="plus"><i>02</i><b>スカウト対応付きプラン</b><small>選考まるごと＋スカウト返信・日程調整</small></label><label class="sim-option"><input type="radio" name="scopePlan" value="complete"><i>03</i><b>エージェント対応付きプラン</b><small>選考・スカウト対応＋推薦受付・問い合わせ・結果連絡</small></label></div></div>
+            <div class="sim-step"><span>STEP 1</span><h3>任せたい範囲</h3><div class="sim-options" role="radiogroup" aria-label="任せたい範囲"><label class="sim-option active"><input type="radio" name="scopePlan" value="standard" checked><i>01</i><b>選考まるごとプラン</b><small>応募受付・連絡・日程調整・候補者記録の管理</small></label><label class="sim-option"><input type="radio" name="scopePlan" value="plus"><i>02</i><b>スカウト対応付きプラン</b><small>選考まるごと＋スカウト返信・日程調整</small></label><label class="sim-option"><input type="radio" name="scopePlan" value="complete"><i>03</i><b>エージェント対応付きプラン</b><small>選考・スカウト対応＋推薦受付・問い合わせ・結果連絡</small></label></div></div>
             <div class="sim-bottom"><label class="sim-field"><span>STEP 2　月間面接人数</span><select id="interviewCount"><option value="10" selected>0〜10名</option><option value="20">11〜20名</option><option value="30">21〜30名</option><option value="40">31〜50名</option><option value="over">51名以上</option></select><small>各人数帯の代表値（10名・20名・30名・40名）で内製工数を参考試算します。</small></label><div class="sim-summary"><span>試算する業務</span><b id="scopeSummary">候補者管理・対応</b><small id="hoursSummary">内製工数の目安 32.5時間 / 月</small></div></div>
-            <details class="assumption-details"><summary>内製コストの試算前提を見る</summary><div><p><b>参考時間単価 3,500円</b>で、選択した業務を社内で行う工数を積み上げます。</p><ul><li>候補者連絡・日程調整：面接1名あたり2時間</li><li>ATS・進捗・数値管理：月5時間＋面接1名あたり0.75時間</li><li>スカウト対応：月8時間＋面接1名あたり0.5時間</li><li>エージェント対応：月6時間＋面接1名あたり0.5時間</li></ul><p class="assumption-source">時間単価は、厚生労働省「毎月勤労統計調査 2025年分」の一般労働者の現金給与総額465,923円÷総実労働時間160.5時間≒2,900円に、企業負担・間接コスト20%を仮置きして丸めた参考値です。業務工数はPACEの参考試算モデルであり、実績値ではありません。</p></div></details>
+            <details class="assumption-details"><summary>内製コストの試算前提を見る</summary><div><p><b>参考時間単価 3,500円</b>で、選択した業務を社内で行う工数を積み上げます。</p><ul><li>候補者連絡・日程調整：面接1名あたり2時間</li><li>候補者記録・進捗・数値管理：月5時間＋面接1名あたり0.75時間</li><li>スカウト対応：月8時間＋面接1名あたり0.5時間</li><li>エージェント対応：月6時間＋面接1名あたり0.5時間</li></ul><p class="assumption-source">時間単価は、厚生労働省「毎月勤労統計調査 2025年分」の一般労働者の現金給与総額465,923円÷総実労働時間160.5時間≒2,900円に、企業負担・間接コスト20%を仮置きして丸めた参考値です。業務工数はPACEの参考試算モデルであり、実績値ではありません。</p></div></details>
           </div>
           <div class="cost-comparison" id="costComparison" aria-live="polite">
             <div class="comparison-titles"><b>試算モデル上の内製</b><b>PACEプラン料金</b></div>
             <div class="cost-chart">
-              <div class="cost-column internal-column"><div class="column-total"><b id="internalCostTotal">113,750</b><span>円 / 月</span></div><div class="stack-bar internal-stack" id="internalStack"><div class="stack-segment candidate" id="candidateSegment"><span>候補者連絡・<br>日程調整</span><b id="candidateCost">70,000円</b></div><div class="stack-segment admin" id="adminSegment"><span>ATS・進捗・<br>数値管理</span><b id="adminCost">43,750円</b></div><div class="stack-segment scout" id="scoutSegment" hidden><span>スカウト対応</span><b id="scoutCost">0円</b></div><div class="stack-segment agent" id="agentSegment" hidden><span>エージェント対応</span><b id="agentCost">0円</b></div></div></div>
+              <div class="cost-column internal-column"><div class="column-total"><b id="internalCostTotal">113,750</b><span>円 / 月</span></div><div class="stack-bar internal-stack" id="internalStack"><div class="stack-segment candidate" id="candidateSegment"><span>候補者連絡・<br>日程調整</span><b id="candidateCost">70,000円</b></div><div class="stack-segment admin" id="adminSegment"><span>候補者記録・進捗・<br>数値管理</span><b id="adminCost">43,750円</b></div><div class="stack-segment scout" id="scoutSegment" hidden><span>スカウト対応</span><b id="scoutCost">0円</b></div><div class="stack-segment agent" id="agentSegment" hidden><span>エージェント対応</span><b id="agentCost">0円</b></div></div></div>
               <div class="saving-bubble" id="savingBubble"><small>月額</small><b id="savingAmount">63,950</b><span>円の差額目安</span><i id="savingRate">内製試算比 約56%</i></div>
               <div class="cost-column pace-column"><div class="column-total"><b id="simPrice">49,800</b><span id="simUnit">円 / 月</span></div><div class="stack-bar pace-stack" id="paceStack"><div class="stack-segment pace-fee"><span>PACE<br>月額利用料</span><b id="paceCostLabel">49,800円</b></div></div></div>
             </div>
             <p id="simPlan">選考まるごとプラン｜0〜10名｜代表10名で試算</p><p class="sim-caution" id="simCaution">※差額は内製工数の参考試算と選択したPACEプラン料金との比較です。実際の費用削減を保証するものではありません。</p><a class="button hot" href="https://www.kyute.jp/contact">PACEについて相談する <span class="arrow">→</span></a>
           </div>
         </div>
-        <h3 class="plan-heading reveal">任せたい範囲で、3つのプランから選べます。</h3>
+      </div>
+    </section>
+
+    <section class="section pace-challenges" id="challenges" aria-labelledby="challenges-title">
+      <div class="section-inner">
+        <h2 class="reveal" id="challenges-title">こんな課題をもつ企業様へ。</h2>
+        <div class="pace-challenge-grid">
+          <article class="pace-challenge-card reveal">
+            <img src="/pace/illustrations/no-recruiter.svg" width="320" height="200" alt="" loading="lazy">
+            <h3>採用の専任担当が<br>いない</h3>
+          </article>
+          <article class="pace-challenge-card reveal">
+            <img src="/pace/illustrations/missed-message.svg" width="320" height="200" alt="" loading="lazy">
+            <h3>人事が忙しく、<br>候補者への連絡漏れが<br>発生している</h3>
+          </article>
+          <article class="pace-challenge-card reveal">
+            <img src="/pace/illustrations/strategy-time.svg" width="320" height="200" alt="" loading="lazy">
+            <h3>採用戦略の構築や<br>施策の改善などに<br>時間を使えていない</h3>
+          </article>
+          <article class="pace-challenge-card reveal">
+            <img src="/pace/illustrations/hiring-growth.svg" width="320" height="200" alt="" loading="lazy">
+            <h3>採用人数が増えていて、<br>採用管理システムの<br>導入を検討している</h3>
+          </article>
+        </div>
+        <p class="pace-challenge-close reveal">採用の実務はPACEへ。<br class="pace-mobile-break">人事は、採用のコアに集中できます。</p>
+      </div>
+    </section>
+
+    <section class="section pricing pace-plans" id="plans" aria-labelledby="plans-title">
+      <div class="section-inner">
+        <h2 class="plan-heading reveal" id="plans-title">任せたい範囲で、3つのプランから選べます。</h2>
         <div class="plan-grid">
-          <article class="plan-card reveal"><div class="plan-name">PACE STANDARD</div><div class="plan-scope">選考まるごとプラン</div><div class="plan-price"><b>49,800</b><span>円〜 / 月</span></div><ul><li>応募受付・候補者管理</li><li>候補者連絡</li><li>日程調整</li><li>面接官への連絡・リマインド</li><li>選考結果回収・次回案内</li><li>選考進捗管理・ATS更新</li></ul><a class="button ghost" href="https://www.kyute.jp/contact">PACEについて相談する</a></article>
+          <article class="plan-card reveal"><div class="plan-name">PACE STANDARD</div><div class="plan-scope">選考まるごとプラン</div><div class="plan-price"><b>49,800</b><span>円〜 / 月</span></div><ul><li>応募受付・候補者管理</li><li>候補者連絡</li><li>日程調整</li><li>面接官への連絡・リマインド</li><li>選考結果回収・次回案内</li><li>選考進捗管理・候補者記録の管理</li></ul><a class="button ghost" href="https://www.kyute.jp/contact">PACEについて相談する</a></article>
           <article class="plan-card reveal"><div class="plan-name">PACE PLUS</div><div class="plan-scope">スカウト対応付きプラン</div><div class="plan-price"><b>79,800</b><span>円〜 / 月</span></div><ul><li>選考まるごとプランのすべて</li><li>スカウト返信対応</li><li>カジュアル面談・選考案内</li><li>日程調整</li><li>スカウト候補者の進捗管理</li></ul><a class="button ghost" href="https://www.kyute.jp/contact">PACEについて相談する</a></article>
           <article class="plan-card reveal"><div class="plan-name">PACE COMPLETE</div><div class="plan-scope">エージェント対応付きプラン</div><div class="plan-price"><b>99,800</b><span>円〜 / 月</span></div><ul><li>スカウト対応付きプランのすべて</li><li>エージェント対応</li><li>推薦受付</li><li>問い合わせ対応</li><li>エージェントへの結果連絡</li></ul><a class="button ghost" href="https://www.kyute.jp/contact">PACEについて相談する</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pace-simple-start" id="simple-start" aria-labelledby="simple-start-title">
+      <div class="section-inner">
+        <div class="pace-setup-heading reveal">
+          <p class="pace-setup-label">採用管理システムは不要</p>
+          <h2 id="simple-start-title">導入のために必要なのは、<br><em>メールアドレスを1つ</em><br class="pace-mobile-break">発行していただくだけ。</h2>
+        </div>
+        <div class="pace-mail-handoff reveal">
+          <div class="pace-mail-visual" aria-hidden="true">
+            <svg viewBox="0 0 160 120" fill="none"><rect x="20" y="26" width="120" height="76" rx="12" fill="white" stroke="#0b2d4a" stroke-width="4"/><path d="m23 32 57 42 57-42M23 97l39-35m36 0 39 35" stroke="#0b2d4a" stroke-width="4" stroke-linejoin="round"/><circle cx="125" cy="27" r="23" fill="#d7ff64"/><path d="m115 27 7 7 13-15" stroke="#0b2d4a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="pace-mail-copy"><p>メールアドレスを発行したら、</p><h3>応募から記録の管理まで、<br>採用の実務をPACEに丸投げ。</h3></div>
+        </div>
+        <div class="pace-service-grid">
+          <article class="pace-service reveal"><span class="pace-service-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="12" width="32" height="29" rx="4"/><path d="M15 7v10M33 7v10M8 22h32m-24 9 5 5 11-10"/></svg></span><h3>応募管理・<br>面接の日程調整</h3></article>
+          <article class="pace-service reveal"><span class="pace-service-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M7 9h34v25H22l-10 8v-8H7zM15 18h18M15 25h11"/></svg></span><h3>候補者との<br>やりとり</h3></article>
+          <article class="pace-service reveal"><span class="pace-service-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M11 6h20l7 7v29H11zM29 6v10h9M17 23h15M17 30h15M17 36h8"/></svg></span><h3>ステータスや面接記録など、<br>候補者記録の管理</h3></article>
+          <article class="pace-service reveal"><span class="pace-service-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="5" y="8" width="38" height="28" rx="4"/><path d="M16 43h16M24 36v7M14 28v-6M24 28V16M34 28V12"/></svg></span><h3>ダッシュボードで<br>採用状況を見える化</h3></article>
         </div>
       </div>
     </section>
@@ -1188,7 +1297,7 @@
         <div class="section-kicker reveal">Plan comparison</div>
         <h2 class="reveal">3プランの比較</h2>
         <p class="section-lead reveal">月間面接人数ごとの月額料金と、各プランの対応範囲を比較できます。</p>
-        <div class="compare-wrap reveal"><table class="plan-table"><thead><tr><th>料金・対応業務</th><th>選考<br>まるごと</th><th>スカウト<br>対応付き</th><th>エージェント<br>対応付き</th></tr></thead><tbody><tr><td>0〜10名</td><td>49,800円</td><td>79,800円</td><td>99,800円</td></tr><tr><td>11〜20名</td><td>79,800円</td><td>109,800円</td><td>129,800円</td></tr><tr><td>21〜30名</td><td>99,800円</td><td>139,800円</td><td>169,800円</td></tr><tr><td>31〜50名</td><td>149,800円</td><td>199,800円</td><td>249,800円</td></tr><tr><td>51名以上</td><td>個別見積</td><td>個別見積</td><td>個別見積</td></tr><tr><td>応募受付・候補者管理</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>候補者連絡・日程調整</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>結果回収・進捗管理・ATS更新</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>スカウト返信・日程調整</td><td class="dash">—</td><td class="check">●</td><td class="check">●</td></tr><tr><td>エージェント対応</td><td class="dash">—</td><td class="dash">—</td><td class="check">●</td></tr></tbody></table></div><p class="scroll-hint">← 表は横にスクロールできます →</p>
+        <div class="compare-wrap reveal"><table class="plan-table"><thead><tr><th>料金・対応業務</th><th>選考<br>まるごと</th><th>スカウト<br>対応付き</th><th>エージェント<br>対応付き</th></tr></thead><tbody><tr><td>0〜10名</td><td>49,800円</td><td>79,800円</td><td>99,800円</td></tr><tr><td>11〜20名</td><td>79,800円</td><td>109,800円</td><td>129,800円</td></tr><tr><td>21〜30名</td><td>99,800円</td><td>139,800円</td><td>169,800円</td></tr><tr><td>31〜50名</td><td>149,800円</td><td>199,800円</td><td>249,800円</td></tr><tr><td>51名以上</td><td>個別見積</td><td>個別見積</td><td>個別見積</td></tr><tr><td>応募受付・候補者管理</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>候補者連絡・日程調整</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>結果回収・進捗管理・候補者記録の管理</td><td class="check">●</td><td class="check">●</td><td class="check">●</td></tr><tr><td>スカウト返信・日程調整</td><td class="dash">—</td><td class="check">●</td><td class="check">●</td></tr><tr><td>エージェント対応</td><td class="dash">—</td><td class="dash">—</td><td class="check">●</td></tr></tbody></table></div><p class="scroll-hint">← 表は横にスクロールできます →</p>
       </div>
     </section>
 
@@ -1223,13 +1332,13 @@
         <div class="section-kicker reveal">FAQ</div>
         <h2 class="reveal">PACEについて、<br>よくあるご質問。</h2>
         <div class="faq-list reveal">
-          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q1</b><span>どのATSに対応していますか？</span><i>＋</i></button><div class="faq-a">ご利用中のATSと運用方法を確認したうえで、対応可否と連携・更新方法をご案内します。</div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q1</b><span>採用管理システムを導入していなくても利用できますか？</span><i>＋</i></button><div class="faq-a">はい。採用管理システムを新たに導入する必要はありません。応募管理から候補者のステータス・面接記録の管理まで、PACEが担当します。採用状況はダッシュボードで確認できます。</div></article>
           <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q2</b><span>一部の業務だけ依頼できますか？</span><i>＋</i></button><div class="faq-a">任せたい業務と現在の採用フローを伺い、対応範囲をご案内します。標準プラン外の個別対応は要相談です。</div></article>
           <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q3</b><span>月間面接人数に応じて料金はどう変わりますか？</span><i>＋</i></button><div class="faq-a">料金は「0〜10名」「11〜20名」「21〜30名」「31〜50名」の4段階です。51名以上は業務量と運用条件を確認して個別にお見積もりします。</div></article>
           <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q4</b><span>独自の選考フローにも対応できますか？</span><i>＋</i></button><div class="faq-a">現在の選考ステップ、関係者、承認方法をヒアリングし、対応可否を確認します。複雑な例外対応は個別にご相談ください。</div></article>
           <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q5</b><span>スカウトへの返信も任せられますか？</span><i>＋</i></button><div class="faq-a">「スカウト対応付きプラン」では、スカウト返信、カジュアル面談・選考案内、日程調整、進捗管理などを含みます。「エージェント対応付きプラン」にも同じ範囲が含まれます。</div></article>
           <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q6</b><span>エージェントとのやり取りも任せられますか？</span><i>＋</i></button><div class="faq-a">「エージェント対応付きプラン」では、推薦受付、問い合わせ対応、選考結果の連絡などを含みます。</div></article>
-          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q7</b><span>導入時に何を準備すればよいですか？</span><i>＋</i></button><div class="faq-a">選考フロー、利用中のATS・ツール、連絡テンプレート、関係者と役割分担などを確認します。</div></article>
+          <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q7</b><span>導入時に何を準備すればよいですか？</span><i>＋</i></button><div class="faq-a">まずはPACEが採用窓口として使用するメールアドレスを1つ発行してください。採用管理システムの導入は不要です。選考フローや連絡内容は、運用開始に向けて一緒に確認します。</div></article>
           <article class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><b>Q8</b><span>候補者情報のセキュリティは？</span><i>＋</i></button><div class="faq-a">候補者情報を扱う範囲、利用システム、権限、保管・削除方法を確認し、導入前に運用設計をご案内します。</div></article>
         </div>
       </div>
@@ -1238,7 +1347,7 @@
     <section class="final-cta" id="document">
       <div class="section-inner reveal">
         <div class="eyebrow" style="justify-content:center">PACE</div>
-        <h2>人事が忙しくても、円滑な候補者対応を。<br>採用オペレーションは、PACEに丸投げ。</h2>
+        <h2>神速×神対応で、選考辞退を防ぐ。<br>採用オペレーションは、PACEに丸投げ。</h2>
         <div class="final-values"><span>対応できる業務範囲</span><span>3つの料金プラン</span><span>導入までの流れ</span></div>
         <p style="color:rgba(255,255,255,.62);line-height:1.85">導入条件や対応範囲、料金プランについてご相談いただけます。</p>
         <div class="cta-row"><a class="button hot" href="https://www.kyute.jp/contact">PACEについて相談する <span class="arrow">→</span></a></div>
@@ -1253,7 +1362,7 @@
 
   <script>
     const pricingSection = document.getElementById('pricing');
-    document.getElementById('top').after(pricingSection);
+    document.getElementById('top').after(pricingSection, document.getElementById('challenges'), document.getElementById('plans'));
     document.querySelectorAll('.is-cut').forEach(section => section.remove());
     document.getElementById('point02').before(document.getElementById('point01'));
 
