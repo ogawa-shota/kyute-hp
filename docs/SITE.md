@@ -57,7 +57,7 @@ PACE is indexable and included in the sitemap, as requested on 2026-10-16. Other
 | `/lp` | Legacy recruitment-YouTube campaign LP (kept for existing links) | Material download, consultation |
 | `/lp/day-in-the-life` | Legacy day-in-the-life LP (kept for existing links) | Material request form |
 | `/lp/undo-job` | Standalone 「運動部のシゴト。」 LP with its own header/footer; same content as `/media` (`app/lp/undo-job/UndoJobContent.tsx`) | Service-material request and consultation |
-| `/lp/pace` | Standalone PACE recruiting-operations LP served from `public/pace/index.html`; monthly plans from 49,800円 | Consultation (`https://www.kyute.jp/contact`), pricing simulator (`#pricing`) |
+| `/lp/pace` | Standalone PACE recruiting-operations LP served from `public/pace/index.html`; fixed monthly plans of 49,800円 / 79,800円 / 99,800円 | Consultation (`https://www.kyute.jp/contact`), pricing simulator (`#pricing`) |
 
 Articles display their public reference URLs in a collapsed source list and an optional named content reviewer in the author box. The existing comparison article links to the recruitment-video pricing section using the existing in-body CTA catalog. Future publication dates require a production rebuild on or after the JST publication date; there is no automatic publishing job.
 
@@ -77,7 +77,7 @@ Articles display their public reference URLs in a collapsed source list and an o
 - **Corporate site:** every non-`/lp` application route, built from `components/site/` and scoped tokens under `.site` in `app/globals.css`; excludes the standalone static PACE file.
 - **Ad LPs:** `/lp/recruit-video` and `/lp/recruit-youtube` reuse the service page components inside `app/lp/LpShell.tsx`.
 - **Legacy LPs:** `/lp`, `/lp/day-in-the-life`, `/lp/undo-job` keep their own route-scoped systems.
-- **PACE LP:** `/lp/pace` serves `public/pace/index.html` with its own styles, runtime, header/footer, and mobile consultation CTA. It is not included in the corporate service navigation.
+- **PACE LP:** `/lp/pace` serves `public/pace/index.html` with its own styles, runtime, header/footer, and mobile consultation CTA. Messaging emphasizes fast and attentive candidate care, no client-side recruitment system requirement, and onboarding with one email address. Monthly fees do not vary with interview count; STEP 2 changes the internal effort/cost estimate only (including a disclosed 51-person reference for 51+). The pricing simulator is immediately followed by four illustrated customer challenges. Application/scheduling, communication, candidate records, and dashboard services are introduced before the plan comparison. It is not included in the corporate service navigation.
 
 ## Status boundaries
 
