@@ -2,7 +2,7 @@ import { track } from "@vercel/analytics";
 
 // Only public route shapes are accepted. Never pass form values, query strings,
 // fragments, arbitrary external URLs, request IDs or DOM text to analytics.
-const PUBLIC_PATH = /^(?:\/(?:service(?:\/(?:recruit-video|recruit-youtube))?|media|works|about|contact|download|column(?:\/category\/(?:recruit-video|recruit-youtube|general)|\/[a-z0-9]+(?:-[a-z0-9]+)*)?|lp(?:\/(?:recruit-video|recruit-youtube|day-in-the-life|undo-job))?)?)$/;
+const PUBLIC_PATH = /^(?:\/(?:service(?:\/(?:recruit-video|recruit-youtube))?|media|works|about|contact|download|analytics|column(?:\/category\/(?:recruit-video|recruit-youtube|general)|\/[a-z0-9]+(?:-[a-z0-9]+)*)?|lp(?:\/(?:recruit-video|recruit-youtube|day-in-the-life|undo-job))?)?)$/;
 const SITE_ORIGINS = new Set(["https://kyute.jp", "https://www.kyute.jp"]);
 const BASE_ORIGIN = "https://kyute.jp";
 const IDENTIFIER = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -101,21 +101,102 @@ export function redactAnalyticsUrl<T extends { url: string }>(event: T): T | nul
 }
 
 type GoogleTag = (...args: unknown[]) => void;
+export type AnalyticsConsent = "granted" | "denied" | null;
+export const ANALYTICS_CONSENT_KEY = "kyute:analytics-consent:v1";
+const CONSENT_CHANGED = "kyute:analytics-consent-changed";
+// A failed write/read must not leave an earlier grant active in this tab.
+let storageBlocked = false;
 
 declare global {
   interface Window {
+    [key: `ga-disable-${string}`]: boolean | undefined;
     dataLayer?: unknown[];
     kyuteAnalytics?: {
       measurementId: string;
       send: GoogleTag;
       lastPath: string;
       referrer: string;
+      active: boolean;
     };
   }
 }
 
 export function validGaMeasurementId(value: string | undefined): value is string {
   return /^G-[A-Z0-9]{6,20}$/.test(value ?? "");
+}
+
+export function googleAnalyticsAvailable(measurementId: string | undefined): measurementId is string {
+  return validGaMeasurementId(measurementId) && typeof window !== "undefined" &&
+    ["kyute.jp", "www.kyute.jp"].includes(window.location.hostname);
+}
+
+export function readAnalyticsConsent(): AnalyticsConsent {
+  if (typeof window === "undefined" || storageBlocked) return null;
+  try {
+    const value = window.localStorage.getItem(ANALYTICS_CONSENT_KEY);
+    return value === "granted" || value === "denied" ? value : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Stop both our events and the already-loaded tag's automatic requests. */
+export function stopGoogleAnalytics(measurementId?: string): void {
+  if (typeof window === "undefined") return;
+  const google = window.kyuteAnalytics;
+  const id = google?.measurementId ?? measurementId;
+  if (validGaMeasurementId(id)) window[`ga-disable-${id}`] = true;
+  if (google) {
+    google.active = false;
+    google.lastPath = "";
+  }
+  // GA cookies use the root path. Include host-only and parent-domain variants;
+  // browser restrictions can prevent deletion, so this is best effort.
+  try {
+    const names = document.cookie.split(";").map((cookie) => cookie.trim().split("=")[0])
+      .filter((name) => /^_ga(?:_|$)/.test(name));
+    for (const name of names) {
+      for (const domain of ["", window.location.hostname, "kyute.jp", ".kyute.jp"]) {
+        document.cookie = `${name}=; Max-Age=0; path=/;${domain ? ` domain=${domain};` : ""} SameSite=Lax`;
+      }
+    }
+  } catch { /* Disabling analytics must also work when cookies are inaccessible. */ }
+}
+
+/** Persist an explicit choice before starting any Google collection. */
+export function setAnalyticsConsent(choice: Exclude<AnalyticsConsent, null>): boolean {
+  if (typeof window === "undefined") return false;
+  let saved = false;
+  try {
+    window.localStorage.setItem(ANALYTICS_CONSENT_KEY, choice);
+    saved = window.localStorage.getItem(ANALYTICS_CONSENT_KEY) === choice;
+  } catch { /* Block collection below when storage is unavailable. */ }
+  storageBlocked = !saved;
+  if (!saved) {
+    try { window.localStorage.removeItem(ANALYTICS_CONSENT_KEY); } catch { /* Best effort. */ }
+  }
+  if (choice !== "granted" || !saved) stopGoogleAnalytics();
+  window.dispatchEvent(new Event(CONSENT_CHANGED));
+  return saved;
+}
+
+export function subscribeAnalyticsConsent(onChange: () => void): () => void {
+  const sync = () => {
+    if (readAnalyticsConsent() !== "granted") stopGoogleAnalytics();
+    onChange();
+  };
+  const storage = (event: StorageEvent) => {
+    if (event.key === ANALYTICS_CONSENT_KEY || event.key === null) sync();
+  };
+  window.addEventListener(CONSENT_CHANGED, sync);
+  window.addEventListener("storage", storage);
+  // Recheck after a suspended tab resumes as well as on cross-tab changes.
+  window.addEventListener("pageshow", sync);
+  return () => {
+    window.removeEventListener(CONSENT_CHANGED, sync);
+    window.removeEventListener("storage", storage);
+    window.removeEventListener("pageshow", sync);
+  };
 }
 
 export function googlePageContext(path: string, referrer: string) {
@@ -135,23 +216,36 @@ export function googlePageContext(path: string, referrer: string) {
   };
 }
 
-/** Called once per pathname; no tag or cookie is installed without a real ID. */
+/** Basic consent: no Google script, cookie or ping before an explicit grant. */
 export function initializeGoogleAnalytics(measurementId: string | undefined, path: string): void {
-  if (!validGaMeasurementId(measurementId) || typeof window === "undefined") return;
-  if (!["kyute.jp", "www.kyute.jp"].includes(window.location.hostname)) return;
+  if (!googleAnalyticsAvailable(measurementId)) return;
+  if (readAnalyticsConsent() !== "granted") {
+    stopGoogleAnalytics(measurementId);
+    return;
+  }
   const safePath = analyticsPath(path);
-  if (!safePath) return;
+  if (!safePath) {
+    stopGoogleAnalytics(measurementId);
+    return;
+  }
 
   if (!window.kyuteAnalytics) {
     window.dataLayer = window.dataLayer ?? [];
     const send: GoogleTag = function () {
+      if (readAnalyticsConsent() !== "granted") {
+        stopGoogleAnalytics(measurementId);
+        return;
+      }
+      if (!window.kyuteAnalytics?.active) return;
       // gtag.js consumes the argument queue even when the script loads later.
       // eslint-disable-next-line prefer-rest-params -- Match the documented gtag.js arguments-object queue.
       window.dataLayer?.push(arguments);
     };
     const context = googlePageContext(safePath, document.referrer);
     if (!context) return;
-    window.kyuteAnalytics = { measurementId, send, lastPath: "", referrer: context.page_referrer };
+    window.kyuteAnalytics = { measurementId, send, lastPath: "", referrer: context.page_referrer, active: true };
+    window[`ga-disable-${measurementId}`] = false;
+    send("consent", "default", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
     send("js", new Date());
     send("config", measurementId, {
       ...context,
@@ -169,11 +263,15 @@ export function initializeGoogleAnalytics(measurementId: string | undefined, pat
 
   const google = window.kyuteAnalytics;
   if (google.measurementId !== measurementId || google.lastPath === safePath) return;
+  // Reuse a loaded tag after a later grant; never insert a second script.
+  const resumed = !google.active;
+  google.active = true;
+  window[`ga-disable-${measurementId}`] = false;
   const context = googlePageContext(safePath, google.referrer);
   if (!context) return;
   // Update defaults for GA's session/engagement events as well as this event.
   google.send("set", context);
-  if (google.lastPath) {
+  if (google.lastPath || resumed) {
     google.send("config", measurementId, { ...context, send_page_view: false, allow_google_signals: false, allow_ad_personalization_signals: false });
   }
   google.send("event", "page_view", { ...context, send_to: measurementId });

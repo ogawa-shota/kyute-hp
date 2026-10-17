@@ -12,11 +12,13 @@ The application serves KYUTE's corporate site (renewed 2026-10): two services (�
 
 Every application route except `/lp/**` uses `SiteChrome` (`components/site/Header.tsx`, `Footer.tsx`). The standalone static PACE LP is also outside this chrome. Header (from 1280px): 採用動画制作, 採用YouTube運用代行, 運動部のシゴト。, 制作事例, コラム, 会社紹介, plus 資料請求 (`/download`) and 無料相談 (`/contact`). Narrower screens use a menu button and a fixed bottom bar with both actions.
 
+React LPs retain their own header/footer and append one in-flow 「アクセス解析について・設定」 link after their content. This remains available after either consent choice; it does not add corporate navigation. The static PACE file is unchanged.
+
 Each service page has its own material request form (`#download`), posting to the existing delivery endpoints: 採用動画 → `/api/material-request`, 採用YouTube → `/api/culture-material`.
 
 The canonical origin is `https://www.kyute.jp`; the apex currently redirects there with HTTP 307 at the hosting layer. Each corporate route has its own canonical/OG/Twitter metadata. Home carries Organization/WebSite JSON-LD; the two service pages carry Service/BreadcrumbList. Their visible service labels and hero copy are included in each H1.
 
-Material requests emit a success event only after an acknowledged successful API response. Shared CTAs use `site_cta_click`; article pages retain `column_cta_click` with exclusive ownership to avoid duplicate counting. Optional GA4 is disabled unless `NEXT_PUBLIC_GA_MEASUREMENT_ID` is configured, and runs only on the production domains. Vercel Hobby does not aggregate custom events. See `docs/seo/MEASUREMENT_PLAN.md` for activation and privacy constraints.
+Material requests emit a success event only after an acknowledged successful API response. Shared CTAs use `site_cta_click`; article pages retain `column_cta_click` with exclusive ownership to avoid duplicate counting. Optional GA4 requires a configured `NEXT_PUBLIC_GA_MEASUREMENT_ID`, a production hostname and an explicit visitor grant. Before a grant, no Google script, cookie or event is installed. A footer link opens `/analytics` for the explanation and preference changes; Vercel statistics remain separate. The static PACE LP does not run this app-level integration. Vercel Hobby does not aggregate custom events. See `docs/seo/MEASUREMENT_PLAN.md` for activation and privacy constraints.
 
 AIカジュアル面談 and 体験型会社説明会 are not announced yet and appear nowhere on the site.
 
@@ -35,6 +37,7 @@ AIカジュアル面談 and 体験型会社説明会 are not announced yet and a
 | `/about` | Mission, 「採用を、消費から資産へ。」, company profile | — |
 | `/download` | Both material request forms | Forms |
 | `/contact` | Embedded Google Forms contact surface and FAQ | Embedded external form |
+| `/analytics` | Access analytics explanation and browser-local GA4 allow/deny settings; `noindex,follow`, excluded from sitemap | Equal allow/deny controls |
 | `/column` | Column index with category filter | Article pages |
 | `/column/category/[category]` | Column list per visible service (`recruit-video`, `recruit-youtube`, `general`; `ai-casual-interview` and `experience-briefing` are hidden until announced) | Article pages |
 | `/column/[slug]` | Column article from `content/column/<slug>.md`; drafts render only locally and on Vercel previews (noindex) | Per-service end-of-article CTA and optional in-body CTA cards (`<!-- cta: id -->`), both from `CTAS` in `lib/column/core.mjs`: service `#price` / `#download`, `/works`, `/contact`. Clicks on any `data-cta` element are sent as the Vercel Analytics event `column_cta_click` |

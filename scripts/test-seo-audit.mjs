@@ -76,6 +76,10 @@ assert.equal(hiddenPublic.filter((i) => i.code === 'sitemap_missing_expected_url
 assert.ok(hiddenPublic.some((i) => i.code === 'sitemap_empty'));
 const exposedEmptyCategory = analyzeAudit({ ...audit, sitemap: emptyMap, expectedNoindexPaths: ['/column/category/general'], pages: [basic('https://www.kyute.jp/column/category/general')] });
 assert.ok(exposedEmptyCategory.some((i) => i.code === 'expected_noindex_missing'));
+const settingsUrl = 'https://www.kyute.jp/analytics';
+assert.ok(analyzeAudit({ ...audit, pages: [basic(settingsUrl)] }).some((i) => i.code === 'expected_noindex_missing'));
+assert.ok(!analyzeAudit({ ...audit, pages: [basic(settingsUrl, { robots: ['noindex'] })] }).some((i) => i.code === 'expected_noindex_missing'));
+assert.ok(analyzeAudit({ ...audit, pages: [basic(settingsUrl, { robots: ['noindex'] })], sitemap: { entries: [{ url: settingsUrl, response: { status: 200, redirects: [] } }] } }).some((i) => i.code === 'sitemap_unexpected_url'));
 const botSpecific = 'User-agent: Googlebot\nDisallow: /\n\nUser-agent: *\nAllow: /';
 assert.equal(robotsAllows(botSpecific, '/service/recruit-video'), true);
 assert.equal(robotsAllows(botSpecific, '/service/recruit-video', 'Googlebot'), false);

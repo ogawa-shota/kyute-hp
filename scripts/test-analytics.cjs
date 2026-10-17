@@ -14,7 +14,7 @@ function load(file, imports = {}, globals = {}) {
     module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX,
   } }).outputText;
   const context = {
-    exports: {}, URL, window: windowMock,
+    exports: {}, URL, Event, window: windowMock,
     require(name) { if (name in imports) return imports[name]; throw new Error('Unexpected import: ' + name); },
     ...globals,
   };
@@ -32,6 +32,7 @@ function pass(label) { checks++; console.log('PASS: ' + label); }
 
 for (const [value, base, expected] of [
   ['/contact?email=private@example.com#name', '/', '/contact'],
+  ['/analytics?email=private@example.com', '/', '/analytics'],
   ['#download', '/service/recruit-video', '/service/recruit-video'],
   ['https://www.kyute.jp/service/recruit-youtube?name=private#download', '/', '/service/recruit-youtube'],
   ['/column/cost-guide/', '/', '/column/cost-guide'],
@@ -169,11 +170,28 @@ function formHarness({ response = { ok: true, body: { ok: true } }, valid = true
   pass('Both form services are distinguished and analytics failures cannot break successful submissions');
 
   const scripts = [];
+  const savedChoices = new Map();
+  const consentListeners = new Map();
+  const cookieDeletes = [];
+  let storageWriteFails = false, storageReadFails = false;
+  windowMock.localStorage = {
+    getItem(key) { if (storageReadFails) throw new Error('blocked'); return savedChoices.get(key) ?? null; },
+    setItem(key, value) { if (storageWriteFails) throw new Error('blocked'); savedChoices.set(key, value); },
+    removeItem(key) { savedChoices.delete(key); },
+  };
+  windowMock.addEventListener = (name, listener) => {
+    if (!consentListeners.has(name)) consentListeners.set(name, new Set());
+    consentListeners.get(name).add(listener);
+  };
+  windowMock.removeEventListener = (name, listener) => consentListeners.get(name)?.delete(listener);
+  windowMock.dispatchEvent = (event) => { for (const listener of consentListeners.get(event.type) ?? []) listener(event); return true; };
   const googleAnalytics = load('lib/analytics.ts', {
     '@vercel/analytics': { track() { throw new Error('Mock Vercel unavailable'); } },
   }, {
     document: {
       referrer: 'https://www.google.com/search?q=private@example.com#name',
+      get cookie() { return '_ga=mock-client; _ga_TEST123456=mock-session; unrelated=keep'; },
+      set cookie(value) { cookieDeletes.push(value); },
       createElement(tag) { assert.equal(tag, 'script'); return {}; },
       head: { appendChild(script) { scripts.push(script); } },
     },
@@ -192,6 +210,19 @@ function formHarness({ response = { ok: true, body: { ok: true } }, valid = true
   assert.equal(scripts.length, 0);
   pass('GA4 stays fully disabled without a valid ID, on preview/local hosts and on non-public routes');
 
+  googleAnalytics.initializeGoogleAnalytics(mockId, '/');
+  assert.equal(scripts.length, 0);
+  assert.equal(windowMock.dataLayer, undefined);
+  assert.equal(googleAnalytics.readAnalyticsConsent(), null);
+  googleAnalytics.setAnalyticsConsent('denied');
+  googleAnalytics.initializeGoogleAnalytics(mockId, '/');
+  assert.equal(scripts.length, 0);
+  assert.equal(windowMock.dataLayer, undefined);
+  assert.equal(windowMock[`ga-disable-${mockId}`], true);
+  assert.equal(googleAnalytics.readAnalyticsConsent(), 'denied');
+  assert.equal(googleAnalytics.setAnalyticsConsent('granted'), true);
+  pass('Unselected or denied consent installs no script and queues no Google commands; explicit grant is persisted first');
+
   googleAnalytics.initializeGoogleAnalytics(mockId, '/contact?email=private@example.com#name');
   googleAnalytics.initializeGoogleAnalytics(mockId, '/contact');
   assert.equal(scripts.length, 1);
@@ -199,6 +230,9 @@ function formHarness({ response = { ok: true, body: { ok: true } }, valid = true
   assert.equal(commands.filter(command => command[0] === 'config').length, 1);
   const config = commands.find(command => command[0] === 'config')[2];
   assert.equal(config.send_page_view, false);
+  const consent = commands.find(command => command[0] === 'consent')[2];
+  assert.equal(consent.analytics_storage, 'granted');
+  for (const key of ['ad_storage', 'ad_user_data', 'ad_personalization']) assert.equal(consent[key], 'denied');
   assert.equal(config.allow_google_signals, false);
   assert.equal(config.allow_ad_personalization_signals, false);
   assert.equal(config.page_referrer, 'https://www.google.com');
@@ -221,5 +255,99 @@ function formHarness({ response = { ok: true, body: { ok: true } }, valid = true
   assert.equal(commands.filter(command => command[1] === 'material_request_success').length, 0);
   assert.equal(JSON.stringify(leadCommands).includes('private'), false);
   pass('GA4 maps a successful request to one generate_lead even when the Vercel sink fails');
+  const eventsBeforeRevocation = commands.filter(command => command[0] === 'event').length;
+  googleAnalytics.setAnalyticsConsent('denied');
+  googleAnalytics.initializeGoogleAnalytics(mockId, '/contact');
+  googleAnalytics.trackMaterialRequestSuccess('/api/culture-material', '/download');
+  assert.equal(windowMock[`ga-disable-${mockId}`], true);
+  assert.equal(windowMock.kyuteAnalytics.active, false);
+  assert.equal(windowMock.dataLayer.filter(command => command[0] === 'event').length, eventsBeforeRevocation);
+  assert.ok(cookieDeletes.some(value => value.startsWith('_ga=') && value.includes('Max-Age=0')));
+  assert.ok(cookieDeletes.some(value => value.startsWith('_ga_TEST123456=') && value.includes('domain=kyute.jp')));
+  assert.ok(cookieDeletes.every(value => !value.startsWith('unrelated=')));
+  googleAnalytics.setAnalyticsConsent('granted');
+  googleAnalytics.initializeGoogleAnalytics(mockId, '/contact');
+  googleAnalytics.initializeGoogleAnalytics(mockId, '/contact');
+  assert.equal(windowMock[`ga-disable-${mockId}`], false);
+  assert.equal(scripts.length, 1);
+  const resumedConfig = windowMock.dataLayer.filter(command => command[0] === 'config').at(-1)[2];
+  assert.equal(resumedConfig.page_location, 'https://www.kyute.jp/contact');
+  assert.equal(resumedConfig.send_page_view, false);
+  assert.equal(windowMock.dataLayer.filter(command => command[0] === 'event').length, eventsBeforeRevocation + 1);
+  pass('Revocation stops custom and automatic Google collection, deletes only GA cookies, and regrant reuses one script with one pageview');
+
+  let notified = 0;
+  const unsubscribe = googleAnalytics.subscribeAnalyticsConsent(() => notified++);
+  savedChoices.set(googleAnalytics.ANALYTICS_CONSENT_KEY, 'denied');
+  windowMock.dispatchEvent({ type: 'storage', key: googleAnalytics.ANALYTICS_CONSENT_KEY });
+  assert.equal(notified, 1);
+  assert.equal(windowMock[`ga-disable-${mockId}`], true);
+  assert.equal(windowMock.kyuteAnalytics.active, false);
+  savedChoices.delete(googleAnalytics.ANALYTICS_CONSENT_KEY);
+  windowMock.dispatchEvent({ type: 'storage', key: null });
+  assert.equal(googleAnalytics.readAnalyticsConsent(), null);
+  unsubscribe();
+  assert.ok([...consentListeners.values()].every(set => set.size === 0));
+  pass('Other-tab denial or storage clearing stops measurement, and preference subscriptions clean up');
+
+  googleAnalytics.setAnalyticsConsent('granted');
+  googleAnalytics.initializeGoogleAnalytics(mockId, '/');
+  storageReadFails = true;
+  const beforeFailure = windowMock.dataLayer.length;
+  googleAnalytics.trackMaterialRequestSuccess('/api/culture-material', '/download');
+  assert.equal(windowMock.dataLayer.length, beforeFailure);
+  assert.equal(windowMock[`ga-disable-${mockId}`], true);
+  storageReadFails = false;
+  storageWriteFails = true;
+  assert.equal(googleAnalytics.setAnalyticsConsent('granted'), false);
+  googleAnalytics.initializeGoogleAnalytics(mockId, '/download');
+  assert.equal(windowMock.dataLayer.length, beforeFailure);
+  assert.equal(googleAnalytics.readAnalyticsConsent(), null);
+  assert.equal(windowMock[`ga-disable-${mockId}`], true);
+  storageWriteFails = false;
+  assert.equal(googleAnalytics.setAnalyticsConsent('denied'), true);
+  pass('Storage read or write failures fail closed and cannot leave an earlier grant collecting events');
+  const component = (id, hydrate = false) => {
+    const jsx = (type, props) => ({ type, props });
+    return load('components/analytics/GoogleAnalytics.tsx', {
+      react: {
+        useEffect(effect) { effect(); }, useState(initial) { return [initial, () => {}]; },
+        useSyncExternalStore(_subscribe, getSnapshot, getServerSnapshot) { return hydrate ? getServerSnapshot() : getSnapshot(); },
+      },
+      'react/jsx-runtime': { jsx, jsxs: jsx }, 'next/link': { default: 'link' },
+      'next/navigation': { usePathname: () => '/download' }, '@/lib/analytics': googleAnalytics,
+    }, { process: { env: { NEXT_PUBLIC_GA_MEASUREMENT_ID: id } } });
+  };
+  googleAnalytics.setAnalyticsConsent('granted');
+  const cookiesBeforeHydration = cookieDeletes.length;
+  component(mockId, true).GoogleAnalytics();
+  assert.equal(cookieDeletes.length, cookiesBeforeHydration);
+  assert.equal(windowMock.kyuteAnalytics.active, true);
+  assert.equal(component(mockId).GoogleAnalytics(), null);
+  googleAnalytics.setAnalyticsConsent('denied');
+  assert.equal(component(mockId).GoogleAnalytics(), null);
+  savedChoices.delete(googleAnalytics.ANALYTICS_CONSENT_KEY);
+  assert.equal(component(mockId).GoogleAnalytics().type, 'aside');
+  assert.equal(component(undefined).GoogleAnalytics(), null);
+  windowMock.location.hostname = 'preview.vercel.app';
+  assert.equal(component(mockId).GoogleAnalytics(), null);
+  pass('Hydration preserves a stored grant; the choice panel appears only with a real production ID and no saved choice');
+  const hasSettingsLink = (node) => {
+    if (!node || typeof node !== 'object') return false;
+    if (node.props?.href === '/analytics') return true;
+    const children = node.props?.children;
+    return (Array.isArray(children) ? children : [children]).some(hasSettingsLink);
+  };
+  for (const route of ['/lp', '/lp/day-in-the-life', '/lp/undo-job', '/lp/recruit-video', '/lp/recruit-youtube']) {
+    const jsx = (type, props) => ({ type, props });
+    const chrome = load('components/SiteChrome.tsx', {
+      'react/jsx-runtime': { jsx, jsxs: jsx, Fragment: 'fragment' },
+      'next/navigation': { usePathname: () => route }, 'next/link': { default: 'link' },
+      '@/components/site/Header': { Header: 'header' }, '@/components/site/Footer': { Footer: 'footer', MobileBar: 'mobile-bar' },
+      '@/components/analytics/SiteCtaTracker': { SiteCtaTracker: 'tracker' },
+    });
+    assert.equal(hasSettingsLink(chrome.SiteChrome({ children: 'LP content' })), true, route);
+  }
+  pass('All React LPs retain an in-flow analytics settings link independently of the dismissed consent panel');
   console.log(`${checks} analytics checks passed (all transports mocked).`);
 })().catch(error => { console.error(error); process.exitCode = 1; });
