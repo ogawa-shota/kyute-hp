@@ -82,6 +82,7 @@ assert.equal(sitemap.find((entry) => entry.url.endsWith("/category/recruit-video
 assert.deepEqual(Array.from(sitemap.filter((entry) => /^\/lp(?:\/|$)/.test(new URL(entry.url).pathname)), (entry) => entry.url), [`${canonical}/lp/pace`], "PACE is the only indexable LP; advertising LPs stay out of the sitemap");
 assert.ok(!sitemap.some((entry) => entry.url.includes("recruit-youtube") && entry.url.includes("category")));
 assert.ok(!sitemap.some((entry) => ["/pace", "/pace/index.html"].includes(new URL(entry.url).pathname)), "PACE redirect and static alias stay out of the sitemap");
+assert.ok(!sitemap.some((entry) => new URL(entry.url).pathname === "/analytics"), "Analytics settings utility stays out of the sitemap");
 assert.ok(sitemap.every((entry) => entry.url.startsWith(`${canonical}/`)));
 assert.equal(new Set(sitemap.map((entry) => entry.url)).size, sitemap.length);
 

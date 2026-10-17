@@ -21,6 +21,13 @@ This document records what the repository currently renders so that scoped chang
 - **/media exception:** `/media` embeds the Undo Job LP below unchanged except for the typeface (`.site .uj-embedded` in `app/globals.css`) and its sticky mobile CTA, which the site bar replaces.
 - **Preserve rules:** Do not show AIカジュアル面談 or 体験型会社説明会 until announced. Do not publish customer names, outcomes or SoVa material without permission. Keep the LP systems below separate.
 
+### Access analytics settings
+
+- `/analytics` uses the corporate typography, a 768px reading width, white background and one off-white settings panel. Body text is at least 17px. The footer includes a 17px underlined link.
+- React LPs keep a single 17px underlined settings link in normal document flow after their existing content/footer. Mobile bottom padding leaves it above the LP's fixed CTA at the end of the page; it is not a floating control. Static PACE is excluded.
+- A configured GA4 ID on a production hostname shows a compact white permission panel until the visitor chooses. Equal outlined, 48px minimum-height buttons read 「許可する」 and 「許可しない」; no choice is preselected. The panel has a details link and does not lock page scrolling or move focus.
+- The panel sits above the corporate mobile CTA (80px bottom clearance; 96px on app LPs), is scrollable in short viewports and moves to the bottom-right on desktop. Existing Hero, page sections, primary CTAs and independent LP systems are unchanged. The static PACE document is outside this integration.
+
 ### Column articles (`/column/[slug]`)
 
 - **Status:** Current observed implementation inside the corporate system; not approval.

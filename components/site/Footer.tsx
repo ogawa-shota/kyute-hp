@@ -49,7 +49,10 @@ export function Footer() {
             </nav>
           ))}
         </div>
-        <p className="mt-12 text-xs text-white/50">© {new Date().getFullYear()} KYUTE</p>
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-5">
+          <p className="text-xs text-white/50">© {new Date().getFullYear()} KYUTE</p>
+          <Link href="/analytics" className="text-[17px] underline underline-offset-4 hover:text-white">アクセス解析について・設定</Link>
+        </div>
       </Container>
     </footer>
   );

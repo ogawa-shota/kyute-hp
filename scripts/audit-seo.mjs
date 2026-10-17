@@ -19,6 +19,7 @@ const HOSTS = new Set(['kyute.jp', 'www.kyute.jp']);
 const EXTENSION = /\.(?:pdf|png|jpe?g|webp|avif|gif|svg|ico|css|js|mjs|map|woff2?|ttf|mp4|webm|mp3|zip|xml|txt)$/i;
 // Explicit route intent is independent of runtime meta tags and sitemap output.
 const PUBLIC_PATHS = ['/', '/service', '/service/recruit-video', '/service/recruit-youtube', '/media', '/works', '/about', '/download', '/contact', '/column', '/lp/pace'];
+const UTILITY_NOINDEX_PATHS = ['/analytics'];
 const REDIRECTS = ['/service/youtube', '/service/media', '/pace'];
 // PACE is an indexable standalone page. Its static file serves the same HTML;
 // only the public /lp/pace route belongs in the sitemap and duplicate inventory.
@@ -140,7 +141,7 @@ function stripBody(result) { const { body, ...rest } = result; return rest; }
 export function analyzeAudit(audit) {
   const issues = []; const add = (severity, code, url, detail) => issues.push({ severity, code, url, detail });
   const expectedIndexable = new Set(audit.expectedIndexablePaths ?? audit.pages.map((p) => new URL(p.requestedUrl).pathname).filter((p) => PUBLIC_PATHS.includes(p)));
-  const expectedNoindex = new Set(audit.expectedNoindexPaths ?? []);
+  const expectedNoindex = new Set([...(audit.expectedNoindexPaths ?? []), ...UTILITY_NOINDEX_PATHS]);
   const sitemapPaths = new Set(audit.sitemap.entries.map((entry) => new URL(entry.url).pathname));
   const sitemapCoverageKnown = !Array.isArray(audit.sitemap.documents) || (audit.sitemap.documents.length > 0 && audit.sitemap.documents.every((d) => d.status === 200 && d.outcome === 'http_response' && !d.parseError));
   if (sitemapCoverageKnown && expectedIndexable.size && !sitemapPaths.size) add('error', 'sitemap_empty', new URL('/sitemap.xml', audit.baseUrl ?? audit.expectedOrigin).href, 'Expected public routes exist, but no sitemap URL was found');
@@ -168,7 +169,7 @@ export function analyzeAudit(audit) {
     p.noindex = noindex;
     const pathname = new URL(p.requestedUrl).pathname;
     if (expectedIndexable.has(pathname) && noindex) add('error', 'expected_indexable_noindex', p.requestedUrl, 'Repository intent requires this route to permit indexing');
-    if ((expectedNoindex.has(pathname) || isAdLp(pathname)) && !noindex) add('error', 'expected_noindex_missing', p.requestedUrl, 'Ad LP or known empty category must remain noindex');
+    if ((expectedNoindex.has(pathname) || isAdLp(pathname)) && !noindex) add('error', 'expected_noindex_missing', p.requestedUrl, 'Ad LP, utility settings page or known empty category must remain noindex');
     if (!noindex && !expectedIndexable.has(pathname) && p.googlebotAllowed === false) add('error', 'googlebot_disallowed', p.requestedUrl, 'robots.txt blocks Googlebot from this index-permitted HTML');
     if (h.jsonLd.some((j) => !j.valid)) add('error', 'invalid_json_ld', p.requestedUrl, 'JSON-LD cannot be parsed');
     if (h.images.some((i) => i.alt === null)) add('warning', 'image_alt_missing', p.requestedUrl, `${h.images.filter((i) => i.alt === null).length} image(s) without alt. Empty alt is recorded separately, not an automatic defect.`);
@@ -234,7 +235,7 @@ export async function repositoryRoutes(root, today) {
   return {
     routes: [...new Set([...routes, ...PUBLIC_PATHS, ...publishedPaths, ...populatedCategories, ...emptyCategories, ...REDIRECTS, ...CANONICAL_ALIASES.keys()])],
     expectedIndexablePaths: [...PUBLIC_PATHS, ...publishedPaths, ...populatedCategories],
-    expectedNoindexPaths: [...routes.filter(isAdLp), ...emptyCategories],
+    expectedNoindexPaths: [...routes.filter(isAdLp), ...emptyCategories, ...UTILITY_NOINDEX_PATHS],
   };
 }
 export async function crawl({ baseUrl, expectedOrigin, maxPages = 100, timeout = 20000, delay = 100, root = process.cwd(), today = new Date().toISOString().slice(0, 10) }) {
